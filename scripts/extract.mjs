@@ -8,11 +8,12 @@
 // gap is visible to the content task instead of just missing - and is then
 // filled from content/grade-9.sinhala.json by apply-sinhala.mjs.
 
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { readLessons } from './lib/read-lessons.mjs';
 import { readOptionSets } from './lib/read-option-sets.mjs';
 import { readScratch } from './lib/read-scratch.mjs';
 import { readAdventure } from './lib/read-adventure.mjs';
+import { readBonus, BonusError } from './lib/read-bonus.mjs';
 import { normalise } from './lib/normalise-adventure.mjs';
 import { mergeLang, MergeError } from './lib/merge-lang.mjs';
 import { applyAdditions } from './lib/apply-additions.mjs';
@@ -141,5 +142,32 @@ writeFileSync('data/adventure-9.json', JSON.stringify(adventure, null, 2) + '\n'
 const gameCount = adventure.lessons.reduce((n, l) => n + l.games.length, 0);
 console.log(`adventure: ${adventure.lessons.length} lessons, ${gameCount} mini games -> data/adventure-9.json`);
 if (adventureSi?.filled) console.log(`         sinhala: ${adventureSi.filled} strings filled from content/adventure-9.sinhala.json across ${adventureSi.drafted.length} games${adventureSi.draft ? ', all marked siDraft' : ''}`);
+
+// Bonus mini games for grades 6 to 8, the counterpart to grade 9's ICT
+// Adventure set. That set is grade 9 content, so the other grades had nothing
+// to offer; these are hand-authored, which is why read-bonus.mjs validates
+// them instead of a parity check nothing can provide.
+const BONUS = 'content/bonus-games.json';
+const lessonsByGrade = {};
+for (const g of [6, 7, 8]) {
+  lessonsByGrade[g] = JSON.parse(readFileSync(`data/grade-${g}.json`, 'utf8')).lessons.map((l) => l.id);
+}
+let bonus = null;
+try {
+  bonus = readBonus(BONUS, lessonsByGrade);
+} catch (err) {
+  if (!(err instanceof BonusError)) throw err;
+  console.error(`bonus: ${err.message}`);
+  failed++;
+}
+if (bonus) {
+  writeFileSync('data/bonus.json', `${JSON.stringify({ source: BONUS, ...bonus.meta, grades: bonus.games }, null, 2)}
+`);
+  const n = Object.values(bonus.games).reduce((a, list) => a + list.length, 0);
+  console.log(`bonus:  ${n} mini games across grades ${Object.keys(bonus.games).join(', ')} -> data/bonus.json`);
+  console.log(bonus.gaps.length
+    ? `         ${bonus.gaps.length} strings with no sinhala yet`
+    : '         every string has english and sinhala (drafted, awaiting review)');
+}
 
 process.exit(failed ? 1 : 0);

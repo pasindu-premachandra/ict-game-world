@@ -1,34 +1,40 @@
-// The 18 ICT Adventure mini games, folded into the grade 9 lesson path as
-// bonus rounds (gate D3 in redesign-trilingual, gate O1 in adventure-set).
+// Bonus mini games, for every grade.
 //
-// The adventure file keeps its own shape - lessons[].games[] with a `kind` -
-// while the rest of the app speaks lessons[].activities[] with a `type`.
-// Rather than teach the router a second shape, each game is normalised into an
-// activity here, so the existing screen, scoring and reward code all work on it
-// without knowing it came from a different file.
+// Grade 9's come from the ICT Adventure game (six themed sets, 18 games) that
+// was folded in as bonus rounds by gate D3 in redesign-trilingual. Grades 6 to
+// 8 have their own, in content/bonus-games.json, because the adventure set is
+// grade 9 content and there was nothing spare to give them.
+//
+// The two files have different shapes and neither matches the
+// lessons[].activities[] shape the rest of the app speaks, so both are
+// normalised into an activity here. Everything downstream - the activity
+// screen, store.js, leaderboard.js, the reward layer - then works on them
+// without knowing where they came from.
 
-const FILE = 'data/adventure-9.json';
+const ADVENTURE_FILE = 'data/adventure-9.json';
+const BONUS_FILE = 'data/bonus.json';
 
 const KINDS = { mcQuiz: 'mcquiz', sortGame: 'sortgame', memoryGame: 'memory' };
 
-// Adventure ids are c1, p2, so3. Prefixed, they can never be confused with a
-// numbered competency activity, in a URL or in the scores table. The prefix is
-// also what submit_score() allows, see supabase/migrations/0002.
+// Adventure ids are c1, p2, so3; the authored ones are bq6, bs7, bm8. Prefixed,
+// none can be confused with a numbered competency activity, in a URL or in the
+// scores table. The prefix is also what submit_score() allows, see
+// supabase/migrations/0002.
 export const PREFIX = 'adv-';
 
-let cache = null;
+const cache = new Map();
 
-export async function loadAdventure() {
-  if (!cache) {
-    const res = await fetch(FILE);
-    if (!res.ok) throw new Error('cannot load the adventure set');
-    cache = await res.json();
+async function load(file) {
+  if (!cache.has(file)) {
+    const res = await fetch(file);
+    if (!res.ok) throw new Error(`cannot load ${file}`);
+    cache.set(file, await res.json());
   }
-  return cache;
+  return cache.get(file);
 }
 
 function toActivity(game, set) {
-  const { id, kind, name, desc, icon, ...payload } = game;
+  const { id, kind, name, desc, icon, lesson, ...payload } = game;
   return {
     ...payload,
     id: PREFIX + id,
@@ -36,24 +42,25 @@ function toActivity(game, set) {
     name,
     instruction: desc,
     icon,
-    // Read by the lesson path to mark the row, and by nothing else.
+    // Which lesson this is a bonus round for. The adventure sets carry it as
+    // their set number - set 01 belongs to grade 9 lesson 1 - and the authored
+    // games say so outright.
+    lesson: set ? Number(set.num) : lesson,
     bonus: true,
-    setTitle: set.title,
+    setTitle: set?.title ?? null,
   };
 }
 
-// Set 01 belongs to grade 9 lesson 1, set 02 to lesson 2, and so on - the six
-// themes line up with the first six lessons exactly. Lesson 7, "ICT All Around
-// Us", has no set, so it gets nothing rather than a leftover.
-export function bonusFor(data, lessonId) {
-  const set = data.lessons.find((l) => Number(l.num) === lessonId);
-  return set ? set.games.map((g) => toActivity(g, set)) : [];
+// Every bonus game a grade has, in activity shape, each carrying its lesson.
+export async function bonusGames(grade) {
+  if (grade === 9) {
+    const data = await load(ADVENTURE_FILE);
+    return data.lessons.flatMap((set) => set.games.map((game) => toActivity(game, set)));
+  }
+  const data = await load(BONUS_FILE);
+  return (data.grades?.[String(grade)] ?? []).map((game) => toActivity(game, null));
 }
 
-export function findActivity(data, id) {
-  for (const set of data.lessons) {
-    const hit = set.games.find((g) => PREFIX + g.id === id);
-    if (hit) return toActivity(hit, set);
-  }
-  return null;
+export async function findBonus(grade, id) {
+  return (await bonusGames(grade)).find((activity) => activity.id === id) ?? null;
 }

@@ -1,0 +1,842 @@
+{
+  "source": "content/bonus-games.json",
+  "origin": "adventure-set",
+  "drafted": "2026-09-20",
+  "siDraft": true,
+  "grades": {
+    "6": [
+      {
+        "id": "bq6",
+        "icon": "💡",
+        "kind": "mcQuiz",
+        "lesson": 1,
+        "name": {
+          "en": "Computer Basics",
+          "si": "පරිගණක මූලික දැනුම"
+        },
+        "desc": {
+          "en": "Quick questions on the parts of a computer and the laboratory rules",
+          "si": "පරිගණකයේ කොටස් හා විද්‍යාගාර නීති ගැන කෙටි ප්‍රශ්න"
+        },
+        "questions": [
+          {
+            "q": {
+              "en": "Which part shows your work on a screen?",
+              "si": "ඔබේ වැඩ තිරයේ පෙන්වන කොටස කුමක්ද?"
+            },
+            "opts": [
+              {
+                "en": "Keyboard",
+                "si": "යතුරු පුවරුව"
+              },
+              {
+                "en": "Monitor",
+                "si": "සන්දර්ශකය"
+              },
+              {
+                "en": "Mouse",
+                "si": "මූසිකය"
+              },
+              {
+                "en": "Printer",
+                "si": "මුද්‍රණ යන්ත්‍රය"
+              }
+            ],
+            "ans": 1
+          },
+          {
+            "q": {
+              "en": "What is called the brain of the computer?",
+              "si": "පරිගණකයේ මොළය ලෙස හැඳින්වෙන්නේ?"
+            },
+            "opts": [
+              "CPU",
+              "RAM",
+              {
+                "en": "Monitor",
+                "si": "සන්දර්ශකය"
+              },
+              {
+                "en": "Mouse",
+                "si": "මූසිකය"
+              }
+            ],
+            "ans": 0
+          },
+          {
+            "q": {
+              "en": "Before you leave the computer laboratory you should:",
+              "si": "පරිගණක විද්‍යාගාරයෙන් පිටව යාමට පෙර ඔබ කළ යුත්තේ:"
+            },
+            "opts": [
+              {
+                "en": "Shut down the computer",
+                "si": "පරිගණකය නිවා දැමීම"
+              },
+              {
+                "en": "Pull out the power cable",
+                "si": "විදුලි රැහැන ඇද දැමීම"
+              },
+              {
+                "en": "Leave the computer switched on",
+                "si": "පරිගණකය දල්වා තැබීම"
+              },
+              {
+                "en": "Unplug the keyboard",
+                "si": "යතුරු පුවරුව ගැලවීම"
+              }
+            ],
+            "ans": 0
+          },
+          {
+            "q": {
+              "en": "Which one of these stores your data?",
+              "si": "ඔබේ දත්ත ගබඩා කරන්නේ මේවායින් කුමක්ද?"
+            },
+            "opts": [
+              {
+                "en": "Speaker",
+                "si": "ශබ්ද විකාශකය"
+              },
+              {
+                "en": "Pen drive",
+                "si": "පෙන් ඩ්‍රයිව්"
+              },
+              {
+                "en": "Monitor",
+                "si": "සන්දර්ශකය"
+              },
+              {
+                "en": "Mouse",
+                "si": "මූසිකය"
+              }
+            ],
+            "ans": 1
+          },
+          {
+            "q": {
+              "en": "Eating and drinking in the computer laboratory is:",
+              "si": "පරිගණක විද්‍යාගාරයේ කෑම බීම:"
+            },
+            "opts": [
+              {
+                "en": "Allowed any time",
+                "si": "ඕනෑම වෙලාවක අනුමතයි"
+              },
+              {
+                "en": "Not allowed",
+                "si": "අනුමත නොවේ"
+              },
+              {
+                "en": "Allowed at lunch time",
+                "si": "දිවා ආහාර වේලාවේ අනුමතයි"
+              },
+              {
+                "en": "Allowed on Fridays",
+                "si": "සිකුරාදා දින අනුමතයි"
+              }
+            ],
+            "ans": 1
+          }
+        ]
+      },
+      {
+        "id": "bs6",
+        "icon": "🔀",
+        "kind": "sortGame",
+        "lesson": 4,
+        "name": {
+          "en": "Input or Output?",
+          "si": "ආදානයද ප්‍රතිදානයද?"
+        },
+        "desc": {
+          "en": "Sort each device by whether it puts data in or gives data out",
+          "si": "දත්ත ඇතුළු කරන්නේද පිටතට දෙන්නේද යන්න අනුව උපාංග වර්ග කරන්න"
+        },
+        "bins": [
+          {
+            "id": "input",
+            "emoji": "⌨️",
+            "name": {
+              "en": "Input device",
+              "si": "ආදාන උපාංගය"
+            }
+          },
+          {
+            "id": "output",
+            "emoji": "🖨️",
+            "name": {
+              "en": "Output device",
+              "si": "ප්‍රතිදාන උපාංගය"
+            }
+          }
+        ],
+        "items": [
+          {
+            "bin": "input",
+            "name": {
+              "en": "Keyboard",
+              "si": "යතුරු පුවරුව"
+            }
+          },
+          {
+            "bin": "input",
+            "name": {
+              "en": "Mouse",
+              "si": "මූසිකය"
+            }
+          },
+          {
+            "bin": "input",
+            "name": {
+              "en": "Scanner",
+              "si": "ස්කෑනරය"
+            }
+          },
+          {
+            "bin": "input",
+            "name": {
+              "en": "Microphone",
+              "si": "මයික්‍රොෆෝනය"
+            }
+          },
+          {
+            "bin": "output",
+            "name": {
+              "en": "Monitor",
+              "si": "සන්දර්ශකය"
+            }
+          },
+          {
+            "bin": "output",
+            "name": {
+              "en": "Printer",
+              "si": "මුද්‍රණ යන්ත්‍රය"
+            }
+          },
+          {
+            "bin": "output",
+            "name": {
+              "en": "Speaker",
+              "si": "ශබ්ද විකාශකය"
+            }
+          },
+          {
+            "bin": "output",
+            "name": {
+              "en": "Headphones",
+              "si": "හෙඩ්ෆෝන්"
+            }
+          }
+        ]
+      },
+      {
+        "id": "bm6",
+        "icon": "🧩",
+        "kind": "memoryGame",
+        "lesson": 7,
+        "name": {
+          "en": "Software and Its Job",
+          "si": "මෘදුකාංගය හා එහි කාර්යය"
+        },
+        "desc": {
+          "en": "Turn the cards over and pair each program with what it is for",
+          "si": "කාඩ්පත් හරවා එක් එක් වැඩසටහන එහි කාර්යය සමඟ යුගල කරන්න"
+        },
+        "pairs": [
+          {
+            "key": "paint",
+            "a": {
+              "en": "🎨 Paint",
+              "si": "🎨 පේන්ට්"
+            },
+            "b": {
+              "en": "Draw pictures",
+              "si": "පින්තූර ඇඳීම"
+            }
+          },
+          {
+            "key": "word",
+            "a": {
+              "en": "📝 Word processor",
+              "si": "📝 වදන් සකසනය"
+            },
+            "b": {
+              "en": "Type a letter",
+              "si": "ලිපියක් ටයිප් කිරීම"
+            }
+          },
+          {
+            "key": "browser",
+            "a": {
+              "en": "🌐 Web browser",
+              "si": "🌐 වෙබ් බ්‍රව්සරය"
+            },
+            "b": {
+              "en": "Visit web pages",
+              "si": "වෙබ් පිටු බැලීම"
+            }
+          },
+          {
+            "key": "media",
+            "a": {
+              "en": "🎵 Media player",
+              "si": "🎵 මාධ්‍ය වාදකය"
+            },
+            "b": {
+              "en": "Play a song",
+              "si": "ගීතයක් වාදනය"
+            }
+          },
+          {
+            "key": "files",
+            "a": {
+              "en": "🗂️ File manager",
+              "si": "🗂️ ගොනු කළමනාකරු"
+            },
+            "b": {
+              "en": "Find your files",
+              "si": "ඔබේ ගොනු සොයා ගැනීම"
+            }
+          }
+        ]
+      }
+    ],
+    "7": [
+      {
+        "id": "bq7",
+        "icon": "🧠",
+        "kind": "mcQuiz",
+        "lesson": 1,
+        "name": {
+          "en": "Inside the Computer",
+          "si": "පරිගණකය ඇතුළත"
+        },
+        "desc": {
+          "en": "The processor, the memory, and keeping your work safe",
+          "si": "සකසනය, මතකය, හා ඔබේ වැඩ ආරක්ෂා කර ගැනීම"
+        },
+        "questions": [
+          {
+            "q": {
+              "en": "The CPU is made up of?",
+              "si": "CPU සමන්විත වන්නේ?"
+            },
+            "opts": [
+              {
+                "en": "The ALU and the Control Unit",
+                "si": "ALU සහ පාලන ඒකකය"
+              },
+              {
+                "en": "The monitor and the mouse",
+                "si": "සන්දර්ශකය සහ මූසිකය"
+              },
+              {
+                "en": "RAM and ROM",
+                "si": "RAM සහ ROM"
+              },
+              {
+                "en": "The keyboard and the printer",
+                "si": "යතුරු පුවරුව සහ මුද්‍රණ යන්ත්‍රය"
+              }
+            ],
+            "ans": 0
+          },
+          {
+            "q": {
+              "en": "Which memory loses its data when the power goes off?",
+              "si": "විදුලිය නිවුණු විට දත්ත මැකී යන මතකය කුමක්ද?"
+            },
+            "opts": [
+              "ROM",
+              "RAM",
+              {
+                "en": "Hard disk",
+                "si": "දෘඩ තැටිය"
+              },
+              {
+                "en": "Pen drive",
+                "si": "පෙන් ඩ්‍රයිව්"
+              }
+            ],
+            "ans": 1
+          },
+          {
+            "q": {
+              "en": "Which one of these is system software?",
+              "si": "පද්ධති මෘදුකාංගය වන්නේ මේවායින් කුමක්ද?"
+            },
+            "opts": [
+              "MS Word",
+              "Windows",
+              "Paint",
+              "Chrome"
+            ],
+            "ans": 1
+          },
+          {
+            "q": {
+              "en": "A strong password should:",
+              "si": "ශක්තිමත් මුරපදයක්:"
+            },
+            "opts": [
+              {
+                "en": "Be your own name",
+                "si": "ඔබේ නම විය යුතුයි"
+              },
+              {
+                "en": "Be 1234",
+                "si": "1234 විය යුතුයි"
+              },
+              {
+                "en": "Mix letters, numbers and symbols",
+                "si": "අකුරු, ඉලක්කම් හා සංකේත මිශ්‍ර විය යුතුයි"
+              },
+              {
+                "en": "Be your birthday",
+                "si": "ඔබේ උපන් දිනය විය යුතුයි"
+              }
+            ],
+            "ans": 2
+          },
+          {
+            "q": {
+              "en": "In a word processor, what does Ctrl+S do?",
+              "si": "වදන් සකසනයේ Ctrl+S කරන්නේ කුමක්ද?"
+            },
+            "opts": [
+              {
+                "en": "Saves your work",
+                "si": "ඔබේ වැඩ සුරකියි"
+              },
+              {
+                "en": "Copies your work",
+                "si": "ඔබේ වැඩ පිටපත් කරයි"
+              },
+              {
+                "en": "Undoes your work",
+                "si": "ඔබේ වැඩ නිෂ්ප්‍රභ කරයි"
+              },
+              {
+                "en": "Prints your work",
+                "si": "ඔබේ වැඩ මුද්‍රණය කරයි"
+              }
+            ],
+            "ans": 0
+          }
+        ]
+      },
+      {
+        "id": "bs7",
+        "icon": "🔀",
+        "kind": "sortGame",
+        "lesson": 2,
+        "name": {
+          "en": "Hardware or Software?",
+          "si": "දෘඩාංගද මෘදුකාංගද?"
+        },
+        "desc": {
+          "en": "Sort each one into the part you can touch or the part you cannot",
+          "si": "අතට ගත හැකි දේ හා නොහැකි දේ ලෙස වර්ග කරන්න"
+        },
+        "bins": [
+          {
+            "id": "hardware",
+            "emoji": "🔧",
+            "name": {
+              "en": "Hardware",
+              "si": "දෘඩාංග"
+            }
+          },
+          {
+            "id": "software",
+            "emoji": "💿",
+            "name": {
+              "en": "Software",
+              "si": "මෘදුකාංග"
+            }
+          }
+        ],
+        "items": [
+          {
+            "bin": "hardware",
+            "name": {
+              "en": "Monitor",
+              "si": "සන්දර්ශකය"
+            }
+          },
+          {
+            "bin": "hardware",
+            "name": {
+              "en": "Keyboard",
+              "si": "යතුරු පුවරුව"
+            }
+          },
+          {
+            "bin": "hardware",
+            "name": {
+              "en": "Hard disk",
+              "si": "දෘඩ තැටිය"
+            }
+          },
+          {
+            "bin": "hardware",
+            "name": {
+              "en": "Printer",
+              "si": "මුද්‍රණ යන්ත්‍රය"
+            }
+          },
+          {
+            "bin": "software",
+            "name": "Windows"
+          },
+          {
+            "bin": "software",
+            "name": "MS Word"
+          },
+          {
+            "bin": "software",
+            "name": "Paint"
+          },
+          {
+            "bin": "software",
+            "name": {
+              "en": "Web browser",
+              "si": "වෙබ් බ්‍රව්සරය"
+            }
+          }
+        ]
+      },
+      {
+        "id": "bm7",
+        "icon": "⌨️",
+        "kind": "memoryGame",
+        "lesson": 4,
+        "name": {
+          "en": "Shortcut Keys",
+          "si": "කෙටිමං යතුරු"
+        },
+        "desc": {
+          "en": "Pair each shortcut with what it does",
+          "si": "එක් එක් කෙටිමඟ එය කරන දේ සමඟ යුගල කරන්න"
+        },
+        "pairs": [
+          {
+            "key": "copy",
+            "a": "Ctrl+C",
+            "b": {
+              "en": "Copy",
+              "si": "පිටපත් කිරීම"
+            }
+          },
+          {
+            "key": "paste",
+            "a": "Ctrl+V",
+            "b": {
+              "en": "Paste",
+              "si": "අලවීම"
+            }
+          },
+          {
+            "key": "undo",
+            "a": "Ctrl+Z",
+            "b": {
+              "en": "Undo",
+              "si": "නිෂ්ප්‍රභ කිරීම"
+            }
+          },
+          {
+            "key": "save",
+            "a": "Ctrl+S",
+            "b": {
+              "en": "Save",
+              "si": "සුරැකීම"
+            }
+          },
+          {
+            "key": "print",
+            "a": "Ctrl+P",
+            "b": {
+              "en": "Print",
+              "si": "මුද්‍රණය"
+            }
+          }
+        ]
+      }
+    ],
+    "8": [
+      {
+        "id": "bq8",
+        "icon": "🧮",
+        "kind": "mcQuiz",
+        "lesson": 4,
+        "name": {
+          "en": "Programming Basics",
+          "si": "ක්‍රමලේඛන මූලික දැනුම"
+        },
+        "desc": {
+          "en": "Algorithms, flow chart shapes, variables and loops",
+          "si": "ඇල්ගොරිතම, ගැලීම් සටහන් හැඩ, විචල්‍ය හා ලූප"
+        },
+        "questions": [
+          {
+            "q": {
+              "en": "A set of steps that solves a problem is called?",
+              "si": "ගැටලුවක් විසඳන පියවර මාලාවක් හැඳින්වෙන්නේ?"
+            },
+            "opts": [
+              {
+                "en": "An algorithm",
+                "si": "ඇල්ගොරිතමයක්"
+              },
+              {
+                "en": "A flow chart",
+                "si": "ගැලීම් සටහනක්"
+              },
+              {
+                "en": "A program",
+                "si": "වැඩසටහනක්"
+              },
+              {
+                "en": "A bug",
+                "si": "දෝෂයක්"
+              }
+            ],
+            "ans": 0
+          },
+          {
+            "q": {
+              "en": "In a flow chart, what does a diamond mean?",
+              "si": "ගැලීම් සටහනක ඩයමන්ඩ් හැඩය අදහස් කරන්නේ?"
+            },
+            "opts": [
+              {
+                "en": "Start",
+                "si": "ආරම්භය"
+              },
+              {
+                "en": "Process",
+                "si": "සැකසුම"
+              },
+              {
+                "en": "Decision",
+                "si": "තීරණය"
+              },
+              {
+                "en": "Input",
+                "si": "ආදානය"
+              }
+            ],
+            "ans": 2
+          },
+          {
+            "q": {
+              "en": "A mistake in a program is called?",
+              "si": "වැඩසටහනක ඇති වරදක් හැඳින්වෙන්නේ?"
+            },
+            "opts": [
+              {
+                "en": "A bug",
+                "si": "දෝෂයක් (bug)"
+              },
+              {
+                "en": "A loop",
+                "si": "ලූපයක්"
+              },
+              {
+                "en": "A variable",
+                "si": "විචල්‍යයක්"
+              },
+              {
+                "en": "A gate",
+                "si": "ද්වාරයක්"
+              }
+            ],
+            "ans": 0
+          },
+          {
+            "q": {
+              "en": "A named box that holds a value is called?",
+              "si": "අගයක් තබා ගන්නා නම් කළ කොටුව හැඳින්වෙන්නේ?"
+            },
+            "opts": [
+              {
+                "en": "A loop",
+                "si": "ලූපයක්"
+              },
+              {
+                "en": "A variable",
+                "si": "විචල්‍යයක්"
+              },
+              {
+                "en": "A bug",
+                "si": "දෝෂයක්"
+              },
+              {
+                "en": "A gate",
+                "si": "ද්වාරයක්"
+              }
+            ],
+            "ans": 1
+          },
+          {
+            "q": {
+              "en": "Repeating the same steps several times uses?",
+              "si": "එකම පියවර කිහිප වතාවක් නැවත කිරීමට යොදන්නේ?"
+            },
+            "opts": [
+              {
+                "en": "A loop",
+                "si": "ලූපයක්"
+              },
+              {
+                "en": "A variable",
+                "si": "විචල්‍යයක්"
+              },
+              {
+                "en": "A bug",
+                "si": "දෝෂයක්"
+              },
+              {
+                "en": "A comment",
+                "si": "සටහනක්"
+              }
+            ],
+            "ans": 0
+          }
+        ]
+      },
+      {
+        "id": "bs8",
+        "icon": "🔀",
+        "kind": "sortGame",
+        "lesson": 5,
+        "name": {
+          "en": "Sensor or Actuator?",
+          "si": "සංවේදකයද ක්‍රියාකාරකයද?"
+        },
+        "desc": {
+          "en": "A sensor reads the world. An actuator changes it. Sort each one.",
+          "si": "සංවේදකය ලෝකය කියවයි. ක්‍රියාකාරකය එය වෙනස් කරයි. එක් එක උපාංගය වර්ග කරන්න."
+        },
+        "bins": [
+          {
+            "id": "sensor",
+            "emoji": "📡",
+            "name": {
+              "en": "Sensor",
+              "si": "සංවේදකය"
+            }
+          },
+          {
+            "id": "actuator",
+            "emoji": "⚙️",
+            "name": {
+              "en": "Actuator",
+              "si": "ක්‍රියාකාරකය"
+            }
+          }
+        ],
+        "items": [
+          {
+            "bin": "sensor",
+            "name": {
+              "en": "Temperature sensor",
+              "si": "උෂ්ණත්ව සංවේදකය"
+            }
+          },
+          {
+            "bin": "sensor",
+            "name": {
+              "en": "Light sensor",
+              "si": "ආලෝක සංවේදකය"
+            }
+          },
+          {
+            "bin": "sensor",
+            "name": {
+              "en": "PIR motion sensor",
+              "si": "PIR චලන සංවේදකය"
+            }
+          },
+          {
+            "bin": "sensor",
+            "name": {
+              "en": "Ultrasonic sensor",
+              "si": "අල්ට්‍රාසොනික් සංවේදකය"
+            }
+          },
+          {
+            "bin": "actuator",
+            "name": {
+              "en": "LED bulb",
+              "si": "LED බල්බය"
+            }
+          },
+          {
+            "bin": "actuator",
+            "name": {
+              "en": "Buzzer",
+              "si": "බස්සරය"
+            }
+          },
+          {
+            "bin": "actuator",
+            "name": {
+              "en": "DC motor",
+              "si": "DC මෝටරය"
+            }
+          },
+          {
+            "bin": "actuator",
+            "name": {
+              "en": "Servo motor",
+              "si": "සර්වෝ මෝටරය"
+            }
+          }
+        ]
+      },
+      {
+        "id": "bm8",
+        "icon": "🔢",
+        "kind": "memoryGame",
+        "lesson": 1,
+        "name": {
+          "en": "Binary and Decimal",
+          "si": "ද්විමය හා දශමය"
+        },
+        "desc": {
+          "en": "Pair each binary number with the same number in decimal",
+          "si": "එක් එක් ද්විමය සංඛ්‍යාව දශමයෙන් එම අගය සමඟ යුගල කරන්න"
+        },
+        "pairs": [
+          {
+            "key": "b3",
+            "a": "0011",
+            "b": "3"
+          },
+          {
+            "key": "b5",
+            "a": "0101",
+            "b": "5"
+          },
+          {
+            "key": "b8",
+            "a": "1000",
+            "b": "8"
+          },
+          {
+            "key": "b10",
+            "a": "1010",
+            "b": "10"
+          },
+          {
+            "key": "b15",
+            "a": "1111",
+            "b": "15"
+          }
+        ]
+      }
+    ]
+  }
+}

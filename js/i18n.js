@@ -11,7 +11,7 @@ const STRINGS = {
   activities:   { en: 'activities', si: 'ක්‍රියාකාරකම්' },
   start:        { en: 'Start', si: 'පටන් ගන්න' },
   check:        { en: 'Check', si: 'පරීක්ෂා කරන්න' },
-  next:         { en: 'Next', si: 'ඊළඟ' },
+  next:         { en: 'Next activity', si: 'ඊළඟ ක්‍රියාකාරකම' },
   tryAgain:     { en: 'Try again', si: 'නැවත උත්සාහ කරන්න' },
   backToPath:   { en: 'Back to lessons', si: 'පාඩම් වෙත' },
   correct:      { en: 'Correct', si: 'නිවැරදියි' },
@@ -39,6 +39,16 @@ const STRINGS = {
   englishOnly:  { en: 'Sinhala for this one is still being written.',
                   si: 'මෙයට සිංහල තවම ලියැවෙමින් පවතී.' },
 
+  // The mascot, the grade cards and the activity chrome, all from DESIGN.md.
+  // Drafted Sinhala, on the same review list as the content.
+  hi:           { en: 'Hi', si: 'ආයුබෝවන්' },
+  welcome:      { en: 'Welcome to ICT Game World!',
+                  si: 'ICT ක්‍රීඩා ලෝකයට සාදරයෙන් පිළිගනිමු!' },
+  whichGrade:   { en: 'Which grade are you in?', si: 'ඔබ සිටින්නේ කුමන ශ්‍රේණියේද?' },
+  yourClass:    { en: 'Your class', si: 'ඔබේ පන්තිය' },
+  closeActivity:{ en: 'Close this activity', si: 'මෙම ක්‍රියාකාරකම වසන්න' },
+  activityDone: { en: 'Activity complete!', si: 'සම්පූර්ණයි!' },
+
   // Added with the grade 7-9 activity types. Drafted Sinhala, on the list for
   // Ishini and Dilini to review alongside the content typos.
   trueLabel:    { en: 'True', si: 'සත්‍යයි' },
@@ -60,6 +70,9 @@ const STRINGS = {
 
   // The ICT Adventure bonus games. Drafted Sinhala, same review list.
   bonus:        { en: 'Bonus', si: 'අමතර' },
+  bonusGames:   { en: 'Bonus games', si: 'අමතර ක්‍රීඩා' },
+  bonusLead:    { en: 'Extra games for practice. They are not part of the syllabus, and they still earn points.',
+                  si: 'අභ්‍යාසය සඳහා අමතර ක්‍රීඩා. මේවා විෂය නිර්දේශයට අයත් නොවේ, එහෙත් ලකුණු ලැබේ.' },
   moves:        { en: 'Turns', si: 'වාර' },
   hiddenCard:   { en: 'Hidden card, turn it over', si: 'සැඟවුණු කාඩ්පත, හරවන්න' },
 

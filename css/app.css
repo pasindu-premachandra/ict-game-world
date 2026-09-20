@@ -89,6 +89,11 @@ main:focus { outline: none; }
 
 .screen-title { font-size: var(--text-2xl); margin-bottom: var(--space-5); }
 .instruction { color: var(--text-muted); margin: 0 0 var(--space-5); }
+
+/* A line icon from the defs block in index.html. Everything it draws comes
+   from currentColor, so it inherits whatever it sits in. */
+.ic { display: inline-grid; width: var(--icon-md); height: var(--icon-md); flex-shrink: 0; }
+.ic svg { width: 100%; height: 100%; display: block; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .loading { color: var(--text-muted); }
 .crumb { margin-bottom: var(--space-3); font-size: var(--text-sm); }
 
@@ -103,18 +108,82 @@ main:focus { outline: none; }
   padding: var(--space-5) var(--space-4); border-top: 1px solid var(--line);
 }
 
+/* ---- the ICT friend ---- */
+
+.bot { display: block; width: 96px; height: 96px; overflow: visible; flex: none; }
+.b-shadow, .b-pin, .b-dot { fill: var(--bot-pins); }
+.b-body { fill: var(--bot-body); stroke: var(--bot-pins); stroke-width: 4; }
+.b-face { fill: var(--bot-face); }
+.b-eye { fill: var(--bot-eye); }
+.b-line { fill: none; stroke: var(--bot-eye); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.b-ant { fill: none; stroke: var(--bot-pins); stroke-width: 4; stroke-linecap: round; }
+.b-tip { fill: var(--bot-antenna); stroke: var(--bot-pins); stroke-width: 3; }
+.b-hand { fill: var(--bot-hands); stroke: var(--gold-edge); stroke-width: 3; }
+.b-cheek { fill: var(--bot-antenna); opacity: 0.55; }
+.b-glint { fill: var(--white); }
+.b-tongue { fill: var(--coral-fill); }
+
+/* How the friend talks: a speech bubble beside it, never a bare paragraph. */
+.callout { display: flex; align-items: center; gap: var(--space-3); margin: 0 0 var(--space-5); }
+.callout .bot { width: 64px; height: 64px; }
+.bubble {
+  position: relative; flex: 1; min-width: 0; margin: 0;
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-lg);
+  background: var(--g-light); color: var(--g-ink);
+  border: var(--border-thin) solid var(--g-base); font-weight: var(--weight-bold);
+}
+.bubble::before {
+  content: ""; position: absolute; left: -9px; top: 50%; width: 16px; height: 16px;
+  background: var(--g-light);
+  border-left: var(--border-thin) solid var(--g-base);
+  border-bottom: var(--border-thin) solid var(--g-base);
+  transform: translateY(-50%) rotate(45deg);
+}
+@media (max-width: 26rem) {
+  .callout .bot { width: 48px; height: 48px; }
+}
+
+.welcome { display: grid; justify-items: center; gap: var(--space-2); text-align: center; margin-bottom: var(--space-5); }
+.welcome .bot { width: 112px; height: 112px; }
+.welcome-line { font-weight: var(--weight-bold); color: var(--g-ink); margin: 0; }
+
 /* ---- grade picker ---- */
 
-.grade-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
-.grade-card {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 4px; text-decoration: none; padding: var(--space-8) var(--space-4);
-  background: var(--surface); border: 3px solid var(--line);
+.grade-list { display: grid; gap: var(--space-3); }
+.gcard {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+  gap: var(--space-4); text-decoration: none;
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-3);
+  background: var(--surface); color: var(--text);
+  border: var(--border) solid var(--line);
   border-radius: var(--radius-xl); box-shadow: var(--lift-card);
-  min-height: 44px;
+  min-height: var(--tap-hero);
 }
-.grade-card .grade-num { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 800; color: var(--g-base); line-height: 1; }
-.grade-card .grade-word { font-size: var(--text-sm); color: var(--text-muted); }
+.gcard-num {
+  display: grid; place-items: center; width: 64px; height: 64px;
+  border-radius: var(--radius-lg); background: var(--g-base); color: var(--g-on, #fff);
+  box-shadow: var(--lift-btn); font-family: var(--font-display);
+  font-weight: var(--weight-heavy); font-size: var(--text-3xl); line-height: 1;
+}
+.gcard-body { display: grid; min-width: 0; }
+.gcard-title { font-family: var(--font-display); font-weight: var(--weight-bold); font-size: var(--text-lg); line-height: var(--lh-title); }
+.gcard-sub { font-size: var(--text-sm); color: var(--text-muted); }
+.gcard-chev { color: var(--text-muted); }
+.gcard.is-mine { border-color: var(--g-base); background: var(--g-light); box-shadow: var(--lift-selected); }
+.gcard.is-mine .gcard-sub { color: var(--g-ink); }
+.pill-on {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--g-base); color: var(--g-on, #fff);
+  border-radius: var(--radius-pill); padding: var(--space-1) var(--space-3);
+  font-weight: var(--weight-heavy); font-size: var(--text-sm); white-space: nowrap;
+}
+.pill-on .ic { width: 18px; height: 18px; }
+/* On a phone the badge and the lesson count cannot share a row without
+   squeezing the count onto three lines, so the badge drops below it. */
+@media (max-width: 26rem) {
+  .gcard.is-mine { grid-template-columns: auto minmax(0, 1fr); row-gap: var(--space-2); }
+  .gcard.is-mine .pill-on { grid-column: 2; justify-self: start; }
+}
 
 /* ---- lesson path ---- */
 
@@ -129,8 +198,28 @@ main:focus { outline: none; }
   background: var(--surface); border: 2px solid var(--line);
   border-radius: var(--radius-lg); box-shadow: var(--lift-card); min-height: 44px;
 }
+/* The row is space-between, so the name has to claim the middle or a row with
+   an icon in front of it pushes the name over to the right. */
+.act-name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .act-stars { color: var(--gold); white-space: nowrap; }
 .act.is-soon { background: var(--locked); color: var(--locked-text); box-shadow: var(--lift-locked); }
+
+/* ---- activity chrome ---- */
+
+.actbar { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+.closebtn {
+  display: inline-grid; place-items: center; flex: none;
+  width: var(--tap-min); height: var(--tap-min); padding: 0;
+  border-radius: var(--radius-md); background: var(--surface); color: var(--text);
+  border: var(--border-thin) solid var(--line); cursor: pointer;
+}
+.closebtn:hover { background: var(--g-light); color: var(--g-ink); border-color: var(--g-base); }
+.closebtn .ic { width: 22px; height: 22px; }
+/* One segment per round, filling as the child answers. Activities that are not
+   rounds have nothing to segment, so they leave it out entirely. */
+.bar-set { display: flex; flex: 1; gap: 3px; height: 14px; }
+.bar-set i { flex: 1; background: var(--line); border-radius: var(--radius-pill); transition: background var(--dur-quick) var(--ease-standard); }
+.bar-set i.is-done { background: var(--g-base); }
 
 /* ---- shared activity bits ---- */
 
@@ -148,7 +237,15 @@ main:focus { outline: none; }
 
 .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
 
-.result { margin-top: var(--space-6); text-align: center; }
+.result {
+  display: grid; justify-items: center; gap: var(--space-3);
+  margin-top: var(--space-6); padding: var(--space-6);
+  background: var(--surface); border: var(--border) solid var(--line);
+  border-radius: var(--radius-2xl); box-shadow: var(--lift-card); text-align: center;
+}
+.result[hidden] { display: none; }
+.result .bot { width: 112px; height: 112px; }
+.result-title { font-size: var(--text-xl); margin: 0; }
 .result-score { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; margin: 0; }
 .result-stars { color: var(--gold); font-size: var(--text-2xl); margin: 0; letter-spacing: .1em; }
 
@@ -392,6 +489,16 @@ main:focus { outline: none; }
 .query-tile.is-placed[disabled] { opacity: 1; }
 .query-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
 
+/* ---- the links above a lesson path ---- */
+
+.grade-links { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-6); }
+.link-count {
+  font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700;
+  background: var(--g-light); color: var(--g-ink, var(--g-dark));
+  border-radius: var(--radius-pill); padding: 1px var(--space-2); margin-left: var(--space-2);
+}
+.act-icon { font-size: var(--text-lg); line-height: 1; flex: none; }
+
 /* ---- ICT Adventure bonus games ---- */
 
 /* A bonus row on the lesson path. Marked with a word as well as a tint, because
@@ -455,13 +562,25 @@ main:focus { outline: none; }
   background: var(--surface); border: 2px solid var(--line);
   border-radius: var(--radius-md); padding: var(--space-3); min-height: 48px; width: 100%;
 }
-.avatar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); }
+/* A buddy is an icon glyph on its own coloured disc, not an emoji: emoji are
+   drawn by the operating system, so a lab PC and a phone showed two different
+   characters for the same saved avatar key. */
+.avatar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4) var(--space-2); justify-items: center; }
 .avatar {
-  font-size: var(--text-2xl); background: var(--surface);
-  border: 3px solid var(--line); border-radius: var(--radius-lg);
-  box-shadow: var(--lift-card); cursor: pointer; min-height: 56px;
+  position: relative; display: grid; place-items: center;
+  width: 56px; height: 56px; padding: 0; border-radius: 50%;
+  background: var(--av); color: var(--white);
+  border: 3px solid transparent; cursor: pointer;
 }
-.avatar[aria-checked="true"] { border-color: var(--g-base); background: var(--g-light); box-shadow: var(--lift-selected); }
+.avatar .ic { width: 30px; height: 30px; }
+.avatar[aria-checked="true"] { border-color: var(--surface); box-shadow: 0 0 0 4px var(--g-base); }
+.avatar-tick {
+  display: none; position: absolute; right: -6px; bottom: -6px; place-items: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--g-base); color: var(--g-on, #fff); border: 2px solid var(--surface);
+}
+.avatar-tick .ic { width: 14px; height: 14px; }
+.avatar[aria-checked="true"] .avatar-tick { display: grid; }
 
 /* ---- leaderboard ---- */
 
@@ -483,7 +602,12 @@ main:focus { outline: none; }
 }
 .board-row.is-me { border-color: var(--g-base); box-shadow: var(--lift-selected); }
 .place { font-family: var(--font-display); font-weight: 800; color: var(--g-base); min-width: 1.5em; }
-.board-avatar { font-size: var(--text-lg); }
+.board-avatar {
+  display: grid; place-items: center; flex: none;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--av); color: var(--white);
+}
+.board-avatar .ic { width: 22px; height: 22px; }
 .board-name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .board-you {
   font-size: var(--text-xs); background: var(--g-light); color: var(--g-dark);

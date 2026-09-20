@@ -120,11 +120,10 @@ Every adventure id (`c1`, `p2`, `so3`) fails that, so with O3 as answered the in
 activity. `scores.activity_id` is already `text` with `char_length <= 12`, and `adv-so3` is 7, so the table
 itself is unchanged.
 
-**The migration is written and NOT APPLIED.** Applying it needs the Supabase MCP, which only loads when
-Claude starts from `E:/Projects/freelance-projects/ict-game-world`; this session started from `E:/Projects`.
-Until it is applied, adventure scores save to the device and sit in `igw.pending`, which is the designed
-offline behaviour, so nothing is lost and nothing is broken - they just do not reach the class board yet.
-**That is the first job next session.**
+**Applied 2026-09-20**, by a session started from the project folder so the Supabase MCP loaded. It was
+attacked as the `anon` role inside a rolled-back transaction before being trusted - see the progress list
+below for what was accepted and what stayed rejected. The nine authored games were then given ids
+(`bq6`, `bs7`, `bm8`) that this same pattern already allows, so no second migration was needed.
 
 ## Decisions as they were put (kept for the record)
 
@@ -186,7 +185,7 @@ lessonId)` matches `Number(set.num)` to the lesson id, which is the whole of O1.
 
 | File | What it does |
 |---|---|
-| `js/adventure.js` | loads the set, normalises a game into an activity, maps set to lesson |
+| `js/adventure.js` | loads either source, normalises a game into an activity, carries its lesson |
 | `js/activities/mcquiz.js` | `rounds.js` + an option list. Options are **not** shuffled: `ans` is an index, and several questions end on "All of these" |
 | `js/activities/sortgame.js` | an adapter, 18 lines. Reshapes `items[] + bins[]` and hands off to `bucket.js`, so the two sort games stay one interaction |
 | `js/activities/memory.js` | the flip-card grid from O2 |
@@ -201,9 +200,74 @@ to spend turns looking, and charging for that would make the stars meaningless. 
 it each wasted turn costs 8. Verified: a clean run scores 100, a run with eight deliberate mismatches takes
 13 turns and scores 60.
 
+## Extended 2026-09-20: bonus games for grades 6, 7 and 8
+
+Pasindu asked for bonus games in the other grades too, with the entry point beside the Leaderboard button.
+
+**The important fact, because it changed the job:** there was nothing to re-point. All 18 adventure games
+are grade 9 content (ATMEGA328p, Raspberry Pi, RJ45, NIC) and all six sets were already allocated to grade 9
+lessons 1-6. So the other grades needed **new content**, authored here.
+
+`content/bonus-games.json` holds nine new games, three per grade, one of each kind, each written to a real
+lesson of that grade:
+
+| Grade | Quiz | Sort | Memory |
+|---|---|---|---|
+| 6 | `bq6` Computer Basics (lesson 1) | `bs6` Input or Output? (lesson 4) | `bm6` Software and Its Job (lesson 7) |
+| 7 | `bq7` Inside the Computer (lesson 1) | `bs7` Hardware or Software? (lesson 2) | `bm7` Shortcut Keys (lesson 4) |
+| 8 | `bq8` Programming Basics (lesson 4) | `bs8` Sensor or Actuator? (lesson 5) | `bm8` Binary and Decimal (lesson 1) |
+
+**All of it is drafted and unreviewed.** Ishini and Dilini have not seen a word of it, English or Sinhala.
+The file says so in its own `review` field and carries `siDraft: true`. Sinhala uses the *corrected*
+spellings from the typo list (`මෘදුකාංග`, `මූසිකය`), not the ones still in the original games, so it does not
+propagate a known typo into new content.
+
+**Ids were chosen to avoid a second migration.** `bq6`, `bs7`, `bm8` all match `[a-z]{1,3}[0-9]{1,2}`, which
+is what the unapplied `0002` migration already allows after the `adv-` prefix. Nothing about the database
+changed for this.
+
+**It is validated, because nothing else can be.** Everything else in `data/` is proved byte-for-byte against
+the original games; hand-authored content has no such baseline, so `scripts/lib/read-bonus.mjs` checks what a
+parity gate would otherwise have caught: ids unique and in the shape `submit_score()` accepts, known kinds,
+every `ans` inside its own option list, every item sorting into a bin that exists, **no bin that nothing
+sorts into**, every lesson number real for that grade, and every string carrying English. It throws rather
+than warns - a wrong `ans` index would ship as a game a child cannot win.
+
+**Placement.** Bonus games now sit at the end of the lesson they belong to in *every* grade, and a
+`Bonus games` button with a count sits beside `Leaderboard` above the path, leading to a screen listing that
+grade's games. `js/adventure.js` was generalised so both sources - the adventure file for grade 9, the
+authored file for 6 to 8 - come back in the same activity shape carrying their own `lesson`.
+
 ## Proof
 
-`evidence/proof.txt`, six screenshots in `evidence/`.
+`evidence/proof.txt` and `evidence/proof.mjs` (the script, kept so the run is repeatable), screenshots in
+`evidence/`.
+
+```
+en at 375px: 27 / 27 played to 100 when answered correctly
+si at 375px: 27 / 27 played to 100 when answered correctly
+
+Memory played badly on purpose, on cleared progress - all six score 60 at 13 turns
+
+Placement, per grade:
+  grade 6:  3 bonus rows  button 'Bonus games 3'   per lesson 1,0,0,1,0,0,1,0
+  grade 7:  3 bonus rows  button 'Bonus games 3'   per lesson 1,1,0,1,0,0,0,0
+  grade 8:  3 bonus rows  button 'Bonus games 3'   per lesson 1,0,0,1,1,0,0
+  grade 9: 18 bonus rows  button 'Bonus games 18'  per lesson 3,3,3,3,3,3,0
+  bonus screens list 3, 3, 3 and 18
+  all 27 render at 1366px, 0 horizontal overflow, 0 console messages
+```
+
+One layout bug was found by looking at the screenshots rather than by the checks: `.act` is
+`justify-content: space-between`, so a row with an icon in front of the name pushed the name to the far
+right. Fixed by giving `.act-name` `flex: 1`, which also tidies the lesson-path rows. That fix landed
+*after* the recorded run above, and was verified separately at 375px and 1183px - 0 overflow on the bonus
+screens and the grade 8 path, buttons side by side on a desktop (`evidence/07-grade-links-1183.png`).
+
+### The earlier run, grade 9 only (kept for the record)
+
+Before the other grades existed: 18/18 to 100 in both languages, the three memory games scoring 60 at 13
+turns, 18 bonus rows on grade 9 and 0 on grades 6 to 8.
 
 ```
 en at 375px: 18 / 18 played to 100 when answered correctly
@@ -237,8 +301,8 @@ says bonus twice. Dropping the `(bonus)` from the name is Ishini's call, not our
 - [x] 3 sortGame adapter
 - [x] 4 memoryGame renderer
 - [x] 5 scoring, including the memory par formula
-- [x] 6 progress and leaderboard wiring (device side works now; server side waits on the migration)
-- [x] 7 service worker - 4 modules precached, `igw-v8`
+- [x] 6 progress and leaderboard wiring, device and server
+- [x] 7 service worker - modules and `data/bonus.json` precached, `CACHE` now `igw-v11`
 - [x] Proof run - `evidence/proof.txt`
 - [x] **`supabase/migrations/0002_adventure_activity_ids.sql` applied 2026-09-20**, version `20260920...`,
       name `adventure_activity_ids`. Proven as the `anon` role inside a rolled-back transaction: `adv-c1`,
@@ -252,5 +316,8 @@ says bonus twice. Dropping the `(bonus)` from the name is Ishini's call, not our
       `adv-` rows flow into the grade 9 board with no further schema change. `activities_done` counts them
       too, which is what O3 asked for
 - [ ] Push, then verify on production the way `codebase-and-infra` did
-- [ ] The 348 Sinhala strings, when the translation session reaches them - no code change needed, the
-      fallback already carries it
+- [x] Bonus games for grades 6, 7 and 8 - 9 new games authored, validated, placed and proven
+- [x] `Bonus games` button beside `Leaderboard`, and a per-grade bonus screen
+- [x] The 348 adventure Sinhala strings - filled by the parallel translation session, all `siDraft`
+- [ ] **Ishini and Dilini review `content/bonus-games.json`** - 9 games, English and Sinhala, entirely drafted
+- [ ] Push and verify on production

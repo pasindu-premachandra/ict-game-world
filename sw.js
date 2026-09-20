@@ -2,7 +2,7 @@
 // the shell, the fonts and the grade data are cached on install and served
 // from cache first. Bump CACHE when anything in PRECACHE changes.
 
-const CACHE = 'igw-v9';
+const CACHE = 'igw-v11';
 
 const PRECACHE = [
   './',
@@ -45,6 +45,7 @@ const PRECACHE = [
   'data/grade-8.json',
   'data/grade-9.json',
   'data/adventure-9.json',
+  'data/bonus.json',
   'data/scratch.json',
   'icons/icon-192.png',
   'icons/icon-512.png',
