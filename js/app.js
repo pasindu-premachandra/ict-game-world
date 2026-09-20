@@ -1,5 +1,5 @@
 import { loadLang, setLang, t, text, isFallback, applyStatic } from './i18n.js';
-import { el, setChildren, icon, bot } from './dom.js';
+import { el, setChildren, icon, bot, callout, activityBar } from './dom.js';
 import { scoreFor, saveScore, totalFor, starsFor, lastGrade, setLastGrade } from './store.js';
 import { hasPlayer, getPlayer } from './player.js';
 import { pushScore, flushQueue } from './leaderboard.js';
@@ -62,10 +62,7 @@ function gradePicker() {
 
   main.replaceChildren(
     el('h1', { class: 'screen-title' }, [t('pickGrade')]),
-    el('div', { class: 'callout' }, [
-      bot('idle'),
-      el('p', { class: 'bubble' }, [greeting]),
-    ]),
+    callout('idle', greeting),
     el('div', { class: 'grade-list' }, GRADES.map((grade) => {
       const sub = el('span', { class: 'gcard-sub' });
       subs.set(grade, sub);
@@ -91,7 +88,7 @@ function gradePicker() {
         el('span', { class: 'builder-title' }, [t('scratchTitle')]),
         el('span', { class: 'builder-sub' }, [t('forEveryGrade')]),
       ]),
-      el('span', { class: 'builder-chev', 'aria-hidden': 'true' }, ['›']),
+      el('span', { class: 'builder-chev' }, [icon('i-chev')]),
     ]),
   );
 
@@ -182,9 +179,9 @@ async function bonusScreen(grade) {
   ]));
 
   setChildren(main, [
-    el('nav', { class: 'crumb' }, [el('a', { href: `#/g${grade}` }, [`← ${t('backToPath')}`])]),
+    activityBar(`#/g${grade}`, t('backToPath')).node,
     el('h1', { class: 'screen-title' }, [t('bonusGames')]),
-    el('p', { class: 'instruction' }, [t('bonusLead')]),
+    callout('happy', t('bonusLead')),
     el('ol', { class: 'act-list' }, rows),
   ]);
 }
@@ -199,30 +196,13 @@ function pathRows(data, bonus) {
   }));
 }
 
-// The bar across the top of an activity: a way out, and how far through the
-// child is. Only the round-based types can say how far, and they announce it by
-// bubbling igw:progress up from their own node, so the fifteen renderers keep
-// the one render(activity, onDone) signature they all share.
+// Only the round-based types can say how far through a child is, and they
+// announce it by bubbling igw:progress up from their own node, so the fifteen
+// renderers keep the one render(activity, onDone) signature they all share.
 function chrome(grade, game) {
-  const close = el('a', {
-    class: 'closebtn', href: `#/g${grade}`, 'aria-label': t('closeActivity'),
-  }, [icon('i-x')]);
-  if (!game.total) return el('div', { class: 'actbar' }, [close]);
-
-  const cells = Array.from({ length: game.total }, () => el('i'));
-  const bar = el('div', {
-    class: 'bar-set', role: 'progressbar',
-    'aria-valuemin': '0', 'aria-valuemax': String(game.total), 'aria-valuenow': '0',
-    'aria-label': `0 / ${game.total}`,
-  }, cells);
-
-  game.node.addEventListener('igw:progress', ({ detail }) => {
-    cells.forEach((cell, i) => cell.classList.toggle('is-done', i < detail.index));
-    bar.setAttribute('aria-valuenow', String(detail.index));
-    bar.setAttribute('aria-label', `${detail.index} / ${game.total}`);
-  });
-
-  return el('div', { class: 'actbar' }, [close, bar]);
+  const bar = activityBar(`#/g${grade}`, t('closeActivity'), game.total || 0);
+  game.node.addEventListener('igw:progress', ({ detail }) => bar.setDone(detail.index));
+  return bar.node;
 }
 
 function nextPlayable(rows, activityId) {
@@ -306,10 +286,7 @@ async function activityScreen(grade, activityId) {
     chrome(grade, game),
     el('h1', { class: 'screen-title' }, [text(activity.name)]),
     isFallback(activity.name) ? el('p', { class: 'note-fallback' }, [t('englishOnly')]) : null,
-    el('div', { class: 'callout' }, [
-      bot('think'),
-      el('p', { class: 'bubble' }, [text(activity.instruction)]),
-    ]),
+    callout('think', text(activity.instruction)),
     game.node,
     result,
     actions,

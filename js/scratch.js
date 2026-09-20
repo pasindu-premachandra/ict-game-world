@@ -9,7 +9,7 @@
 // under, so a built program is a tick on the device and nothing more.
 
 import { text, t, isFallback } from './i18n.js';
-import { el, setChildren, shuffled } from './dom.js';
+import { el, setChildren, shuffled, icon, bot, callout, activityBar } from './dom.js';
 import { isBuilt, markBuilt } from './store.js';
 
 let cache = null;
@@ -106,9 +106,9 @@ export async function scratchHub(main) {
   });
 
   setChildren(main, [
-    el('nav', { class: 'crumb' }, [el('a', { href: '#/' }, [`← ${t('pickGrade')}`])]),
+    activityBar('#/', t('pickGrade')).node,
     el('h1', { class: 'screen-title' }, [t('scratchTitle')]),
-    el('p', { class: 'instruction' }, [t('scratchLead')]),
+    callout('idle', t('scratchLead')),
     el('div', { class: 'struct-grid' }, cards),
   ]);
   main.focus({ preventScroll: true });
@@ -124,7 +124,9 @@ export async function scratchStructure(main, structureId) {
     const done = isBuilt(puzzle.id);
     return el('li', {}, [
       el('a', { class: `act${done ? ' is-built' : ''}`, href: `#/scratch/${structure.id}/${puzzle.id}` }, [
-        el('span', { class: 'act-num', 'aria-hidden': 'true' }, [done ? '✓' : String(i + 1)]),
+        done
+          ? el('span', { class: 'act-num is-tick' }, [icon('i-check')])
+          : el('span', { class: 'act-num', 'aria-hidden': 'true' }, [String(i + 1)]),
         el('span', { class: 'act-name' }, [text(puzzle.name)]),
         done ? el('span', { class: 'sr-only' }, [t('built')]) : null,
       ]),
@@ -132,14 +134,14 @@ export async function scratchStructure(main, structureId) {
   });
 
   setChildren(main, [
-    el('nav', { class: 'crumb' }, [el('a', { href: '#/scratch' }, [`← ${t('scratchTitle')}`])]),
+    activityBar('#/scratch', t('scratchTitle')).node,
     el('h1', { class: 'screen-title' }, [
       el('span', { class: 'struct-icon', 'aria-hidden': 'true' }, [structure.icon]),
       ' ',
       text(structure.title),
     ]),
     isFallback(structure.title) ? el('p', { class: 'note-fallback' }, [t('englishOnly')]) : null,
-    el('p', { class: 'instruction' }, [text(structure.desc)]),
+    callout('idle', text(structure.desc)),
     el('ol', { class: 'act-list' }, items),
   ]);
   main.focus({ preventScroll: true });
@@ -162,7 +164,8 @@ export async function scratchPuzzle(main, structureId, puzzleId) {
   let mouth = 'root';       // which slot the next block goes into
   let dragging = null;      // block id being dragged, mouse only
 
-  const progress = el('p', { class: 'round-progress' });
+  // One segment per block, so the workspace reads like every other activity.
+  const bar = activityBar(`#/scratch/${structureId}`, text(structure.title), total);
   const zone = el('div', { class: 'sb-zone' });
   const trayBox = el('div', { class: 'sb-tray' });
   const feedback = el('p', { class: 'round-feedback', role: 'status', 'aria-live': 'polite' });
@@ -292,7 +295,7 @@ export async function scratchPuzzle(main, structureId, puzzleId) {
   }
 
   function draw(focusId) {
-    progress.textContent = `${total - tray.length} / ${total} ${t('placed')}`;
+    bar.setDone(total - tray.length);
     zone.replaceChildren(...placed.map((block) => blockNode(block, 'zone')), slot('root'));
     trayBox.replaceChildren(...(tray.length
       ? tray.map((block) => blockNode(block, 'tray'))
@@ -329,15 +332,22 @@ export async function scratchPuzzle(main, structureId, puzzleId) {
   function win() {
     markBuilt(puzzle.id);
     const next = structure.puzzles[structure.puzzles.indexOf(puzzle) + 1];
+    const done = activityBar(`#/scratch/${structure.id}`, text(structure.title), total);
+    done.setDone(total);
     setChildren(main, [
-      el('nav', { class: 'crumb' }, [el('a', { href: `#/scratch/${structure.id}` }, [`← ${text(structure.title)}`])]),
-      el('h1', { class: 'screen-title' }, [t('programRuns')]),
-      el('p', { class: 'instruction' }, [text(puzzle.name)]),
+      done.node,
+      el('h1', { class: 'screen-title' }, [text(puzzle.name)]),
       el('div', { class: 'sb-zone is-done' }, placed.map((block) => showBlock(block))),
+      // The same result card an activity ends on. A program is built or it is
+      // not, so it gets the tick rather than stars - there is no score here.
+      el('div', { class: 'result', role: 'status' }, [
+        bot('happy'),
+        el('h2', { class: 'result-title' }, [t('programRuns')]),
+        el('span', { class: 'result-tick' }, [icon('i-check')]),
+      ]),
       el('div', { class: 'actions' }, [
         next ? el('a', { class: 'btn', href: `#/scratch/${structure.id}/${next.id}` }, [t('nextProgram')]) : null,
         el('a', { class: 'btn btn-ghost', href: `#/scratch/${structure.id}` }, [text(structure.title)]),
-        el('a', { class: 'btn btn-ghost', href: '#/scratch' }, [t('scratchTitle')]),
       ]),
     ]);
     main.focus({ preventScroll: true });
@@ -360,11 +370,10 @@ export async function scratchPuzzle(main, structureId, puzzleId) {
   draw();
 
   setChildren(main, [
-    el('nav', { class: 'crumb' }, [el('a', { href: `#/scratch/${structure.id}` }, [`← ${text(structure.title)}`])]),
+    bar.node,
     el('h1', { class: 'screen-title' }, [text(puzzle.name)]),
     isFallback(puzzle.name) ? el('p', { class: 'note-fallback' }, [t('englishOnly')]) : null,
-    el('p', { class: 'instruction' }, [text(puzzle.description)]),
-    progress,
+    callout('think', text(puzzle.description)),
     el('p', { class: 'sb-legend' }, [t('scriptArea')]),
     zone,
     el('p', { class: 'sb-legend' }, [t('blockTray')]),

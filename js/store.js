@@ -77,6 +77,27 @@ export function builtCount() {
   return Object.values(readBuilt()).filter(Boolean).length;
 }
 
+// The grade a child is actually in. There is no grade on the player record and
+// none in the database, so the last grade they opened is what the grade picker
+// badges as theirs.
+const GRADE_KEY = 'igw.grade';
+
+export function lastGrade() {
+  try {
+    return Number(localStorage.getItem(GRADE_KEY)) || null;
+  } catch {
+    return null;
+  }
+}
+
+export function setLastGrade(grade) {
+  try {
+    localStorage.setItem(GRADE_KEY, String(grade));
+  } catch {
+    // Blocked storage: the badge just will not be remembered.
+  }
+}
+
 export function starsFor(points) {
   if (points === null) return 0;
   if (points >= 90) return 3;

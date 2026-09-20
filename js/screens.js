@@ -2,16 +2,29 @@
 // stays readable.
 
 import { t } from './i18n.js';
-import { el, setChildren } from './dom.js';
+import { el, setChildren, icon, bot } from './dom.js';
 import { AVATARS } from './config.js';
 import { getPlayer, savePlayer } from './player.js';
 import { fetchBoard, pendingCount } from './leaderboard.js';
 import { totalFor } from './store.js';
 
-const AVATAR_FACE = {
-  bot: '🤖', cat: '🐱', owl: '🦉', fox: '🦊',
-  star: '⭐', rocket: '🚀', leaf: '🍃', wave: '🌊',
+// The eight buddy keys are pinned by a check constraint on players.avatar, so
+// they stay exactly as they are; only how they are drawn changes. Each one is a
+// line glyph on its own colour, the way DESIGN.md asks for.
+const AVATAR_ICON = {
+  bot: 'av-bot', cat: 'av-cat', owl: 'av-owl', fox: 'av-fox',
+  star: 'av-star', rocket: 'av-rocket', leaf: 'av-leaf', wave: 'av-wave',
 };
+const AVATAR_COLOR = {
+  bot: 'var(--teal-base)', cat: 'var(--orange-base)', owl: 'var(--indigo-base)',
+  fox: 'var(--coral-ink)', star: 'var(--gold-ink)', rocket: 'var(--blue-ink)',
+  leaf: 'var(--green-ink)', wave: 'var(--navy-600)',
+};
+
+export function avatarDisc(name, cls = 'board-avatar') {
+  const key = AVATAR_ICON[name] ? name : AVATARS[0];
+  return el('span', { class: cls, style: `--av:${AVATAR_COLOR[key]}` }, [icon(AVATAR_ICON[key])]);
+}
 
 export function nameEntry(main, onSaved) {
   const player = getPlayer();
@@ -29,9 +42,12 @@ export function nameEntry(main, onSaved) {
   const grid = el('div', { class: 'avatar-grid', role: 'radiogroup', 'aria-label': t('chooseBuddy') });
   AVATARS.forEach((name) => {
     const b = el('button', {
-      type: 'button', class: 'avatar', role: 'radio',
+      type: 'button', class: 'avatar', role: 'radio', style: `--av:${AVATAR_COLOR[name]}`,
       'aria-checked': String(name === chosen), 'aria-label': name,
-    }, [AVATAR_FACE[name]]);
+    }, [
+      icon(AVATAR_ICON[name]),
+      el('span', { class: 'avatar-tick', 'aria-hidden': 'true' }, [icon('i-check')]),
+    ]);
     b.addEventListener('click', () => {
       chosen = name;
       grid.querySelectorAll('.avatar').forEach((x) => x.setAttribute('aria-checked', String(x === b)));
@@ -56,7 +72,14 @@ export function nameEntry(main, onSaved) {
     onSaved();
   });
 
-  setChildren(main, [el('h1', { class: 'screen-title' }, [t('whatName')]), form]);
+  setChildren(main, [
+    el('div', { class: 'welcome' }, [
+      bot('happy'),
+      el('p', { class: 'welcome-line' }, [t('welcome')]),
+    ]),
+    el('h1', { class: 'screen-title' }, [t('whatName')]),
+    form,
+  ]);
   nick.focus();
 }
 
@@ -107,7 +130,7 @@ export async function leaderboard(main, grade) {
   function row(r, place, isMe) {
     return el('div', { class: `board-row${isMe ? ' is-me' : ''}` }, [
       el('span', { class: 'place' }, [String(place)]),
-      el('span', { class: 'board-avatar', 'aria-hidden': 'true' }, [AVATAR_FACE[r.avatar] || '🤖']),
+      avatarDisc(r.avatar),
       el('span', { class: 'board-name' }, [r.nickname]),
       isMe ? el('span', { class: 'board-you' }, [t('you')]) : null,
       el('span', { class: 'board-points' }, [`${r.points}`]),

@@ -246,6 +246,13 @@ main:focus { outline: none; }
 .result[hidden] { display: none; }
 .result .bot { width: 112px; height: 112px; }
 .result-title { font-size: var(--text-xl); margin: 0; }
+/* A built program has no score, so the result card shows a tick where an
+   activity shows its stars. */
+.result-tick {
+  display: grid; place-items: center; width: 52px; height: 52px;
+  border-radius: 50%; background: var(--success); color: var(--white);
+}
+.result-tick .ic { width: 30px; height: 30px; }
 .result-score { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; margin: 0; }
 .result-stars { color: var(--gold); font-size: var(--text-2xl); margin: 0; letter-spacing: .1em; }
 
@@ -728,6 +735,7 @@ main:focus { outline: none; }
 }
 .act.is-built { border-color: var(--success); }
 .act.is-built .act-num { color: var(--success-ink); }
+.act-num.is-tick { display: inline-grid; place-items: center; }
 
 /* ---- scratch: the workspace ---- */
 

@@ -16,10 +16,9 @@ const RIGHT_MS = 800;
 const WRONG_MS = 1600;
 
 export function rounds(total, drawRound, onDone) {
-  const progress = el('p', { class: 'round-progress' });
   const body = el('div', { class: 'round-body' });
   const feedback = el('p', { class: 'round-feedback', role: 'status', 'aria-live': 'polite' });
-  const node = el('div', { class: 'round-game' }, [progress, body, feedback]);
+  const node = el('div', { class: 'round-game' }, [body, feedback]);
 
   let index = 0;
   let score = 0;
@@ -42,8 +41,10 @@ export function rounds(total, drawRound, onDone) {
   }
 
   function draw() {
+    // How far through the child is. The activity screen draws this as the
+    // segmented bar in its chrome; nothing here knows or cares how it looks.
+    node.dispatchEvent(new CustomEvent('igw:progress', { bubbles: true, detail: { index } }));
     if (index >= total) {
-      progress.textContent = '';
       feedback.className = 'round-feedback';
       feedback.textContent = '';
       body.replaceChildren(el('p', { class: 'round-done' }, [t('done')]));
@@ -51,7 +52,6 @@ export function rounds(total, drawRound, onDone) {
       return;
     }
     done = false;
-    progress.textContent = `${index + 1} / ${total}`;
     feedback.className = 'round-feedback';
     feedback.textContent = '';
     body.replaceChildren(drawRound(index, settle));
@@ -60,7 +60,7 @@ export function rounds(total, drawRound, onDone) {
   draw();
 
   // Scores itself as it goes, so the activity screen hides its Check button.
-  return { node, selfScoring: true };
+  return { node, selfScoring: true, total };
 }
 
 // Shared by every round that answers with a row of buttons: lock the row, mark
