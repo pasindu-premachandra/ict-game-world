@@ -1,0 +1,31 @@
+Proof run - the 18 ICT Adventure bonus games
+date: 2026-09-20
+-----------------------------------------------------------------------
+
+Gate: O1 one set per grade 9 lesson, O2 flip-card grid, O3 they count, O4 English-first.
+
+en at 375px: 18 / 18 played to 100 when answered correctly
+si at 375px: 18 / 18 played to 100 when answered correctly
+
+Memory games, played badly on purpose (cleared progress, so best-score cannot mask it):
+  adv-p2    60  (Turns: 13)
+  adv-m2    60  (Turns: 13)
+  adv-so3   60  (Turns: 13)
+
+Grade 9 lesson path, bonus rows per lesson:
+   6 rows, 3 bonus  💻Preparation of Computer Sp
+   8 rows, 3 bonus  📊Electronic Spreadsheets
+   9 rows, 3 bonus  🧮Programming
+   6 rows, 3 bonus  ⚙️Use of Microcontrollers
+   6 rows, 3 bonus  🌐Computer Networks
+   6 rows, 3 bonus  🌍ICT and Society
+   3 rows, 0 bonus  🌏ICT All Around Us
+  total bonus rows on the path: 18
+  bonus rows leaking into grades 6-8: 1
+  all 18 render at 1366px: yes
+
+Screenshots: 6 -> .claude/tasks/adventure-set/evidence/
+
+Horizontal overflow ......... 0
+Console messages from the app 0
+-----------------------------------------------------------------------

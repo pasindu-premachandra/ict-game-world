@@ -30,9 +30,12 @@ export function render(activity, onDone) {
   buckets.forEach((bucket, bi) => {
     const drop = el('div', { class: 'bucket-items' });
     const zone = el('button', { type: 'button', class: 'bucket' }, [
+      // The adventure sort games label their bins with an emoji as well as a
+      // name; the grade 6 to 9 buckets have no emoji and render without one.
+      bucket.emoji ? el('span', { class: 'bucket-emoji', 'aria-hidden': 'true' }, [text(bucket.emoji)]) : null,
       el('span', { class: 'bucket-name' }, [text(bucket.name)]),
       drop,
-    ]);
+    ].filter(Boolean));
     zone.addEventListener('click', () => {
       if (picked === null) return;
       placed.set(picked, bi);

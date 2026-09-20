@@ -27,7 +27,7 @@ written, so check `git log` and `git status` before trusting it.
 | # | Item | Size | Notes |
 |---|---|---|---|
 | 1.1 | `scratch-hub`, g9 3.4 | large | Nested sub-app: hub of 3 control structures, each with block-dragging puzzles, plus workspace, palette and program checker (`original/grade-9/english-medium.html:1174-1520`). `SCRATCH_STRUCTURES` sits **outside** the `LESSONS` literal, so it is not in `data/` yet either. The 7 `--scratch-*` block-colour tokens are declared for it and unused. Outside the numbered syllabus levels, so coverage stays 59/59 without it. **Parallel session.** |
-| 1.2 | Adventure set, 18 mini games | medium | `data/adventure-9.json`, 6 themed sets, three kinds: `mcQuiz` 11, `sortGame` 4, `memoryGame` 3. Extracted and parity-checked; nothing routes to them. Bonus content per gate D3 in `redesign-trilingual`, so not counted in the 112. **This session.** |
+| 1.2 | Adventure set, 18 mini games | ~~medium~~ **done 2026-09-20** | `data/adventure-9.json`, 6 themed sets, three kinds: `mcQuiz` 11, `sortGame` 4, `memoryGame` 3. Bonus content per gate D3 in `redesign-trilingual`, so not counted in the 112. Built and proven 2026-09-20: 18/18 play to 100 in both languages, bonus rows on grade 9 lessons 1-6. One step open, the Supabase migration that lets bonus scores reach the class board. See `adventure-set/README.md`. |
 
 ## 2. The reward layer - designed, tokenised, never written
 

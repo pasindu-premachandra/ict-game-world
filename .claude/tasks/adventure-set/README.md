@@ -91,7 +91,42 @@ From `DESIGN.md` in the Open Design project `ict-game-world-design-system`, read
 
 Those three gaps are the reason this task has a gate rather than going straight to code.
 
-## Decisions for the gate
+## Gate outcome (2026-09-20, GO)
+
+Answered in `review/plan.html`, session ended by Pasindu.
+
+**O1 B** one set appended to its matching grade 9 lesson &middot; **O2 A** flip-card grid with a plain `?`
+back, 2 columns on a phone &middot; **O3 yes, bonus games count toward the class leaderboard** (not my
+recommendation - I argued for device-only; Pasindu's call, and it is built that way) &middot;
+**O4 ship English-first**.
+
+### O3 needed a migration, and my report said it did not
+
+The report claimed &ldquo;no migration either way&rdquo; because the adventure ids do not collide with the
+`1.1` ids in the `scores` primary key. That was checked and true, and it was the wrong thing to check.
+`submit_score()` also **validates the shape** of the id:
+
+```sql
+if p_activity is null or p_activity !~ '^[0-9]{1,2}\.[0-9]{1,2}$' then
+  raise exception 'activity id must look like 1.2';
+```
+
+Every adventure id (`c1`, `p2`, `so3`) fails that, so with O3 as answered the insert is refused,
+`pushScore()` queues the score, and it retries forever - working locally, silently never arriving.
+
+`supabase/migrations/0002_adventure_activity_ids.sql` widens the pattern to
+`^([0-9]{1,2}\.[0-9]{1,2}|adv-[a-z]{1,3}[0-9]{1,2})$` and nothing else. The client sends ids prefixed, as
+`adv-c1`, so a bonus game is obvious in the table and can never be mistaken for a numbered competency
+activity. `scores.activity_id` is already `text` with `char_length <= 12`, and `adv-so3` is 7, so the table
+itself is unchanged.
+
+**The migration is written and NOT APPLIED.** Applying it needs the Supabase MCP, which only loads when
+Claude starts from `E:/Projects/freelance-projects/ict-game-world`; this session started from `E:/Projects`.
+Until it is applied, adventure scores save to the device and sit in `igw.pending`, which is the designed
+offline behaviour, so nothing is lost and nothing is broken - they just do not reach the class board yet.
+**That is the first job next session.**
+
+## Decisions as they were put (kept for the record)
 
 Asked in `review/plan.html`.
 
@@ -141,16 +176,72 @@ The real risks are scope and consistency: re-implementing the bucket interaction
 inventing a memory-card look that does not match a design system nobody has drawn for it. O2 exists to stop
 the second one being decided silently by me.
 
+## What was built (2026-09-20)
+
+`js/adventure.js` normalises a game into the activity shape the router already speaks, rather than teaching
+the router a second shape. `toActivity()` turns `{ id, kind, name, desc, icon, ...payload }` into
+`{ id: 'adv-'+id, type, name, instruction, icon, bonus: true, ...payload }`, so the existing activity
+screen, `store.js`, `leaderboard.js` and the new reward layer all work on it unchanged. `bonusFor(data,
+lessonId)` matches `Number(set.num)` to the lesson id, which is the whole of O1.
+
+| File | What it does |
+|---|---|
+| `js/adventure.js` | loads the set, normalises a game into an activity, maps set to lesson |
+| `js/activities/mcquiz.js` | `rounds.js` + an option list. Options are **not** shuffled: `ans` is an index, and several questions end on "All of these" |
+| `js/activities/sortgame.js` | an adapter, 18 lines. Reshapes `items[] + bins[]` and hands off to `bucket.js`, so the two sort games stay one interaction |
+| `js/activities/memory.js` | the flip-card grid from O2 |
+| `js/app.js` | three types added, bonus rows appended on the grade 9 path, `adv-` ids resolved |
+| `js/activities/bucket.js` | one added line: an optional `bucket.emoji`, which the adventure bins have and the grade 6-9 buckets do not |
+| `css/app.css` | quiz options, the memory grid, the bonus row, the bucket emoji |
+| `js/i18n.js` | `bonus`, `moves`, `hiddenCard`. Drafted Sinhala, on Ishini's list |
+| `sw.js` | four modules added to `PRECACHE`, `CACHE` bumped to `igw-v8` |
+
+**Memory scoring.** Par is `pairs + 3`, so 8 turns for a 5-pair game: a child with no prior knowledge has
+to spend turns looking, and charging for that would make the stars meaningless. Inside par is 100, and past
+it each wasted turn costs 8. Verified: a clean run scores 100, a run with eight deliberate mismatches takes
+13 turns and scores 60.
+
+## Proof
+
+`evidence/proof.txt`, six screenshots in `evidence/`.
+
+```
+en at 375px: 18 / 18 played to 100 when answered correctly
+si at 375px: 18 / 18 played to 100 when answered correctly
+
+Memory games played badly on purpose, on cleared progress:
+  adv-p2    60  (Turns: 13)
+  adv-m2    60  (Turns: 13)
+  adv-so3   60  (Turns: 13)
+
+Grade 9 path: 3 bonus rows on each of lessons 1-6, 0 on lesson 7, 18 total
+Adventure rows on grades 6, 7, 8: 0
+All 18 render at 1366px, 0 horizontal overflow, 0 console messages
+```
+
+Both gates green after the change. `check-data.mjs` all five sources still rebuild byte identically -
+nothing in `data/` was touched.
+
+**One thing the proof turned up that is not ours.** Grade 8 activity `5.4`, the Logic Gate Lab, already
+carried `"bonus": true` from `syllabus-enrichment`, so the new generic bonus label now appears on it too.
+That is correct and arguably an improvement, but its English name is `"Logic Gate Lab (bonus)"`, which now
+says bonus twice. Dropping the `(bonus)` from the name is Ishini's call, not ours - it goes on her list.
+
 ## Progress
 
 - [x] Context: data shapes, kind counts, Sinhala coverage, mapping to the built renderers
 - [x] Design system read - what it covers and the three things it does not (`DESIGN.md`, Open Design)
-- [ ] Gate: `review/plan.html`
-- [ ] 1 adventure hub + routing
-- [ ] 2 mcQuiz renderer
-- [ ] 3 sortGame adapter
-- [ ] 4 memoryGame renderer
-- [ ] 5 scoring
-- [ ] 6 progress and leaderboard
-- [ ] 7 service worker
-- [ ] Proof run
+- [x] Gate: `review/plan.html` - O1 B, O2 A, O3 yes, O4 English-first
+- [x] 1 routing - bonus rows on the grade 9 path, `adv-` ids resolved
+- [x] 2 mcQuiz renderer
+- [x] 3 sortGame adapter
+- [x] 4 memoryGame renderer
+- [x] 5 scoring, including the memory par formula
+- [x] 6 progress and leaderboard wiring (device side works now; server side waits on the migration)
+- [x] 7 service worker - 4 modules precached, `igw-v8`
+- [x] Proof run - `evidence/proof.txt`
+- [ ] **Apply `supabase/migrations/0002_adventure_activity_ids.sql`** - needs the Supabase MCP, so start
+      Claude from the project folder. Until then bonus scores queue instead of reaching the class board
+- [ ] Push, then verify on production the way `codebase-and-infra` did
+- [ ] The 348 Sinhala strings, when the translation session reaches them - no code change needed, the
+      fallback already carries it
