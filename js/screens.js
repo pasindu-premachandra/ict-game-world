@@ -99,7 +99,9 @@ export async function leaderboard(main, grade) {
         : el('p', { class: 'loading' }, [t('noScoresYet')]));
       return;
     }
-    list.replaceChildren(...rows.map((r, i) => row(r, i + 1, r.nickname === player?.nickname)));
+    // Match on the player id, never the nickname: two children in one class can
+    // pick the same nickname, and both used to be badged "You".
+    list.replaceChildren(...rows.map((r, i) => row(r, i + 1, r.player_id === player?.id)));
   }
 
   function row(r, place, isMe) {

@@ -87,7 +87,7 @@ export function pendingCount() {
 export async function fetchBoard(grade, { classCode = null } = {}) {
   const view = classCode ? 'leaderboard_class' : 'leaderboard_grade';
   const params = new URLSearchParams({
-    select: 'nickname,avatar,class_code,points,activities_done',
+    select: 'player_id,nickname,avatar,class_code,points,activities_done',
     grade: `eq.${grade}`,
     order: 'points.desc',
     limit: '50',
