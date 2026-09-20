@@ -1,0 +1,25 @@
+
+F4 on production - two players who share a nickname (re-run after a transient
+read timeout on the first pass):
+  grade 8, class D3, straight from Supabase:
+    LiveCheck (owl) 600 pts  player_id aaaaaaaa
+    LiveCheck (fox) 100 pts  player_id bbbbbbbb
+    the view returns player_id to the client: yes
+  as player A, the owl: 2 rows, 1 marked "You" -> owl
+  as player B, the fox: 2 rows, 1 marked "You" -> fox
+  each player sees exactly one "You", and it is their own: yes
+
+Reported by Pasindu during the run: the Sinhala logo looks wrong.
+  The string is correct and so is the font. Checked three ways:
+    - deployed js/i18n.js: U+0D9A U+0DCA U+200D U+0DBB ... U+0DBD U+0DDD ...
+      ZWJ present, U+0DDD (long o) present
+    - the live DOM renders those exact codepoints
+    - Yaldevi, Noto Sans Sinhala and the Windows system font all shape
+      ක්‍රීඩා ලෝකය identically and correctly (evidence/sinhala-shaping-check.png)
+  The real fault is size. .chip asked for 16px at weight 800, and Yaldevi is
+  only self-hosted at 600 and 700, so the browser was faking a weight we do
+  not ship, at a size where the long-o stroke and the rakaransaya loop are
+  about one pixel each. Fixed: :lang(si) .chip is 22px at weight 700.
+  before/15-logo-sinhala-before.png vs after/15-logo-sinhala-fixed.png
+  No overflow at 360, 375, 480, 481, 520, 600, 768 or 1366; topbar unchanged.
+  sw.js CACHE bumped igw-v4 -> igw-v5 because css/app.css is precached.

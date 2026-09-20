@@ -50,6 +50,12 @@ a { color: inherit; }
   border: 0; border-radius: var(--radius-pill);
   padding: var(--space-2) var(--space-4); cursor: pointer; min-height: 44px;
 }
+/* Sinhala stacks marks above and below the line, so "ක්‍රීඩා ලෝකය" at 16px in
+   an 800 weight collapses into a smudge - the long-o stroke and the rakaransaya
+   loop are about a pixel each. Yaldevi is only self-hosted at 600 and 700, so
+   800 was also asking the browser to fake a weight we do not ship. One step up
+   in size and back to a real weight, which is what DESIGN.md asks for anyway. */
+:lang(si) .chip { font-size: var(--text-lg); font-weight: var(--weight-bold); line-height: var(--lh-title); }
 .chip-short { display: none; }
 @media (max-width: 30rem) {
   .chip-full { display: none; }
