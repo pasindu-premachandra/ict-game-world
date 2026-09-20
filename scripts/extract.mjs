@@ -9,6 +9,7 @@
 
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { readLessons } from './lib/read-lessons.mjs';
+import { readOptionSets } from './lib/read-option-sets.mjs';
 import { readAdventure } from './lib/read-adventure.mjs';
 import { normalise } from './lib/normalise-adventure.mjs';
 import { mergeLang, MergeError } from './lib/merge-lang.mjs';
@@ -47,12 +48,24 @@ for (const { grade, en, si } of GRADES) {
 
   const merged = await applyAdditions(grade, lessons);
 
+  // Hotspot options live outside the LESSONS literal in the originals. They are
+  // content, so they travel with the data rather than with the renderer, and
+  // they sit beside `lessons` rather than inside an activity so the parity gate
+  // still compares activity for activity against the original.
+  const optionsEn = readOptionSets(en);
+  const optionsSi = si ? readOptionSets(si) : null;
+  const optionSets = {};
+  for (const [id, list] of Object.entries(optionsEn)) {
+    optionSets[id] = mergeLang(list, optionsSi?.[id], `optionSets.${id}`, Boolean(optionsSi));
+  }
+
   const out = {
     grade,
     languages: si ? ['en', 'si'] : ['en'],
     source: si ? { en, si } : { en },
     replaced: merged.replaced,
     corrections: correctionsFor(grade),
+    optionSets,
     lessons: merged.lessons,
   };
   writeFileSync(`data/grade-${grade}.json`, JSON.stringify(out, null, 2) + '\n');
@@ -61,7 +74,9 @@ for (const { grade, en, si } of GRADES) {
   const extra = merged.added.activities
     ? ` (+${merged.added.activities} from syllabus-enrichment)`
     : '';
-  console.log(`grade ${grade}: ${merged.lessons.length} lessons, ${activities} activities${extra} -> data/grade-${grade}.json`);
+  const optCount = Object.keys(optionSets).length;
+  const opts = optCount ? `, ${optCount} hotspot option set(s)` : '';
+  console.log(`grade ${grade}: ${merged.lessons.length} lessons, ${activities} activities${extra}${opts} -> data/grade-${grade}.json`);
   merged.replaced.forEach((r) => console.log(`         lesson ${r.id} replaced: "${r.was}" -> "${r.now}"`));
   correctionsFor(grade).forEach((c) => console.log(`         corrected ${c.lang} ${c.activity} ${c.path}: "${c.from}" -> "${c.to}"`));
 }

@@ -30,6 +30,7 @@
       "why": "Follows the text correction above. It also removes the only icon that differed between the two languages, which the merge wrapped as {en, si} and the app then printed as [object Object]."
     }
   ],
+  "optionSets": {},
   "lessons": [
     {
       "id": 1,

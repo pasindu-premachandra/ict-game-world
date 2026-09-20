@@ -8,6 +8,158 @@
   },
   "replaced": [],
   "corrections": [],
+  "optionSets": {
+    "2.2": [
+      {
+        "key": "pie",
+        "icon": "🥧",
+        "name": {
+          "en": "Pie Chart",
+          "si": null
+        },
+        "desc": {
+          "en": "Shows percentage",
+          "si": null
+        }
+      },
+      {
+        "key": "column",
+        "icon": "📊",
+        "name": {
+          "en": "Column Chart",
+          "si": null
+        },
+        "desc": {
+          "en": "Compares values",
+          "si": null
+        }
+      },
+      {
+        "key": "line",
+        "icon": "📈",
+        "name": {
+          "en": "Line Chart",
+          "si": null
+        },
+        "desc": {
+          "en": "Shows trends",
+          "si": null
+        }
+      },
+      {
+        "key": "scatter",
+        "icon": "⚪",
+        "name": {
+          "en": "Scatter Chart",
+          "si": null
+        },
+        "desc": {
+          "en": "Shows correlation",
+          "si": null
+        }
+      }
+    ],
+    "4.2": [
+      {
+        "key": "pir",
+        "icon": "👤",
+        "name": {
+          "en": "PIR Sensor",
+          "si": null
+        },
+        "desc": {
+          "en": "Detects motion",
+          "si": null
+        }
+      },
+      {
+        "key": "ultrasonic",
+        "icon": "📡",
+        "name": {
+          "en": "Ultrasonic Sensor",
+          "si": null
+        },
+        "desc": {
+          "en": "Measures distance",
+          "si": null
+        }
+      },
+      {
+        "key": "light",
+        "icon": "☀️",
+        "name": {
+          "en": "Light Sensor",
+          "si": null
+        },
+        "desc": {
+          "en": "Detects light",
+          "si": null
+        }
+      },
+      {
+        "key": "temp",
+        "icon": "🌡️",
+        "name": {
+          "en": "Temperature Sensor",
+          "si": null
+        },
+        "desc": {
+          "en": "Measures heat",
+          "si": null
+        }
+      }
+    ],
+    "6.2": [
+      {
+        "key": "digitaldivide",
+        "icon": "🌉",
+        "name": {
+          "en": "Digital Divide",
+          "si": null
+        },
+        "desc": {
+          "en": "Gap in access",
+          "si": null
+        }
+      },
+      {
+        "key": "ewaste",
+        "icon": "🗑️",
+        "name": {
+          "en": "E-Waste",
+          "si": null
+        },
+        "desc": {
+          "en": "Electronic waste",
+          "si": null
+        }
+      },
+      {
+        "key": "reduce",
+        "icon": "♻️",
+        "name": {
+          "en": "Reduce",
+          "si": null
+        },
+        "desc": {
+          "en": "3R concept",
+          "si": null
+        }
+      },
+      {
+        "key": "elearning",
+        "icon": "💻",
+        "name": {
+          "en": "E-Learning",
+          "si": null
+        },
+        "desc": {
+          "en": "Online learning",
+          "si": null
+        }
+      }
+    ]
+  },
   "lessons": [
     {
       "id": 1,

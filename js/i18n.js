@@ -37,6 +37,20 @@ const STRINGS = {
   notFound:     { en: 'That page does not exist.', si: 'එම පිටුව නොමැත.' },
   englishOnly:  { en: 'Sinhala for this one is still being written.',
                   si: 'මෙයට සිංහල තවම ලියැවෙමින් පවතී.' },
+
+  // Added with the grade 7-9 activity types. Drafted Sinhala, on the list for
+  // Ishini and Dilini to review alongside the content typos.
+  trueLabel:    { en: 'True', si: 'සත්‍යයි' },
+  falseLabel:   { en: 'False', si: 'අසත්‍යයි' },
+  whatOutput:   { en: 'What is the output?', si: 'ප්‍රතිදානය කුමක්ද?' },
+  hint:         { en: 'Hint', si: 'ඉඟිය' },
+  target:       { en: 'Target', si: 'ඉලක්කය' },
+  currentSum:   { en: 'Current sum', si: 'දැන් එකතුව' },
+  placeValue:   { en: 'Place value', si: 'ස්ථානීය අගය' },
+  led:          { en: 'LED', si: 'LED බල්බය' },
+  clear:        { en: 'Clear', si: 'මකන්න' },
+  addTiles:     { en: 'Click the tiles below to add them here.',
+                  si: 'පහළ ඇති ටයිල් ක්ලික් කර මෙහි එකතු කරන්න.' },
 };
 
 export const LANGS = ['si', 'en'];

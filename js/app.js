@@ -6,7 +6,10 @@ import { pushScore, flushQueue } from './leaderboard.js';
 import { nameEntry, leaderboard } from './screens.js';
 
 const GRADES = [6, 7, 8, 9];
-const TYPES = ['order', 'match', 'pick', 'bucket', 'symmatch'];
+const TYPES = [
+  'order', 'match', 'pick', 'bucket', 'symmatch',
+  'tf', 'input', 'hotspot', 'trace', 'bits', 'gate', 'query',
+];
 
 const main = document.getElementById('main');
 const cache = new Map();
@@ -104,7 +107,13 @@ async function activityScreen(grade, activityId) {
   }
   if (!found || !TYPES.includes(found.activity.type)) return notFound();
 
-  const { activity } = found;
+  // A hotspot's clickable options are shared by every round, so the originals
+  // kept them outside the activity. Newer ones carry their own. Either way the
+  // renderer only ever reads activity.options.
+  const shared = data.optionSets?.[found.activity.id];
+  const activity = shared && !found.activity.options
+    ? { ...found.activity, options: shared }
+    : found.activity;
   const mod = await loadType(activity.type);
 
   const result = el('div', { class: 'result', hidden: true, role: 'status', 'aria-live': 'polite' });

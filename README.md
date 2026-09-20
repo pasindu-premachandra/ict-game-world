@@ -201,11 +201,13 @@ network off. Verified by stopping the server mid-session and reloading.
 
 ## Status
 
-Grade 6 is complete and playable end to end in both languages. Grades 7, 8 and 9 have their content
-extracted and syllabus-checked, but some of their activity types do not have a UI yet and show as
-coming soon. Sinhala for grade 9 and for the bonus mini games is still being written, and newly drafted
-Sinhala stays flagged until a teacher reviews it; the app falls back to English rather than showing a
-blank.
+All four grades are playable end to end in both languages: **111 of the 112 activities**, across twelve
+activity types. The one exception is grade 9's Scratch Code Builder, which is a small app of its own
+rather than an activity, and the 18 bonus mini games from the ICT Adventure set, which are extracted and
+checked but not yet wired to a screen.
+
+Sinhala for grade 9 and for the bonus mini games is still being written, and newly drafted Sinhala stays
+flagged until a teacher reviews it; the app falls back to English rather than showing a blank.
 
 ---
 

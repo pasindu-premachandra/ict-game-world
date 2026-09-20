@@ -4,7 +4,105 @@ Mode: `/pt` default (plan, gate, build, prove, hand over). Folder type: freelanc
 Sibling tasks: `redesign-trilingual` (design system, done - do not reopen its gate) and `syllabus-enrichment` (content, in flight).
 Review surface for the gate: `review/plan.html` (Lavish). Evidence: `evidence/`.
 
-## RESUME HERE - handoff 3, 2026-09-20, after the pilot and the D1/D2/F2 fixes
+## RESUME HERE - handoff 4, 2026-09-20, after D3 (the activity types are ported)
+
+**Live: https://ict-game-world.vercel.app** (production, git linked: any push to `master` auto-deploys).
+Repo `pasindu-premachandra/ict-game-world`. Supabase project `vjyypzmnbyfjbudusava` (Mumbai).
+
+**Where things stand.** D3 is done. Seven activity types were ported this session, so **111 of the 112 activities are playable** in both languages, where it was 80 before. All four grades work end to end; grade 9's night lab and grade 8's orange world are exercised by real activities for the first time. Both gates are green, the proof run is in `evidence/ported-types-proof.txt`, and F4 went in with it.
+
+| Type | Activities | Where |
+|---|---|---|
+| `tf` | 10 | g8, g9 |
+| `input` | 7 | g8, g9 |
+| `hotspot` | 7 | g8, g9 |
+| `trace` | 3 | g7, g8, g9 |
+| `bits` | 2 | g8 |
+| `gate` | 1 | g8 (bonus) |
+| `query` | 1 | g8 |
+| **total** | **31** | |
+
+**The one thing left unported is `scratch-hub` (g9 3.4), and it is not mechanical.** It is not one activity, it is a nested sub-app: a hub of three control structures, each with its own list of block-dragging puzzles, plus a workspace, a palette and a program checker (`original/grade-9/english-medium.html:1174-1520`). Its content is `SCRATCH_STRUCTURES`, which like the hotspot option sets lives **outside** the `LESSONS` literal, so it is not in `data/` yet either. It needs its own extraction step and its own screen, not a renderer. It is also the one activity the syllabus checker flags as belonging to no competency level, so it is a bonus, not a coverage gap - all 59 levels are still covered without it. Treat it as its own task, roughly the size of this one.
+
+**Also open, in priority order.**
+- **Deploy.** Everything below is committed but **not pushed**, so the live site still runs the old build. `sw.js` `CACHE` is already bumped to `igw-v4`; pushing to `master` is the whole deploy.
+- **The Sinhala review list for Ishini and Dilini.** It has grown and still has no single document. It now holds: F3 (`හාවිත` -> `භාවිත`, grade 6 lesson 2 title and activity 2.1), T1-T5 from `redesign-trilingual`, the robot name, the drafted `සෙරමික් පිඟාන` from D2, everything flagged `siDraft` from `syllabus-enrichment`, and **the eleven new UI strings added this session** (marked with a comment in `js/i18n.js`). All of it is her content call, none of it is a code change. It wants one list, not eleven scattered notes.
+- **Sinhala coverage.** Grade 9 has 178 strings with no Sinhala, the adventure set 348. The app falls back to English rather than showing a blank.
+- **The adventure set has no UI at all.** 18 mini games in `data/adventure-9.json`, three kinds (`mcQuiz` 11, `memoryGame` 3, `sortGame` 4), and nothing routes to them. They are bonus content folded in by gate D3 in `redesign-trilingual`, so they are not counted in the 112.
+
+**Database state.** Unchanged from handoff 3: `players` 1 row, `scores` 5 rows, all from the pilot. This session's proof run deliberately blocked the Supabase host in Playwright, so it wrote nothing and exercised the offline queue instead.
+
+**Traps that have already cost a session each. Do not rediscover them.**
+- **Start Claude from `E:/Projects/freelance-projects/ict-game-world`**, or the Supabase MCP never loads. It lives in the project's own `.mcp.json`, which is only read from the cwd. Starting from `E:/Projects` silently gives you no Supabase tools at all.
+- **Content can live outside the `LESSONS` literal.** The hotspot options did, and `SCRATCH_STRUCTURES` still does. If an activity's data looks incomplete, grep the original for a bare `const` before assuming the extraction dropped something.
+- **Vercel's API cannot link this GitHub repo** (`namespaceId: null` even after connecting). The browser import flow at vercel.com/new works. Do not burn time on the API path.
+- **Commits here are title only.** One short subject line, no body, no `Co-Authored-By`, no trailers. This overrides the harness attribution default.
+- **`git config --local user.email` must be `pasindug98@gmail.com`.** The global identity is the Clouda work address, and this is a student's assessed project.
+- The Supabase MCP in this project is **project scoped**: `execute_sql` takes no `project_id` argument, and passing one is a Zod error.
+
+## D3, what was built (2026-09-20)
+
+### The hotspot options were missing from the data, not just the UI
+
+`hotspot` could not be ported as written. Seven activities carry a question and an answer key (`ans: 'vga'`) and nothing to click: the originals kept the clickable options in constants **outside** the `LESSONS` literal (`const PORT_OPTIONS=[...]`, `original/grade-8/english.html:937`) and chose one per activity in a switch inside the renderer (`if(a.id==='2.1')return PORT_OPTIONS;`). `readLessons` never saw them, so `data/` never had them.
+
+Hard-coding them in `js/activities/hotspot.js` would have put content in the app. Instead `scripts/lib/read-option-sets.mjs` reads both halves - the constants and the id-to-constant switch - and `extract.mjs` merges English with Sinhala through the same `mergeLang` as everything else. They land as `optionSets`, a **sibling of `lessons`** rather than a field inside an activity, which is what keeps the parity gate honest: it compares activity for activity against the original, and an extra key inside an activity would have failed it.
+
+Six option sets recovered, 28 clickable options: grade 8 ports, word tools and HTML tags; grade 9 charts, sensors and terms.
+
+`js/app.js` resolves them - `activity.options` if the activity carries its own (grade 8 3.3 does, it came from `syllabus-enrichment`), otherwise the grade's `optionSets[id]`. The renderer only ever reads `activity.options`.
+
+### One answer per round, not retry-until-right
+
+The originals let a child retry a wrong answer until they got it. That cannot be scored out of 100 - everyone finishes on 100 and the stars mean nothing. All seven new types take **one answer per round** and then move on, which is what `symmatch` already did. Practising is still free, because `submit_score()` keeps only a student's best.
+
+`js/activities/rounds.js` is the shell all seven share: progress, the body of one round, an `aria-live` feedback line, advance on a timer, score out of the number of rounds, and `selfScoring: true` so the activity screen hides its Check button. `settle()` refuses to fire twice, which matters where both a click and Enter reach the same answer.
+
+### The seven renderers
+
+- **`tf.js`** - one statement, two big targets. On a wrong answer the right one is marked.
+- **`input.js`** - a real `<form>`, so Enter submits on a phone keyboard. Answers are things like `read only` and `=SUM(A1:A10)`, so case and repeated spaces are forgiven and nothing else is. The answer is shown after a wrong try.
+- **`hotspot.js`** - the option grid, shuffled per round.
+- **`trace.js`** - the program in a `<pre>` that scrolls sideways on its own rather than pushing the page wide. Code is never translated. Where the content carries a `note` explaining the bug, it is used as the feedback line.
+- **`bits.js`** - place-value switches with a running sum. `bitCount` defaults to 8; grade 8 5.1 uses 4 and calls them LEDs. The row is capped four wide on a phone so eight bits wrap 4 + 4, two nibbles, instead of a ragged 6 + 2.
+- **`gate.js`** - the standard AND, OR and NOT symbols as inline SVG on the grade's own colours. The original printed the gate's name in a box; a grade 8 student is taught the symbol too. Same data, same answers.
+- **`query.js`** - tiles into a slot, order-insensitive set comparison, Clear. The lesson is keywords over sentences, so the filler words in the pool are the distractor.
+
+Eleven new UI strings in `js/i18n.js`. The Sinhala is drafted, not Ishini's, and is commented as such.
+
+### F4 folded in
+
+The leaderboard decided whose row was whose by matching the **nickname**, so two children called Ishini were each badged "You" on both rows. `js/leaderboard.js` now selects `player_id` - the view already exposed it (`supabase/migrations/0001_init.sql:101`), the client simply never asked - and `js/screens.js:104` compares ids. Two lines, no migration. It was folded in rather than queued because it is a real classroom bug with one obviously correct fix and no tradeoff to weigh.
+
+### Proof
+
+`evidence/ported-types-proof.txt`, and eight screenshots in `evidence/after/`.
+
+Every one of the 31 activities was played to completion **from its own answer key**, in both languages, at 375px:
+
+```
+en at 375px: 31 / 31 played to 100 when answered correctly
+si at 375px: 31 / 31 played to 100 when answered correctly
+```
+
+Scoring discriminates, checked on cleared progress so best-score-only cannot mask it: all seven types answered deliberately wrong score **0**, half of a true/false answered wrong scores **50**, correct scores **100**.
+
+```
+Types that already existed, still rendering at 1366px: 80 / 80
+New types rendering at 1366px: 31 / 31
+scratch-hub (g9 3.4) still not playable, handled cleanly: true
+Horizontal overflow at 375 and 1366 .... 0
+Console messages from the app .......... 0
+```
+
+The run blocked the Supabase host on purpose, so the pilot's rows are untouched and the 70 scores it produced went to the offline queue instead - the local-first path, exercised again for free.
+
+Both gates re-run green after the change: `check-data.mjs` all five sources rebuild byte identically, `check-syllabus.mjs` 59/59 levels with the one pre-existing grade 9 3.4 warning.
+
+**Not deployed.** Committed locally; the live site still runs the old build.
+
+
+## Handoff 3 (superseded), 2026-09-20, after the pilot and the D1/D2/F2 fixes
 
 **Live: https://ict-game-world.vercel.app** (production, git linked: any push to `master` auto-deploys).
 Repo `pasindu-premachandra/ict-game-world`. Supabase project `vjyypzmnbyfjbudusava` (Mumbai).
@@ -234,11 +332,18 @@ Underneath it is the content mismatch carried over from `redesign-trilingual` (t
 - [x] 11 `vercel.json` + `api/keep-alive.js` (daily cron, rejects anything without the cron user agent)
 - [ ] 12 deploy (on your go)
 - [x] Proof run - `evidence/playwright-proof.txt` and `evidence/supabase-proof.txt`
+- [x] D3 hotspot option sets recovered from the originals into `data/` (`scripts/lib/read-option-sets.mjs`)
+- [x] D3 seven activity types ported - tf, input, hotspot, trace, bits, gate, query. 111 of 112 activities playable
+- [x] F4 leaderboard "You" badge matches on player id, not nickname
+- [x] D3 proof run - `evidence/ported-types-proof.txt`, 31 activities x 2 languages, 0 console messages, 0 overflow
+- [ ] `scratch-hub` (g9 3.4) - its own task, see handoff 4
+- [ ] The adventure set's 18 mini games - no UI yet
 
 ## Release step, learned the hard way
 
 `sw.js` serves cache first, so **bump `CACHE` in `sw.js` on every deploy that changes any precached file**.
-During this build the browser kept running an old `app.js` and the new routes looked broken; nothing was wrong with the code, the old worker was simply still serving `igw-v1`. Now on `igw-v2`.
+During this build the browser kept running an old `app.js` and the new routes looked broken; nothing was wrong with the code, the old worker was simply still serving `igw-v1`. Now on `igw-v4`.
+The seven new activity modules are in `PRECACHE` too, or grades 7 to 9 would work online and break offline - the one failure mode a school lab would find first.
 
 ## Risk
 

@@ -1,0 +1,29 @@
+Playwright proof run - the seven ported activity types
+date: 2026-09-20
+-----------------------------------------------------------------------
+
+Activities of a newly ported type: 31
+
+en at 375px: 31 / 31 played to 100 when answered correctly
+si at 375px: 31 / 31 played to 100 when answered correctly
+
+Answered deliberately wrong (fresh progress, so best-score cannot mask it):
+  tf        g8 1.3   -> 0
+  input     g8 1.2   -> 0
+  hotspot   g8 2.1   -> 0
+  trace     g7 5.6   -> 0
+  bits      g8 1.1   -> 0
+  gate      g8 5.4   -> 0
+  query     g8 6.1   -> 0
+  half of tf g8 1.3 answered wrong -> 50
+
+Types that already existed, still rendering at 1366px: 80 / 80
+New types rendering at 1366px: 31 / 31
+scratch-hub (g9 3.4) still not playable, handled cleanly: true
+
+Screenshots written: 8 -> evidence/after/
+
+Horizontal overflow at 375 and 1366 .... 0
+Console messages from the app .......... 0
+Supabase calls blocked by this script .. 70, queued offline instead
+-----------------------------------------------------------------------

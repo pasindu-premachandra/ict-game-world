@@ -18,6 +18,149 @@
     }
   ],
   "corrections": [],
+  "optionSets": {
+    "2.1": [
+      {
+        "key": "vga",
+        "icon": "🖥️",
+        "name": {
+          "en": "VGA Port",
+          "si": "VGA කොවෙනිය"
+        },
+        "desc": {
+          "en": "For old-style monitors",
+          "si": "පැරණි සංදර්ශක සඳහා"
+        }
+      },
+      {
+        "key": "rj45",
+        "icon": "🌐",
+        "name": {
+          "en": "RJ45 Ethernet",
+          "si": "RJ45 ජාලය"
+        },
+        "desc": {
+          "en": "For networking cable",
+          "si": "ජාල රැහැන් සඳහා"
+        }
+      },
+      {
+        "key": "usb",
+        "icon": "🔌",
+        "name": {
+          "en": "USB Port",
+          "si": "USB කොවෙනිය"
+        },
+        "desc": {
+          "en": "For USB devices",
+          "si": "USB උපාංග සඳහා"
+        }
+      },
+      {
+        "key": "hdmi",
+        "icon": "📺",
+        "name": {
+          "en": "HDMI Port",
+          "si": "HDMI කොවෙනිය"
+        },
+        "desc": {
+          "en": "Audio + video for TV",
+          "si": "රූපවාහිනිය සඳහා"
+        }
+      }
+    ],
+    "3.1": [
+      {
+        "key": "bold",
+        "icon": "B",
+        "name": "Bold",
+        "desc": {
+          "en": "B",
+          "si": "තද පැහැ"
+        }
+      },
+      {
+        "key": "italic",
+        "icon": "I",
+        "name": "Italic",
+        "desc": {
+          "en": "I",
+          "si": "ඇල අකුරු"
+        }
+      },
+      {
+        "key": "underline",
+        "icon": "U",
+        "name": "Underline",
+        "desc": {
+          "en": "U",
+          "si": "යටින් ඉරි"
+        }
+      },
+      {
+        "key": "center",
+        "icon": "⬛",
+        "name": "Center",
+        "desc": {
+          "en": "Align middle",
+          "si": "මැදට"
+        }
+      },
+      {
+        "key": "spellcheck",
+        "icon": "✓",
+        "name": "Spell Check",
+        "desc": "ABC✓"
+      }
+    ],
+    "6.2": [
+      {
+        "key": "br",
+        "icon": "↵",
+        "name": "<br>",
+        "desc": {
+          "en": "Line break",
+          "si": "නව පේළිය"
+        }
+      },
+      {
+        "key": "a",
+        "icon": "🔗",
+        "name": "<a>",
+        "desc": {
+          "en": "Hyperlink",
+          "si": "අධිසන්ධානය"
+        }
+      },
+      {
+        "key": "img",
+        "icon": "🖼️",
+        "name": "<img>",
+        "desc": {
+          "en": "Image",
+          "si": "පින්තූරය"
+        }
+      },
+      {
+        "key": "ul",
+        "icon": "•",
+        "name": "<ul>",
+        "desc": {
+          "en": "Bulleted list",
+          "si": "බුලට් ලැයිස්තුව"
+        }
+      },
+      {
+        "key": "h1",
+        "icon": "H1",
+        "name": "<h1>",
+        "desc": {
+          "en": "Largest heading",
+          "si": "විශාලතම ශීර්ෂය"
+        }
+      }
+    ]
+  },
   "lessons": [
     {
       "id": 1,
