@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICT Game World - the 18 ICT Adventure mini games</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Palette lifted from the project's own tokens.css, grade 9 "night lab" world,
+   matching the codebase-and-infra gate report so the family stays consistent. */
+:root{
+  --page:#0d1626; --surface:#192437; --surface-2:#1f2c42; --line:#2d3645; --line-soft:#303d55;
+  --text:#e6edf6; --text-muted:#b0c0d1; --text-dim:#8697ab;
+  --base:#43d0f9; --base-hover:#77e1ff; --base-dark:#0080ad; --base-soft:#003850; --base-ink:#92e5ff;
+  --on-base:#062033;
+  --ok:#03a14a; --ok-soft:#0d2e1d; --ok-ink:#6ee89b;
+  --no:#ec485f; --no-soft:#3a1620; --no-ink:#ff9aa7;
+  --warn:#f2b036; --warn-soft:#332616; --warn-ink:#ffd489;
+  --tip:#2f8adc; --tip-soft:#12263c; --tip-ink:#8ec8fb;
+  --gold:#f9c230; --flame:#f3562e;
+  --bot-body:#00beab; --bot-face:#88edda; --bot-antenna:#fb7188;
+  --font-display:"Baloo 2",system-ui,sans-serif;
+  --font-body:"Nunito",system-ui,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:20px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; background:var(--page); color:var(--text);
+  font-family:var(--font-body); font-size:17px; line-height:1.6;
+  padding:var(--sp-8) var(--sp-4) 96px;
+}
+.wrap{max-width:960px;margin:0 auto;}
+h1,h2,h3{font-family:var(--font-display);line-height:1.2;margin:0;}
+h1{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-.01em;}
+h2{font-size:clamp(21px,3.4vw,28px);font-weight:700;margin-bottom:var(--sp-3);}
+h3{font-size:18px;font-weight:700;margin-bottom:var(--sp-2);}
+p{margin:0 0 var(--sp-4);}
+a{color:var(--base);}
+code{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.88em;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;}
+section{margin-top:var(--sp-10);}
+.eyebrow{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--base-ink);margin-bottom:var(--sp-2);}
+.lede{font-size:19px;color:var(--text-muted);max-width:62ch;}
+
+.stats{display:grid;gap:var(--sp-3);grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:var(--sp-6);}
+.stat{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-lg);padding:var(--sp-4);}
+.stat .n{font-family:var(--font-display);font-size:34px;font-weight:800;color:var(--base);line-height:1;}
+.stat .l{font-size:14px;color:var(--text-dim);margin-top:var(--sp-1);}
+
+table{width:100%;border-collapse:collapse;margin:var(--sp-4) 0;font-size:15px;}
+th,td{text-align:left;padding:var(--sp-2) var(--sp-3);border-bottom:1px solid var(--line);vertical-align:top;}
+th{font-family:var(--font-display);font-weight:700;font-size:13px;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--text-dim);}
+tbody tr:last-child td{border-bottom:0;}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+.pill{display:inline-block;font-family:var(--font-display);font-size:12px;font-weight:700;
+  padding:2px 9px;border-radius:999px;white-space:nowrap;}
+.pill.ok{background:var(--ok-soft);color:var(--ok-ink);border:1px solid var(--ok);}
+.pill.no{background:var(--no-soft);color:var(--no-ink);border:1px solid var(--no);}
+.pill.warn{background:var(--warn-soft);color:var(--warn-ink);border:1px solid var(--warn);}
+.pill.tip{background:var(--tip-soft);color:var(--tip-ink);border:1px solid var(--tip);}
+
+.note{background:var(--surface);border-left:4px solid var(--base);border-radius:0 var(--r-md) var(--r-md) 0;
+  padding:var(--sp-4);margin:var(--sp-4) 0;font-size:16px;}
+.note.warn{border-left-color:var(--warn);}
+.note.ok{border-left-color:var(--ok);}
+.note strong{font-family:var(--font-display);}
+.note :last-child{margin-bottom:0;}
+
+.two{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.panel{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-lg);padding:var(--sp-5);}
+.panel.good{border-color:var(--ok);}
+.panel.bad{border-color:var(--no);}
+.panel h3{margin-bottom:var(--sp-3);}
+.panel ul{margin:0;padding-left:1.15em;}
+.panel li{margin-bottom:var(--sp-2);font-size:15.5px;}
+.panel li:last-child{margin-bottom:0;}
+
+/* decision blocks */
+.q{background:var(--surface);border:2px solid var(--line-soft);border-radius:var(--r-xl);
+  padding:var(--sp-5);margin-top:var(--sp-5);}
+.q-id{font-family:var(--font-display);font-weight:800;font-size:13px;letter-spacing:.1em;
+  color:var(--base-ink);text-transform:uppercase;}
+.q h3{font-size:21px;margin:var(--sp-1) 0 var(--sp-3);}
+.q .why{color:var(--text-muted);font-size:16px;}
+.opts{display:grid;gap:var(--sp-3);margin:var(--sp-4) 0;}
+label.opt{display:block;background:var(--surface-2);border:2px solid var(--line);
+  border-radius:var(--r-md);padding:var(--sp-4);cursor:pointer;}
+label.opt:has(input:checked){border-color:var(--base);background:var(--base-soft);}
+label.opt input{margin-right:var(--sp-2);accent-color:var(--base);width:18px;height:18px;vertical-align:-3px;}
+label.opt .t{font-family:var(--font-display);font-weight:700;font-size:16.5px;}
+label.opt .d{display:block;margin-top:var(--sp-2);font-size:15px;color:var(--text-muted);}
+label.opt .cost{display:block;margin-top:var(--sp-2);font-size:14px;color:var(--warn-ink);}
+.rec{font-family:var(--font-display);font-size:11px;font-weight:800;letter-spacing:.08em;
+  background:var(--base);color:var(--on-base);padding:2px 8px;border-radius:999px;margin-left:var(--sp-2);
+  text-transform:uppercase;vertical-align:1px;}
+button{font-family:var(--font-display);font-weight:700;font-size:16px;cursor:pointer;
+  background:var(--base);color:var(--on-base);border:0;border-radius:var(--r-md);
+  padding:var(--sp-3) var(--sp-5);box-shadow:0 4px 0 var(--base-dark);}
+button:active{transform:translateY(2px);box-shadow:0 2px 0 var(--base-dark);}
+textarea{width:100%;font-family:var(--font-body);font-size:15px;background:var(--surface-2);
+  color:var(--text);border:2px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);
+  margin-bottom:var(--sp-3);resize:vertical;}
+
+/* memory-card mockups for O2 */
+.mock{background:var(--page);border:2px solid var(--line);border-radius:var(--r-md);
+  padding:var(--sp-3);margin-top:var(--sp-3);}
+.mock .cap{font-size:13px;color:var(--text-dim);margin-bottom:var(--sp-2);font-family:var(--font-display);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:240px;}
+.card{aspect-ratio:1/.72;border-radius:10px;display:grid;place-items:center;
+  border:2px solid var(--base-dark);background:var(--base-soft);color:var(--base-ink);
+  font-family:var(--font-display);font-weight:800;font-size:20px;}
+.card.face{background:var(--surface);border-color:var(--line);color:var(--text);
+  font-size:11px;font-weight:700;text-align:center;padding:3px;line-height:1.25;}
+.card.bot{background:var(--base-soft);}
+.robot{width:30px;height:26px;}
+.matchmock{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:240px;}
+.mc{border:2px solid var(--line);border-radius:10px;background:var(--surface);
+  padding:6px;font-size:11px;font-weight:700;text-align:center;}
+.mc.on{border-color:var(--ok);background:var(--ok-soft);color:var(--ok-ink);}
+
+.sig{margin-top:var(--sp-10);padding-top:var(--sp-5);border-top:1px solid var(--line);
+  font-size:14px;color:var(--text-dim);}
+ol.plan{padding-left:1.3em;}
+ol.plan li{margin-bottom:var(--sp-3);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="eyebrow">adventure-set &middot; gate</p>
+<h1>The 18 ICT Adventure mini games</h1>
+<p class="lede">They have been extracted, parity-checked and sitting in <code>data/adventure-9.json</code>
+since the first build, reachable from nowhere. Two of their three game kinds are already built under
+another name. Four things need your call before I write any of it.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">18</div><div class="l">mini games, 6 themed sets</div></div>
+  <div class="stat"><div class="n">2 of 3</div><div class="l">kinds already built, under other names</div></div>
+  <div class="stat"><div class="n">1:1</div><div class="l">sets map onto grade 9 lessons</div></div>
+  <div class="stat"><div class="n">348</div><div class="l">strings with no Sinhala</div></div>
+</div>
+
+<section>
+<h2>Where they are now</h2>
+<p>Nothing routes to them. <code>js/app.js</code> only knows <code>data/grade-N.json</code>; the adventure
+file is precached by the service worker and parsed by the checker, and never read by the app. They are
+bonus content by gate D3 in <code>redesign-trilingual</code> and sit outside the NIE competency levels, so
+syllabus coverage is <strong>59/59 without them</strong>. Nothing is broken while they stay hidden. This is
+reach, not repair.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Set</th><th>Theme</th><th>Title</th><th>Games</th><th>Kinds</th></tr></thead>
+<tbody>
+<tr><td>01</td><td><code>cpu</code></td><td>Computer &amp; Peripheral</td><td>3</td><td>sort, sort, quiz</td></tr>
+<tr><td>02</td><td><code>sheet</code></td><td>Spreadsheets</td><td>3</td><td>quiz, quiz, quiz</td></tr>
+<tr><td>03</td><td><code>code</code></td><td>Programming</td><td>3</td><td>quiz, memory, quiz</td></tr>
+<tr><td>04</td><td><code>micro</code></td><td>Microcontrollers</td><td>3</td><td>quiz, memory, quiz</td></tr>
+<tr><td>05</td><td><code>net</code></td><td>Networking</td><td>3</td><td>sort, quiz, quiz</td></tr>
+<tr><td>06</td><td><code>society</code></td><td>ICT &amp; Society</td><td>3</td><td>quiz, sort, memory</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section>
+<h2>Two of the three kinds are already written</h2>
+<p>This is why the set is cheap now and would not have been six weeks ago.</p>
+<div class="tw">
+<table>
+<thead><tr><th>Kind</th><th>Count</th><th>Payload in the data</th><th>What already does this</th></tr></thead>
+<tbody>
+<tr><td><code>mcQuiz</code></td><td>11</td><td><code>questions[]</code> of <code>{ q, opts[], ans }</code>, <code>ans</code> an index</td>
+    <td><span class="pill ok">built</span> <code>trace</code> without the code block. <code>rounds.js</code> already gives the shell.</td></tr>
+<tr><td><code>sortGame</code></td><td>4</td><td>flat <code>items[]</code> of <code>{ name, bin }</code> + <code>bins[]</code></td>
+    <td><span class="pill ok">built</span> <code>bucket.js</code> is this exact interaction. Different shape, so an adapter.</td></tr>
+<tr><td><code>memoryGame</code></td><td>3</td><td><code>pairs[]</code> of <code>{ a, b, key }</code> &mdash; 5 pairs, 10 cards</td>
+    <td><span class="pill no">new</span> Flip two, keep on match, count moves. Nothing like it exists.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+<p><strong>The shape difference on <code>sortGame</code> matters.</strong> <code>bucket.js</code> reads
+<code>activity.buckets[].items[]</code>; the adventure data keeps a flat <code>items[]</code> with a
+<code>bin</code> key plus a separate <code>bins[]</code>. I want to write an adapter into the existing
+renderer, not a second bucket game, so a fix to one fixes both. That is a plan decision, not a gate
+question &mdash; flagging it so you can push back.</p>
+</div>
+</section>
+
+<section>
+<h2>The sets line up with grade 9's lessons exactly</h2>
+<p>I expected the six themes to be loose and they are not. This is the single most useful thing I found, and
+it decides O1.</p>
+<div class="tw">
+<table>
+<thead><tr><th>Adventure set</th><th>Grade 9 lesson</th><th></th></tr></thead>
+<tbody>
+<tr><td>01 Computer &amp; Peripheral</td><td>1 Preparation of Computer Specifications</td><td><span class="pill ok">match</span></td></tr>
+<tr><td>02 Spreadsheets</td><td>2 Electronic Spreadsheets</td><td><span class="pill ok">match</span></td></tr>
+<tr><td>03 Programming</td><td>3 Programming</td><td><span class="pill ok">match</span></td></tr>
+<tr><td>04 Microcontrollers</td><td>4 Use of Microcontrollers</td><td><span class="pill ok">match</span></td></tr>
+<tr><td>05 Networking</td><td>5 Computer Networks</td><td><span class="pill ok">match</span></td></tr>
+<tr><td>06 ICT &amp; Society</td><td>6 ICT and Society</td><td><span class="pill ok">match</span></td></tr>
+<tr><td>&mdash;</td><td>7 ICT All Around Us</td><td><span class="pill warn">no set</span></td></tr>
+</tbody>
+</table>
+</div>
+<p>Gate D3 already chose &ldquo;ICT Adventure folded in as a bonus round per lesson&rdquo;. It turns out that
+is not just the earlier decision, it is the one the content supports.</p>
+</section>
+
+<section>
+<h2>What the design system covers &mdash; and the hole in it</h2>
+<p>From <code>DESIGN.md</code> in the Open Design project, read today. A substring search of the whole design
+project for &ldquo;memory&rdquo; and &ldquo;adventure&rdquo; returns nothing.</p>
+<div class="two">
+  <div class="panel good">
+    <h3>Covered, build straight to it</h3>
+    <ul>
+      <li>&ldquo;Answer option: idle, selected, correct, wrong. Correct and wrong add a tick or a cross and a word.&rdquo; &rarr; <code>mcQuiz</code></li>
+      <li>&ldquo;Sort bucket with chips: the bucket under a held chip turns solid.&rdquo; &rarr; <code>sortGame</code></li>
+      <li>Feedback colours, the lift tokens, the Sinhala type rules, 44px targets, no sideways scroll at 360px</li>
+    </ul>
+  </div>
+  <div class="panel bad">
+    <h3>Not designed anywhere</h3>
+    <ul>
+      <li><strong>A memory / flip-card grid.</strong> Not in the component list, not in the showcase, not mentioned. &rarr; <strong>O2</strong></li>
+      <li><strong>How the bonus set is entered.</strong> D3 said &ldquo;per lesson&rdquo; but no screen was drawn. &rarr; <strong>O1</strong></li>
+      <li>A destination for the <strong>trophy button</strong>, which <code>DESIGN.md</code> puts in the top bar and which today goes nowhere</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Sinhala is the thin part</h2>
+<div class="tw">
+<table>
+<thead><tr><th>Field</th><th>Has Sinhala</th></tr></thead>
+<tbody>
+<tr><td>Set titles</td><td><span class="pill ok">6 / 6</span></td></tr>
+<tr><td>Game <code>name</code> and <code>desc</code></td><td><span class="pill no">0 / 18</span></td></tr>
+<tr><td><code>mcQuiz</code> question text</td><td><span class="pill warn">most</span></td></tr>
+<tr><td><code>mcQuiz</code> answer options</td><td><span class="pill no">0</span></td></tr>
+<tr><td><code>sortGame</code> items and bins</td><td><span class="pill no">0</span></td></tr>
+<tr><td><code>memoryGame</code> pairs</td><td><span class="pill no">0</span></td></tr>
+</tbody>
+</table>
+</div>
+<p>348 strings, which is the number <code>check-data.mjs</code> has printed on every run. The original game
+was English with Sinhala sub-titles on some questions only, so this is faithful extraction, not loss.
+<code>text()</code> already falls back to English rather than showing a blank, so the set is shippable as is
+&mdash; it will simply read mostly English to a Sinhala student. That is <strong>O4</strong>.</p>
+</section>
+
+<section>
+<h2>Four decisions</h2>
+
+<form class="q" data-lavish-question="o1" onsubmit="event.preventDefault(); const v=new FormData(event.currentTarget).get('o1'); if(v) window.lavish.queuePrompt('O1, where the 18 adventure games live: '+v, {tag:'O1', text:'O1: '+v, element:event.currentTarget, data:{question:'o1-placement', answer:v}});">
+  <p class="q-id">O1</p>
+  <h3>Where do the 18 games live?</h3>
+  <p class="why">The six sets map 1:1 onto grade 9 lessons 1&ndash;6, and gate D3 already said &ldquo;a bonus
+  round per lesson&rdquo;. Only lesson 7 has no set. Cost of getting it wrong: a child either never finds
+  the bonus games, or the syllabus path gets diluted with content that is not assessed.</p>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="o1" value="B, one set appended to each grade 9 lesson (recommended)">
+      <span class="t">One set appended to its matching lesson<span class="rec">recommended</span></span>
+      <span class="d">Set 01 appears at the end of grade 9 lesson 1 as a bonus row, set 02 under lesson 2, and so on. No new screen. Matches D3's wording and the content's own structure. Lesson 7 simply has no bonus row.</span>
+      <span class="cost">Cost: the lesson path gets a little longer, and 3 of the rows in each lesson are not syllabus-assessed, so they need visibly marking as bonus.</span>
+    </label>
+    <label class="opt"><input type="radio" name="o1" value="A, one bonus lesson at the end of the grade 9 path holding all 18">
+      <span class="t">One bonus lesson at the end of the path</span>
+      <span class="d">A 7th entry, &ldquo;Bonus: ICT Adventure&rdquo;, containing all 18 games. Simplest to build and the clearest separation from assessed work.</span>
+      <span class="cost">Cost: 18 rows in one lesson is a long scroll, and the six themes collapse into one undifferentiated list, losing the link to the lesson each set belongs to.</span>
+    </label>
+    <label class="opt"><input type="radio" name="o1" value="C, a separate Game Lab screen reached from the trophy button">
+      <span class="t">A separate Game Lab, from the trophy button</span>
+      <span class="d">Its own screen, six themed cards. Gives the designed-but-dead trophy button a home, so it closes two backlog items at once, and keeps the syllabus path untouched.</span>
+      <span class="cost">Cost: a whole new screen to design and build, furthest from D3's literal wording, and easiest for a child to never open.</span>
+    </label>
+  </div>
+  <button type="submit">Queue this answer</button>
+</form>
+
+<form class="q" data-lavish-question="o2" onsubmit="event.preventDefault(); const v=new FormData(event.currentTarget).get('o2'); if(v) window.lavish.queuePrompt('O2, the memory game: '+v, {tag:'O2', text:'O2: '+v, element:event.currentTarget, data:{question:'o2-memory', answer:v}});">
+  <p class="q-id">O2</p>
+  <h3>The memory game has no design. What should it be?</h3>
+  <p class="why">3 of the 18 games are <code>memoryGame</code>: 5 pairs, 10 cards, flip two and keep them if
+  they match. The design system has no flip-card component and no mention of one. The card faces are
+  <em>text</em>, not icons &mdash; &ldquo;&#127777; Temperature&rdquo; pairs with &ldquo;Heat detection&rdquo;
+  &mdash; so they need room to read. Mockups are at true phone proportions.</p>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="o2" value="A, a flip-card grid with a question-mark back, 2 columns on a phone (recommended)">
+      <span class="t">Flip-card grid, plain back<span class="rec">recommended</span></span>
+      <span class="d">2 columns on a phone, 5 on a lab PC, using the same <code>auto-fit</code> grid every other screen uses. Face-down shows <code>?</code>. Closest to the original game, and it keeps the recall mechanic that makes it different from the match activity.</span>
+      <div class="mock"><p class="cap">375px phone, 2 columns</p>
+        <div class="grid2">
+          <div class="card">?</div><div class="card face">&#127777; Temperature</div>
+          <div class="card">?</div><div class="card">?</div>
+          <div class="card face">Heat detection</div><div class="card">?</div>
+        </div>
+      </div>
+    </label>
+    <label class="opt"><input type="radio" name="o2" value="B, a flip-card grid whose back is the robot friend">
+      <span class="t">Flip-card grid, robot on the back</span>
+      <span class="d">The same grid, but face-down shows the robot friend from <code>DESIGN.md</code>. It would be the first use of the six <code>--bot-*</code> tokens, which are declared and unused.</span>
+      <div class="mock"><p class="cap">375px phone, robot back</p>
+        <div class="grid2">
+          <div class="card bot"><svg class="robot" viewBox="0 0 30 26" aria-hidden="true"><circle cx="8" cy="3" r="2" fill="var(--bot-antenna)"/><circle cx="22" cy="3" r="2" fill="var(--bot-antenna)"/><path d="M8 5v3M22 5v3" stroke="var(--bot-antenna)" stroke-width="1.5"/><rect x="3" y="8" width="24" height="16" rx="5" fill="var(--bot-body)"/><rect x="7" y="12" width="16" height="8" rx="3" fill="var(--bot-face)"/><circle cx="12" cy="16" r="1.4" fill="#0d1626"/><circle cx="18" cy="16" r="1.4" fill="#0d1626"/></svg></div>
+          <div class="card face">&#127777; Temperature</div>
+          <div class="card bot"><svg class="robot" viewBox="0 0 30 26" aria-hidden="true"><circle cx="8" cy="3" r="2" fill="var(--bot-antenna)"/><circle cx="22" cy="3" r="2" fill="var(--bot-antenna)"/><path d="M8 5v3M22 5v3" stroke="var(--bot-antenna)" stroke-width="1.5"/><rect x="3" y="8" width="24" height="16" rx="5" fill="var(--bot-body)"/><rect x="7" y="12" width="16" height="8" rx="3" fill="var(--bot-face)"/><circle cx="12" cy="16" r="1.4" fill="#0d1626"/><circle cx="18" cy="16" r="1.4" fill="#0d1626"/></svg></div>
+          <div class="card bot"><svg class="robot" viewBox="0 0 30 26" aria-hidden="true"><circle cx="8" cy="3" r="2" fill="var(--bot-antenna)"/><circle cx="22" cy="3" r="2" fill="var(--bot-antenna)"/><path d="M8 5v3M22 5v3" stroke="var(--bot-antenna)" stroke-width="1.5"/><rect x="3" y="8" width="24" height="16" rx="5" fill="var(--bot-body)"/><rect x="7" y="12" width="16" height="8" rx="3" fill="var(--bot-face)"/><circle cx="12" cy="16" r="1.4" fill="#0d1626"/><circle cx="18" cy="16" r="1.4" fill="#0d1626"/></svg></div>
+          <div class="card face">Heat detection</div>
+          <div class="card bot"><svg class="robot" viewBox="0 0 30 26" aria-hidden="true"><circle cx="8" cy="3" r="2" fill="var(--bot-antenna)"/><circle cx="22" cy="3" r="2" fill="var(--bot-antenna)"/><path d="M8 5v3M22 5v3" stroke="var(--bot-antenna)" stroke-width="1.5"/><rect x="3" y="8" width="24" height="16" rx="5" fill="var(--bot-body)"/><rect x="7" y="12" width="16" height="8" rx="3" fill="var(--bot-face)"/><circle cx="12" cy="16" r="1.4" fill="#0d1626"/><circle cx="18" cy="16" r="1.4" fill="#0d1626"/></svg></div>
+        </div>
+      </div>
+      <span class="cost">Cost: it invents part of the robot before the robot is actually built (backlog 3.1), so its look would be decided here by accident rather than in the design system.</span>
+    </label>
+    <label class="opt"><input type="radio" name="o2" value="C, drop the memory mechanic and render the 3 memory games with the existing match renderer">
+      <span class="t">Drop the memory mechanic, reuse the match renderer</span>
+      <span class="d">The data is <code>{ a, b, key }</code>, which is exactly what <code>match.js</code> already takes. Zero new code, zero new design, and it ships today.</span>
+      <div class="mock"><p class="cap">the existing match activity, both sides visible</p>
+        <div class="matchmock">
+          <div class="mc on">&#127777; Temperature &check;</div><div class="mc on">Heat detection &check;</div>
+          <div class="mc">&#128161; Light</div><div class="mc">Distance measure</div>
+          <div class="mc">&#128225; PIR Sensor</div><div class="mc">Brightness detection</div>
+        </div>
+      </div>
+      <span class="cost">Cost: it stops being a memory game. Recall is the skill it trains, and the original's &ldquo;matched in N moves&rdquo; disappears. Three of the eighteen games become duplicates of an activity type the child has already played.</span>
+    </label>
+  </div>
+  <button type="submit">Queue this answer</button>
+</form>
+
+<form class="q" data-lavish-question="o3" onsubmit="event.preventDefault(); const v=new FormData(event.currentTarget).get('o3'); if(v) window.lavish.queuePrompt('O3, bonus scores and the class leaderboard: '+v, {tag:'O3', text:'O3: '+v, element:event.currentTarget, data:{question:'o3-leaderboard', answer:v}});">
+  <p class="q-id">O3</p>
+  <h3>Do bonus scores reach the class leaderboard?</h3>
+  <p class="why">No migration either way: <code>scores</code> is unique on
+  <code>(player_id, grade, activity_id)</code> and the adventure ids (<code>c1</code>, <code>p2</code>) do not
+  collide with the <code>1.1</code> ids. So this is purely a product call about what the class board is
+  measuring.</p>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="o3" value="yes, bonus games count toward the class leaderboard like any other activity">
+      <span class="t">Yes, they count</span>
+      <span class="d">One consistent rule a child can understand: every game you play earns points. Also makes the bonus set worth opening.</span>
+      <span class="cost">Cost: 18 extra scoreable games only exist for grade 9, and a student could climb the board on bonus games instead of syllabus work.</span>
+    </label>
+    <label class="opt"><input type="radio" name="o3" value="no, bonus games save to the device only and stay off the class leaderboard (recommended)">
+      <span class="t">No, device only<span class="rec">recommended</span></span>
+      <span class="d">Stars and progress still show on the device, so the child sees their own achievement, but the class board stays a measure of assessed work. <code>store.js</code> already does device-first, so this is the smaller change.</span>
+      <span class="cost">Cost: a child may notice their bonus points are &ldquo;missing&rdquo; from the board, which needs a line of copy to explain.</span>
+    </label>
+  </div>
+  <button type="submit">Queue this answer</button>
+</form>
+
+<form class="q" data-lavish-question="o4" onsubmit="event.preventDefault(); const v=new FormData(event.currentTarget).get('o4'); const n=event.currentTarget.querySelector('textarea').value.trim(); if(v) window.lavish.queuePrompt('O4, Sinhala timing: '+v+(n?' | note: '+n:''), {tag:'O4', text:'O4: '+v, element:event.currentTarget, data:{question:'o4-sinhala', answer:v, note:n}});">
+  <p class="q-id">O4</p>
+  <h3>Ship English-first, or wait for the Sinhala?</h3>
+  <p class="why">348 strings have no Sinhala, including every answer option in all 11 quizzes. The fallback
+  works, so nothing breaks either way &mdash; the question is whether a mostly-English bonus set in front of
+  a Sinhala student is acceptable in the meantime.</p>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="o4" value="ship English-first now, the set improves by itself as the translation session reaches it (recommended)">
+      <span class="t">Ship English-first now<span class="rec">recommended</span></span>
+      <span class="d">The games become reachable this week and get better on their own as the parallel translation session lands each batch. No code changes needed when the Sinhala arrives.</span>
+      <span class="cost">Cost: a Sinhala student meets an English bonus set until then. Worth a visible &ldquo;English only for now&rdquo; note, which <code>t('englishOnly')</code> already exists for.</span>
+    </label>
+    <label class="opt"><input type="radio" name="o4" value="build it but keep it hidden until the Sinhala lands">
+      <span class="t">Build it, keep it hidden until Sinhala lands</span>
+      <span class="d">The code goes in behind whatever O1 chose but stays unreachable, so the first time anyone sees the set it is already bilingual.</span>
+      <span class="cost">Cost: finished, tested work sits unused for an unknown stretch, and the hidden path is the kind of thing that gets forgotten and ships broken later.</span>
+    </label>
+    <label class="opt"><input type="radio" name="o4" value="translate the 348 strings first, then build">
+      <span class="t">Translate first, then build</span>
+      <span class="d">Hand the 348 strings to the translation session, build afterwards.</span>
+      <span class="cost">Cost: blocks this task on another session, and the drafted Sinhala would still be <code>siDraft</code> pending Ishini, so it does not actually remove the wait.</span>
+    </label>
+  </div>
+  <textarea rows="2" placeholder="Anything to add on O4 (optional)"></textarea>
+  <button type="submit">Queue this answer</button>
+</form>
+</section>
+
+<section>
+<h2>The plan, once those are settled</h2>
+<ol class="plan">
+<li><code>js/adventure.js</code> &mdash; load <code>data/adventure-9.json</code>, list the sets and their three games, route into one. Shape follows O1.</li>
+<li><code>js/activities/mcquiz.js</code> &mdash; <code>rounds.js</code> plus an option list, sharing the option-row CSS with <code>trace</code>.</li>
+<li><code>js/activities/sortgame.js</code> &mdash; adapt <code>items[] + bins[]</code> into <code>bucket.js</code>'s interaction rather than re-implementing it.</li>
+<li><code>js/activities/memory.js</code> &mdash; to whatever O2 settles. Skipped entirely if O2 is C.</li>
+<li>Scoring: quiz and sort score as their siblings do. Memory scores off moves against a perfect run, so recall earns three stars and brute force does not.</li>
+<li>Progress and leaderboard per O3, reusing <code>store.js</code> and <code>leaderboard.js</code> untouched.</li>
+<li><code>sw.js</code> &mdash; add every new module to <code>PRECACHE</code> <strong>and</strong> bump <code>CACHE</code>. The data file is already precached.</li>
+<li>Every string through <code>text()</code> and <code>t()</code>, including <code>icon</code> &mdash; that was finding F2.</li>
+</ol>
+
+<h3>How it gets proven</h3>
+<p>The same method as the ported types: all 18 games played to completion from their own answer keys, both
+languages, 375px and 1366px, scores compared against 100, plus deliberately wrong and half-right runs on
+cleared progress to show the score discriminates. For the memory game specifically, a perfect run must score
+100 and a brute-forced run must score less. 0 console messages, 0 horizontal overflow, reduced motion still
+completable, both gates green, and a read at Sinhala size.</p>
+
+<div class="note warn">
+<p><strong>Risk, and it is low.</strong> Nothing routes here yet, so a mistake cannot break a screen a child
+already uses. The real risks are scope and consistency: re-implementing the bucket interaction instead of
+reusing it, and inventing a memory-card look that does not match a design system nobody has drawn for it.
+O2 exists so that second one is not decided silently by me.</p>
+</div>
+</section>
+
+<p class="sig">Built from <code>data/adventure-9.json</code>, <code>original/grade-9/ict-adventure.html</code>,
+the existing renderers in <code>js/activities/</code>, and <code>DESIGN.md</code> in the Open Design project
+<code>ict-game-world-design-system</code>. Every count in this report came from reading those files, not from
+the earlier handoffs.</p>
+
+</div>
+</body>
+</html>
