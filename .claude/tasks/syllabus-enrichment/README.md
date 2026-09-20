@@ -85,6 +85,10 @@ One follow-up for whoever merges: `content/baseline-activities.json` was regex-e
 - [x] 8 `node scripts/check-syllabus.mjs` green - 59/59 levels, 120/120 periods, 86 to 113 activities; guard proven by breaking the map on purpose (exit 1)
 - [x] 9 three page specs in `content/pages/` - syllabus-map, word-bank (48 seed terms), teacher-notes
 - [x] 10 sibling README updated - step 2 merges `content/`, step 10b adds the three pages, G8 title decision closed
+- [x] O5 closed for grade 9, 2026-09-20 - the 202 strings that had no Sinhala at all are drafted in `content/grade-9.sinhala.json`, applied by `scripts/lib/apply-sinhala.mjs`, every touched activity `siDraft: true`. Terms taken from the word-bank seed list, which is itself read off the NIE Sinhala pages. Proof: all 25 playable grade 9 activities render Sinhala at 375 and 1366, 0 English-fallback notes, 0 overflow, 0 console errors (`evidence/si-g9-*.png`)
+- [x] The overlay is keyed by the English string and a key matching nothing fails the extract with the key named - proven by breaking one on purpose (exit 1)
+- [ ] **Ishini's review of the drafted grade 9 Sinhala** - 202 strings across 19 activities, none of it hers. This is the gate before classroom use
+- [ ] The adventure set's 348 answer options - the original's question stems are already Sinhala, the options never were
 
 ## Risk
 

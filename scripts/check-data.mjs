@@ -30,7 +30,11 @@ function view(node, lang) {
   if (isPair(node)) return node[lang];
   if (Array.isArray(node)) return node.map((v) => view(v, lang));
   if (node && typeof node === 'object') {
-    return Object.fromEntries(Object.entries(node).map(([k, v]) => [k, view(v, lang)]));
+    return Object.fromEntries(
+      Object.entries(node)
+        .filter(([k]) => k !== 'siDraft')
+        .map(([k, v]) => [k, view(v, lang)]),
+    );
   }
   return node;
 }
@@ -106,7 +110,8 @@ for (const { grade, en, si } of GRADES) {
 
   const gaps = [];
   const suspect = [];
-  scanStrings(data.lessons, '', gaps, suspect);
+  scanStrings(data.lessons, 'lessons', gaps, suspect);
+  scanStrings(data.optionSets ?? {}, 'optionSets', gaps, suspect);
 
   if (problems.length) {
     failures++;
@@ -137,7 +142,7 @@ for (const { grade, en, si } of GRADES) {
   }
   const gaps = [];
   const suspect = [];
-  scanStrings(data.lessons, '', gaps, suspect);
+  scanStrings(data.lessons, 'lessons', gaps, suspect);
   if (gaps.length) notes.push(`adventure: ${gaps.length} strings have no Sinhala yet`);
 }
 

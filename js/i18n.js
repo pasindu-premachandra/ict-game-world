@@ -2,6 +2,7 @@
 
 const STRINGS = {
   appName:      { en: 'ICT Game World', si: 'ICT ක්‍රීඩා ලෝකය' },
+  skipToContent:{ en: 'Skip to content', si: 'අන්තර්ගතය වෙත යන්න' },
   madeBy:       { en: 'Made by Ishini Premachandra & Dilini Wijesooriya',
                   si: 'නිර්මාණය ඉෂිනි ප්‍රේමචන්ද්‍ර සහ දිලිනි විජේසූරිය' },
   pickGrade:    { en: 'Choose your grade', si: 'ඔබේ ශ්‍රේණිය තෝරන්න' },

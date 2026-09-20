@@ -42,7 +42,7 @@ That is 2 players (both nicknamed `LiveCheck`, ids `aaaaaaaa-0001-...` and `bbbb
 
 **Also open, after those two.**
 - **The Sinhala review list for Ishini and Dilini.** It has grown and still has no single document. It now holds: F3 (`හාවිත` -> `භාවිත`, grade 6 lesson 2 title and activity 2.1), T1-T5 from `redesign-trilingual`, the robot name, the drafted `සෙරමික් පිඟාන` from D2, everything flagged `siDraft` from `syllabus-enrichment`, and **the eleven new UI strings added this session** (marked with a comment in `js/i18n.js`). All of it is her content call, none of it is a code change. It wants one list, not eleven scattered notes.
-- **Sinhala coverage.** Grade 9 has 178 strings with no Sinhala, the adventure set 348. The app falls back to English rather than showing a blank.
+- **Sinhala coverage.** Closed for grade 9 on 2026-09-20: its 202 strings are drafted in `content/grade-9.sinhala.json`, `siDraft` until Ishini reviews. The adventure set's 348 answer options remain. The app falls back to English rather than showing a blank.
 - **The adventure set has no UI at all.** 18 mini games in `data/adventure-9.json`, three kinds (`mcQuiz` 11, `memoryGame` 3, `sortGame` 4), and nothing routes to them. They are bonus content folded in by gate D3 in `redesign-trilingual`, so they are not counted in the 112.
 - **Read the rest of the app at Sinhala size.** The logo was found by eye, not by a check, and nothing in the suite would have caught it: the characters were right and only the rendering was unreadable. Worth one deliberate pass through every screen in Sinhala at 375px looking for the same class of fault - small type, a heavy weight, a tight container - rather than waiting for Ishini to report the next one.
 
@@ -199,7 +199,7 @@ To start it:
 **Also open, in priority order.**
 - **F4, the leaderboard "You" badge matches on nickname.** Two lines, no migration, details in the F4 section below. It is a real classroom bug and was never gated because it was found after the report closed. Ask Pasindu whether to fold it in before the porting.
 - **F3 and the Sinhala typos.** `හාවිත` should be `භාවිත` in at least the grade 6 lesson 2 title and activity 2.1, plus T1-T5 carried over from `redesign-trilingual`, the robot name, and the drafted `සෙරමික් පිඟාන` wording from D2. All of these are Ishini and Dilini's content calls, not ours. They belong in one list for her, not in a code change.
-- **Sinhala coverage.** Grade 9 has 178 strings with no Sinhala and the adventure set has 348. Enrichment Sinhala is AI drafted and flagged `siDraft` until Ishini reviews it. The app falls back to English rather than showing a blank.
+- **Sinhala coverage.** Grade 9 closed on 2026-09-20 (202 strings, `content/grade-9.sinhala.json`); the adventure set's 348 answer options remain. All drafted Sinhala is AI drafted and flagged `siDraft` until Ishini reviews it. The app falls back to English rather than showing a blank.
 
 **Database state.** `players` has 1 row and `scores` has 5, all from the pilot (Ishini, owl, class 6A, activities 1.2 to 2.2). Everything else has been cleaned up. Truncate with `truncate table public.scores, public.players restart identity;` via the Supabase MCP whenever a clean slate is wanted.
 
@@ -418,14 +418,18 @@ Underneath it is the content mismatch carried over from `redesign-trilingual` (t
 - [ ] Delete the `LiveCheck` / class `D3` rows the production check wrote
 - [ ] `scratch-hub` (g9 3.4) - its own task, see handoff 4
 - [ ] The adventure set's 18 mini games - no UI yet
-- [ ] One deliberate read-it-in-Sinhala pass over every screen at 375px
+- [x] Grade 9 Sinhala drafted - 202 strings, `content/grade-9.sinhala.json` + `scripts/lib/apply-sinhala.mjs`, all 25 playable activities render Sinhala at 375 and 1366 with 0 fallback notes (`../syllabus-enrichment/evidence/si-g9-*.png`; the Sinhala itself is that task's, per its O5)
+- [x] `check-data.mjs` now scans `optionSets` - grade 9's 24 option strings had been invisible to it
+- [x] `index.html` skip link wired to i18n (was the one hardcoded English string left in the chrome)
+- [ ] The adventure set's 348 answer options - Sinhala not written (question stems already are)
+- [ ] One deliberate read-it-in-Sinhala pass over every screen at 375px, by a Sinhala reader
 
 ## Release step, learned the hard way
 
 `sw.js` serves cache first, so **bump `CACHE` in `sw.js` on every deploy that changes any precached file**.
 During this build the browser kept running an old `app.js` and the new routes looked broken; nothing was wrong with the code, the old worker was simply still serving `igw-v1`.
 
-Version history, so it is obvious when a bump was missed: `igw-v1` first build, `v2` the D1/D2/F2 fixes, `v3` corrections and icons, `v4` the seven ported types (live now), **`v5` the Sinhala logo** (live now).
+Version history, so it is obvious when a bump was missed: `igw-v1` first build, `v2` the D1/D2/F2 fixes, `v3` corrections and icons, `v4` the seven ported types (live now), `v5` the Sinhala logo, **`v6` grade 9 Sinhala + the skip link** (not deployed yet).
 
 Two things to remember with it:
 - **Add new modules to `PRECACHE`, not just bump the version.** The seven activity modules are in the list, or grades 7 to 9 would work online and break offline - the one failure mode a school lab would find first.
@@ -434,6 +438,6 @@ Two things to remember with it:
 ## Risk
 
 Medium. The extraction is the dangerous step: a slip changes an answer in a game children are graded on, so `check-data.mjs` runs against `original/` and gates everything after it.
-Grade 9 has no Sinhala source, so those strings stay empty until `syllabus-enrichment` or a teacher fills them - the app must show English rather than a blank. Measured after extraction: **grade 9 has 306 strings with no Sinhala and the adventure set 348**, and grades 6/7/8 have 6/29/4 strings identical in both languages that may or may not be genuinely untranslated. `check-data.mjs` prints all of this on every run, so the content task has a live worklist.
+Grade 9 has no Sinhala source file, so its strings were extracted empty and filled from `content/` instead - the app must show English rather than a blank wherever that has not happened yet. Closed for grade 9 on 2026-09-20: **202 strings drafted**, leaving the adventure set's **348 answer options** as the only untranslated content. `check-data.mjs` prints this on every run, so the content task keeps a live worklist. Note the count moved from 178 to 202 when `check-data.mjs` was taught to scan `optionSets`, which sit beside `lessons` and had never been scanned.
 Leaderboard stores data about children: Sri Lanka PDPA No. 9 of 2022 puts the child threshold at 16, which is every student here, so nicknames only, no real names, and Ishini can delete rows.
 Carried over and still open from `redesign-trilingual`: Sinhala typo fixes T1-T5, the G6 1.3 distractor, and the G8 lesson 5 title. They are content, they belong to `syllabus-enrichment`, and the data files can absorb them after extraction.

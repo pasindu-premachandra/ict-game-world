@@ -4,8 +4,9 @@
 //
 // Grades 6, 7 and 8 have an English and a Sinhala file with identical activity
 // ids, so they merge into {en, si}. Grade 9 English medium has no Sinhala
-// twin, so every string there gets si: null - explicitly empty, so the gap is
-// visible to the content task instead of just missing.
+// twin, so every string there starts as si: null - explicitly empty, so the
+// gap is visible to the content task instead of just missing - and is then
+// filled from content/grade-9.sinhala.json by apply-sinhala.mjs.
 
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { readLessons } from './lib/read-lessons.mjs';
@@ -15,6 +16,7 @@ import { normalise } from './lib/normalise-adventure.mjs';
 import { mergeLang, MergeError } from './lib/merge-lang.mjs';
 import { applyAdditions } from './lib/apply-additions.mjs';
 import { applyCorrections, correctionsFor } from './lib/apply-corrections.mjs';
+import { applySinhala, SinhalaError } from './lib/apply-sinhala.mjs';
 
 const GRADES = [
   { grade: 6, en: 'original/grade-6/english.html', si: 'original/grade-6/sinhala.html' },
@@ -59,9 +61,21 @@ for (const { grade, en, si } of GRADES) {
     optionSets[id] = mergeLang(list, optionsSi?.[id], `optionSets.${id}`, Boolean(optionsSi));
   }
 
+  // Grade 9 has no Sinhala original, so its Sinhala comes from content/
+  // instead of from a second HTML file.
+  let drafted = null;
+  try {
+    drafted = applySinhala(grade, merged.lessons, optionSets);
+  } catch (err) {
+    if (!(err instanceof SinhalaError)) throw err;
+    console.error(`grade ${grade}: ${err.message}`);
+    failed++;
+    continue;
+  }
+
   const out = {
     grade,
-    languages: si ? ['en', 'si'] : ['en'],
+    languages: si || drafted?.filled ? ['en', 'si'] : ['en'],
     source: si ? { en, si } : { en },
     replaced: merged.replaced,
     corrections: correctionsFor(grade),
@@ -79,6 +93,9 @@ for (const { grade, en, si } of GRADES) {
   console.log(`grade ${grade}: ${merged.lessons.length} lessons, ${activities} activities${extra}${opts} -> data/grade-${grade}.json`);
   merged.replaced.forEach((r) => console.log(`         lesson ${r.id} replaced: "${r.was}" -> "${r.now}"`));
   correctionsFor(grade).forEach((c) => console.log(`         corrected ${c.lang} ${c.activity} ${c.path}: "${c.from}" -> "${c.to}"`));
+  if (drafted?.filled) {
+    console.log(`         sinhala: ${drafted.filled} strings filled from content/grade-${grade}.sinhala.json across ${drafted.drafted.length} activities${drafted.draft ? ', all marked siDraft' : ''}`);
+  }
 }
 
 // Grade 9's second game, folded in as bonus rounds per gate D3 in redesign-trilingual.

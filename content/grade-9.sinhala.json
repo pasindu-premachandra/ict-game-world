@@ -1,0 +1,277 @@
+{
+  "why": "Grade 9 English medium has no Sinhala twin in original/, so extract.mjs sets si: null on all 202 of its strings. This file is that Sinhala, drafted 2026-09-20 against the NIE Sinhala-medium terms recorded in content/pages/word-bank.md. Keyed by the English string, so a key that no longer matches fails loudly the way a correction does. Every activity it touches is marked siDraft: true and stays flagged until Ishini reviews it.",
+  "draft": true,
+
+  "lessons": {
+    "1": "පරිගණක පිරිවිතර සකස් කිරීම",
+    "2": "විද්‍යුත් පැතුරුම්පත්",
+    "3": "ක්‍රමලේඛනය",
+    "4": "ක්ෂුද්‍ර පාලක භාවිතය",
+    "5": "පරිගණක ජාල",
+    "6": "තොරතුරු තාක්ෂණය හා සමාජය"
+  },
+
+  "activities": {
+    "1.1": {
+      "Match User Roles to Tasks": "පරිශීලක භූමිකා හා කාර්ය යුගල කරමු",
+      "Match each type of ICT user with their correct responsibility.": "එක් එක් තොරතුරු තාක්ෂණ පරිශීලක වර්ගය හා එහි නිවැරදි වගකීම යුගල කරන්න.",
+      "👨‍💻 Programmer": "👨‍💻 ක්‍රමලේඛකයා",
+      "Develops computer programs": "පරිගණක වැඩසටහන් නිර්මාණය කරයි",
+      "🌐 Network Administrator": "🌐 ජාල පරිපාලක",
+      "Manages and maintains computer networks": "පරිගණක ජාල කළමනාකරණය හා නඩත්තු කරයි",
+      "📊 System Analyst": "📊 පද්ධති විශ්ලේෂක",
+      "Designs information systems": "තොරතුරු පද්ධති සැලසුම් කරයි",
+      "🧑‍🔬 Software Engineer": "🧑‍🔬 මෘදුකාංග ඉංජිනේරු",
+      "Develops software": "මෘදුකාංග නිර්මාණය කරයි",
+      "📄 Computer Application Assistant": "📄 පරිගණක යෙදුම් සහකාර",
+      "Uses office application packages": "කාර්යාලයීය යෙදුම් පැකේජ භාවිත කරයි",
+      "🎨 Web Developer": "🎨 වෙබ් සංවර්ධක",
+      "Develops and maintains websites": "වෙබ් අඩවි නිර්මාණය හා නඩත්තු කරයි"
+    },
+
+    "1.2": {
+      "Computer Specifications Facts": "පරිගණක පිරිවිතර පිළිබඳ කරුණු",
+      "Decide whether each statement is True or False.": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න.",
+      "The processor is considered the \"brain\" of the computer.": "සකසනය පරිගණකයේ \"මොළය\" ලෙස සැලකේ.",
+      "A Quad Core processor has four processor units.": "Quad Core සකසනයක සැකසුම් ඒකක හතරක් ඇත.",
+      "CRT monitors consume less electricity than LED monitors.": "CRT සන්දර්ශක, LED සන්දර්ශකවලට වඩා අඩු විදුලි ප්‍රමාණයක් භාවිත කරයි.",
+      "The speed of the processor is measured in Hertz (Hz).": "සකසනයේ වේගය හර්ට්ස් (Hz) වලින් මනිනු ලැබේ.",
+      "The monitor size is measured by its diagonal length in inches.": "සන්දර්ශකයේ ප්‍රමාණය එහි විකර්ණයේ දිග අඟල් වලින් මනිනු ලැබේ.",
+      "A 40-page exercise book has more storage space than a 160-page book.": "පිටු 40 ක අභ්‍යාස පොතක, පිටු 160 ක පොතකට වඩා වැඩි ඉඩ ප්‍රමාණයක් ඇත."
+    },
+
+    "1.3": {
+      "Sort Peripheral Devices": "පර්යන්ත උපාංග වර්ග කරමු",
+      "Click an item first, then click the correct category.": "පළමුව අයිතමය ක්ලික් කරන්න. පසුව නිවැරදි කාණ්ඩය ක්ලික් කරන්න.",
+      "⌨️ Input Devices": "⌨️ ආදාන උපාංග",
+      "Keyboard": "යතුරු පුවරුව",
+      "Mouse": "මූසිකය",
+      "Microphone": "මයික්‍රොෆෝනය",
+      "Scanner": "ස්කෑනරය",
+      "Web Camera": "වෙබ් කැමරාව",
+      "🖥️ Output Devices": "🖥️ ප්‍රතිදාන උපාංග",
+      "Monitor": "සන්දර්ශකය",
+      "Printer": "මුද්‍රණ යන්ත්‍රය",
+      "Speaker": "ශබ්ද විකාශකය",
+      "Projector": "ප්‍රක්ෂේපණ යන්ත්‍රය",
+      "💾 Storage Devices": "💾 ආවයන උපාංග",
+      "Hard Disk": "දෘඩ තැටිය",
+      "Optical Disk": "ප්‍රකාශ තැටිය",
+      "Flash Drive": "ෆ්ලෑෂ් ඩ්‍රයිවය",
+      "Pen Drive": "පෑන් ඩ්‍රයිවය"
+    },
+
+    "2.1": {
+      "Excel Formula Challenge": "Excel සූත්‍ර අභියෝගය",
+      "Type the correct Excel formula for each task.": "එක් එක් කාර්යය සඳහා නිවැරදි Excel සූත්‍රය ටයිප් කරන්න.",
+      "To find the total of cells A1 to A10:": "A1 සිට A10 දක්වා කොටුවල එකතුව සෙවීමට:",
+      "Use SUM function": "SUM ශ්‍රිතය භාවිත කරන්න",
+      "To find the average of B1 to B5:": "B1 සිට B5 දක්වා මධ්‍යන්‍යය සෙවීමට:",
+      "Use AVERAGE function": "AVERAGE ශ්‍රිතය භාවිත කරන්න",
+      "To find the highest value in C1 to C20:": "C1 සිට C20 දක්වා වැඩිම අගය සෙවීමට:",
+      "Use MAX function": "MAX ශ්‍රිතය භාවිත කරන්න",
+      "To find the lowest value in D1 to D15:": "D1 සිට D15 දක්වා අඩුම අගය සෙවීමට:",
+      "Use MIN function": "MIN ශ්‍රිතය භාවිත කරන්න"
+    },
+
+    "2.2": {
+      "Choose the Right Chart": "නිවැරදි ප්‍රස්තාරය තෝරන්න",
+      "Read each task and click the correct chart type.": "එක් එක් කාර්යය කියවා නිවැරදි ප්‍රස්තාර වර්ගය ක්ලික් කරන්න.",
+      "To show the percentage of students in each grade?": "එක් එක් ශ්‍රේණියේ සිසුන්ගේ ප්‍රතිශතය පෙන්වීමට?",
+      "To compare monthly sales across the year?": "වසර පුරා මාසික විකුණුම් සංසන්දනය කිරීමට?",
+      "To show a trend of temperature over time?": "කාලය සමඟ උෂ්ණත්වයේ ප්‍රවණතාව පෙන්වීමට?",
+      "To show data points to find a correlation?": "සහසම්බන්ධය සෙවීමට දත්ත ලක්ෂ්‍ය පෙන්වීමට?"
+    },
+
+    "2.3": {
+      "Spreadsheet Facts": "පැතුරුම්පත් පිළිබඳ කරුණු",
+      "Decide whether each statement is True or False.": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න.",
+      "A cell is the intersection of a row and a column.": "කොටුවක් යනු පේළියක් හා තීරුවක් ඡේදනය වන ස්ථානයයි.",
+      "A workbook can contain multiple worksheets.": "වැඩපොතක වැඩ පත්‍රිකා කිහිපයක් තිබිය හැක.",
+      "The first cell in a spreadsheet is A1.": "පැතුරුම්පතක පළමු කොටුව A1 වේ.",
+      "Ctrl+Z is the shortcut for Redo.": "Ctrl+Z යනු Redo සඳහා වන කෙටිමඟයි.",
+      "SUM, AVERAGE, MAX and MIN are spreadsheet functions.": "SUM, AVERAGE, MAX සහ MIN යනු පැතුරුම්පත් ශ්‍රිත වේ."
+    },
+
+    "3.1": {
+      "Control Structures Match": "පාලන ව්‍යූහ යුගල කරමු",
+      "Match each control structure with its correct behavior.": "එක් එක් පාලන ව්‍යුහය හා එහි නිවැරදි හැසිරීම යුගල කරන්න.",
+      "➡️ Sequence": "➡️ අනුක්‍රමය (Sequence)",
+      "Steps executed one after another from top to bottom": "පියවර ඉහළ සිට පහළට එකින් එක ක්‍රියාත්මක වේ",
+      "❓ Selection": "❓ තේරීම (Selection)",
+      "Decides between options based on a condition": "කොන්දේසියක් මත පදනම්ව විකල්ප අතරින් තීරණය කරයි",
+      "🔁 Repetition": "🔁 පුනර්කරණය (Repetition)",
+      "Repeats steps until a condition is satisfied": "කොන්දේසිය සපුරන තෙක් පියවර නැවත නැවත සිදු කරයි"
+    },
+
+    "3.2": {
+      "Programming Concepts": "ක්‍රමලේඛන සංකල්ප",
+      "Decide whether each statement is True or False.": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න.",
+      "An array stores many items using a single name.": "ආරාවක් එක් නමක් භාවිතයෙන් අගයන් රැසක් ගබඩා කරයි.",
+      "\"if...then...else\" is a repetition control structure.": "\"if...then...else\" යනු පුනර්කරණ පාලන ව්‍යුහයකි.",
+      "Lists are used for arrays in Scratch.": "Scratch හි ආරා සඳහා ලැයිස්තු (Lists) භාවිත වේ.",
+      "Nested repetition means repetition inside repetition.": "නිඩිත පුනර්කරණය යනු පුනර්කරණයක් තුළ ඇති පුනර්කරණයයි.",
+      "A variable can only store text, not numbers.": "විචල්‍යයකට ගබඩා කළ හැක්කේ අකුරු පමණි, සංඛ්‍යා නොවේ.",
+      "Flow charts use standard symbols for actions.": "ගැලීම් සටහන් ක්‍රියා සඳහා සම්මත සංකේත භාවිත කරයි."
+    },
+
+    "3.3": {
+      "MOD and Logic Challenge": "MOD හා තර්ක අභියෝගය",
+      "Type the correct output of each expression.": "එක් එක් ප්‍රකාශනයේ නිවැරදි ප්‍රතිදානය ටයිප් කරන්න.",
+      "What is 13 MOD 5?": "13 MOD 5 හි අගය කුමක්ද?",
+      "Remainder when 13 divided by 5": "13, 5 න් බෙදූ විට ඉතිරිය",
+      "What is 24 MOD 2? (Type the number)": "24 MOD 2 හි අගය කුමක්ද? (සංඛ්‍යාව ටයිප් කරන්න)",
+      "24 is even": "24 යනු ඉරට්ටේ සංඛ්‍යාවකි",
+      "If x = 8 and y = 3, is x > y? (true/false)": "x = 8 සහ y = 3 නම්, x > y ද? (true/false)",
+      "8 is greater": "8 වැඩි ය",
+      "If a = 5 and b = 5, is \"a = b\"? (true/false)": "a = 5 සහ b = 5 නම්, \"a = b\" ද? (true/false)",
+      "Both are equal": "දෙකම සමාන ය"
+    },
+
+    "3.4": {
+      "Scratch Code Builder": "Scratch කේත නිර්මාණකය",
+      "Build real Scratch programs by arranging blocks for each control structure.": "එක් එක් පාලන ව්‍යුහය සඳහා කොටස් සකසා සැබෑ Scratch වැඩසටහන් නිර්මාණය කරන්න."
+    },
+
+    "4.1": {
+      "Microcontroller Components": "ක්ෂුද්‍ර පාලකයේ කොටස්",
+      "Match each component with its function.": "එක් එක් කොටස හා එහි කාර්යය යුගල කරන්න.",
+      "🧠 CPU": "🧠 CPU",
+      "Processes data into information": "දත්ත තොරතුරු බවට සකසයි",
+      "💾 Non-volatile Memory": "💾 නිර්වාෂ්පශීලී මතකය",
+      "Keeps data even without electricity": "විදුලිය නොමැති විට ද දත්ත රඳවා ගනී",
+      "⚡ Volatile Memory": "⚡ වාෂ්පශීලී මතකය",
+      "Data erased without electricity (RAM)": "විදුලිය නොමැති විට දත්ත මැකී යයි (RAM)",
+      "⏰ System Clock": "⏰ පද්ධති ඔරලෝසුව",
+      "Synchronizes all components": "සියලු කොටස් සමමුහුර්ත කරයි",
+      "🔌 Peripherals": "🔌 පර්යන්ත",
+      "Pins used to input and output data": "දත්ත ආදානය හා ප්‍රතිදානය සඳහා යොදන පින්"
+    },
+
+    "4.2": {
+      "Match Sensor to Purpose": "සංවේදකය හා එහි කාර්යය යුගල කරමු",
+      "Read each purpose and click the correct sensor.": "එක් එක් කාර්යය කියවා නිවැරදි සංවේදකය ක්ලික් කරන්න.",
+      "To detect human movement (motion sensor)?": "මිනිස් චලනය හඳුනා ගැනීමට (චලන සංවේදකය)?",
+      "To estimate the distance from an object?": "වස්තුවක් දක්වා ඇති දුර ඇස්තමේන්තු කිරීමට?",
+      "To detect light levels (day/night)?": "ආලෝක මට්ටම් හඳුනා ගැනීමට (දිවා/රාත්‍රී)?",
+      "To measure temperature in a room?": "කාමරයක උෂ්ණත්වය මැනීමට?"
+    },
+
+    "4.3": {
+      "Microcontroller Facts": "ක්ෂුද්‍ර පාලක පිළිබඳ කරුණු",
+      "Decide whether each statement is True or False.": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න.",
+      "Arduino Uno uses an ATMEGA328p microcontroller chip.": "Arduino Uno මගින් ATMEGA328p ක්ෂුද්‍ර පාලක චිපය භාවිත කරයි.",
+      "Micro:bit has built-in LED lights, buttons and sensors.": "Micro:bit හි LED බල්බ, බොත්තම් හා සංවේදක අන්තර්ගතව ඇත.",
+      "A breadboard requires soldering to connect components.": "කොටස් සම්බන්ධ කිරීම සඳහා බ්‍රෙඩ්බෝඩ් එකක පෑස්සීම අවශ්‍ය වේ.",
+      "The LED only allows electricity in one direction.": "LED බල්බය විදුලිය එක් දිශාවකට පමණක් ගමන් කිරීමට ඉඩ දෙයි.",
+      "A PIR sensor outputs 5V when it detects motion.": "PIR සංවේදකය චලනය හඳුනාගත් විට 5V ප්‍රතිදානයක් ලබා දෙයි.",
+      "Raspberry Pi is an example of a single board computer.": "Raspberry Pi යනු තනි පුවරු පරිගණකයකට උදාහරණයකි."
+    },
+
+    "5.1": {
+      "Network Devices": "ජාල උපාංග",
+      "Match each network device with its correct function.": "එක් එක් ජාල උපාංගය හා එහි නිවැරදි කාර්යය යුගල කරන්න.",
+      "🖥️ Server": "🖥️ සේවාදායකය",
+      "Manages software, hardware, files and communication": "මෘදුකාංග, දෘඪාංග, ගොනු හා සන්නිවේදනය කළමනාකරණය කරයි",
+      "🔀 Switch": "🔀 ස්විචය",
+      "Mediator between two or more computers": "පරිගණක දෙකක් හෝ වැඩි ගණනක් අතර මැදිහත්කරු",
+      "📶 Router": "📶 රවුටරය",
+      "Connects one network to another or to the Internet": "එක් ජාලයක් තවත් ජාලයකට හෝ අන්තර්ජාලයට සම්බන්ධ කරයි",
+      "💳 NIC": "💳 NIC (ජාල අතුරුමුහුණත් කාඩ්පත)",
+      "Connects a computer to a computer network": "පරිගණකයක් පරිගණක ජාලයකට සම්බන්ධ කරයි"
+    },
+
+    "5.2": {
+      "Sort Network Media": "ජාල මාධ්‍ය වර්ග කරමු",
+      "Sort each type of media into Wired or Wireless.": "එක් එක් මාධ්‍ය වර්ගය රැහැන් සහිත හෝ රැහැන් රහිත ලෙස වර්ග කරන්න.",
+      "🔌 Wired Media": "🔌 රැහැන් සහිත මාධ්‍ය",
+      "Fiber Optic Cable": "ඔප්ටිකල් ෆයිබර් රැහැන",
+      "Twisted Pair Cable": "ව්‍යාවර්තිත යුගල රැහැන",
+      "RJ45 Cable": "RJ45 රැහැන",
+      "📡 Wireless Media": "📡 රැහැන් රහිත මාධ්‍ය",
+      "Infrared Waves": "අධෝරක්ත තරංග",
+      "Bluetooth": "බ්ලූටූත්",
+      "Wi-Fi": "Wi-Fi",
+      "Radio Waves": "ගුවන් විදුලි තරංග"
+    },
+
+    "5.3": {
+      "Network Advantages": "පරිගණක ජාලවල වාසි",
+      "Select ONLY the correct advantages of using computer networks.": "පරිගණක ජාල භාවිතයේ නිවැරදි වාසි පමණක් තෝරන්න.",
+      "Share hardware like printers and scanners": "මුද්‍රණ යන්ත්‍ර හා ස්කෑනර වැනි දෘඪාංග බෙදා ගත හැක",
+      "Share software and data files": "මෘදුකාංග හා දත්ත ගොනු බෙදා ගත හැක",
+      "Increase individual computer weight": "එක් පරිගණකයක බර වැඩි කරයි",
+      "Send messages and emails easily": "පණිවිඩ හා ඊ-තැපැල් පහසුවෙන් යැවිය හැක",
+      "Enable backup of data in a server": "සේවාදායකයක දත්ත උපස්ථ කළ හැක",
+      "Require less electricity per user": "පරිශීලකයෙකුට අඩු විදුලි ප්‍රමාණයක් අවශ්‍ය වේ"
+    },
+
+    "6.1": {
+      "ICT Jobs and Responsibilities": "තොරතුරු තාක්ෂණ රැකියා හා වගකීම්",
+      "Match each ICT job with its correct responsibility.": "එක් එක් තොරතුරු තාක්ෂණ රැකියාව හා එහි නිවැරදි වගකීම යුගල කරන්න.",
+      "🧪 Software QA Engineer": "🧪 මෘදුකාංග තත්ත්ව සහතික ඉංජිනේරු",
+      "Assures that software functions properly": "මෘදුකාංගය නිසි පරිදි ක්‍රියා කරන බව සහතික කරයි",
+      "🗄️ Database Administrator": "🗄️ දත්ත සමුදා පරිපාලක",
+      "Plans, installs and maintains databases": "දත්ත සමුදාය සැලසුම් කිරීම, ස්ථාපනය හා නඩත්තු කරයි",
+      "🎨 Graphic Designer": "🎨 චිත්‍රක නිර්මාණකරු",
+      "Develops web pages and banners using software": "මෘදුකාංග භාවිතයෙන් වෙබ් පිටු හා බැනර් නිර්මාණය කරයි",
+      "🔧 Network Administrator": "🔧 ජාල පරිපාලක",
+      "Installs, configures and maintains networks": "ජාල ස්ථාපනය, වින්‍යාස කිරීම හා නඩත්තු කරයි",
+      "💡 IT Consultant": "💡 තොරතුරු තාක්ෂණ උපදේශක",
+      "Advises organizations on ICT matters": "තොරතුරු තාක්ෂණ කරුණු පිළිබඳ ආයතනවලට උපදෙස් දෙයි"
+    },
+
+    "6.2": {
+      "Choose the Correct Term": "නිවැරදි පදය තෝරන්න",
+      "Read each definition and click the correct term.": "එක් එක් නිර්වචනය කියවා නිවැරදි පදය ක්ලික් කරන්න.",
+      "The gap between those who have and have not access?": "පිවිසුම ඇති අය හා නැති අය අතර ඇති පරතරය?",
+      "Harmful waste items from computers and electronics?": "පරිගණක හා විද්‍යුත් උපකරණවලින් හටගන්නා හානිකර අපද්‍රව්‍ය?",
+      "The 3R concept for disposal of e-waste?": "විද්‍යුත් අපද්‍රව්‍ය බැහැර කිරීමේ 3R සංකල්පය?",
+      "Teaching using ICT and the Internet?": "තොරතුරු තාක්ෂණය හා අන්තර්ජාලය භාවිතයෙන් ඉගැන්වීම?"
+    },
+
+    "6.3": {
+      "Reduce, Reuse, Recycle": "අවම කිරීම, නැවත භාවිතය, ප්‍රතිචක්‍රීකරණය",
+      "Select ONLY the correct methods for the 3R concept.": "3R සංකල්පයට අදාළ නිවැරදි ක්‍රම පමණක් තෝරන්න.",
+      "Repair and use again instead of buying new": "අලුතින් මිලදී ගැනීම වෙනුවට අලුත්වැඩියා කර නැවත භාවිත කිරීම",
+      "Throw e-waste into regular garbage bins": "විද්‍යුත් අපද්‍රව්‍ය සාමාන්‍ය කසළ බඳුන්වලට දැමීම",
+      "Hand over e-waste to a recycling agency": "විද්‍යුත් අපද්‍රව්‍ය ප්‍රතිචක්‍රීකරණ ආයතනයකට භාර දීම",
+      "Minimize purchase of unnecessary devices": "අනවශ්‍ය උපාංග මිලදී ගැනීම අවම කිරීම",
+      "Burn e-waste openly to dispose of it": "විද්‍යුත් අපද්‍රව්‍ය විවෘතව පුළුස්සා බැහැර කිරීම",
+      "Donate old working devices to others": "ක්‍රියාකාරී පැරණි උපාංග අන් අයට පරිත්‍යාග කිරීම"
+    }
+  },
+
+  "optionSets": {
+    "2.2": {
+      "Pie Chart": "කේක් ප්‍රස්තාරය",
+      "Shows percentage": "ප්‍රතිශතය පෙන්වයි",
+      "Column Chart": "තීරු ප්‍රස්තාරය",
+      "Compares values": "අගයන් සංසන්දනය කරයි",
+      "Line Chart": "රේඛා ප්‍රස්තාරය",
+      "Shows trends": "ප්‍රවණතා පෙන්වයි",
+      "Scatter Chart": "විසිරුම් ප්‍රස්තාරය",
+      "Shows correlation": "සහසම්බන්ධය පෙන්වයි"
+    },
+    "4.2": {
+      "PIR Sensor": "PIR සංවේදකය",
+      "Detects motion": "චලනය හඳුනා ගනී",
+      "Ultrasonic Sensor": "අධිධ්වනික සංවේදකය",
+      "Measures distance": "දුර මනී",
+      "Light Sensor": "ආලෝක සංවේදකය",
+      "Detects light": "ආලෝකය හඳුනා ගනී",
+      "Temperature Sensor": "උෂ්ණත්ව සංවේදකය",
+      "Measures heat": "උෂ්ණත්වය මනී"
+    },
+    "6.2": {
+      "Digital Divide": "අංකිත බෙදුම",
+      "Gap in access": "පිවිසුමේ පරතරය",
+      "E-Waste": "විද්‍යුත් අපද්‍රව්‍ය",
+      "Electronic waste": "විද්‍යුත් උපකරණ අපද්‍රව්‍ය",
+      "Reduce": "අවම කිරීම",
+      "3R concept": "3R සංකල්පය",
+      "E-Learning": "ඊ-ඉගෙනුම",
+      "Online learning": "මාර්ගගත ඉගෙනුම"
+    }
+  }
+}

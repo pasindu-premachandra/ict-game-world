@@ -1,7 +1,8 @@
 {
   "grade": 9,
   "languages": [
-    "en"
+    "en",
+    "si"
   ],
   "source": {
     "en": "original/grade-9/english-medium.html"
@@ -15,11 +16,11 @@
         "icon": "🥧",
         "name": {
           "en": "Pie Chart",
-          "si": null
+          "si": "කේක් ප්‍රස්තාරය"
         },
         "desc": {
           "en": "Shows percentage",
-          "si": null
+          "si": "ප්‍රතිශතය පෙන්වයි"
         }
       },
       {
@@ -27,11 +28,11 @@
         "icon": "📊",
         "name": {
           "en": "Column Chart",
-          "si": null
+          "si": "තීරු ප්‍රස්තාරය"
         },
         "desc": {
           "en": "Compares values",
-          "si": null
+          "si": "අගයන් සංසන්දනය කරයි"
         }
       },
       {
@@ -39,11 +40,11 @@
         "icon": "📈",
         "name": {
           "en": "Line Chart",
-          "si": null
+          "si": "රේඛා ප්‍රස්තාරය"
         },
         "desc": {
           "en": "Shows trends",
-          "si": null
+          "si": "ප්‍රවණතා පෙන්වයි"
         }
       },
       {
@@ -51,11 +52,11 @@
         "icon": "⚪",
         "name": {
           "en": "Scatter Chart",
-          "si": null
+          "si": "විසිරුම් ප්‍රස්තාරය"
         },
         "desc": {
           "en": "Shows correlation",
-          "si": null
+          "si": "සහසම්බන්ධය පෙන්වයි"
         }
       }
     ],
@@ -65,11 +66,11 @@
         "icon": "👤",
         "name": {
           "en": "PIR Sensor",
-          "si": null
+          "si": "PIR සංවේදකය"
         },
         "desc": {
           "en": "Detects motion",
-          "si": null
+          "si": "චලනය හඳුනා ගනී"
         }
       },
       {
@@ -77,11 +78,11 @@
         "icon": "📡",
         "name": {
           "en": "Ultrasonic Sensor",
-          "si": null
+          "si": "අධිධ්වනික සංවේදකය"
         },
         "desc": {
           "en": "Measures distance",
-          "si": null
+          "si": "දුර මනී"
         }
       },
       {
@@ -89,11 +90,11 @@
         "icon": "☀️",
         "name": {
           "en": "Light Sensor",
-          "si": null
+          "si": "ආලෝක සංවේදකය"
         },
         "desc": {
           "en": "Detects light",
-          "si": null
+          "si": "ආලෝකය හඳුනා ගනී"
         }
       },
       {
@@ -101,11 +102,11 @@
         "icon": "🌡️",
         "name": {
           "en": "Temperature Sensor",
-          "si": null
+          "si": "උෂ්ණත්ව සංවේදකය"
         },
         "desc": {
           "en": "Measures heat",
-          "si": null
+          "si": "උෂ්ණත්වය මනී"
         }
       }
     ],
@@ -115,11 +116,11 @@
         "icon": "🌉",
         "name": {
           "en": "Digital Divide",
-          "si": null
+          "si": "අංකිත බෙදුම"
         },
         "desc": {
           "en": "Gap in access",
-          "si": null
+          "si": "පිවිසුමේ පරතරය"
         }
       },
       {
@@ -127,11 +128,11 @@
         "icon": "🗑️",
         "name": {
           "en": "E-Waste",
-          "si": null
+          "si": "විද්‍යුත් අපද්‍රව්‍ය"
         },
         "desc": {
           "en": "Electronic waste",
-          "si": null
+          "si": "විද්‍යුත් උපකරණ අපද්‍රව්‍ය"
         }
       },
       {
@@ -139,11 +140,11 @@
         "icon": "♻️",
         "name": {
           "en": "Reduce",
-          "si": null
+          "si": "අවම කිරීම"
         },
         "desc": {
           "en": "3R concept",
-          "si": null
+          "si": "3R සංකල්පය"
         }
       },
       {
@@ -151,11 +152,11 @@
         "icon": "💻",
         "name": {
           "en": "E-Learning",
-          "si": null
+          "si": "ඊ-ඉගෙනුම"
         },
         "desc": {
           "en": "Online learning",
-          "si": null
+          "si": "මාර්ගගත ඉගෙනුම"
         }
       }
     ]
@@ -165,7 +166,7 @@
       "id": 1,
       "title": {
         "en": "Preparation of Computer Specifications",
-        "si": null
+        "si": "පරිගණක පිරිවිතර සකස් කිරීම"
       },
       "icon": "💻",
       "cls": "l1",
@@ -175,21 +176,21 @@
           "type": "match",
           "name": {
             "en": "Match User Roles to Tasks",
-            "si": null
+            "si": "පරිශීලක භූමිකා හා කාර්ය යුගල කරමු"
           },
           "instruction": {
             "en": "Match each type of ICT user with their correct responsibility.",
-            "si": null
+            "si": "එක් එක් තොරතුරු තාක්ෂණ පරිශීලක වර්ගය හා එහි නිවැරදි වගකීම යුගල කරන්න."
           },
           "pairs": [
             {
               "l": {
                 "en": "👨‍💻 Programmer",
-                "si": null
+                "si": "👨‍💻 ක්‍රමලේඛකයා"
               },
               "r": {
                 "en": "Develops computer programs",
-                "si": null
+                "si": "පරිගණක වැඩසටහන් නිර්මාණය කරයි"
               },
               "li": "👨‍💻",
               "ri": "⌨️"
@@ -197,11 +198,11 @@
             {
               "l": {
                 "en": "🌐 Network Administrator",
-                "si": null
+                "si": "🌐 ජාල පරිපාලක"
               },
               "r": {
                 "en": "Manages and maintains computer networks",
-                "si": null
+                "si": "පරිගණක ජාල කළමනාකරණය හා නඩත්තු කරයි"
               },
               "li": "🌐",
               "ri": "🔧"
@@ -209,11 +210,11 @@
             {
               "l": {
                 "en": "📊 System Analyst",
-                "si": null
+                "si": "📊 පද්ධති විශ්ලේෂක"
               },
               "r": {
                 "en": "Designs information systems",
-                "si": null
+                "si": "තොරතුරු පද්ධති සැලසුම් කරයි"
               },
               "li": "📊",
               "ri": "📐"
@@ -221,11 +222,11 @@
             {
               "l": {
                 "en": "🧑‍🔬 Software Engineer",
-                "si": null
+                "si": "🧑‍🔬 මෘදුකාංග ඉංජිනේරු"
               },
               "r": {
                 "en": "Develops software",
-                "si": null
+                "si": "මෘදුකාංග නිර්මාණය කරයි"
               },
               "li": "🧑‍🔬",
               "ri": "💾"
@@ -233,11 +234,11 @@
             {
               "l": {
                 "en": "📄 Computer Application Assistant",
-                "si": null
+                "si": "📄 පරිගණක යෙදුම් සහකාර"
               },
               "r": {
                 "en": "Uses office application packages",
-                "si": null
+                "si": "කාර්යාලයීය යෙදුම් පැකේජ භාවිත කරයි"
               },
               "li": "📄",
               "ri": "📋"
@@ -245,162 +246,165 @@
             {
               "l": {
                 "en": "🎨 Web Developer",
-                "si": null
+                "si": "🎨 වෙබ් සංවර්ධක"
               },
               "r": {
                 "en": "Develops and maintains websites",
-                "si": null
+                "si": "වෙබ් අඩවි නිර්මාණය හා නඩත්තු කරයි"
               },
               "li": "🎨",
               "ri": "🌍"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "1.2",
           "type": "tf",
           "name": {
             "en": "Computer Specifications Facts",
-            "si": null
+            "si": "පරිගණක පිරිවිතර පිළිබඳ කරුණු"
           },
           "instruction": {
             "en": "Decide whether each statement is True or False.",
-            "si": null
+            "si": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
           },
           "statements": [
             {
               "s": {
                 "en": "The processor is considered the \"brain\" of the computer.",
-                "si": null
+                "si": "සකසනය පරිගණකයේ \"මොළය\" ලෙස සැලකේ."
               },
               "a": true
             },
             {
               "s": {
                 "en": "A Quad Core processor has four processor units.",
-                "si": null
+                "si": "Quad Core සකසනයක සැකසුම් ඒකක හතරක් ඇත."
               },
               "a": true
             },
             {
               "s": {
                 "en": "CRT monitors consume less electricity than LED monitors.",
-                "si": null
+                "si": "CRT සන්දර්ශක, LED සන්දර්ශකවලට වඩා අඩු විදුලි ප්‍රමාණයක් භාවිත කරයි."
               },
               "a": false
             },
             {
               "s": {
                 "en": "The speed of the processor is measured in Hertz (Hz).",
-                "si": null
+                "si": "සකසනයේ වේගය හර්ට්ස් (Hz) වලින් මනිනු ලැබේ."
               },
               "a": true
             },
             {
               "s": {
                 "en": "The monitor size is measured by its diagonal length in inches.",
-                "si": null
+                "si": "සන්දර්ශකයේ ප්‍රමාණය එහි විකර්ණයේ දිග අඟල් වලින් මනිනු ලැබේ."
               },
               "a": true
             },
             {
               "s": {
                 "en": "A 40-page exercise book has more storage space than a 160-page book.",
-                "si": null
+                "si": "පිටු 40 ක අභ්‍යාස පොතක, පිටු 160 ක පොතකට වඩා වැඩි ඉඩ ප්‍රමාණයක් ඇත."
               },
               "a": false
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "1.3",
           "type": "bucket",
           "name": {
             "en": "Sort Peripheral Devices",
-            "si": null
+            "si": "පර්යන්ත උපාංග වර්ග කරමු"
           },
           "instruction": {
             "en": "Click an item first, then click the correct category.",
-            "si": null
+            "si": "පළමුව අයිතමය ක්ලික් කරන්න. පසුව නිවැරදි කාණ්ඩය ක්ලික් කරන්න."
           },
           "buckets": [
             {
               "name": {
                 "en": "⌨️ Input Devices",
-                "si": null
+                "si": "⌨️ ආදාන උපාංග"
               },
               "items": [
                 {
                   "en": "Keyboard",
-                  "si": null
+                  "si": "යතුරු පුවරුව"
                 },
                 {
                   "en": "Mouse",
-                  "si": null
+                  "si": "මූසිකය"
                 },
                 {
                   "en": "Microphone",
-                  "si": null
+                  "si": "මයික්‍රොෆෝනය"
                 },
                 {
                   "en": "Scanner",
-                  "si": null
+                  "si": "ස්කෑනරය"
                 },
                 {
                   "en": "Web Camera",
-                  "si": null
+                  "si": "වෙබ් කැමරාව"
                 }
               ]
             },
             {
               "name": {
                 "en": "🖥️ Output Devices",
-                "si": null
+                "si": "🖥️ ප්‍රතිදාන උපාංග"
               },
               "items": [
                 {
                   "en": "Monitor",
-                  "si": null
+                  "si": "සන්දර්ශකය"
                 },
                 {
                   "en": "Printer",
-                  "si": null
+                  "si": "මුද්‍රණ යන්ත්‍රය"
                 },
                 {
                   "en": "Speaker",
-                  "si": null
+                  "si": "ශබ්ද විකාශකය"
                 },
                 {
                   "en": "Projector",
-                  "si": null
+                  "si": "ප්‍රක්ෂේපණ යන්ත්‍රය"
                 }
               ]
             },
             {
               "name": {
                 "en": "💾 Storage Devices",
-                "si": null
+                "si": "💾 ආවයන උපාංග"
               },
               "items": [
                 {
                   "en": "Hard Disk",
-                  "si": null
+                  "si": "දෘඩ තැටිය"
                 },
                 {
                   "en": "Optical Disk",
-                  "si": null
+                  "si": "ප්‍රකාශ තැටිය"
                 },
                 {
                   "en": "Flash Drive",
-                  "si": null
+                  "si": "ෆ්ලෑෂ් ඩ්‍රයිවය"
                 },
                 {
                   "en": "Pen Drive",
-                  "si": null
+                  "si": "පෑන් ඩ්‍රයිවය"
                 }
               ]
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     },
@@ -408,7 +412,7 @@
       "id": 2,
       "title": {
         "en": "Electronic Spreadsheets",
-        "si": null
+        "si": "විද්‍යුත් පැතුරුම්පත්"
       },
       "icon": "📊",
       "cls": "l2",
@@ -418,149 +422,152 @@
           "type": "input",
           "name": {
             "en": "Excel Formula Challenge",
-            "si": null
+            "si": "Excel සූත්‍ර අභියෝගය"
           },
           "instruction": {
             "en": "Type the correct Excel formula for each task.",
-            "si": null
+            "si": "එක් එක් කාර්යය සඳහා නිවැරදි Excel සූත්‍රය ටයිප් කරන්න."
           },
           "questions": [
             {
               "q": {
                 "en": "To find the total of cells A1 to A10:",
-                "si": null
+                "si": "A1 සිට A10 දක්වා කොටුවල එකතුව සෙවීමට:"
               },
               "ans": "=sum(a1:a10)",
               "hint": {
                 "en": "Use SUM function",
-                "si": null
+                "si": "SUM ශ්‍රිතය භාවිත කරන්න"
               }
             },
             {
               "q": {
                 "en": "To find the average of B1 to B5:",
-                "si": null
+                "si": "B1 සිට B5 දක්වා මධ්‍යන්‍යය සෙවීමට:"
               },
               "ans": "=average(b1:b5)",
               "hint": {
                 "en": "Use AVERAGE function",
-                "si": null
+                "si": "AVERAGE ශ්‍රිතය භාවිත කරන්න"
               }
             },
             {
               "q": {
                 "en": "To find the highest value in C1 to C20:",
-                "si": null
+                "si": "C1 සිට C20 දක්වා වැඩිම අගය සෙවීමට:"
               },
               "ans": "=max(c1:c20)",
               "hint": {
                 "en": "Use MAX function",
-                "si": null
+                "si": "MAX ශ්‍රිතය භාවිත කරන්න"
               }
             },
             {
               "q": {
                 "en": "To find the lowest value in D1 to D15:",
-                "si": null
+                "si": "D1 සිට D15 දක්වා අඩුම අගය සෙවීමට:"
               },
               "ans": "=min(d1:d15)",
               "hint": {
                 "en": "Use MIN function",
-                "si": null
+                "si": "MIN ශ්‍රිතය භාවිත කරන්න"
               }
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "2.2",
           "type": "hotspot",
           "name": {
             "en": "Choose the Right Chart",
-            "si": null
+            "si": "නිවැරදි ප්‍රස්තාරය තෝරන්න"
           },
           "instruction": {
             "en": "Read each task and click the correct chart type.",
-            "si": null
+            "si": "එක් එක් කාර්යය කියවා නිවැරදි ප්‍රස්තාර වර්ගය ක්ලික් කරන්න."
           },
           "rounds": [
             {
               "q": {
                 "en": "To show the percentage of students in each grade?",
-                "si": null
+                "si": "එක් එක් ශ්‍රේණියේ සිසුන්ගේ ප්‍රතිශතය පෙන්වීමට?"
               },
               "ans": "pie"
             },
             {
               "q": {
                 "en": "To compare monthly sales across the year?",
-                "si": null
+                "si": "වසර පුරා මාසික විකුණුම් සංසන්දනය කිරීමට?"
               },
               "ans": "column"
             },
             {
               "q": {
                 "en": "To show a trend of temperature over time?",
-                "si": null
+                "si": "කාලය සමඟ උෂ්ණත්වයේ ප්‍රවණතාව පෙන්වීමට?"
               },
               "ans": "line"
             },
             {
               "q": {
                 "en": "To show data points to find a correlation?",
-                "si": null
+                "si": "සහසම්බන්ධය සෙවීමට දත්ත ලක්ෂ්‍ය පෙන්වීමට?"
               },
               "ans": "scatter"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "2.3",
           "type": "tf",
           "name": {
             "en": "Spreadsheet Facts",
-            "si": null
+            "si": "පැතුරුම්පත් පිළිබඳ කරුණු"
           },
           "instruction": {
             "en": "Decide whether each statement is True or False.",
-            "si": null
+            "si": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
           },
           "statements": [
             {
               "s": {
                 "en": "A cell is the intersection of a row and a column.",
-                "si": null
+                "si": "කොටුවක් යනු පේළියක් හා තීරුවක් ඡේදනය වන ස්ථානයයි."
               },
               "a": true
             },
             {
               "s": {
                 "en": "A workbook can contain multiple worksheets.",
-                "si": null
+                "si": "වැඩපොතක වැඩ පත්‍රිකා කිහිපයක් තිබිය හැක."
               },
               "a": true
             },
             {
               "s": {
                 "en": "The first cell in a spreadsheet is A1.",
-                "si": null
+                "si": "පැතුරුම්පතක පළමු කොටුව A1 වේ."
               },
               "a": true
             },
             {
               "s": {
                 "en": "Ctrl+Z is the shortcut for Redo.",
-                "si": null
+                "si": "Ctrl+Z යනු Redo සඳහා වන කෙටිමඟයි."
               },
               "a": false
             },
             {
               "s": {
                 "en": "SUM, AVERAGE, MAX and MIN are spreadsheet functions.",
-                "si": null
+                "si": "SUM, AVERAGE, MAX සහ MIN යනු පැතුරුම්පත් ශ්‍රිත වේ."
               },
               "a": true
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "2.4",
@@ -702,7 +709,7 @@
       "id": 3,
       "title": {
         "en": "Programming",
-        "si": null
+        "si": "ක්‍රමලේඛනය"
       },
       "icon": "🧮",
       "cls": "l3",
@@ -712,21 +719,21 @@
           "type": "match",
           "name": {
             "en": "Control Structures Match",
-            "si": null
+            "si": "පාලන ව්‍යූහ යුගල කරමු"
           },
           "instruction": {
             "en": "Match each control structure with its correct behavior.",
-            "si": null
+            "si": "එක් එක් පාලන ව්‍යුහය හා එහි නිවැරදි හැසිරීම යුගල කරන්න."
           },
           "pairs": [
             {
               "l": {
                 "en": "➡️ Sequence",
-                "si": null
+                "si": "➡️ අනුක්‍රමය (Sequence)"
               },
               "r": {
                 "en": "Steps executed one after another from top to bottom",
-                "si": null
+                "si": "පියවර ඉහළ සිට පහළට එකින් එක ක්‍රියාත්මක වේ"
               },
               "li": "➡️",
               "ri": "📋"
@@ -734,11 +741,11 @@
             {
               "l": {
                 "en": "❓ Selection",
-                "si": null
+                "si": "❓ තේරීම (Selection)"
               },
               "r": {
                 "en": "Decides between options based on a condition",
-                "si": null
+                "si": "කොන්දේසියක් මත පදනම්ව විකල්ප අතරින් තීරණය කරයි"
               },
               "li": "❓",
               "ri": "🔀"
@@ -746,142 +753,146 @@
             {
               "l": {
                 "en": "🔁 Repetition",
-                "si": null
+                "si": "🔁 පුනර්කරණය (Repetition)"
               },
               "r": {
                 "en": "Repeats steps until a condition is satisfied",
-                "si": null
+                "si": "කොන්දේසිය සපුරන තෙක් පියවර නැවත නැවත සිදු කරයි"
               },
               "li": "🔁",
               "ri": "♻️"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "3.2",
           "type": "tf",
           "name": {
             "en": "Programming Concepts",
-            "si": null
+            "si": "ක්‍රමලේඛන සංකල්ප"
           },
           "instruction": {
             "en": "Decide whether each statement is True or False.",
-            "si": null
+            "si": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
           },
           "statements": [
             {
               "s": {
                 "en": "An array stores many items using a single name.",
-                "si": null
+                "si": "ආරාවක් එක් නමක් භාවිතයෙන් අගයන් රැසක් ගබඩා කරයි."
               },
               "a": true
             },
             {
               "s": {
                 "en": "\"if...then...else\" is a repetition control structure.",
-                "si": null
+                "si": "\"if...then...else\" යනු පුනර්කරණ පාලන ව්‍යුහයකි."
               },
               "a": false
             },
             {
               "s": {
                 "en": "Lists are used for arrays in Scratch.",
-                "si": null
+                "si": "Scratch හි ආරා සඳහා ලැයිස්තු (Lists) භාවිත වේ."
               },
               "a": true
             },
             {
               "s": {
                 "en": "Nested repetition means repetition inside repetition.",
-                "si": null
+                "si": "නිඩිත පුනර්කරණය යනු පුනර්කරණයක් තුළ ඇති පුනර්කරණයයි."
               },
               "a": true
             },
             {
               "s": {
                 "en": "A variable can only store text, not numbers.",
-                "si": null
+                "si": "විචල්‍යයකට ගබඩා කළ හැක්කේ අකුරු පමණි, සංඛ්‍යා නොවේ."
               },
               "a": false
             },
             {
               "s": {
                 "en": "Flow charts use standard symbols for actions.",
-                "si": null
+                "si": "ගැලීම් සටහන් ක්‍රියා සඳහා සම්මත සංකේත භාවිත කරයි."
               },
               "a": true
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "3.3",
           "type": "input",
           "name": {
             "en": "MOD and Logic Challenge",
-            "si": null
+            "si": "MOD හා තර්ක අභියෝගය"
           },
           "instruction": {
             "en": "Type the correct output of each expression.",
-            "si": null
+            "si": "එක් එක් ප්‍රකාශනයේ නිවැරදි ප්‍රතිදානය ටයිප් කරන්න."
           },
           "questions": [
             {
               "q": {
                 "en": "What is 13 MOD 5?",
-                "si": null
+                "si": "13 MOD 5 හි අගය කුමක්ද?"
               },
               "ans": "3",
               "hint": {
                 "en": "Remainder when 13 divided by 5",
-                "si": null
+                "si": "13, 5 න් බෙදූ විට ඉතිරිය"
               }
             },
             {
               "q": {
                 "en": "What is 24 MOD 2? (Type the number)",
-                "si": null
+                "si": "24 MOD 2 හි අගය කුමක්ද? (සංඛ්‍යාව ටයිප් කරන්න)"
               },
               "ans": "0",
               "hint": {
                 "en": "24 is even",
-                "si": null
+                "si": "24 යනු ඉරට්ටේ සංඛ්‍යාවකි"
               }
             },
             {
               "q": {
                 "en": "If x = 8 and y = 3, is x > y? (true/false)",
-                "si": null
+                "si": "x = 8 සහ y = 3 නම්, x > y ද? (true/false)"
               },
               "ans": "true",
               "hint": {
                 "en": "8 is greater",
-                "si": null
+                "si": "8 වැඩි ය"
               }
             },
             {
               "q": {
                 "en": "If a = 5 and b = 5, is \"a = b\"? (true/false)",
-                "si": null
+                "si": "a = 5 සහ b = 5 නම්, \"a = b\" ද? (true/false)"
               },
               "ans": "true",
               "hint": {
                 "en": "Both are equal",
-                "si": null
+                "si": "දෙකම සමාන ය"
               }
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "3.4",
           "type": "scratch-hub",
           "name": {
             "en": "Scratch Code Builder",
-            "si": null
+            "si": "Scratch කේත නිර්මාණකය"
           },
           "instruction": {
             "en": "Build real Scratch programs by arranging blocks for each control structure.",
-            "si": null
-          }
+            "si": "එක් එක් පාලන ව්‍යුහය සඳහා කොටස් සකසා සැබෑ Scratch වැඩසටහන් නිර්මාණය කරන්න."
+          },
+          "siDraft": true
         },
         {
           "id": "3.5",
@@ -1023,7 +1034,7 @@
       "id": 4,
       "title": {
         "en": "Use of Microcontrollers",
-        "si": null
+        "si": "ක්ෂුද්‍ර පාලක භාවිතය"
       },
       "icon": "⚙️",
       "cls": "l4",
@@ -1033,21 +1044,21 @@
           "type": "match",
           "name": {
             "en": "Microcontroller Components",
-            "si": null
+            "si": "ක්ෂුද්‍ර පාලකයේ කොටස්"
           },
           "instruction": {
             "en": "Match each component with its function.",
-            "si": null
+            "si": "එක් එක් කොටස හා එහි කාර්යය යුගල කරන්න."
           },
           "pairs": [
             {
               "l": {
                 "en": "🧠 CPU",
-                "si": null
+                "si": "🧠 CPU"
               },
               "r": {
                 "en": "Processes data into information",
-                "si": null
+                "si": "දත්ත තොරතුරු බවට සකසයි"
               },
               "li": "🧠",
               "ri": "⚡"
@@ -1055,11 +1066,11 @@
             {
               "l": {
                 "en": "💾 Non-volatile Memory",
-                "si": null
+                "si": "💾 නිර්වාෂ්පශීලී මතකය"
               },
               "r": {
                 "en": "Keeps data even without electricity",
-                "si": null
+                "si": "විදුලිය නොමැති විට ද දත්ත රඳවා ගනී"
               },
               "li": "💾",
               "ri": "🔒"
@@ -1067,11 +1078,11 @@
             {
               "l": {
                 "en": "⚡ Volatile Memory",
-                "si": null
+                "si": "⚡ වාෂ්පශීලී මතකය"
               },
               "r": {
                 "en": "Data erased without electricity (RAM)",
-                "si": null
+                "si": "විදුලිය නොමැති විට දත්ත මැකී යයි (RAM)"
               },
               "li": "⚡",
               "ri": "🗑️"
@@ -1079,11 +1090,11 @@
             {
               "l": {
                 "en": "⏰ System Clock",
-                "si": null
+                "si": "⏰ පද්ධති ඔරලෝසුව"
               },
               "r": {
                 "en": "Synchronizes all components",
-                "si": null
+                "si": "සියලු කොටස් සමමුහුර්ත කරයි"
               },
               "li": "⏰",
               "ri": "🔄"
@@ -1091,114 +1102,117 @@
             {
               "l": {
                 "en": "🔌 Peripherals",
-                "si": null
+                "si": "🔌 පර්යන්ත"
               },
               "r": {
                 "en": "Pins used to input and output data",
-                "si": null
+                "si": "දත්ත ආදානය හා ප්‍රතිදානය සඳහා යොදන පින්"
               },
               "li": "🔌",
               "ri": "📡"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "4.2",
           "type": "hotspot",
           "name": {
             "en": "Match Sensor to Purpose",
-            "si": null
+            "si": "සංවේදකය හා එහි කාර්යය යුගල කරමු"
           },
           "instruction": {
             "en": "Read each purpose and click the correct sensor.",
-            "si": null
+            "si": "එක් එක් කාර්යය කියවා නිවැරදි සංවේදකය ක්ලික් කරන්න."
           },
           "rounds": [
             {
               "q": {
                 "en": "To detect human movement (motion sensor)?",
-                "si": null
+                "si": "මිනිස් චලනය හඳුනා ගැනීමට (චලන සංවේදකය)?"
               },
               "ans": "pir"
             },
             {
               "q": {
                 "en": "To estimate the distance from an object?",
-                "si": null
+                "si": "වස්තුවක් දක්වා ඇති දුර ඇස්තමේන්තු කිරීමට?"
               },
               "ans": "ultrasonic"
             },
             {
               "q": {
                 "en": "To detect light levels (day/night)?",
-                "si": null
+                "si": "ආලෝක මට්ටම් හඳුනා ගැනීමට (දිවා/රාත්‍රී)?"
               },
               "ans": "light"
             },
             {
               "q": {
                 "en": "To measure temperature in a room?",
-                "si": null
+                "si": "කාමරයක උෂ්ණත්වය මැනීමට?"
               },
               "ans": "temp"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "4.3",
           "type": "tf",
           "name": {
             "en": "Microcontroller Facts",
-            "si": null
+            "si": "ක්ෂුද්‍ර පාලක පිළිබඳ කරුණු"
           },
           "instruction": {
             "en": "Decide whether each statement is True or False.",
-            "si": null
+            "si": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
           },
           "statements": [
             {
               "s": {
                 "en": "Arduino Uno uses an ATMEGA328p microcontroller chip.",
-                "si": null
+                "si": "Arduino Uno මගින් ATMEGA328p ක්ෂුද්‍ර පාලක චිපය භාවිත කරයි."
               },
               "a": true
             },
             {
               "s": {
                 "en": "Micro:bit has built-in LED lights, buttons and sensors.",
-                "si": null
+                "si": "Micro:bit හි LED බල්බ, බොත්තම් හා සංවේදක අන්තර්ගතව ඇත."
               },
               "a": true
             },
             {
               "s": {
                 "en": "A breadboard requires soldering to connect components.",
-                "si": null
+                "si": "කොටස් සම්බන්ධ කිරීම සඳහා බ්‍රෙඩ්බෝඩ් එකක පෑස්සීම අවශ්‍ය වේ."
               },
               "a": false
             },
             {
               "s": {
                 "en": "The LED only allows electricity in one direction.",
-                "si": null
+                "si": "LED බල්බය විදුලිය එක් දිශාවකට පමණක් ගමන් කිරීමට ඉඩ දෙයි."
               },
               "a": true
             },
             {
               "s": {
                 "en": "A PIR sensor outputs 5V when it detects motion.",
-                "si": null
+                "si": "PIR සංවේදකය චලනය හඳුනාගත් විට 5V ප්‍රතිදානයක් ලබා දෙයි."
               },
               "a": false
             },
             {
               "s": {
                 "en": "Raspberry Pi is an example of a single board computer.",
-                "si": null
+                "si": "Raspberry Pi යනු තනි පුවරු පරිගණකයකට උදාහරණයකි."
               },
               "a": true
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     },
@@ -1206,7 +1220,7 @@
       "id": 5,
       "title": {
         "en": "Computer Networks",
-        "si": null
+        "si": "පරිගණක ජාල"
       },
       "icon": "🌐",
       "cls": "l5",
@@ -1216,21 +1230,21 @@
           "type": "match",
           "name": {
             "en": "Network Devices",
-            "si": null
+            "si": "ජාල උපාංග"
           },
           "instruction": {
             "en": "Match each network device with its correct function.",
-            "si": null
+            "si": "එක් එක් ජාල උපාංගය හා එහි නිවැරදි කාර්යය යුගල කරන්න."
           },
           "pairs": [
             {
               "l": {
                 "en": "🖥️ Server",
-                "si": null
+                "si": "🖥️ සේවාදායකය"
               },
               "r": {
                 "en": "Manages software, hardware, files and communication",
-                "si": null
+                "si": "මෘදුකාංග, දෘඪාංග, ගොනු හා සන්නිවේදනය කළමනාකරණය කරයි"
               },
               "li": "🖥️",
               "ri": "🗄️"
@@ -1238,11 +1252,11 @@
             {
               "l": {
                 "en": "🔀 Switch",
-                "si": null
+                "si": "🔀 ස්විචය"
               },
               "r": {
                 "en": "Mediator between two or more computers",
-                "si": null
+                "si": "පරිගණක දෙකක් හෝ වැඩි ගණනක් අතර මැදිහත්කරු"
               },
               "li": "🔀",
               "ri": "🔗"
@@ -1250,11 +1264,11 @@
             {
               "l": {
                 "en": "📶 Router",
-                "si": null
+                "si": "📶 රවුටරය"
               },
               "r": {
                 "en": "Connects one network to another or to the Internet",
-                "si": null
+                "si": "එක් ජාලයක් තවත් ජාලයකට හෝ අන්තර්ජාලයට සම්බන්ධ කරයි"
               },
               "li": "📶",
               "ri": "🌍"
@@ -1262,91 +1276,93 @@
             {
               "l": {
                 "en": "💳 NIC",
-                "si": null
+                "si": "💳 NIC (ජාල අතුරුමුහුණත් කාඩ්පත)"
               },
               "r": {
                 "en": "Connects a computer to a computer network",
-                "si": null
+                "si": "පරිගණකයක් පරිගණක ජාලයකට සම්බන්ධ කරයි"
               },
               "li": "💳",
               "ri": "🔌"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "5.2",
           "type": "bucket",
           "name": {
             "en": "Sort Network Media",
-            "si": null
+            "si": "ජාල මාධ්‍ය වර්ග කරමු"
           },
           "instruction": {
             "en": "Sort each type of media into Wired or Wireless.",
-            "si": null
+            "si": "එක් එක් මාධ්‍ය වර්ගය රැහැන් සහිත හෝ රැහැන් රහිත ලෙස වර්ග කරන්න."
           },
           "buckets": [
             {
               "name": {
                 "en": "🔌 Wired Media",
-                "si": null
+                "si": "🔌 රැහැන් සහිත මාධ්‍ය"
               },
               "items": [
                 {
                   "en": "Fiber Optic Cable",
-                  "si": null
+                  "si": "ඔප්ටිකල් ෆයිබර් රැහැන"
                 },
                 {
                   "en": "Twisted Pair Cable",
-                  "si": null
+                  "si": "ව්‍යාවර්තිත යුගල රැහැන"
                 },
                 {
                   "en": "RJ45 Cable",
-                  "si": null
+                  "si": "RJ45 රැහැන"
                 }
               ]
             },
             {
               "name": {
                 "en": "📡 Wireless Media",
-                "si": null
+                "si": "📡 රැහැන් රහිත මාධ්‍ය"
               },
               "items": [
                 {
                   "en": "Infrared Waves",
-                  "si": null
+                  "si": "අධෝරක්ත තරංග"
                 },
                 {
                   "en": "Bluetooth",
-                  "si": null
+                  "si": "බ්ලූටූත්"
                 },
                 {
                   "en": "Wi-Fi",
-                  "si": null
+                  "si": "Wi-Fi"
                 },
                 {
                   "en": "Radio Waves",
-                  "si": null
+                  "si": "ගුවන් විදුලි තරංග"
                 }
               ]
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "5.3",
           "type": "pick",
           "name": {
             "en": "Network Advantages",
-            "si": null
+            "si": "පරිගණක ජාලවල වාසි"
           },
           "instruction": {
             "en": "Select ONLY the correct advantages of using computer networks.",
-            "si": null
+            "si": "පරිගණක ජාල භාවිතයේ නිවැරදි වාසි පමණක් තෝරන්න."
           },
           "items": [
             {
               "text": {
                 "en": "Share hardware like printers and scanners",
-                "si": null
+                "si": "මුද්‍රණ යන්ත්‍ර හා ස්කෑනර වැනි දෘඪාංග බෙදා ගත හැක"
               },
               "icon": "🖨️",
               "correct": true
@@ -1354,7 +1370,7 @@
             {
               "text": {
                 "en": "Share software and data files",
-                "si": null
+                "si": "මෘදුකාංග හා දත්ත ගොනු බෙදා ගත හැක"
               },
               "icon": "💾",
               "correct": true
@@ -1362,7 +1378,7 @@
             {
               "text": {
                 "en": "Increase individual computer weight",
-                "si": null
+                "si": "එක් පරිගණකයක බර වැඩි කරයි"
               },
               "icon": "⚖️",
               "correct": false
@@ -1370,7 +1386,7 @@
             {
               "text": {
                 "en": "Send messages and emails easily",
-                "si": null
+                "si": "පණිවිඩ හා ඊ-තැපැල් පහසුවෙන් යැවිය හැක"
               },
               "icon": "📧",
               "correct": true
@@ -1378,7 +1394,7 @@
             {
               "text": {
                 "en": "Enable backup of data in a server",
-                "si": null
+                "si": "සේවාදායකයක දත්ත උපස්ථ කළ හැක"
               },
               "icon": "🔒",
               "correct": true
@@ -1386,12 +1402,13 @@
             {
               "text": {
                 "en": "Require less electricity per user",
-                "si": null
+                "si": "පරිශීලකයෙකුට අඩු විදුලි ප්‍රමාණයක් අවශ්‍ය වේ"
               },
               "icon": "⚡",
               "correct": false
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     },
@@ -1399,7 +1416,7 @@
       "id": 6,
       "title": {
         "en": "ICT and Society",
-        "si": null
+        "si": "තොරතුරු තාක්ෂණය හා සමාජය"
       },
       "icon": "🌍",
       "cls": "l6",
@@ -1409,21 +1426,21 @@
           "type": "match",
           "name": {
             "en": "ICT Jobs and Responsibilities",
-            "si": null
+            "si": "තොරතුරු තාක්ෂණ රැකියා හා වගකීම්"
           },
           "instruction": {
             "en": "Match each ICT job with its correct responsibility.",
-            "si": null
+            "si": "එක් එක් තොරතුරු තාක්ෂණ රැකියාව හා එහි නිවැරදි වගකීම යුගල කරන්න."
           },
           "pairs": [
             {
               "l": {
                 "en": "🧪 Software QA Engineer",
-                "si": null
+                "si": "🧪 මෘදුකාංග තත්ත්ව සහතික ඉංජිනේරු"
               },
               "r": {
                 "en": "Assures that software functions properly",
-                "si": null
+                "si": "මෘදුකාංගය නිසි පරිදි ක්‍රියා කරන බව සහතික කරයි"
               },
               "li": "🧪",
               "ri": "✅"
@@ -1431,11 +1448,11 @@
             {
               "l": {
                 "en": "🗄️ Database Administrator",
-                "si": null
+                "si": "🗄️ දත්ත සමුදා පරිපාලක"
               },
               "r": {
                 "en": "Plans, installs and maintains databases",
-                "si": null
+                "si": "දත්ත සමුදාය සැලසුම් කිරීම, ස්ථාපනය හා නඩත්තු කරයි"
               },
               "li": "🗄️",
               "ri": "💾"
@@ -1443,11 +1460,11 @@
             {
               "l": {
                 "en": "🎨 Graphic Designer",
-                "si": null
+                "si": "🎨 චිත්‍රක නිර්මාණකරු"
               },
               "r": {
                 "en": "Develops web pages and banners using software",
-                "si": null
+                "si": "මෘදුකාංග භාවිතයෙන් වෙබ් පිටු හා බැනර් නිර්මාණය කරයි"
               },
               "li": "🎨",
               "ri": "🖼️"
@@ -1455,11 +1472,11 @@
             {
               "l": {
                 "en": "🔧 Network Administrator",
-                "si": null
+                "si": "🔧 ජාල පරිපාලක"
               },
               "r": {
                 "en": "Installs, configures and maintains networks",
-                "si": null
+                "si": "ජාල ස්ථාපනය, වින්‍යාස කිරීම හා නඩත්තු කරයි"
               },
               "li": "🔧",
               "ri": "🌐"
@@ -1467,75 +1484,77 @@
             {
               "l": {
                 "en": "💡 IT Consultant",
-                "si": null
+                "si": "💡 තොරතුරු තාක්ෂණ උපදේශක"
               },
               "r": {
                 "en": "Advises organizations on ICT matters",
-                "si": null
+                "si": "තොරතුරු තාක්ෂණ කරුණු පිළිබඳ ආයතනවලට උපදෙස් දෙයි"
               },
               "li": "💡",
               "ri": "📋"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "6.2",
           "type": "hotspot",
           "name": {
             "en": "Choose the Correct Term",
-            "si": null
+            "si": "නිවැරදි පදය තෝරන්න"
           },
           "instruction": {
             "en": "Read each definition and click the correct term.",
-            "si": null
+            "si": "එක් එක් නිර්වචනය කියවා නිවැරදි පදය ක්ලික් කරන්න."
           },
           "rounds": [
             {
               "q": {
                 "en": "The gap between those who have and have not access?",
-                "si": null
+                "si": "පිවිසුම ඇති අය හා නැති අය අතර ඇති පරතරය?"
               },
               "ans": "digitaldivide"
             },
             {
               "q": {
                 "en": "Harmful waste items from computers and electronics?",
-                "si": null
+                "si": "පරිගණක හා විද්‍යුත් උපකරණවලින් හටගන්නා හානිකර අපද්‍රව්‍ය?"
               },
               "ans": "ewaste"
             },
             {
               "q": {
                 "en": "The 3R concept for disposal of e-waste?",
-                "si": null
+                "si": "විද්‍යුත් අපද්‍රව්‍ය බැහැර කිරීමේ 3R සංකල්පය?"
               },
               "ans": "reduce"
             },
             {
               "q": {
                 "en": "Teaching using ICT and the Internet?",
-                "si": null
+                "si": "තොරතුරු තාක්ෂණය හා අන්තර්ජාලය භාවිතයෙන් ඉගැන්වීම?"
               },
               "ans": "elearning"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "6.3",
           "type": "pick",
           "name": {
             "en": "Reduce, Reuse, Recycle",
-            "si": null
+            "si": "අවම කිරීම, නැවත භාවිතය, ප්‍රතිචක්‍රීකරණය"
           },
           "instruction": {
             "en": "Select ONLY the correct methods for the 3R concept.",
-            "si": null
+            "si": "3R සංකල්පයට අදාළ නිවැරදි ක්‍රම පමණක් තෝරන්න."
           },
           "items": [
             {
               "text": {
                 "en": "Repair and use again instead of buying new",
-                "si": null
+                "si": "අලුතින් මිලදී ගැනීම වෙනුවට අලුත්වැඩියා කර නැවත භාවිත කිරීම"
               },
               "icon": "🔧",
               "correct": true
@@ -1543,7 +1562,7 @@
             {
               "text": {
                 "en": "Throw e-waste into regular garbage bins",
-                "si": null
+                "si": "විද්‍යුත් අපද්‍රව්‍ය සාමාන්‍ය කසළ බඳුන්වලට දැමීම"
               },
               "icon": "🗑️",
               "correct": false
@@ -1551,7 +1570,7 @@
             {
               "text": {
                 "en": "Hand over e-waste to a recycling agency",
-                "si": null
+                "si": "විද්‍යුත් අපද්‍රව්‍ය ප්‍රතිචක්‍රීකරණ ආයතනයකට භාර දීම"
               },
               "icon": "♻️",
               "correct": true
@@ -1559,7 +1578,7 @@
             {
               "text": {
                 "en": "Minimize purchase of unnecessary devices",
-                "si": null
+                "si": "අනවශ්‍ය උපාංග මිලදී ගැනීම අවම කිරීම"
               },
               "icon": "📉",
               "correct": true
@@ -1567,7 +1586,7 @@
             {
               "text": {
                 "en": "Burn e-waste openly to dispose of it",
-                "si": null
+                "si": "විද්‍යුත් අපද්‍රව්‍ය විවෘතව පුළුස්සා බැහැර කිරීම"
               },
               "icon": "🔥",
               "correct": false
@@ -1575,12 +1594,13 @@
             {
               "text": {
                 "en": "Donate old working devices to others",
-                "si": null
+                "si": "ක්‍රියාකාරී පැරණි උපාංග අන් අයට පරිත්‍යාග කිරීම"
               },
               "icon": "🎁",
               "correct": true
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     },

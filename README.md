@@ -119,6 +119,7 @@ js/app.js                hash router and the three main screens
 js/activities/*.js       one module per activity type, twelve of them
 js/activities/rounds.js  the shell the one-question-at-a-time types share
 data/grade-N.json        lessons, activities and answers, {en, si} on every string
+content/                 the syllabus additions, the corrections and grade 9's Sinhala overlay
 original/                the nine source games, untouched, as the parity baseline
 scripts/                 extraction and the checks
 supabase/                the leaderboard schema
@@ -176,7 +177,15 @@ ok    grade 8  7 lessons, 22 activities (14 original + 8 new), en + si original 
         lesson 5 deliberately replaced: "Logic Gates" -> "Physical Computing"
 ok    grade 9  7 lessons, 26 activities (19 original + 7 new), en original rebuild matches exactly
 ok    adventure  6 lessons, 18 mini games, rebuild matches original exactly
+
+Translation notes (not failures):
+  - grade 9: 2 strings read the same in both languages (may be untranslated, may just be a term like "CPU")
+  - adventure: 348 strings have no Sinhala yet
 ```
+
+Grade 9 is the one grade with no Sinhala original, so its Sinhala is an overlay rather than a second file.
+`content/grade-9.sinhala.json` is keyed by the English string, and a key that matches nothing fails the
+extract with the key named, so the overlay cannot quietly rot as the English changes underneath it.
 
 ---
 
@@ -231,8 +240,12 @@ than an activity - a hub of control structures, each with its own block-dragging
 done separately; it sits outside the numbered syllabus levels, so coverage is still 59 of 59 without it.
 The 18 bonus mini games from the ICT Adventure set are extracted and parity-checked but have no UI.
 
-Sinhala for grade 9 and for the bonus mini games is still being written, and newly drafted Sinhala stays
-flagged until a teacher reviews it; the app falls back to English rather than showing a blank.
+Grade 9 is now fully Sinhala too. It had no Sinhala source file at all, so its 202 strings were drafted
+against the NIE Sinhala-medium terms and live in `content/grade-9.sinhala.json`; every activity they touch
+carries `siDraft: true` until Ishini reviews it. That leaves the 18 bonus mini games as the only
+untranslated content: their question stems came translated in the original, but all 348 answer options did
+not. Newly drafted Sinhala stays flagged until a teacher reviews it, and the app falls back to English
+rather than showing a blank.
 
 ---
 

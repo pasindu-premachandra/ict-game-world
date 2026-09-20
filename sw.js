@@ -2,7 +2,7 @@
 // the shell, the fonts and the grade data are cached on install and served
 // from cache first. Bump CACHE when anything in PRECACHE changes.
 
-const CACHE = 'igw-v5';
+const CACHE = 'igw-v6';
 
 const PRECACHE = [
   './',
