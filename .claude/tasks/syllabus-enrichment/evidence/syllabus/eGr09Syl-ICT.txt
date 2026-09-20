@@ -1,0 +1,394 @@
+      Information and
+
+Communication Technology
+            Syllabus
+
+                Grade 9
+
+                                   To be implemented from 2018
+
+                                      Department of Information Technology
+                                         Faculty of Science and Technology
+                                            National Institute of Education
+                                                       Maharagama
+                                                         Sri Lanka
+                                                        www.nie.lk
+Information and Communication Technology (ICT)
+Grade 09 ­Syllabus
+
+©National Institute of Education (NIE)
+First Print 2018
+
+ISBN:
+
+Department of Information Technology
+Faculty of Science and Technology
+National Institute of Education
+Maharagama
+www.nie.lk
+
+Printed by
+CONTENTS                                                     Page No
+
+1.0 Introduction                                             ii
+
+2.0 Common National Goals                                    iii
+
+3.0 Basic Competencies                                       iv-v
+
+4.0 Aims of the Information and Communication Technology Curriculum vi
+
+5.0 How the national goals are addressed in this curriculum  vii
+
+6.0 Syllabus                                                 1-4
+
+                           i
+                                                      1. Introduction
+
+         The Information and Communication Technology sector is acknowledged worldwide as a tool that could be used to increase
+the productivity, efficiency and effectiveness of work. However, in Sri Lanka, the level of ICT skills of the majority of the students is
+not adequate to meet the current requirements of business and industry. This is mainly due to lack of opportunities for students to
+study ICT related subjects in the school curriculum. The student should learn at school a wide variety of competencies for different
+needs of life in the changing world. They should have various views and different ways to continue studies and proceed to
+employment.
+
+         At present ICT is taught as a subject at G.C.E. (O/L) in a limited number of schools and at G.C.E. (A/L) in even less number of
+schools in Sri Lanka. In this situation students officially start to learn ICT at Grade 10 and as a result a heavy load of subject matter
+has to be included in ICT at G.C.E. (O/L). Distribution of ICT subject matter over lower Grades will definitely reduce this load and
+provide students with opportunity to learn ICT at early stages of school life. Therefore it has been decided to implement ICT as a
+subject from Grade 6 onward.
+
+         The time allocated for ICT at Grade 9 is limited to 30 Periods (40 minutes per Period) per year only. During this period,
+learning is more focused on practical aspects of the subject with an appropriate amount of theoretical content. This is a continuation of
+the Grade 8 ICT curriculum. More emphasis is continued to be placed on programming concept and inclusion of simple programming
+of hardware devices is also introduced at Grade 9. Competencies of the use of software for simple statistical analysis and data
+representations are also presented in this curriculum. Students are expected to build ICT concepts through interaction with hardware
+and software of ICT.
+
+                                                                                        ii
+                                                    2. National Goals
+
+1. Based on the concept of respecting human values and understanding the differences between the Sri Lankan multi-cultural
+       society, building up the nation and confirming the identity of Sri Lanka by promoting national integrity, national unity,
+       national coherence and peace
+
+2. While responding to the challenges of the dynamic world, identifying and conserving the national heritage.
+3. Creating an environment which comprises of the conventions of social justice and the democratic life to promote the
+
+       characteristics of respecting the human rights, being aware of the responsibilities, concerning each other with affectionate
+       relationships.
+4. Promoting a sustainable life style based on the people's mental and physical well-being and the concept of human values
+5. Promoting the positive feelings needed for balanced personality with the qualities of creative skills, initiative, critical
+       thinking and being responsible
+6. Through education, developing the human resources, needed for the progress of the well-being of an individual, the nation
+       as well as the economic growth of Sri Lanka.
+7. Preparing the people for the changes that occur in a rapidly changing world by adapting to it and controlling them;
+       developing abilities and potentialities of people to face the complex and unexpected occasions.
+8. Sustaining the skills and attitudes based on justice, equality, mutual respect which is essential to achieve a respectable
+       place in the international community.
+
+                                                                                                   National Education Commission Report (2003)
+
+                                                                                iii
+                     3. Basic Competencies
+
+The competencies promoted though the education mentioned below might help to achieve the above mentioned National Goals.
+
+(i.) Competencies in Communication
+         This set of competencies is made up of four subsets - Literacy, Numeracy, Graphics and Information & Communication
+         Technology skills:
+                Literacy : Carefully listening, speaking clearly, and reading for comprehension, writing clearly and accurately.
+                Numeracy : Using numbers to count, calculate, code and to measure, matter, space and time.
+                Graphics : Making sense of line and form, expressing and recording essential data, instructions and ideas with line,
+                                  form, color, two and three-dimensional configurations, graphic symbols and icons
+                ICT Competencies: Knowledge on computers, and the ability to use the ICT skills at learning or work as well as in the
+                                  private life
+
+(ii.) Competencies relating to the Personality Development
+                - Generic skills such as creativity, divergent thinking, initiative, decision making, problem-solving, critical and
+                    analytical thinking, team work, inter-personal relationships, discovering and exploring
+                - Values such as integrity, tolerance and respect for human dignity.
+                - Cognition
+
+(iii.) Competencies relating to the Environment.
+
+This set of competencies relates to the Social, Biological and Physical Environments.
+
+Social Environment:  Awareness, sensitivity and skills linked to being a member of society, social relationship,
+
+                     personal conduct, general and legal conventions, rights, responsibilities, duties and
+
+                     obligations.
+
+Biological Environment: Awareness, sensitivity and skills linked to the living world, man and the ecosystem, the
+
+                     trees, forests, seas, water, air and life - plant, animal and human life.
+
+                                                  iv
+        Physical Environment:  Awareness, sensitivity and skills relating to space, energy, fuels, matter, materials and
+                               their links with human living, food, clothing, shelter, health, comfort, respiration, sleep,
+                               relaxation, rest, wastes and excretion, media of communication and transport.
+                               Included here are the skills in using tools to shape and for materials for living and
+                               learning.
+
+(iv.) Competencies relating to preparation for the world of work
+              Employment related skills to maximize their potential and to enhance their capacity to contribute to economic
+              development; to discover their vocational interests and aptitudes; to choose a job that suits their abilities and; to engage in
+              a rewarding and sustainable livelihood
+
+(v.) Competencies relating to religion and ethics
+              This set of competencies deals with values and attitudes. It is essential for individuals to assimilate values, so that they
+              may function in a manner consistent with the ethical, moral and religious modes of conduct, rituals, practices in everyday
+              living, selecting the most appropriate.
+
+(vi.) Competencies in play and use of leisure
+              Competencies that link up with pleasure, joy, emotions and such human motivations. These find expression in play,
+              sports, athletics and leisure pursuit of many types. These also link up with such values as cooperation, team work,
+              healthy competition in life and work. Here are included such activities as are involved in aesthetics, arts, drama,
+              literature, exploratory research and other creative modes in human living
+
+(vii.)  Competencies relating to `Learning to Learn'.
+            These competencies flow directly from the nature of a rapidly changing, complex and interdependent and crowded
+            world. Whatever one learns, that learning will need updating and review. This requires that one should be aware of,
+            sensitive and skillful in sustained attention, and be willing to persevere and attend to details that matter in a given
+            situation.
+
+                               v
+                   4. Aims of the Information and Communication Technology (ICT) Curriculum
+
+         Such a surge in the growth, development and the application of Information Communication Technology as today has never
+been experienced before. The importance and relevance of ICT to almost all walks of life today has made it all the more important that
+knowledge and expertise, both practical and theoretical, of its application, should begin at the very grass roots level of education.
+Aims to be achieved by the course are as follows:
+
+     Develop skills useful to access ICT resources.
+     Develop skills in the use of software for data analysis.
+     Develop concepts in programming.
+     Inculcate basic good practices in the use of ICT resources
+     Develop a sound base for further pursuit of Information Technology and Communication Technology studies.
+
+                                                                                       vi
+5. How the national goals are addressed in the curriculum
+
+National Goals                              Curriculum Aims                            Curriculum Objectives (competencies)
+
+Promoting the positive feelings needed      Develop skills useful to access ICT         Prepares specifications for
+ for balanced personality with the          resources.                                     purchasing of a computer and
+ qualities of creative skills, initiative,  Develop concepts in programming.               peripherals (1)
+ critical thinking and being responsible
+                                                                                        Uses flow charts to solve simple
+                                                                                           programs with sequence selection
+                                                                                           and iteration. (3)
+
+                                                                                        Uses programming language to
+                                                                                           develop simple programs. (4)
+
+Through education, developing the           Develop skills in the use of software for  Uses spreadsheet software for simple
+human resources, needed for the             data analysis                              analysis of data (2)
+progress of the wellbeing of an
+individual, the nation as well as the        Inculcate basic good practices in the      Improves skills in Physical
+economic growth of Sri Lanka.                   use of ICT resources                       Computing(5)
+Preparing the people for the changes
+that occur in a rapidly changing world       Develop a sound base for further           Uses Advance technique of the
+by adapting to it and controlling them;         pursuit of Information Technology          Internet using Boolean conditions.
+developing abilities and potentialities         and Communication Technology               (6)
+of people to face the complex and               studies.
+unexpected occasions.                                                                   Uses Advance technique of the
+                                                                                           Internet using Boolean conditions.
+                                                                                           (7)
+
+                                                                                        Explores the new trends in ICT (8)
+
+                                            vii
+Competency               Competency Level                      Grade 9 Syllabus                   Learning Outcomes         Duration/
+                                             Information and Communication Technology                                       Periods
+                                                                                                    i. Describes the basic  01
+                                                     Contents                                          specifications of
+                                                                                                       computer and its
+1. Prepares              1.1 Identifies user needs    Specification of computer components and         peripherals
+    specifications for       for a computer and its    their meaning to users
+    purchasing a             peripherals
+    computer and                                      Basic Specifications of computer and its
+    peripherals          1.2 Translates user           peripherals
+                             requirements to           o Processor types and speed
+                             computer and its          o Hard disk capacity                       i. Identifies the user 01
+                             peripherals               o Monitor specifications                      requirements in
+                                                       o RAM specifications                          terms of technical
+                                                       o VGA and sound                               specifications.
+
+                                                      Warranty                                    ii. Determines the
+                                                      Included software                              required technical
+                                                      After sale services                            specification
+                                                      Introduction to spreadsheet application
+2. Uses spreadsheet      2.1 Describes basics of                                                  i. Uses IDE of            01
+    software for             spreadsheet software      software IDE
+    calculations and                                  Work Book, Worksheet                        spreadsheets
+    for simple analysis                               Inserting, renaming and deleting worksheet
+    of data                                           Cell Addressing                             software
+
+                                                                                                  ii. Uses Cell
+
+                                                                                                  Addressing
+
+                         2.2 Enters data in           Changing column width and row height         i. Determines required 02
+                             worksheet                Formatting Cells:                              column width and
+                                                                                                     row height
+                                                       o Text alignment, Font, Border, Fill
+                                                      Data types : Value, number, Currency, Date  ii. Formats cells
+                                                                                                  iii. Explains Cell
+                                                       and Time
+                                                      Saving a work book                             Formatting
+                                                                                                  iv. Creates work book
+                                                                          1
+                                                                                                     and Save
+                          2.3 Carries out Simple        Use of mathematical operators                   i. Identifies            01
+                              mathematical               o Addition
+                              calculations               o Subtraction                                  mathematical
+                                                         o Multiplication
+                          2.4 Uses Functions to          o Division                                     operators
+                              carry out Simple
+                              mathematical              Basic Function used in spreadsheets             ii. Uses operators
+                              calculations and data      SUM, AVERAGE, MAX, MIN, COUNT,
+                              sorting                    COUNTA                                         correctly
+
+                          2.5 Uses various charts to    Data sorting                                    i. Identifies functions 01
+                              display data
+                                                        Basic Chart types: Column Chart, Bar Chart,     and its parameters
+                                                         Line Chart, Pie Chart
+                                                                                                        for required task
+                                                        Chart options: Change of chart type,
+                                                         formatting Legend, Formatting data series and  ii. Applies spread
+                                                         axles, Switching row and column
+                                                                                                        sheet software tools
+                                                        Problem solving using multiple Selections
+                                                        Problem solving using Iterations                to carry out the task
+                                                        Problem solving using nested Iterations
+                                                                                                        iii. Applies spread
+
+                                                                                                        sheet software for
+
+                                                                                                        data sorting
+
+                                                                                                        i. Identifies the        01
+
+                                                                                                        relevant chart types
+
+                                                                                                        ii. Creates the chart
+
+                                                                                                        using relevant tools
+
+                                                                                                        iii. Creates and format
+
+                                                                                                        the suitable chart
+
+                                                                                                        for the relevant data
+
+3. Uses flow charts       3.1 Uses Sequence,                                                            i. Draws flow charts 02
+    to solve simple           Selection and Iteration
+    problem with              control structure for                                                     to solve simple
+    Sequence                  drawing flow charts
+    Selection, Iteration                                                                                problems
+    and develop           3.2 Uses Selection and
+    programs (using           Iteration (Repetition)                                                    ii. Identifies the
+    Scratch)                  control structures for
+                              solving simple                                                            problem and decide
+                              problems with visual
+                                                                                                        solution
+
+                                                        Selection control structures with multiple      i. Applies multiple 05
+
+                                                       conditions                                       conditions in
+
+                                                        Control structure with simple iteration         selection control
+
+                                                        Development of simple programs (sequence,       structure
+
+                                                       selection and iteration) using visual supports   ii. Identifies the
+
+                                                                   2
+                           support                 of programming language (using an Interface)       difference between
+                                                                                                      selection and
+                       3.3 Develops programs                                                          iteration
+                           with visual support                                                    iii. Uses iteration
+                           with nested iterations                                                     control structure to
+                                                                                                      solve relevant
+                       3.4 Develops programs                                                          problems
+                           with array variables
+                                                    Development of programs using basic           i. Creates animated 03
+                       3.5 Evaluates the solution    iteration control structure: Repeat             program using
+                           to ensure that it                                                         repetition control
+                           properly satisfies the   Development of visual program with selection
+                           problem                   & iteration and nested iteration control     ii. Explains the
+                                                     structure                                       different usage of
+                       4.1 Programs simple                                                           repetition structures
+                           digital systems
+4. Improves skills in      (Micro controller        Declaration of array variable                 i. Describes the use of 02
+    Physical               based kit)               Appling of array variables to solve problems     array variables
+    Computing
+                                                    Proper decomposition of the problem           ii. Uses array variables
+                                                    Ensuring all aspects are covered in              in programs to
+                                                                                                     solve simple
+                                                     decomposition                                   problems
+                                                    Designing and writing a program with correct
+                                                                                                  i. Evaluates whether 01
+                                                     decomposition                                   the solution to
+                                                    Development of programs for detecting the        ensure the problem
+                                                                                                     is created accurately
+                                                     inputs from sensors                             and efficiently
+                                                    Development of programs for controlling
+                                                                                                  i. Develops programs 05
+                                                     actuators                                       for detecting the
+                                                                                                     inputs from sensors
+
+                                                                                                  ii. Develops programs
+                                                                                                     for controlling
+                                                                                                     actuators of simple
+                                                                                                     sense detector
+
+                                                   3
+5. Investigates          5.1 Explores the main       Main components of computer network            i. Describes main         01
+    computer network         components of the        (Computers, Network Interface Card (NIC),
+    for communication        network in the school    Switches and etc.)                            components of the
+    and resource             computer lab
+    sharing                                                                                         computer network
+                         5.2 Utilizes computer
+                             network in resource     Sending messages through a computer            i. Sends messages         01
+                             sharing and              network
+                             communication                                                          through computer
+                                                     Sharing resources (Software, Folder, File, CD
+                                                      Drive, Printer etc.)                          network
+
+                                                                                                    ii. Shares the resources
+
+                                                                                                    though a computer
+
+                                                                                                    network
+
+6. Explores the          6.1 Describes impact of      Applications of ICT                           i. Describes the          01
+     impact of ICT on        ICT on society          Office automation
+     society and career                              e-Learning                                     benefits in use of
+     opportunities                                   e-Commerce, m-Commerce
+                                                     e-Health                                       ICT in society
+                                                     e-Government
+                                                     Digital Divide                                 ii. Describes the
+                                                     Safe disposal of electronic waste
+                                                                                                    negative aspects
+
+                                                                                                    arise in using ICT
+
+                         6.2 Explains career         Career Opportunities                           i. Explains the career 01
+                             opportunities in         o Software Quality Assurance Engineer            opportunities in the
+                             computing                o Software Engineer                              present society
+                                                      o Database Administrator
+                                                      o Software Architect                          ii. Explains the job
+                                                      o Programmer                                     role of different
+                                                      o System Analyst                                 careers in
+                                                      o Web Application Developer                      computing
+                                                      o Graphic Designer
+                                                      o Network Administrator
+                                                      o Business Analyst
+
+                                                                                                    Total                     30
+
+                                                    4
+

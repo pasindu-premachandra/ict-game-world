@@ -1,0 +1,2409 @@
+{
+  "grade": 7,
+  "languages": [
+    "en",
+    "si"
+  ],
+  "source": {
+    "en": "original/grade-7/english.html",
+    "si": "original/grade-7/sinhala.html"
+  },
+  "replaced": [],
+  "lessons": [
+    {
+      "id": 1,
+      "title": {
+        "en": "Central Processing Unit",
+        "si": "මධ්‍ය සැකසුම් ඒකකය"
+      },
+      "icon": "🧠",
+      "cls": "l1",
+      "activities": [
+        {
+          "id": "1.1",
+          "type": "match",
+          "name": {
+            "en": "Match CPU Components",
+            "si": "CPU කොටස් හා කාර්ය යුගල කරන්න"
+          },
+          "instruction": {
+            "en": "Match each CPU component with its correct function.",
+            "si": "එක් එක් CPU කොටස හා එහි කාර්යය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🧮 ALU",
+                "si": "🧮 ගණිතමය හා තාර්කික ඒකකය (ALU)"
+              },
+              "r": {
+                "en": "Performs mathematical and logical operations",
+                "si": "ගණිතමය හා තාර්කික ක්‍රියා සිදු කරයි"
+              },
+              "li": "🧮",
+              "ri": "➕"
+            },
+            {
+              "l": {
+                "en": "🎛️ Control Unit",
+                "si": "🎛️ පාලන ඒකකය (CU)"
+              },
+              "r": {
+                "en": "Controls all devices and manages data flow",
+                "si": "පරිගණකයේ සියලුම දෘඩාංග පාලනය කරයි"
+              },
+              "li": "🎛️",
+              "ri": "🚦"
+            },
+            {
+              "l": {
+                "en": "📦 Memory Registers",
+                "si": "📦 මතක රෙජිස්ටර"
+              },
+              "r": {
+                "en": "Temporarily stores data and instructions",
+                "si": "දත්ත හා උපදෙස් තාවකාලිකව රඳවා තබයි"
+              },
+              "li": "📦",
+              "ri": "⏳"
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "type": "order",
+          "name": {
+            "en": "Order CPU Generations",
+            "si": "CPU පරම්පරා අනුපිළිවෙලට සකසන්න"
+          },
+          "instruction": {
+            "en": "Arrange the four generations of CPU from oldest to newest.",
+            "si": "CPU පරම්පරා හතර පැරණි සිට නවීන දක්වා අනුපිළිවෙලට සකසන්න."
+          },
+          "correctOrder": [
+            {
+              "text": {
+                "en": "First Generation — Vacuum Tubes (1940-1956)",
+                "si": "පළමු පරම්පරාව — රික්තක නළ (1940-1956)"
+              },
+              "icon": "🔌"
+            },
+            {
+              "text": {
+                "en": "Second Generation — Transistors (1956-1963)",
+                "si": "දෙවන පරම්පරාව — ට්‍රාන්සිස්ටර් (1956-1963)"
+              },
+              "icon": "📻"
+            },
+            {
+              "text": {
+                "en": "Third Generation — Integrated Circuits (1964-1971)",
+                "si": "තෙවන පරම්පරාව — අනුකලිත පරිපථ (1964-1971)"
+              },
+              "icon": "🔲"
+            },
+            {
+              "text": {
+                "en": "Fourth Generation — Microprocessors (1971-present)",
+                "si": "සිව්වන පරම්පරාව — ක්ෂුද්‍ර පරිපථ (1971 සිට)"
+              },
+              "icon": "💻"
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "type": "pick",
+          "name": {
+            "en": "Pick Correct CPU Facts",
+            "si": "CPU පිළිබඳ නිවැරදි කරුණු තෝරන්න"
+          },
+          "instruction": {
+            "en": "Select ONLY the correct facts about the CPU.",
+            "si": "CPU පිළිබඳ නිවැරදි කරුණු පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "The CPU can be observed from outside the system unit",
+                "si": "CPU එක බාහිරින් නිරීක්ෂණය කළ හැක"
+              },
+              "icon": "👀",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "The CPU is located on the motherboard",
+                "si": "CPU එක මව් පුවරුව මත ස්ථානගත කර ඇත"
+              },
+              "icon": "🔧",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The CPU is known as the brain of the computer",
+                "si": "CPU එක පරිගණකයේ මොළය ලෙස සැලකේ"
+              },
+              "icon": "🧠",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A dual-core processor can handle two tasks at the same time",
+                "si": "ද්විත්ව කාර්ය සකසනයක් එකවිට කාර්ය දෙකක් කළ හැක"
+              },
+              "icon": "⚡",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "CPU speed is measured in grams (g)",
+                "si": "CPU වේගය ග්‍රෑම් (g) වලින් මනිනු ලැබේ"
+              },
+              "icon": "⚖️",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "CPU speed is measured in hertz (Hz)",
+                "si": "CPU වේගය හර්ට්ස් (Hz) වලින් මනිනු ලැබේ"
+              },
+              "icon": "⏱️",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "id": "1.4",
+          "type": "bucket",
+          "name": {
+            "en": "Sort CPU Generations by Speed",
+            "si": "CPU වේග ඒකක වර්ග කරමු"
+          },
+          "instruction": {
+            "en": "Click an item first, then click the correct speed category.",
+            "si": "පළමුව අයිතමය ක්ලික් කරන්න. පසුව නිවැරදි කාණ්ඩය ක්ලික් කරන්න."
+          },
+          "buckets": [
+            {
+              "name": {
+                "en": "⚡ Older Generations",
+                "si": "⏱️ පැරණි වේග ඒකක"
+              },
+              "items": [
+                {
+                  "en": "Millisecond (1st Gen)",
+                  "si": "මිලි තත්පර"
+                },
+                {
+                  "en": "Microsecond (2nd Gen)",
+                  "si": "මයික්‍රෝ තත්පර"
+                },
+                {
+                  "en": "Nanosecond (3rd Gen)",
+                  "si": "නැනෝ තත්පර"
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "🚀 Modern Generation",
+                "si": "🚀 නවීන වේග ඒකක"
+              },
+              "items": [
+                {
+                  "en": "MIPS (4th Gen)",
+                  "si": "පිකෝ තත්පර"
+                },
+                {
+                  "en": "Picosecond (4th Gen)",
+                  "si": "MIPS"
+                },
+                {
+                  "en": "Gigahertz (GHz)",
+                  "si": "ගිගා හර්ට්ස් (GHz)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": {
+        "en": "Operating System",
+        "si": "මෙහෙයුම් පද්ධතිය"
+      },
+      "icon": "🪟",
+      "cls": "l2",
+      "activities": [
+        {
+          "id": "2.1",
+          "type": "match",
+          "name": {
+            "en": "Match OS Types with Devices",
+            "si": "මෙහෙයුම් පද්ධති හා උපාංග යුගල කරන්න"
+          },
+          "instruction": {
+            "en": "Match each operating system with the device it is used in.",
+            "si": "එක් එක් මෙහෙයුම් පද්ධතිය හා එය භාවිත වන උපාංගය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": "🪟 Microsoft Windows",
+              "r": {
+                "en": "Personal computers",
+                "si": "සාමාන්‍ය පරිගණක"
+              },
+              "li": "🪟",
+              "ri": "💻"
+            },
+            {
+              "l": "🍎 macOS",
+              "r": {
+                "en": "Apple Macintosh computers",
+                "si": "Apple Macintosh පරිගණක"
+              },
+              "li": "🍎",
+              "ri": "🖥️"
+            },
+            {
+              "l": "🐧 Linux / Ubuntu",
+              "r": {
+                "en": "Open source computers",
+                "si": "විවෘත මූලාශ්‍ර පරිගණක"
+              },
+              "li": "🐧",
+              "ri": "⚙️"
+            },
+            {
+              "l": "🤖 Android",
+              "r": {
+                "en": "Smart mobile phones (non-Apple)",
+                "si": "සුහුරු ජංගම දුරකථන"
+              },
+              "li": "🤖",
+              "ri": "📱"
+            },
+            {
+              "l": "📱 iOS",
+              "r": {
+                "en": "Apple iPhones and iPads",
+                "si": "Apple iPhone හා iPad"
+              },
+              "li": "📱",
+              "ri": "🍏"
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "type": "pick",
+          "name": {
+            "en": "Pick Operating System Tasks",
+            "si": "මෙහෙයුම් පද්ධතියේ කාර්ය තෝරන්න"
+          },
+          "instruction": {
+            "en": "Select ONLY the tasks performed by an operating system.",
+            "si": "මෙහෙයුම් පද්ධතියක් සිදු කරන කාර්යයන් පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Provides a user interface",
+                "si": "පරිශීලක අතුරු මුහුණතක් සැපයීම"
+              },
+              "icon": "🖥️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Controls the CPU",
+                "si": "CPU හි කාර්ය පාලනය"
+              },
+              "icon": "🎛️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Cooks food in the kitchen",
+                "si": "මුළුතැන්ගෙයේ ආහාර පිසීම"
+              },
+              "icon": "🍳",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Manages computer memory",
+                "si": "පරිගණකයේ මතකය නිසි ලෙස හැසිරවීම"
+              },
+              "icon": "💾",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Processes files and folders",
+                "si": "ගොනු හා ගොනු බහලුම් හැසිරවීම"
+              },
+              "icon": "📁",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Paints the walls",
+                "si": "බිත්ති අලේප කිරීම"
+              },
+              "icon": "🎨",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Protects with usernames and passwords",
+                "si": "මුරපද මගින් පරිගණකය ආරක්ෂා කිරීම"
+              },
+              "icon": "🔐",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "type": "bucket",
+          "name": {
+            "en": "Sort Storage Devices",
+            "si": "ආවයන උපාංග වර්ග කරමු"
+          },
+          "instruction": {
+            "en": "Click a device, then click the correct storage technology.",
+            "si": "පළමුව උපාංගය ක්ලික් කරන්න. පසුව නිවැරදි කාණ්ඩය ක්ලික් කරන්න."
+          },
+          "buckets": [
+            {
+              "name": {
+                "en": "🧲 Magnetic Media",
+                "si": "🧲 චුම්බක මාධ්‍ය උපාංග"
+              },
+              "items": [
+                {
+                  "en": "Hard Disk",
+                  "si": "දෘඩ තැටිය"
+                },
+                {
+                  "en": "Magnetic Tape",
+                  "si": "චුම්බක පටිය"
+                },
+                {
+                  "en": "Floppy Disk",
+                  "si": "සුනම්‍ය තැටිය"
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "💿 Optical Media",
+                "si": "💿 ප්‍රකාශ මාධ්‍ය උපාංග"
+              },
+              "items": [
+                {
+                  "en": "Compact Disk (CD)",
+                  "si": "CD (සංයුක්ත තැටි)"
+                },
+                "DVD",
+                {
+                  "en": "Blue-Ray Disk",
+                  "si": "බ්ලූ රේ තැටි"
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "⚡ Solid State Media",
+                "si": "⚡ ඝන තත්ත්ව මාධ්‍ය උපාංග"
+              },
+              "items": [
+                {
+                  "en": "Pen Drive",
+                  "si": "පෑන් ඩ්‍රයිවය"
+                },
+                {
+                  "en": "SSD Drive",
+                  "si": "SSD ඩ්‍රයිවය"
+                },
+                {
+                  "en": "Memory Card",
+                  "si": "මතක කාඩ්පත"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2.4",
+          "type": "match",
+          "name": {
+            "en": "Match File Extensions",
+            "si": "ගොනු දිගු හඳුනා ගනිමු"
+          },
+          "instruction": {
+            "en": "Match each file extension with its correct file type.",
+            "si": "ගොනු දිගු හා ඒවායේ ගොනු වර්ගය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": ".txt",
+              "r": {
+                "en": "Text document",
+                "si": "පාඩ සහිත ගොනුව"
+              },
+              "li": "📄",
+              "ri": "📝"
+            },
+            {
+              "l": ".mp3",
+              "r": {
+                "en": "Audio / sound file",
+                "si": "ශ්‍රව්‍ය ගොනුව"
+              },
+              "li": "🎵",
+              "ri": "🔊"
+            },
+            {
+              "l": ".jpg",
+              "r": {
+                "en": "Image file",
+                "si": "පින්තූර ගොනුව"
+              },
+              "li": "🖼️",
+              "ri": "📷"
+            },
+            {
+              "l": ".avi",
+              "r": {
+                "en": "Video file",
+                "si": "වීඩියෝ ගොනුව"
+              },
+              "li": "🎬",
+              "ri": "📹"
+            },
+            {
+              "l": ".docx",
+              "r": {
+                "en": "Word processing document",
+                "si": "වදන් සැකසුම් ගොනුව"
+              },
+              "li": "📘",
+              "ri": "✍️"
+            }
+          ]
+        },
+        {
+          "id": "2.5",
+          "competency": "2.4",
+          "type": "match",
+          "name": {
+            "en": "Match the File Properties",
+            "si": "ගොනු ගුණාංග යුගල කරමු"
+          },
+          "instruction": {
+            "en": "Match each file property with what it tells you.",
+            "si": "එක් එක් ගොනු ගුණාංගය එයින් කියවෙන දේ සමඟ යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "📏 Size",
+                "si": "📏 ප්‍රමාණය"
+              },
+              "r": {
+                "en": "How much space the file takes on the disk",
+                "si": "ගොනුව තැටියේ ගන්නා ඉඩ ප්‍රමාණය"
+              },
+              "li": "📏",
+              "ri": "💽"
+            },
+            {
+              "l": {
+                "en": "🏷️ Type",
+                "si": "🏷️ වර්ගය"
+              },
+              "r": {
+                "en": "Which software opens the file",
+                "si": "ගොනුව විවෘත කරන මෘදුකාංගය"
+              },
+              "li": "🏷️",
+              "ri": "🧩"
+            },
+            {
+              "l": {
+                "en": "📅 Modified date",
+                "si": "📅 වෙනස් කළ දිනය"
+              },
+              "r": {
+                "en": "When the file was last changed",
+                "si": "ගොනුව අවසන් වරට වෙනස් කළ දිනය"
+              },
+              "li": "📅",
+              "ri": "🕗"
+            },
+            {
+              "l": {
+                "en": "📂 Location",
+                "si": "📂 පිහිටීම"
+              },
+              "r": {
+                "en": "Which folder the file is saved in",
+                "si": "ගොනුව සුරැකී ඇති බහාලුම"
+              },
+              "li": "📂",
+              "ri": "🗄️"
+            },
+            {
+              "l": {
+                "en": "🔒 Read-only",
+                "si": "🔒 පඨන මාත්‍ර"
+              },
+              "r": {
+                "en": "The file can be opened but not changed",
+                "si": "ගොනුව විවෘත කළ හැකි නමුත් වෙනස් කළ නොහැක"
+              },
+              "li": "🔒",
+              "ri": "🚫"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": {
+        "en": "Security of Computer System",
+        "si": "පරිගණක පද්ධතියේ ආරක්ෂාව"
+      },
+      "icon": "🛡️",
+      "cls": "l3",
+      "activities": [
+        {
+          "id": "3.1",
+          "type": "bucket",
+          "name": {
+            "en": "Sort Hardware vs Software Security",
+            "si": "දෘඩාංග හා මාදුකාංග ආරක්ෂාව"
+          },
+          "instruction": {
+            "en": "Click each issue, then click the correct security category.",
+            "si": "පළමුව ගැටලුව ක්ලික් කරන්න. පසුව නිවැරදි කාණ්ඩය ක්ලික් කරන්න."
+          },
+          "buckets": [
+            {
+              "name": {
+                "en": "🔧 Hardware Security",
+                "si": "🔧 දෘඩාංග ආරක්ෂාව"
+              },
+              "items": [
+                {
+                  "en": "Sudden power failure",
+                  "si": "හදිසි විදුලි විසන්ධි වීම"
+                },
+                {
+                  "en": "High voltage current",
+                  "si": "අධික විදුලි ධාරාව"
+                },
+                {
+                  "en": "Overheating inside",
+                  "si": "අධික ලෙස රත් වීම"
+                },
+                {
+                  "en": "Dust and insects",
+                  "si": "දූවිලි හා කෘමීන්"
+                },
+                {
+                  "en": "Theft of equipment",
+                  "si": "සොර සතුරන්"
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "💻 Software Security",
+                "si": "💻 මාදුකාංග ආරක්ෂාව"
+              },
+              "items": [
+                {
+                  "en": "Malware attack",
+                  "si": "අනිෂ්ට මාදුකාංග"
+                },
+                {
+                  "en": "Unauthorized access",
+                  "si": "අනවසර ප්‍රවේශය"
+                },
+                {
+                  "en": "File deletion",
+                  "si": "ගොනු මැකීම"
+                },
+                {
+                  "en": "Operating system bugs",
+                  "si": "මෙහෙයුම් පද්ධතියේ ව්‍යාකූලතා"
+                },
+                {
+                  "en": "Natural disasters",
+                  "si": "ස්වාභාවික ආපදා"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "type": "match",
+          "name": {
+            "en": "Match Malware Types",
+            "si": "අනිෂ්ට මාදුකාංග වර්ග යුගල කරන්න"
+          },
+          "instruction": {
+            "en": "Match each malware type with its correct description.",
+            "si": "එක් එක් අනිෂ්ට මාදුකාංග වර්ගය හා එහි විස්තරය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🦠 Computer Virus",
+                "si": "🦠 පරිගණක වෛරසය"
+              },
+              "r": {
+                "en": "Replicates itself and spreads via portable devices",
+                "si": "තමාගේ පිටපත් සාදමින් ආවයන උපාංග හරහා ව්‍යාප්ත වේ"
+              },
+              "li": "🦠",
+              "ri": "📀"
+            },
+            {
+              "l": {
+                "en": "🐛 Computer Worm",
+                "si": "🐛 පරිගණක වර්ම්ස්"
+              },
+              "r": {
+                "en": "Spreads across networks without a host program",
+                "si": "පරිගණක ජාල හරහා ස්වයංක්‍රීයව ව්‍යාප්ත වේ"
+              },
+              "li": "🐛",
+              "ri": "🌐"
+            },
+            {
+              "l": {
+                "en": "🐴 Trojan Horse",
+                "si": "🐴 ට්‍රෝජන් අශ්වයා"
+              },
+              "r": {
+                "en": "Appears useful but damages secretly",
+                "si": "ප්‍රයෝජනවත් ලෙස පෙනී සිට රහසින් හානි කරයි"
+              },
+              "li": "🐴",
+              "ri": "🎭"
+            },
+            {
+              "l": {
+                "en": "👁️ Spyware",
+                "si": "👁️ ස්පයිවෙයර්"
+              },
+              "r": {
+                "en": "Secretly collects user information and sends it away",
+                "si": "රහසිගතව පරිශීලක තොරතුරු රැස් කර යවයි"
+              },
+              "li": "👁️",
+              "ri": "📤"
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "type": "pick",
+          "name": {
+            "en": "Pick Ways to Protect from Malware",
+            "si": "වෛරසවලින් ආරක්ෂා වන ක්‍රම තෝරන්න"
+          },
+          "instruction": {
+            "en": "Select ONLY the correct methods to protect against malware.",
+            "si": "අනිෂ්ට මාදුකාංගවලින් ආරක්ෂා වන නිවැරදි ක්‍රම පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Install antivirus software and update regularly",
+                "si": "ප්‍රතිවෛරස මාදුකාංග ස්ථාපනය කර නිතර යාවත්කාලීන කිරීම"
+              },
+              "icon": "🛡️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Click all pop-up windows that appear",
+                "si": "දර්ශනය මත එකවර පෙනී යන කවුළු මත ක්ලික් කිරීම"
+              },
+              "icon": "🖱️",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Scan external storage devices before opening",
+                "si": "ආවයන උපාංග විවෘත කිරීමට පෙර පරීක්ෂා කිරීම"
+              },
+              "icon": "🔍",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Open suspicious emails and attachments",
+                "si": "සැක සහිත විද්‍යුත් තැපැල් හා ඇමුණුම් විවෘත කිරීම"
+              },
+              "icon": "📧",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Use original licensed software only",
+                "si": "මුල් පිටපත් මාදුකාංග පමණක් භාවිත කිරීම"
+              },
+              "icon": "✅",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Use pirated software for free",
+                "si": "ව්‍යාජ මාදුකාංග නොමිලේ ලබා ගැනීම"
+              },
+              "icon": "🏴‍☠️",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "id": "3.4",
+          "type": "match",
+          "name": {
+            "en": "Match Security Methods",
+            "si": "ආරක්ෂක ක්‍රම යුගල කරන්න"
+          },
+          "instruction": {
+            "en": "Match each security method with its correct protection purpose.",
+            "si": "එක් එක් ආරක්ෂක ක්‍රමය හා එහි කාර්යය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🔋 UPS",
+                "si": "🔋 UPS (නිර්බාධක ජව සැපයුම)"
+              },
+              "r": {
+                "en": "Provides power during sudden power failure",
+                "si": "හදිසි විදුලි විසන්ධිවීමේදී විදුලිය සපයයි"
+              },
+              "li": "🔋",
+              "ri": "⚡"
+            },
+            {
+              "l": "🔌 Surge Protector",
+              "r": {
+                "en": "Protects from high voltage and lightning",
+                "si": "අධි වෝල්ටීයතාව හා අකුණුවලින් ආරක්ෂා කරයි"
+              },
+              "li": "🔌",
+              "ri": "⚡"
+            },
+            {
+              "l": {
+                "en": "❄️ Air Conditioner",
+                "si": "❄️ වායුසමීකරණ යන්ත්‍රය"
+              },
+              "r": {
+                "en": "Prevents overheating inside the computer",
+                "si": "පරිගණකය අධික ලෙස රත් වීම වළක්වයි"
+              },
+              "li": "❄️",
+              "ri": "🌡️"
+            },
+            {
+              "l": {
+                "en": "🔐 Password",
+                "si": "🔐 මුරපදය"
+              },
+              "r": {
+                "en": "Protects access to computer systems",
+                "si": "පරිගණක පද්ධතියට ප්‍රවේශය ආරක්ෂා කරයි"
+              },
+              "li": "🔐",
+              "ri": "🗝️"
+            },
+            {
+              "l": {
+                "en": "👆 Biometric",
+                "si": "👆 ජෛවමිතික"
+              },
+              "r": {
+                "en": "Uses fingerprints or voice to authenticate",
+                "si": "ඇඟිලි සලකුණු හෝ හඬ මගින් හඳුනා ගනී"
+              },
+              "li": "👆",
+              "ri": "🫆"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": {
+        "en": "Word Processing",
+        "si": "වදන් සැකසීම"
+      },
+      "icon": "📝",
+      "cls": "l4",
+      "activities": [
+        {
+          "id": "4.1",
+          "type": "match",
+          "name": {
+            "en": "Match Keyboard Key Groups",
+            "si": "යතුරු පුවරු යතුරු කාණ්ඩ හඳුනා ගනිමු"
+          },
+          "instruction": {
+            "en": "Match each key group with its correct function.",
+            "si": "එක් එක් යතුරු කාණ්ඩය හා එහි කාර්යය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🎛️ Control Keys",
+                "si": "🎛️ මෙහෙයුම් යතුරු"
+              },
+              "r": {
+                "en": "Used with other keys (Ctrl, Alt, Esc)",
+                "si": "අනෙක් යතුරු සමග එක්ව ක්‍රියා කරයි (Ctrl, Alt, Esc)"
+              },
+              "li": "🎛️",
+              "ri": "⌨️"
+            },
+            {
+              "l": {
+                "en": "🔤 Character Keys",
+                "si": "🔤 අනුලක්ෂණ යතුරු"
+              },
+              "r": {
+                "en": "Type letters, numbers and symbols",
+                "si": "අකුරු, ඉලක්කම්, සංකේත ලිවීමට"
+              },
+              "li": "🔤",
+              "ri": "🔡"
+            },
+            {
+              "l": {
+                "en": "⚙️ Function Keys",
+                "si": "⚙️ කාර්ය යතුරු"
+              },
+              "r": {
+                "en": "Perform specific tasks (F1-F12)",
+                "si": "විශේෂ කාර්ය ක්‍රියාත්මක කිරීමට (F1-F12)"
+              },
+              "li": "⚙️",
+              "ri": "🎚️"
+            },
+            {
+              "l": {
+                "en": "🧭 Navigation Keys",
+                "si": "🧭 සංචලන යතුරු"
+              },
+              "r": {
+                "en": "Move cursor around the document",
+                "si": "ලේඛනය තුළ කර්සරය ගමන් කරවයි"
+              },
+              "li": "🧭",
+              "ri": "↔️"
+            },
+            {
+              "l": {
+                "en": "🔢 Numeric Keypad",
+                "si": "🔢 සංඛ්‍යා යතුරු තලය"
+              },
+              "r": {
+                "en": "Enter numbers on the right side",
+                "si": "දකුණු පසින් ඉලක්කම් ඇතුළත් කිරීමට"
+              },
+              "li": "🔢",
+              "ri": "#️⃣"
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "type": "match",
+          "name": {
+            "en": "Match Keyboard Keys with Functions",
+            "si": "යතුරු හා කාර්ය යුගල කරන්න"
+          },
+          "instruction": {
+            "en": "Match each key with its correct function.",
+            "si": "එක් එක් යතුර හා එහි කාර්යය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": "⎵ Space Bar",
+              "r": {
+                "en": "Creates a space between two words",
+                "si": "වචන දෙකක් අතර ඉඩ තබයි"
+              },
+              "li": "⎵",
+              "ri": "↔️"
+            },
+            {
+              "l": {
+                "en": "⇥ Tab Key",
+                "si": "⇥ Tab යතුර"
+              },
+              "r": {
+                "en": "Creates a large space between words",
+                "si": "වචන අතර විශාල ඉඩක් තබයි"
+              },
+              "li": "⇥",
+              "ri": "➡️"
+            },
+            {
+              "l": {
+                "en": "↵ Enter Key",
+                "si": "↵ Enter යතුර"
+              },
+              "r": {
+                "en": "Moves cursor down to the next line",
+                "si": "කර්සරය ඊළඟ පේළියට ගෙන යයි"
+              },
+              "li": "↵",
+              "ri": "⬇️"
+            },
+            {
+              "l": "← Backspace",
+              "r": {
+                "en": "Deletes character to the left of cursor",
+                "si": "කර්සරයට වමින් ඇති අකුර මකයි"
+              },
+              "li": "←",
+              "ri": "🗑️"
+            },
+            {
+              "l": {
+                "en": "⇧ Shift Key",
+                "si": "⇧ Shift යතුර"
+              },
+              "r": {
+                "en": "Types capital letters and upper symbols",
+                "si": "විශාල අකුරු හා ඉහළ සංකේත ලියයි"
+              },
+              "li": "⇧",
+              "ri": "🅰️"
+            },
+            {
+              "l": "🔒 Caps Lock",
+              "r": {
+                "en": "Types all letters in capital continuously",
+                "si": "සියලු අකුරු විශාල ලෙස ලියයි"
+              },
+              "li": "🔒",
+              "ri": "🔠"
+            }
+          ]
+        },
+        {
+          "id": "4.3",
+          "type": "order",
+          "name": {
+            "en": "Order Word Processing History",
+            "si": "වදන් සැකසීමේ ඉතිහාසය අනුපිළිවෙලට සකසන්න"
+          },
+          "instruction": {
+            "en": "Arrange the development of word processing from oldest to newest.",
+            "si": "වදන් සැකසීමේ පරිණාමය පැරණි සිට නවීන දක්වා අනුපිළිවෙලට සකසන්න."
+          },
+          "correctOrder": [
+            {
+              "text": {
+                "en": "Writing on leaves, stone chips and skin",
+                "si": "ගාක පත්‍ර, ගල් පතුරු, සම් මත ලිවීම"
+              },
+              "icon": "🍃"
+            },
+            {
+              "text": {
+                "en": "Invention of paper and manual writing",
+                "si": "කඩදාසිය සොයා ගැනීම හා අතින් පිටපත් කිරීම"
+              },
+              "icon": "📜"
+            },
+            {
+              "text": {
+                "en": "Use of wood blocks and clay blocks for printing",
+                "si": "ලී අච්චු, මැටි අච්චු භාවිතයෙන් මුද්‍රණය"
+              },
+              "icon": "🪵"
+            },
+            {
+              "text": {
+                "en": "Invention of the printing machine",
+                "si": "මුද්‍රණ යන්ත්‍රය සොයා ගැනීම"
+              },
+              "icon": "🖨️"
+            },
+            {
+              "text": {
+                "en": "Invention of the manual typewriter",
+                "si": "අතින් හසුරුවන යතුරුලියනය"
+              },
+              "icon": "⌨️"
+            },
+            {
+              "text": {
+                "en": "Invention of the electric typewriter",
+                "si": "විදුලි හා ඉලෙක්ට්‍රොනික යතුරුලියනය"
+              },
+              "icon": "⚡"
+            },
+            {
+              "text": {
+                "en": "Use of computer for word processing",
+                "si": "වදන් සැකසීම සඳහා පරිගණකය භාවිතය"
+              },
+              "icon": "💻"
+            }
+          ]
+        },
+        {
+          "id": "4.4",
+          "type": "pick",
+          "name": {
+            "en": "Pick Benefits of Touch Typing",
+            "si": "ස්පර්ශ යතුරුකරණයේ වාසි තෝරන්න"
+          },
+          "instruction": {
+            "en": "Select ONLY the benefits of learning touch typing.",
+            "si": "ස්පර්ශ යතුරුකරණය ඉගෙන ගැනීමේ වාසි පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Can type very quickly",
+                "si": "වේගයෙන් යතුරුකරණය කළ හැක"
+              },
+              "icon": "⚡",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Minimizes errors in documents",
+                "si": "ලේඛනයේ වැරදි අවම වේ"
+              },
+              "icon": "🎯",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Causes prolonged bone diseases",
+                "si": "දිගු කාලීන අස්ථි රෝග ඇති වේ"
+              },
+              "icon": "🦴",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Saves time",
+                "si": "කාලය ඉතිරි කර ගත හැක"
+              },
+              "icon": "⏰",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Reduces mental and physical fatigue",
+                "si": "මානසික හා කායික පීඩා අවම වේ"
+              },
+              "icon": "😌",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Makes you forget how to write",
+                "si": "ලිවීමට අමතක වේ"
+              },
+              "icon": "🚫",
+              "correct": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": {
+        "en": "Programme Development",
+        "si": "ක්‍රමලේඛ සංවර්ධනය"
+      },
+      "icon": "🧩",
+      "cls": "l5",
+      "activities": [
+        {
+          "id": "5.1",
+          "type": "order",
+          "name": {
+            "en": "Order the Decomposition Process",
+            "si": "ගැටලු විසඳීමේ පියවර අනුපිළිවෙලට සකසන්න"
+          },
+          "instruction": {
+            "en": "Arrange the steps of solving a complex problem.",
+            "si": "සංකීර්ණ ගැටලුවක් විසඳීමේ පියවර අනුපිළිවෙලට සකසන්න."
+          },
+          "correctOrder": [
+            {
+              "text": {
+                "en": "Identify the complex problem",
+                "si": "සංකීර්ණ ගැටලුව හඳුනා ගැනීම"
+              },
+              "icon": "❓"
+            },
+            {
+              "text": {
+                "en": "Break it into smaller sub-problems",
+                "si": "කුඩා උප ගැටලුවලට වියෝජනය කිරීම"
+              },
+              "icon": "✂️"
+            },
+            {
+              "text": {
+                "en": "Solve each sub-problem separately",
+                "si": "එක් එක් උප ගැටලුව වෙන වෙනම විසඳීම"
+              },
+              "icon": "🔧"
+            },
+            {
+              "text": {
+                "en": "Combine all solutions logically",
+                "si": "සියලු විසඳුම් තාර්කිකව ඒකාබද්ධ කිරීම"
+              },
+              "icon": "🔗"
+            },
+            {
+              "text": {
+                "en": "Reach the final solution",
+                "si": "අවසාන විසඳුමට ළඟා වීම"
+              },
+              "icon": "✅"
+            }
+          ]
+        },
+        {
+          "id": "5.2",
+          "type": "symmatch",
+          "name": {
+            "en": "Match Flow Chart Symbols",
+            "si": "ගැලීම් සටහන් සංකේත යුගල කරමු"
+          },
+          "instruction": {
+            "en": "Click a SYMBOL, then its NAME, then its MEANING.",
+            "si": "සංකේතය ක්ලික් කරන්න → එහි නම ක්ලික් කරන්න → එහි අර්ථය ක්ලික් කරන්න."
+          },
+          "triples": [
+            {
+              "symbol": "oval",
+              "name": {
+                "en": "Oval",
+                "si": "ඕවලාකාර හැඩය"
+              },
+              "meaning": {
+                "en": "Start / End",
+                "si": "ආරම්භය / අවසානය"
+              }
+            },
+            {
+              "symbol": "parallelogram",
+              "name": {
+                "en": "Parallelogram",
+                "si": "සමාන්තරාස්‍ර හැඩය"
+              },
+              "meaning": {
+                "en": "Input / Output",
+                "si": "ආදානය / ප්‍රතිදානය"
+              }
+            },
+            {
+              "symbol": "rectangle",
+              "name": {
+                "en": "Rectangle",
+                "si": "සෘජුකෝණාස්‍ර හැඩය"
+              },
+              "meaning": {
+                "en": "Process / Action",
+                "si": "සැකසීම / ක්‍රියාවලිය"
+              }
+            },
+            {
+              "symbol": "diamond",
+              "name": {
+                "en": "Diamond",
+                "si": "දියමන්ති හැඩය"
+              },
+              "meaning": {
+                "en": "Decision",
+                "si": "තීරණ ගැනීම"
+              }
+            },
+            {
+              "symbol": "arrow",
+              "name": {
+                "en": "Arrow",
+                "si": "ඊතලය"
+              },
+              "meaning": {
+                "en": "Direction of flow",
+                "si": "දත්ත ගැලීමේ දිශාව"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5.3",
+          "type": "match",
+          "name": {
+            "en": "Match Control Structures",
+            "si": "පාලන ව්‍යුහ යුගල කරන්න"
+          },
+          "instruction": {
+            "en": "Match each control structure with its meaning.",
+            "si": "එක් එක් පාලන ව්‍යුහය හා එහි අර්ථය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "➡️ Sequence",
+                "si": "➡️ අනුක්‍රමය (Sequence)"
+              },
+              "r": {
+                "en": "Execute instructions one after another from top to bottom",
+                "si": "උපදෙස් ඉහළ සිට පහළට එකින් එක ක්‍රියාත්මක වේ"
+              },
+              "li": "➡️",
+              "ri": "📋"
+            },
+            {
+              "l": {
+                "en": "❓ Selection",
+                "si": "❓ තේරීම (Selection)"
+              },
+              "r": {
+                "en": "Make a decision based on a condition",
+                "si": "කොන්දේසියක් මත පදනම්ව තීරණයක් ගනී"
+              },
+              "li": "❓",
+              "ri": "🔀"
+            },
+            {
+              "l": {
+                "en": "🔁 Repetition",
+                "si": "🔁 පුනර්කරණය (Repetition)"
+              },
+              "r": {
+                "en": "Repeat instructions until a condition is satisfied",
+                "si": "කොන්දේසියක් සපුරන තෙක් නැවත නැවත ක්‍රියාත්මක වේ"
+              },
+              "li": "🔁",
+              "ri": "♻️"
+            }
+          ]
+        },
+        {
+          "id": "5.4",
+          "type": "pick",
+          "name": {
+            "en": "Pick Correct Scratch Facts",
+            "si": "Scratch පිළිබඳ නිවැරදි කරුණු තෝරන්න"
+          },
+          "instruction": {
+            "en": "Select ONLY the correct facts about Scratch programming.",
+            "si": "Scratch ක්‍රමලේඛනය පිළිබඳ නිවැරදි කරුණු පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Scratch is a visual programming software",
+                "si": "Scratch යනු දෘශ්‍ය ක්‍රමලේඛන මාදුකාංගයකි"
+              },
+              "icon": "🎨",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Scratch is a paid software",
+                "si": "Scratch ගෙවීම් සහිත මාදුකාංගයකි"
+              },
+              "icon": "💰",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Scratch uses command blocks to build programs",
+                "si": "Scratch උපදෙස් කාණ්ඩ භාවිතයෙන් ක්‍රමලේඛ සාදයි"
+              },
+              "icon": "🧱",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Sprites are the characters in Scratch",
+                "si": "Sprite යනු Scratch හි චරිත වේ"
+              },
+              "icon": "🐱",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Errors in a program are called bugs",
+                "si": "ක්‍රමලේඛයේ වැරදි bug ලෙස හැඳින්වේ"
+              },
+              "icon": "🐛",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Debugging means deleting the whole program",
+                "si": "Debug කිරීම යනු මුළු ක්‍රමලේඛය මැකීමයි"
+              },
+              "icon": "🗑️",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "id": "5.5",
+          "competency": "5.3",
+          "type": "match",
+          "name": {
+            "en": "Match the Variable to What It Holds",
+            "si": "විචල්‍යය හා එහි අගය යුගල කරමු"
+          },
+          "instruction": {
+            "en": "A variable is a named box that holds a value. Match each variable with what it holds.",
+            "si": "විචල්‍යයක් යනු අගයක් තබා ගන්නා නමක් සහිත කොටුවකි. එක් එක් විචල්‍යය එහි අගය සමඟ යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "score",
+                "si": "score"
+              },
+              "r": {
+                "en": "The number of points the player has won",
+                "si": "ක්‍රීඩකයා දිනාගත් ලකුණු ගණන"
+              },
+              "li": "🔢",
+              "ri": "🏆"
+            },
+            {
+              "l": {
+                "en": "name",
+                "si": "name"
+              },
+              "r": {
+                "en": "The player's name, kept as text",
+                "si": "පාඨ ලෙස තබා ගන්නා ක්‍රීඩකයාගේ නම"
+              },
+              "li": "🔤",
+              "ri": "🧒"
+            },
+            {
+              "l": {
+                "en": "lives",
+                "si": "lives"
+              },
+              "r": {
+                "en": "How many turns are still left",
+                "si": "තවම ඉතිරි ඇති වාර ගණන"
+              },
+              "li": "❤️",
+              "ri": "🔁"
+            },
+            {
+              "l": {
+                "en": "speed",
+                "si": "speed"
+              },
+              "r": {
+                "en": "How fast the sprite moves",
+                "si": "ස්ප්‍රයිටය චලනය වන වේගය"
+              },
+              "li": "⚡",
+              "ri": "🏃"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "5.6",
+          "competency": "5.4",
+          "type": "trace",
+          "name": {
+            "en": "Find the Bug",
+            "si": "දෝෂය සොයමු"
+          },
+          "instruction": {
+            "en": "A mistake in a program is called a bug. Read each program and choose what really happens.",
+            "si": "වැඩසටහනක ඇති වරද දෝෂයක් (bug) ලෙස හැඳින්වේ. එක් එක් වැඩසටහන කියවා සැබවින්ම සිදුවන දේ තෝරන්න."
+          },
+          "questions": [
+            {
+              "code": "set score to 0\nchange score by 1\nchange score by 1\nsay score",
+              "opts": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ],
+              "ans": 2,
+              "note": {
+                "en": "No bug here. score goes up twice from 0.",
+                "si": "මෙහි දෝෂයක් නැත. score අගය 0 සිට දෙවරක් වැඩි වේ."
+              }
+            },
+            {
+              "code": "set count to 1\nrepeat 3\n   say count\n(count is never changed)",
+              "opts": [
+                "1 1 1",
+                "1 2 3",
+                "3 3 3",
+                "Nothing is said"
+              ],
+              "ans": 0,
+              "note": {
+                "en": "The bug: count is never changed inside the repeat, so it stays 1.",
+                "si": "දෝෂය: repeat තුළ count කිසිදා වෙනස් නොවන නිසා එය 1 ලෙසම පවතී."
+              }
+            },
+            {
+              "code": "set total to 10\nset total to 5\nsay total",
+              "opts": [
+                "15",
+                "10",
+                "5",
+                "Error"
+              ],
+              "ans": 2,
+              "note": {
+                "en": "The bug: the second set wipes out the first value.",
+                "si": "දෝෂය: දෙවන set මඟින් පළමු අගය මකා දමයි."
+              }
+            },
+            {
+              "code": "set age to 12\nif age > 18 then\n   say \"Adult\"\nelse\n   say \"Student\"",
+              "opts": [
+                "Adult",
+                "Student",
+                "Both",
+                "Nothing"
+              ],
+              "ans": 1,
+              "note": {
+                "en": "No bug. 12 is not greater than 18, so the else runs.",
+                "si": "දෝෂයක් නැත. 12 යනු 18 ට වඩා වැඩි නොවන නිසා else ක්‍රියාත්මක වේ."
+              }
+            },
+            {
+              "code": "set price to 100\nset discount to 10\nsay price + discount",
+              "opts": [
+                "90",
+                "110",
+                "100",
+                "10"
+              ],
+              "ans": 1,
+              "note": {
+                "en": "The bug: a discount should be taken away, not added.",
+                "si": "දෝෂය: වට්ටමක් එකතු කළ යුතු නොව අඩු කළ යුතුය."
+              }
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": {
+        "en": "Presentation Software",
+        "si": "සමර්පණ මාදුකාංග"
+      },
+      "icon": "📊",
+      "cls": "l6",
+      "activities": [
+        {
+          "id": "6.1",
+          "type": "match",
+          "name": {
+            "en": "Match Presentation Software",
+            "si": "සමර්පණ මාදුකාංග හඳුනා ගනිමු"
+          },
+          "instruction": {
+            "en": "Match each presentation software with its correct company/developer.",
+            "si": "එක් එක් සමර්පණ මාදුකාංගය හා එහි නිෂ්පාදකයා යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": "🅿️ Microsoft PowerPoint",
+              "r": "Microsoft",
+              "li": "🅿️",
+              "ri": "🪟"
+            },
+            {
+              "l": "🍎 Apple Keynote",
+              "r": "Apple",
+              "li": "🍎",
+              "ri": "🍏"
+            },
+            {
+              "l": "📖 OpenOffice Impress",
+              "r": {
+                "en": "Open source community",
+                "si": "විවෘත මූලාශ්‍ර ප්‍රජාව"
+              },
+              "li": "📖",
+              "ri": "🌐"
+            },
+            {
+              "l": "🎨 Corel Presentations",
+              "r": {
+                "en": "Corel Corporation",
+                "si": "Corel සමාගම"
+              },
+              "li": "🎨",
+              "ri": "🖌️"
+            }
+          ]
+        },
+        {
+          "id": "6.2",
+          "type": "pick",
+          "name": {
+            "en": "Pick Advantages of Electronic Presentations",
+            "si": "විද්‍යුත් සමර්පණයේ වාසි තෝරන්න"
+          },
+          "instruction": {
+            "en": "Select ONLY the advantages of using electronic presentations.",
+            "si": "විද්‍යුත් සමර්පණයක වාසි පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Videos and songs can be included",
+                "si": "වීඩියෝ හා ගීත ඇතුළත් කළ හැක"
+              },
+              "icon": "🎬",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Content can be changed anytime",
+                "si": "අන්තර්ගතය ඕනෑම විටෙක වෙනස් කළ හැක"
+              },
+              "icon": "✏️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Cannot include animations",
+                "si": "චලන රූප ඇතුළත් කළ නොහැක"
+              },
+              "icon": "🚫",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Makes the audience lose concentration",
+                "si": "ප්‍රේක්ෂකයාට ඉදිරිපත් කිරීම වෙහෙසකර වේ"
+              },
+              "icon": "😴",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Links to other files can be added",
+                "si": "වෙනත් ගොනු සමඟ සබැඳි එකතු කළ හැක"
+              },
+              "icon": "🔗",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Less effort is needed to explain facts",
+                "si": "කරුණු පැහැදිලි කිරීමට අඩු ආයාසයක්"
+              },
+              "icon": "💡",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "id": "6.3",
+          "type": "order",
+          "name": {
+            "en": "Order Slide Design Steps",
+            "si": "සමර්පණය නිර්මාණය කිරීමේ පියවර"
+          },
+          "instruction": {
+            "en": "Arrange the steps of creating a presentation correctly.",
+            "si": "සමර්පණයක් නිර්මාණය කිරීමේ පියවර අනුපිළිවෙලට සකසන්න."
+          },
+          "correctOrder": [
+            {
+              "text": {
+                "en": "Open the presentation software",
+                "si": "සමර්පණ මාදුකාංගය විවෘත කිරීම"
+              },
+              "icon": "🚀"
+            },
+            {
+              "text": {
+                "en": "Select a blank or template slide",
+                "si": "හිස් කදාවක් හෝ ආකෘතියක් තෝරා ගැනීම"
+              },
+              "icon": "📄"
+            },
+            {
+              "text": {
+                "en": "Add text, images and shapes",
+                "si": "වචන, පින්තූර හා හැඩ එකතු කිරීම"
+              },
+              "icon": "🎨"
+            },
+            {
+              "text": {
+                "en": "Insert multimedia and tables",
+                "si": "බහුමාධ්‍ය හා වගු ඇතුළත් කිරීම"
+              },
+              "icon": "🎬"
+            },
+            {
+              "text": {
+                "en": "Apply slide design and transitions",
+                "si": "කදා පිරිසැලසුම් හා සංක්‍රමණ යෙදීම"
+              },
+              "icon": "✨"
+            },
+            {
+              "text": {
+                "en": "Save the presentation",
+                "si": "සමර්පණය සුරැකීම"
+              },
+              "icon": "💾"
+            },
+            {
+              "text": {
+                "en": "Run the presentation",
+                "si": "සමර්පණය ධාවනය කිරීම"
+              },
+              "icon": "▶️"
+            }
+          ]
+        },
+        {
+          "id": "6.4",
+          "type": "match",
+          "name": {
+            "en": "Match Slide Types",
+            "si": "කදා වර්ග හඳුනා ගනිමු"
+          },
+          "instruction": {
+            "en": "Match each slide type with its correct description.",
+            "si": "එක් එක් කදා වර්ගය හා එහි විස්තරය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "📌 Title Slide",
+                "si": "📌 මාතෘකා කදාව"
+              },
+              "r": {
+                "en": "Contains only the main title",
+                "si": "ප්‍රධාන මාතෘකාව පමණක් අඩංගු වේ"
+              },
+              "li": "📌",
+              "ri": "📄"
+            },
+            {
+              "l": {
+                "en": "📑 Title & Content",
+                "si": "📑 මාතෘකාව හා අන්තර්ගතය"
+              },
+              "r": {
+                "en": "Title and main content area",
+                "si": "මාතෘකාව හා අන්තර්ගත ප්‍රදේශය"
+              },
+              "li": "📑",
+              "ri": "📋"
+            },
+            {
+              "l": {
+                "en": "📊 Comparison Slide",
+                "si": "📊 සංසන්දන කදාව"
+              },
+              "r": {
+                "en": "Two side-by-side content areas",
+                "si": "පැති දෙකකින් අන්තර්ගත ප්‍රදේශ දෙකක්"
+              },
+              "li": "📊",
+              "ri": "⚖️"
+            },
+            {
+              "l": {
+                "en": "🖼️ Picture Slide",
+                "si": "🖼️ පින්තූර කදාව"
+              },
+              "r": {
+                "en": "Contains a large image",
+                "si": "විශාල පින්තූරයක් අඩංගු වේ"
+              },
+              "li": "🖼️",
+              "ri": "📷"
+            },
+            {
+              "l": {
+                "en": "⬜ Empty Slide",
+                "si": "⬜ හිස් කදාව"
+              },
+              "r": {
+                "en": "Completely blank slide",
+                "si": "සම්පූර්ණයෙන්ම හිස් කදාව"
+              },
+              "li": "⬜",
+              "ri": "📃"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": {
+        "en": "Using Internet",
+        "si": "අන්තර්ජාලය හාවිතය"
+      },
+      "icon": "🌐",
+      "cls": "l7",
+      "activities": [
+        {
+          "id": "7.1",
+          "type": "match",
+          "name": {
+            "en": "Match Internet Terms",
+            "si": "අන්තර්ජාල පද හඳුනා ගනිමු"
+          },
+          "instruction": {
+            "en": "Match each internet term with its correct meaning.",
+            "si": "එක් එක් අන්තර්ජාල පදය හා එහි අර්ථය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🌐 Internet",
+                "si": "🌐 අන්තර්ජාලය"
+              },
+              "r": {
+                "en": "A large collection of computer networks",
+                "si": "පරිගණක ජාල විශාල ප්‍රමාණයක එකතුව"
+              },
+              "li": "🌐",
+              "ri": "🕸️"
+            },
+            {
+              "l": {
+                "en": "🔗 World Wide Web",
+                "si": "🔗 ලෝක විසිරි වියමන (www)"
+              },
+              "r": {
+                "en": "A main service provided by the internet",
+                "si": "අන්තර්ජාලයේ ප්‍රධාන සේවාව"
+              },
+              "li": "🔗",
+              "ri": "🌍"
+            },
+            {
+              "l": "📍 URL",
+              "r": {
+                "en": "Address used to identify web resources",
+                "si": "වෙබ් සම්පත් හඳුනා ගැනීමට යොදන ලිපිනය"
+              },
+              "li": "📍",
+              "ri": "🔖"
+            },
+            {
+              "l": {
+                "en": "🧭 Web Browser",
+                "si": "🧭 වෙබ් අතිරික්සුව"
+              },
+              "r": {
+                "en": "Software to view web pages",
+                "si": "වෙබ් පිටු බලා ගැනීමට මාදුකාංගය"
+              },
+              "li": "🧭",
+              "ri": "📄"
+            },
+            {
+              "l": {
+                "en": "🔍 Search Engine",
+                "si": "🔍 සෙවුම් යන්ත්‍රය"
+              },
+              "r": {
+                "en": "Software that finds information online",
+                "si": "අන්තර්ජාලයෙන් තොරතුරු සොයා දෙන මාදුකාංගය"
+              },
+              "li": "🔍",
+              "ri": "🔎"
+            }
+          ]
+        },
+        {
+          "id": "7.2",
+          "type": "bucket",
+          "name": {
+            "en": "Sort Browser vs Search Engine",
+            "si": "වෙබ් අතිරික්සු හා සෙවුම් යන්ත්‍ර වෙන් කරමු"
+          },
+          "instruction": {
+            "en": "Click each item, then click the correct category.",
+            "si": "පළමුව අයිතමය ක්ලික් කරන්න. පසුව නිවැරදි කාණ්ඩය ක්ලික් කරන්න."
+          },
+          "buckets": [
+            {
+              "name": {
+                "en": "🧭 Web Browsers",
+                "si": "🧭 වෙබ් අතිරික්සු"
+              },
+              "items": [
+                "Google Chrome",
+                "Mozilla Firefox",
+                "Internet Explorer",
+                "Microsoft Edge"
+              ]
+            },
+            {
+              "name": {
+                "en": "🔍 Search Engines",
+                "si": "🔍 සෙවුම් යන්ත්‍ර"
+              },
+              "items": [
+                "Google",
+                "Yahoo",
+                "Bing",
+                "DuckDuckGo"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "7.3",
+          "type": "match",
+          "name": {
+            "en": "Match Email Fields",
+            "si": "විද්‍යුත් තැපැල් ක්ෂේත්‍ර යුගල කරන්න"
+          },
+          "instruction": {
+            "en": "Match each email field with its correct purpose.",
+            "si": "එක් එක් විද්‍යුත් තැපැල් ක්ෂේත්‍රය හා එහි කාර්යය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": "📬 To",
+              "r": {
+                "en": "Main recipient of the email",
+                "si": "විද්‍යුත් ලිපියේ ප්‍රධාන ලබන්නා"
+              },
+              "li": "📬",
+              "ri": "👤"
+            },
+            {
+              "l": {
+                "en": "📋 Cc",
+                "si": "📋 Cc (කාබන් පිටපත)"
+              },
+              "r": {
+                "en": "People who receive a copy (visible to all)",
+                "si": "පිටපතක් ලබන පුද්ගලයන් (සියල්ලන්ට පෙනේ)"
+              },
+              "li": "📋",
+              "ri": "👥"
+            },
+            {
+              "l": {
+                "en": "🕵️ Bcc",
+                "si": "🕵️ Bcc (අඳ කාබන් පිටපත)"
+              },
+              "r": {
+                "en": "People who receive a hidden copy",
+                "si": "රහස් පිටපතක් ලබන පුද්ගලයන්"
+              },
+              "li": "🕵️",
+              "ri": "🤫"
+            },
+            {
+              "l": "📌 Subject",
+              "r": {
+                "en": "Topic of the email message",
+                "si": "විද්‍යුත් ලිපියේ මාතෘකාව"
+              },
+              "li": "📌",
+              "ri": "💬"
+            },
+            {
+              "l": "📎 Attachment",
+              "r": {
+                "en": "Files like photos or videos sent with email",
+                "si": "විද්‍යුත් ලිපිය සමඟ යවන ගොනු"
+              },
+              "li": "📎",
+              "ri": "📁"
+            }
+          ]
+        },
+        {
+          "id": "7.4",
+          "type": "pick",
+          "name": {
+            "en": "Pick Safe Internet Practices",
+            "si": "අන්තර්ජාල ආරක්ෂිත ක්‍රම තෝරන්න"
+          },
+          "instruction": {
+            "en": "Select ONLY the safe practices for using the internet.",
+            "si": "අන්තර්ජාලය භාවිතයේදී ආරක්ෂිත ක්‍රම පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Use strong passwords with letters, numbers and symbols",
+                "si": "අකුරු, ඉලක්කම් හා සංකේත සහිත ප්‍රබල මුරපද භාවිත කිරීම"
+              },
+              "icon": "🔐",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Click on suspicious email attachments",
+                "si": "සැක සහිත විද්‍යුත් තැපැල් ඇමුණුම් මත ක්ලික් කිරීම"
+              },
+              "icon": "📧",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Check for https:// and the lock icon before entering data",
+                "si": "තොරතුරු ඇතුළත් කිරීමට පෙර https:// හා අගුල සලකුණ පරීක්ෂා කිරීම"
+              },
+              "icon": "🔒",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Share personal information with strangers online",
+                "si": "නොදන්නා අය සමඟ පෞද්ගලික තොරතුරු බෙදා ගැනීම"
+              },
+              "icon": "🗣️",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Update antivirus software regularly",
+                "si": "ප්‍රතිවෛරස මාදුකාංග නිතර යාවත්කාලීන කිරීම"
+              },
+              "icon": "🛡️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Log out after using public computers",
+                "si": "පොදු පරිගණක භාවිතයෙන් පසු log out වීම"
+              },
+              "icon": "🚪",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "id": "7.5",
+          "type": "match",
+          "name": {
+            "en": "Match HTML Codes",
+            "si": "HTML කේත හඳුනා ගනිමු"
+          },
+          "instruction": {
+            "en": "Match each HTML code with its correct purpose.",
+            "si": "එක් එක් HTML කේතය හා එහි අරමුණ යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": "&lt;html&gt;",
+              "r": {
+                "en": "Beginning and ending of a web page",
+                "si": "වෙබ් පිටුවක ආරම්භය හා අවසානය"
+              },
+              "li": "🏠",
+              "ri": "📄"
+            },
+            {
+              "l": "&lt;title&gt;",
+              "r": {
+                "en": "Topic of a web page",
+                "si": "වෙබ් පිටුවේ මාතෘකාව"
+              },
+              "li": "📌",
+              "ri": "🏷️"
+            },
+            {
+              "l": "&lt;body&gt;",
+              "r": {
+                "en": "Content that appears on the page",
+                "si": "වෙබ් පිටුවේ දර්ශනය වන කොටස"
+              },
+              "li": "📃",
+              "ri": "👁️"
+            },
+            {
+              "l": "&lt;br&gt;",
+              "r": {
+                "en": "Break line and go to the next line",
+                "si": "ඊළඟ පේළියට ගමන් කිරීම"
+              },
+              "li": "↵",
+              "ri": "⬇️"
+            },
+            {
+              "l": "&lt;img src&gt;",
+              "r": {
+                "en": "Insert an image to the web page",
+                "si": "වෙබ් පිටුවට පින්තූර ඇතුළත් කිරීම"
+              },
+              "li": "🖼️",
+              "ri": "📷"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": {
+        "en": "Safe, Legal and Kind Online",
+        "si": "ආරක්ෂිත, නීත්‍යනුකූල හා කාරුණික අන්තර්ජාල භාවිතය"
+      },
+      "icon": "🛡️",
+      "cls": "l8",
+      "activities": [
+        {
+          "id": "8.1",
+          "competency": "7.4",
+          "type": "match",
+          "name": {
+            "en": "Match the Online Danger",
+            "si": "අන්තර්ජාල අනතුරු යුගල කරමු"
+          },
+          "instruction": {
+            "en": "Match each danger with what it means.",
+            "si": "එක් එක් අනතුර එහි අර්ථය සමඟ යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🔓 Hacking",
+                "si": "🔓 අනවසරයෙන් ඇතුළු වීම"
+              },
+              "r": {
+                "en": "Entering someone's computer or account without permission",
+                "si": "අනුමැතියකින් තොරව වෙනත් අයගේ පරිගණකයට හෝ ගිණුමට ඇතුළු වීම"
+              },
+              "li": "🔓",
+              "ri": "🚪"
+            },
+            {
+              "l": {
+                "en": "🦠 Virus attack",
+                "si": "🦠 වෛරස් ප්‍රහාරය"
+              },
+              "r": {
+                "en": "Harmful software that damages your files",
+                "si": "ඔබගේ ගොනුවලට හානි කරන අනිෂ්ට මෘදුකාංග"
+              },
+              "li": "🦠",
+              "ri": "💥"
+            },
+            {
+              "l": {
+                "en": "📀 Software piracy",
+                "si": "📀 මෘදුකාංග කොල්ල කෑම"
+              },
+              "r": {
+                "en": "Copying and using software without paying for it",
+                "si": "මුදල් නොගෙවා මෘදුකාංග පිටපත් කර භාවිත කිරීම"
+              },
+              "li": "📀",
+              "ri": "💸"
+            },
+            {
+              "l": {
+                "en": "😢 Cyber bullying",
+                "si": "😢 සයිබර් හිරිහැර කිරීම"
+              },
+              "r": {
+                "en": "Hurting or shaming someone through the Internet",
+                "si": "අන්තර්ජාලය හරහා අනෙකෙකුට හිංසා කිරීම හෝ අපහාස කිරීම"
+              },
+              "li": "😢",
+              "ri": "💔"
+            },
+            {
+              "l": {
+                "en": "🕵️ Stealing data",
+                "si": "🕵️ දත්ත සොරකම් කිරීම"
+              },
+              "r": {
+                "en": "Taking someone's private information without asking",
+                "si": "අසන්නේ නැතිව අනෙකෙකුගේ පෞද්ගලික තොරතුරු ගැනීම"
+              },
+              "li": "🕵️",
+              "ri": "🔐"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "8.2",
+          "competency": "7.1",
+          "type": "bucket",
+          "name": {
+            "en": "Trusted or Not Trusted",
+            "si": "විශ්වසනීයද නැද්ද"
+          },
+          "instruction": {
+            "en": "Click a sign first, then click the correct bucket.",
+            "si": "මුලින් ලකුණක් ක්ලික් කර, පසුව නිවැරදි බඳුන ක්ලික් කරන්න."
+          },
+          "buckets": [
+            {
+              "name": {
+                "en": "✅ A site you can trust",
+                "si": "✅ විශ්වසනීය වෙබ් අඩවියක්"
+              },
+              "items": [
+                {
+                  "en": "The address starts with https",
+                  "si": "ලිපිනය https වලින් පටන් ගනී"
+                },
+                {
+                  "en": "It is a .gov.lk or a school site",
+                  "si": "එය .gov.lk හෝ පාසල් වෙබ් අඩවියකි"
+                },
+                {
+                  "en": "The writer and the date are shown",
+                  "si": "ලේඛකයා හා දිනය දක්වා ඇත"
+                },
+                {
+                  "en": "Other trusted sites link to it",
+                  "si": "වෙනත් විශ්වසනීය අඩවි එයට සබැඳී ඇත"
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "⚠️ A site to be careful with",
+                "si": "⚠️ පරිස්සම් විය යුතු වෙබ් අඩවියක්"
+              },
+              "items": [
+                {
+                  "en": "It asks for your password by email",
+                  "si": "ඊ-තැපෑලෙන් ඔබගේ මුරපදය ඉල්ලයි"
+                },
+                {
+                  "en": "It promises money for doing nothing",
+                  "si": "කිසිවක් නොකර මුදල් ලැබෙන බව පොරොන්දු වෙයි"
+                },
+                {
+                  "en": "There are spelling mistakes everywhere",
+                  "si": "සෑම තැනම අක්ෂර වින්‍යාස දෝෂ ඇත"
+                },
+                {
+                  "en": "No writer and no date are given",
+                  "si": "ලේඛකයෙක් හෝ දිනයක් දක්වා නැත"
+                }
+              ]
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "8.3",
+          "competency": "7.4",
+          "type": "pick",
+          "name": {
+            "en": "Be Safe and Be Kind",
+            "si": "ආරක්ෂිත වන්න, කාරුණික වන්න"
+          },
+          "instruction": {
+            "en": "Select ONLY the safe and kind things to do online.",
+            "si": "අන්තර්ජාලයේ දී කළ යුතු ආරක්ෂිත හා කාරුණික දේ පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Tell a trusted adult if someone is unkind to you online",
+                "si": "අන්තර්ජාලයේ දී කවුරුන් හෝ අකාරුණික වන්නේ නම් විශ්වාසවන්ත වැඩිහිටියෙකුට කියන්න"
+              },
+              "icon": "🧑‍🏫",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Keep your password secret, even from friends",
+                "si": "මිතුරන්ගෙන් පවා ඔබගේ මුරපදය රහසක් ලෙස තබා ගන්න"
+              },
+              "icon": "🔐",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Use only software your school has paid for",
+                "si": "ඔබගේ පාසල මුදල් ගෙවා ඇති මෘදුකාංග පමණක් භාවිත කරන්න"
+              },
+              "icon": "🧾",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Think before you post something about someone else",
+                "si": "අන් අයෙක් ගැන යමක් පළ කිරීමට පෙර සිතන්න"
+              },
+              "icon": "💭",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Block and report a stranger who keeps messaging you",
+                "si": "නිතර පණිවිඩ එවන නාඳුනන අයෙකු අවහිර කර වාර්තා කරන්න"
+              },
+              "icon": "🚫",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Share your home address with someone you met online",
+                "si": "අන්තර්ජාලයෙන් හමු වූ අයෙකුට ඔබගේ නිවසේ ලිපිනය දෙන්න"
+              },
+              "icon": "🏠",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Copy a friend's paid software onto your computer",
+                "si": "මිතුරෙකුගේ මිලදී ගත් මෘදුකාංගය ඔබගේ පරිගණකයට පිටපත් කරන්න"
+              },
+              "icon": "📀",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Forward a message that makes fun of a classmate",
+                "si": "පන්තියේ මිතුරෙකුට සමච්චල් කරන පණිවිඩයක් ඉදිරියට යවන්න"
+              },
+              "icon": "😢",
+              "correct": false
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "8.4",
+          "competency": "7.2",
+          "type": "match",
+          "name": {
+            "en": "Meeting Online",
+            "si": "මාර්ගගත ව හමුවීම"
+          },
+          "instruction": {
+            "en": "Match each word with what it means in an online meeting.",
+            "si": "මාර්ගගත සම්මන්ත්‍රණයක දී එක් එක් වචනයේ අර්ථය යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "💻 Online conferencing",
+                "si": "💻 මාර්ගගත සම්මන්ත්‍රණය"
+              },
+              "r": {
+                "en": "Meeting and talking with a group through the Internet",
+                "si": "අන්තර්ජාලය හරහා කණ්ඩායමක් සමඟ හමුවී කතා කිරීම"
+              },
+              "li": "💻",
+              "ri": "👥"
+            },
+            {
+              "l": {
+                "en": "💬 Chat",
+                "si": "💬 මාර්ගගත සංවාදය"
+              },
+              "r": {
+                "en": "Typing messages back and forth right now",
+                "si": "එම මොහොතේම පණිවිඩ හුවමාරු කර ගැනීම"
+              },
+              "li": "💬",
+              "ri": "⌨️"
+            },
+            {
+              "l": {
+                "en": "📧 E-mail",
+                "si": "📧 ඊ-තැපෑල"
+              },
+              "r": {
+                "en": "Sending a written message that waits in an inbox",
+                "si": "එන ලිපි ගොනුවේ රැඳී සිටින ලිඛිත පණිවිඩයක් යැවීම"
+              },
+              "li": "📧",
+              "ri": "📥"
+            },
+            {
+              "l": {
+                "en": "🔇 Mute",
+                "si": "🔇 නිහඬ කිරීම"
+              },
+              "r": {
+                "en": "Turning your microphone off so others do not hear you",
+                "si": "අන් අයට නොඇසෙන ලෙස ඔබගේ මයික්‍රෝෆෝනය ක්‍රියා විරහිත කිරීම"
+              },
+              "li": "🔇",
+              "ri": "🎤"
+            },
+            {
+              "l": {
+                "en": "🧑‍💼 Host",
+                "si": "🧑‍💼 සත්කාරක"
+              },
+              "r": {
+                "en": "The person who starts the online meeting",
+                "si": "මාර්ගගත සම්මන්ත්‍රණය ආරම්භ කරන පුද්ගලයා"
+              },
+              "li": "🧑‍💼",
+              "ri": "▶️"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        }
+      ],
+      "origin": "syllabus-enrichment",
+      "siDraft": true
+    }
+  ]
+}

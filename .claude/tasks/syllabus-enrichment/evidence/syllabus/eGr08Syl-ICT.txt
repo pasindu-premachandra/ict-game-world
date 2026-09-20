@@ -1,0 +1,333 @@
+    Information and
+Communication Technology
+
+            Syllabus
+
+                Grade 8
+
+                                   To be implemented from 2018
+
+                                      Department of Information Technology
+                                         Faculty of Science and Technology
+                                            National Institute of Education
+                                                       Maharagama
+                                                         Sri Lanka
+                                                        www.nie.lk
+
+                                                                   1
+Information and Communication Technology (ICT)
+Grade 08 ­Syllabus
+
+©National Institute of Education (NIE)
+First Print 2018
+
+ISBN:
+
+Department of Information Technology
+Faculty of Science and Technology
+National Institute of Education
+Maharagama
+www.nie.lk
+
+Printed by
+
+                                                                                        i
+CONTENTS                                                    Page No
+
+1.0 Introduction                                            ii
+
+2.0 Common National Goals                                   iii
+
+3.0 Basic Competencies                                      iv-v
+
+4.0 Aims of the Information and Communication Technology Curriculum vi
+
+5.0 How the national goals are addressed in the curriculum  vii
+
+6.0 Syllabus                                                1-3
+
+                           i
+                                                            1. Introduction
+
+         The Information and Communication Technology sector is acknowledged worldwide as a tool that could be used to increase
+the productivity, efficiency and effectiveness of work. However, in Sri Lanka, the level of ICT skills of the majority of the students is
+not adequate to meet the current requirements of business and industry. This is mainly due to lack of opportunities for students to
+study ICT related subjects in the school curriculum. The student should learn at school a wide variety of competencies for different
+needs of life in the changing world. They should have various views and different ways to continue studies and proceed to
+employment.
+
+         At present ICT is taught as a subject at G.C.E. (O/L) in a limited number of schools and at G.C.E. (A/L) in even less number of
+schools in Sri Lanka. In this situation students officially start to learn ICT at Grade 10 and as a result a heavy load of subject matter
+has to be included in ICT at G.C.E. (O/L). Distribution of ICT subject matter over lower Grades will definitely reduce this load and
+provide students with opportunity to learn ICT at early stages of school life. Therefore it has been decided to implement ICT as a
+subject from Grade 6 onward.
+
+         The time allocated for ICT at Grade 8 is limited to 30 Periods (40 minutes per Period) per year only. During this period,
+learning is more focused on practical aspects of the subject with limited amount of theoretical content. This is a continuation of the
+Grade 7 ICT curriculum. More emphasis is placed on programming concept and inclusion of simple programming of hardware
+devices is also introduced at Grade 8. Competencies of the use of software for simple statistical analysis and data representations are
+also presented in this curriculum. Students are expected to build ICT concepts through interaction with hardware and software of ICT.
+Skills of handling of keyboard and mouse, basic use of Internet and basic programming in a visual environment along with good
+practices in the use of ICT are discussed in this syllabus.
+
+                                                                                        ii
+                                                    2. National Goals
+
+1. Based on the concept of respecting human values and understanding the differences between the Sri Lankan multi-cultural
+       society, building up the nation and confirming the identity of Sri Lanka by promoting national integrity, national unity,
+       national coherence and peace
+
+2. While responding to the challenges of the dynamic world, identifying and conserving the national heritage.
+3. Creating an environment which comprises of the conventions of social justice and the democratic life to promote the
+
+       characteristics of respecting the human rights, being aware of the responsibilities, concerning each other with affectionate
+       relationships.
+4. Promoting a sustainable life style based on the people's mental and physical well-being and the concept of human values
+5. Promoting the positive feelings needed for balanced personality with the qualities of creative skills, initiative, critical
+       thinking and being responsible
+6. Through education, developing the human resources, needed for the progress of the well-being of an individual, the nation
+       as well as the economic growth of Sri Lanka.
+7. Preparing the people for the changes that occur in a rapidly changing world by adapting to it and controlling them;
+       developing abilities and potentialities of people to face the complex and unexpected occasions.
+8. Sustaining the skills and attitudes based on justice, equality, mutual respect which is essential to achieve a respectable
+       place in the international community.
+
+                                                                                                   National Education Commission Report (2003)
+
+                                                                                iii
+                     3. Basic Competencies
+
+The competencies promoted though the education mentioned below might help to achieve the above mentioned National Goals.
+
+(i.) Competencies in Communication
+       This first set of competencies is made up of four subsets - Literacy, Numeracy, Graphics and Information & Communication
+       Technology skills:
+                Literacy : Carefully listening, speaking clearly, and reading for comprehension, writing clearly and accurately.
+                Numeracy : Using numbers to count, calculate, code and to measure, matter, space and time.
+                Graphics : Making sense of line and form, expressing and recording essential data, instructions and ideas with line,
+                                  form, color, two and three-dimensional configurations, graphic symbols and icons
+                ICT Competencies: Knowledge on computers, and the ability to use the ICT skills at learning or work as well as in the
+                                  private life
+
+(ii.) Competencies relating to the Personality Development
+                - Generic skills such as creativity, divergent thinking, initiative, decision making, problem-solving, critical and
+                    analytical thinking, team work, inter-personal relationships, discovering and exploring
+                - Values such as integrity, tolerance and respect for human dignity.
+                - Cognition
+
+(iii.) Competencies relating to the Environment.
+
+This set of competencies relates to the Social, Biological and Physical Environments.
+
+Social Environment:  Awareness, sensitivity and skills linked to being a member of society, social relationship,
+
+                     personal conduct, general and legal conventions, rights, responsibilities, duties and
+
+                     obligations.
+
+Biological Environment: Awareness, sensitivity and skills linked to the living world, man and the ecosystem, the
+
+                     trees, forests, seas, water, air and life - plant, animal and human life.
+
+                                                  iv
+Physical Environment:  Awareness, sensitivity and skills relating to space, energy, fuels, matter, materials and
+                       their links with human living, food, clothing, shelter, health, comfort, respiration, sleep,
+                       relaxation, rest, wastes and excretion, media of communication and transport.
+                       Included here are the skills in using tools to shape and for materials for living and
+                       learning.
+
+(iv.) Competencies relating to preparation for the world of work
+           Employment related skills to maximize their potential and to enhance their capacity to contribute to economic
+           development; to discover their vocational interests and aptitudes; to choose a job that suits their abilities and; to engage in a
+           rewarding and sustainable livelihood
+
+(v.) Competencies relating to religion and ethics
+           This set of competencies deals with values and attitudes. It is essential for individuals to assimilate values, so that they may
+           function in a manner consistent with the ethical, moral and religious modes of conduct, rituals, practices in everyday living,
+           selecting the most appropriate.
+
+(vi.) Competencies in play and use of leisure
+           Competencies that link up with pleasure, joy, emotions and such human motivations. These find expression in play, sports,
+           athletics and leisure pursuit of many types. These also link up with such values as cooperation, team work, healthy
+           competition in life and work. Here are included such activities as are involved in aesthetics, arts, drama, literature,
+           exploratory research and other creative modes in human living
+
+(vii.) Competencies relating to `Learning to Learn'.
+           These competencies flow directly from the nature of a rapidly changing, complex and interdependent and crowded world.
+           Whatever one learns, that learning will need updating and review. This requires that one should be aware of, sensitive and
+           skillful in sustained attention, and be willing to persevere and attend to details that matter in a given situation.
+
+                       v
+                   4. Aims of the Information and Communication Technology (ICT) Curriculum
+
+         Such a surge in the growth, development and the application of Information Communication Technology as today has never
+been experienced before. The importance and relevance of ICT to almost all walks of life today has made it all the more important that
+knowledge and expertise, both practical and theoretical, of its application, should begin at the very grass roots level of education.
+Aims to be achieved by the course are as follows:
+
+     Develop skills useful to access ICT resources.
+     Develop basic skills in the use of software for simple calculations.
+     Develop basic concepts in programming.
+     Inculcate basic good practices in the use of ICT resources
+     Inculcate basic computer literacy and develop a base for further pursuit of Information Technology and Communication
+
+         Technology studies.
+
+                                                                                       vi
+5. How the national goals are addressed in this curriculum
+
+National Goals                              Curriculum Aims  concepts       Curriculum Objectives (competencies)
+
+Promoting the positive feelings needed      Develop basic              in Uses flow chart to solve simple problems
+ for balanced personality with the          programming.                    with sequence , selection, iteration (4)
+ qualities of creative skills, initiative,
+ critical thinking and being responsible
+
+Through education, developing the                Develop skills useful to access             Investigates how instructions and
+human resources, needed for the                      ICT resources.                              data are represented in the
+progress of the well-being of an                                                                 computer (1)
+individual, the nation as well as the            Develop basic skills in the use of
+economic growth of Sri Lanka.                        software for simple calculations.       Uses computers efficiently and
+                                                                                                 effectively with operating system
+Preparing the people for the changes             Inculcate basic computer literacy               (2)
+that occur in a rapidly changing world               and develop a base for further
+by adapting to it and controlling them;              pursuit of Information                  Uses spreadsheet software for
+developing abilities and potentialities              Technology and Communication                calculations (3)
+of people to face the complex and                    Technology studies.
+unexpected occasions.                                                                        Uses software package for
+                                            Inculcate basic good practices in the use            physical computing to implement
+                                            of ICT resources                                     programming logic (6)
+
+                                                                                        Explores educational Information using
+                                                                                        Internet (7)
+
+                                            vii
+                                               Grade 8 Syllabus
+
+                                              Information and Communication Technology
+
+     Competency         Competency Level                Content                         Learning Outcome                  Duration/
+1. Investigates how                                                                                                        Periods
+                        1.1. Converts decimal  Introduction to Number Systems        i. Describes Number systems with     03
+    instructions and                                                                     10 and 2 as the base
+    data are            numbers to             o Decimal and Binary Number                                                02
+    represented in the                                                              ii. Converts decimal integers to
+    computer            binary numbers         System                                    binary and vice versa            02
+
+2. Uses computers       and vice versa         o Conversion from Decimal to          i. Represents positive decimal       02
+    efficiently and                                                                      integers in binary
+    effectively with                           Binary
+    operating system                                                                ii. Explains the method of
+                                               o Conversion from Binary to               displaying a character (Alpha
+                                                                                         numeric symbolic)/ image on the
+                                               Decimal                                   monitor using a bitmap
+
+                        1.2. Appreciates the    Method of data representation        i. Makes settings: Date, Time,
+                                                                                         Currency, Number format
+                        working logic          using 0 and 1
+                                                                                    ii. Sets File properties: read-only,
+                        (binary concept) in  Binary data flow among the                  hidden, location, size
+
+                        computers              computer components                  iii. Searches files with extension
+
+                        2.1. Uses Operating     Regional settings: Date, Time,       i. Troubleshoots and resolves
+                            System for             Currency, Number format               relevant hardware issues
+                            configuring and
+                            applying settings   File properties                     ii. Troubleshoots and resolves
+                                                File Search                              relevant software problems
+
+                        2.2. Explores basic     Troubleshooting of simple
+
+                        troubleshooting of     computer faults
+
+                        computers and           Hardware issues (keyboard,
+                        maintenance                mouse, power cable, network
+                        procedures                 cable, VGA cable)
+                        (hardware and
+                        software )              Sound output issues (speaker
+                                                   connectivity, check the volume)
+
+                                                Ports connectivity (PS/2, USB,
+
+                                               Micro USB, VGA, HDMI,
+
+                                               Parallel, RJ45, Memory Card
+
+                                               Reader)
+
+                                                Troubleshooting and resolving of
+
+                                               relevant computer software issues
+
+                                                Corrupt software
+
+                                                Blank desktop
+
+                                                                  1
+3. Use of word-        3.1.Uses basic        Create, open, save and close a           i. Creates a formatted document 06
+    processing             functions of
+    software in day        word processing  document                                  using word processing
+    today activities       software in
+                           creating a        Formatting of Text                       software
+                           document
+                                             Inserting files/objects (text,
+
+                                            picture, shapes, clip art, word
+
+                                            art etc.)
+
+                                             Inserting a table
+
+                                             Spelling and grammar check
+
+                                             Lists
+
+4. Uses flow chart to  4.1. Analyzes the     Identification of input, process and i. Analyzes the problems in simple 02
+    solve simple           problem
+    problems with                           output steps                              day to day life
+    sequence,
+    selection and                            Identification of applications           ii. Explains the problem with a
+    develop programs                            created for mobile and smart               block diagram
+    (Using Scratch)                             devices
+                                                                                      iii. Describes applications in mobile
+                                             Documentation of solution using               and smart devices
+
+                                            flow charts
+
+                       4.2. Uses control     Introduction to simple algorithm         i. Describes control structures        05
+                           structures to        and control structures of Selections
+                           develop simple                                             (selection only)
+                           programs          Developing simple programs
+                                                (Sequence and Selection) using        ii. Applies control structures to
+                                                visual supports of programming
+                                                language (using an Interface)         solve simple day to day problems
+
+5. Uses a software     5.1.Uses a simple     Components of physical                   i. Writes a program to operate 05
+    package for
+    physical           hardware device      computing device                          external circuits using two
+    computing to
+    implement          to implement          Controllable devices                         logic levels (yes/no, on/off)
+    programming        physical              Turning on/off LEDs                      ii. Implements programs on
+    logic              computing             Design LED patterns with simple
+                                                                                          physical devices. Example:
+                                                programs                                  Turning On/Off the LEDs
+
+                                                                                      with passing values
+
+                                                          2
+6. Explores            6.1 Searches             Search Engines: Google, Yahoo     i. Identifies Search Engines         01
+    educational            information on the      etc.
+    information using      Internet                                               ii. Searches information using the
+    the Internet                                Educational browsers
+                                                                                  Internet
+
+                       6.2. Creates websites    Tags, Elements, Attributes, Text  i. Designs websites as per           02
+                           with advanced           formatting etc.
+                           features                                               specifications
+                                                Advanced features in hyperlinks
+                                                                                  ii. Develops websites as per design
+
+                                                                                  Total                                30
+
+                                               3
+

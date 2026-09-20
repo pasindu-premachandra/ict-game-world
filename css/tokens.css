@@ -1,0 +1,360 @@
+/* ICT Game World - design tokens, direction "Game Lab".
+   Put data-grade="6|7|8|9" on <body> and lang="en" or lang="si" on <html>.
+   Components use the semantic tokens (--g-*, --bg, --text ...), never the raw palette. */
+
+/* 1. Raw palette */
+:root {
+  --ink: oklch(0.28 0.035 255);            /* #1d2a3a */
+  --ink-muted: oklch(0.47 0.03 255);       /* #505c6c */
+  --white: oklch(1 0 0);
+  --grey-100: oklch(0.96 0.006 255);
+  --grey-200: oklch(0.92 0.01 255);        /* #e0e5eb */
+  --grey-400: oklch(0.8 0.015 255);        /* #b7bec7 */
+
+  --navy-950: oklch(0.14 0.03 262);        /* #040915 */
+  --navy-900: oklch(0.2 0.035 262);        /* #0d1626 */
+  --navy-800: oklch(0.26 0.04 262);        /* #192437 */
+  --navy-700: oklch(0.33 0.03 262);        /* #2d3645 */
+  --navy-600: oklch(0.36 0.045 262);       /* #303d55 */
+  --navy-200: oklch(0.8 0.03 250);         /* #b0c0d1 */
+  --navy-50: oklch(0.96 0.01 250);         /* #edf2f8 */
+
+  --teal-base: oklch(0.53 0.1 186);        /* #007e74 */
+  --teal-hover: oklch(0.47 0.095 186);     /* #006b63 */
+  --teal-dark: oklch(0.4 0.08 188);        /* #005550 */
+  --teal-light: oklch(0.95 0.045 182);     /* #cff9f1 */
+  --teal-vivid: oklch(0.72 0.13 182);      /* #00beab */
+  --teal-page: oklch(0.975 0.014 185);     /* #edfaf8 */
+  --teal-line: oklch(0.9 0.02 185);        /* #d0e3e0 */
+  --teal-edge: oklch(0.84 0.03 185);       /* #b6d1cd */
+
+  --indigo-base: oklch(0.51 0.21 277);     /* #4f4cda */
+  --indigo-hover: oklch(0.45 0.2 277);     /* #423bc0 */
+  --indigo-dark: oklch(0.38 0.17 278);     /* #342c99 */
+  --indigo-light: oklch(0.94 0.04 280);    /* #e5e9ff */
+  --indigo-vivid: oklch(0.68 0.16 277);
+  --indigo-page: oklch(0.975 0.014 277);   /* #f4f6ff */
+  --indigo-line: oklch(0.9 0.02 277);      /* #daddec */
+  --indigo-edge: oklch(0.84 0.03 277);     /* #c5c9df */
+
+  --orange-base: oklch(0.555 0.18 40);     /* #c43f00 */
+  --orange-hover: oklch(0.495 0.17 40);    /* #ac3000 */
+  --orange-dark: oklch(0.43 0.14 38);      /* #8c2901 */
+  --orange-light: oklch(0.95 0.04 60);     /* #ffe9d4 */
+  --orange-vivid: oklch(0.74 0.17 55);
+  --orange-page: oklch(0.975 0.014 45);    /* #fff4ef */
+  --orange-line: oklch(0.9 0.02 45);       /* #eadad3 */
+  --orange-edge: oklch(0.84 0.03 45);      /* #dcc5bb */
+
+  --sky-base: oklch(0.8 0.13 222);         /* #43d0f9 */
+  --sky-hover: oklch(0.86 0.11 222);       /* #77e1ff */
+  --sky-dark: oklch(0.56 0.12 230);        /* #0080ad */
+  --sky-light: oklch(0.32 0.07 232);       /* #003850 */
+  --sky-ink: oklch(0.88 0.09 222);         /* #92e5ff */
+
+  --green-fill: oklch(0.62 0.17 150);      /* #03a14a */
+  --green-light: oklch(0.95 0.05 152);     /* #d7f9de */
+  --green-ink: oklch(0.42 0.12 150);       /* #005e26 */
+  --coral-fill: oklch(0.64 0.2 17);        /* #ec485f */
+  --coral-light: oklch(0.95 0.03 15);      /* #ffe7e8 */
+  --coral-ink: oklch(0.47 0.17 22);        /* #a51d2b */
+  --amber-fill: oklch(0.8 0.15 78);        /* #f2b036 */
+  --amber-light: oklch(0.96 0.05 90);      /* #fff1cc */
+  --amber-ink: oklch(0.47 0.1 60);         /* #834b14 */
+  --blue-fill: oklch(0.62 0.15 250);       /* #2f8adc */
+  --blue-light: oklch(0.95 0.03 250);      /* #e0f1ff */
+  --blue-ink: oklch(0.45 0.14 258);        /* #1a52a1 */
+
+  --gold: oklch(0.84 0.16 86);             /* #f9c230 */
+  --gold-edge: oklch(0.66 0.15 66);        /* #cf7c00 */
+  --gold-ink: oklch(0.45 0.1 62);          /* #7c4607 */
+  --flame: oklch(0.66 0.2 35);             /* #f3562e */
+
+  /* The mascot "ICT friend" keeps its own colours in every grade */
+  --bot-body: oklch(0.72 0.13 182);        /* #00beab */
+  --bot-face: oklch(0.88 0.1 180);         /* #88edda */
+  --bot-pins: oklch(0.5 0.09 186);         /* #00736b */
+  --bot-antenna: oklch(0.72 0.17 12);      /* #fb7188 */
+  --bot-hands: var(--gold);
+  --bot-eye: var(--ink);
+
+  /* Scratch 3.0 category colours; "looks" is lightened so dark text passes 4.5:1 */
+  --scratch-motion: #4c97ff;     --scratch-motion-edge: #3373cc;
+  --scratch-looks: #ad85ff;      --scratch-looks-edge: #774dcb;
+  --scratch-events: #ffbf00;     --scratch-events-edge: #cc9900;
+  --scratch-control: #ffab19;    --scratch-control-edge: #cf8b17;
+  --scratch-sensing: #5cb1d6;    --scratch-sensing-edge: #2e8eb8;
+  --scratch-variables: #ff8c1a;  --scratch-variables-edge: #db6e00;
+  --scratch-pen: #0fbd8c;        --scratch-pen-edge: #0b8e69;
+  --scratch-text: var(--ink);
+
+  /* 2. Type: families and weights (scale lives in the language blocks below) */
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace;
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-heavy: 800;
+
+  /* 3. Spacing (4px grid) */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* 4. Radius */
+  --radius-block: 6px;
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 999px;
+
+  /* 5. Borders and sizes */
+  --border: 3px;
+  --border-thin: 2px;
+  --tap-min: 44px;
+  --tap-comfy: 52px;
+  --tap-hero: 60px;
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --icon-lg: 24px;
+  --node: 72px;
+  --node-current: 84px;
+  --topbar-h: 64px;
+  --measure: 640px;
+  --content-max: 1200px;
+
+  /* 6. Elevation that does not depend on the grade */
+  --press-depth: 3px;
+  --shadow-float: 0 14px 30px oklch(0.2 0.04 260 / 0.22);
+  --shadow-drag: 0 18px 32px oklch(0.2 0.04 260 / 0.26);
+
+  /* 7. Motion */
+  --dur-tap: 120ms;
+  --dur-quick: 180ms;
+  --dur-base: 260ms;
+  --dur-slow: 420ms;
+  --dur-reward: 600ms;
+  --stagger: 160ms;
+  --ease-pop: cubic-bezier(.34, 1.56, .64, 1);
+  --ease-standard: cubic-bezier(.2, .8, .2, 1);
+
+  /* 8. Z-index */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-drag: 50;
+  --z-sticky: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  --z-tooltip: 500;
+
+  /* Status and reward fills are the same in every grade; their -light and -ink pairs are set per world below */
+  --success: var(--green-fill);
+  --error: var(--coral-fill);
+  --warning: var(--amber-fill);
+  --info: var(--blue-fill);
+  --star: var(--gold);
+  --star-edge: var(--gold-edge);
+  --combo: var(--flame);
+}
+
+/* 9. Grade worlds: one accent world per grade, same components */
+:root,
+[data-grade="6"] {
+  color-scheme: light;
+  --g-base: var(--teal-base);
+  --g-hover: var(--teal-hover);
+  --g-dark: var(--teal-dark);
+  --g-light: var(--teal-light);
+  --g-vivid: var(--teal-vivid);
+  --g-on: var(--white);
+  --g-ink: var(--teal-dark);
+  --bg: var(--teal-page);
+  --line: var(--teal-line);
+  --edge: var(--teal-edge);
+}
+
+[data-grade="7"] {
+  color-scheme: light;
+  --g-base: var(--indigo-base);
+  --g-hover: var(--indigo-hover);
+  --g-dark: var(--indigo-dark);
+  --g-light: var(--indigo-light);
+  --g-vivid: var(--indigo-vivid);
+  --g-on: var(--white);
+  --g-ink: var(--indigo-dark);
+  --bg: var(--indigo-page);
+  --line: var(--indigo-line);
+  --edge: var(--indigo-edge);
+}
+
+[data-grade="8"] {
+  color-scheme: light;
+  --g-base: var(--orange-base);
+  --g-hover: var(--orange-hover);
+  --g-dark: var(--orange-dark);
+  --g-light: var(--orange-light);
+  --g-vivid: var(--orange-vivid);
+  --g-on: var(--white);
+  --g-ink: var(--orange-dark);
+  --bg: var(--orange-page);
+  --line: var(--orange-line);
+  --edge: var(--orange-edge);
+}
+
+/* Grade 9 "night lab": dark surfaces, sky accent with dark text on it */
+[data-grade="9"] {
+  color-scheme: dark;
+  --g-base: var(--sky-base);
+  --g-hover: var(--sky-hover);
+  --g-dark: var(--sky-dark);
+  --g-light: var(--sky-light);
+  --g-vivid: var(--sky-base);
+  --g-on: var(--navy-900);
+  --g-ink: var(--sky-ink);
+  --bg: var(--navy-900);
+  --surface: var(--navy-800);
+  --surface-sunk: var(--navy-950);
+  --line: var(--navy-600);
+  --edge: var(--navy-950);
+  --text: var(--navy-50);
+  --text-muted: var(--navy-200);
+  --locked: var(--navy-700);
+  --locked-edge: var(--navy-950);
+  --locked-text: var(--navy-200);
+  --success-light: oklch(0.32 0.07 152);   /* #103d20 */
+  --success-ink: oklch(0.86 0.14 152);     /* #85eba3 */
+  --error-light: oklch(0.32 0.08 18);      /* #541f23 */
+  --error-ink: oklch(0.84 0.1 18);         /* #ffb0b2 */
+  --warning-light: oklch(0.34 0.06 80);    /* #48340e */
+  --warning-ink: oklch(0.88 0.12 85);      /* #fcd176 */
+  --info-light: oklch(0.32 0.06 250);      /* #193550 */
+  --info-ink: oklch(0.85 0.08 250);        /* #a6d2ff */
+  --star-empty: var(--navy-700);
+  --star-empty-edge: var(--navy-950);
+  --xp-ink: var(--gold);
+  --focus-ring: var(--sky-base);
+}
+
+/* Light-world surfaces, shared by grades 6, 7 and 8 */
+:root,
+[data-grade="6"],
+[data-grade="7"],
+[data-grade="8"] {
+  --surface: var(--white);
+  --surface-sunk: var(--bg);
+  --text: var(--ink);
+  --text-muted: var(--ink-muted);
+  --locked: var(--grey-200);
+  --locked-edge: var(--grey-400);
+  --locked-text: var(--ink-muted);
+  --star-empty: var(--grey-200);
+  --star-empty-edge: var(--grey-400);
+  --xp-ink: var(--gold-ink);
+  --success-light: var(--green-light);
+  --success-ink: var(--green-ink);
+  --error-light: var(--coral-light);
+  --error-ink: var(--coral-ink);
+  --warning-light: var(--amber-light);
+  --warning-ink: var(--amber-ink);
+  --info-light: var(--blue-light);
+  --info-ink: var(--blue-ink);
+  --focus-ring: var(--g-dark);
+}
+
+/* Tokens built from other tokens are re-declared on every world root so they follow its grade */
+:root,
+[data-grade] {
+  --lift-btn: 0 5px 0 var(--g-dark);
+  --lift-btn-press: 0 2px 0 var(--g-dark);
+  --lift-card: 0 4px 0 var(--edge);
+  --lift-card-press: 0 1px 0 var(--edge);
+  --lift-selected: 0 4px 0 var(--g-dark);
+  --lift-success: 0 4px 0 var(--success);
+  --lift-error: 0 4px 0 var(--error);
+  --lift-locked: 0 4px 0 var(--locked-edge);
+}
+
+/* 10. Language: fonts, scale and line height switch with lang="" */
+:root,
+:lang(en) {
+  --font-display: "Baloo 2", "Yaldevi", "Baloo Thambi 2", system-ui, sans-serif;
+  --font-body: "Nunito", "Noto Sans Sinhala", "Noto Sans Tamil", system-ui, sans-serif;
+  --text-xs: 0.8125rem;   /* 13px */
+  --text-sm: 0.9375rem;   /* 15px */
+  --text-md: 1.0625rem;   /* 17px body */
+  --text-lg: 1.25rem;     /* 20px */
+  --text-xl: 1.5rem;      /* 24px */
+  --text-2xl: 1.875rem;   /* 30px */
+  --text-3xl: 2.375rem;   /* 38px */
+  --text-4xl: 3rem;       /* 48px */
+  --lh-display: 1.15;
+  --lh-title: 1.3;
+  --lh-body: 1.5;
+  --tracking-display: -0.01em;
+  --tracking-label: 0.06em;
+  --case-label: uppercase;
+}
+
+/* Sinhala: 1-2px larger, line height 1.6 or more, never letter-spacing or uppercase */
+:lang(si) {
+  --font-display: "Yaldevi", "Noto Sans Sinhala", "Baloo 2", system-ui, sans-serif;
+  --font-body: "Noto Sans Sinhala", "Nunito", system-ui, sans-serif;
+  --text-xs: 0.875rem;    /* 14px */
+  --text-sm: 1rem;        /* 16px */
+  --text-md: 1.125rem;    /* 18px body */
+  --text-lg: 1.375rem;    /* 22px */
+  --text-xl: 1.625rem;    /* 26px */
+  --text-2xl: 2rem;       /* 32px */
+  --text-3xl: 2.5rem;     /* 40px */
+  --text-4xl: 3.125rem;   /* 50px */
+  --lh-display: 1.6;
+  --lh-title: 1.6;
+  --lh-body: 1.75;
+  --tracking-display: 0;
+  --tracking-label: 0;
+  --case-label: none;
+}
+
+/* Tamil, reserved for later: same rules as Sinhala */
+:lang(ta) {
+  --font-display: "Baloo Thambi 2", "Noto Sans Tamil", "Baloo 2", system-ui, sans-serif;
+  --font-body: "Noto Sans Tamil", "Nunito", system-ui, sans-serif;
+  --text-xs: 0.875rem;
+  --text-sm: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 3.125rem;
+  --lh-display: 1.6;
+  --lh-title: 1.6;
+  --lh-body: 1.75;
+  --tracking-display: 0;
+  --tracking-label: 0;
+  --case-label: none;
+}
+
+/* 11. Reduced motion: every animation becomes an instant state change */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-tap: 0ms;
+    --dur-quick: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-reward: 0ms;
+    --stagger: 0ms;
+  }
+}

@@ -1,0 +1,665 @@
+{
+  "source": "National Institute of Education, Sri Lanka. ICT syllabi for grades 6 to 9, to be implemented from 2018, still in force for the 2026 school year.",
+  "pdfs": {
+    "6": "https://nie.lk/pdffiles/tg/eGr06Syl%20ICT.pdf",
+    "7": "https://nie.lk/pdffiles/tg/eGr07Syl%20ICT.pdf",
+    "8": "https://nie.lk/pdffiles/tg/eGr08Syl%20ICT.pdf",
+    "9": "https://nie.lk/pdffiles/tg/eGr09Syl%20ICT.pdf"
+  },
+  "built": "2026-09-20",
+  "note": "coveredBy lists activity ids. Ids marked new: true live in content/grade-N.additions.js; the rest are in the original files. Bonus activities carry no competency and are excluded from coverage.",
+  "levels": [
+    {
+      "grade": 6,
+      "level": "1.1",
+      "competency": "Appreciates the importance of computers",
+      "title": "Explains the functions of the computer and its characteristics",
+      "periods": 1,
+      "coveredBy": [
+        "1.1",
+        "1.2"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "1.2",
+      "competency": "Appreciates the importance of computers",
+      "title": "Identifies computer components",
+      "periods": 2,
+      "coveredBy": [
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "1.3",
+      "competency": "Appreciates the importance of computers",
+      "title": "Describes the need for software",
+      "periods": 1,
+      "coveredBy": [
+        "7.1",
+        "7.3"
+      ],
+      "new": true
+    },
+    {
+      "grade": 6,
+      "level": "1.4",
+      "competency": "Appreciates the importance of computers",
+      "title": "Appreciates the use of the computer to carry out routine work",
+      "periods": 1,
+      "coveredBy": [
+        "7.2"
+      ],
+      "new": true
+    },
+    {
+      "grade": 6,
+      "level": "2.1",
+      "competency": "Appreciates the need of using computers safely",
+      "title": "Uses the computer lab properly",
+      "periods": 1,
+      "coveredBy": [
+        "2.1"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "2.2",
+      "competency": "Appreciates the need of using computers safely",
+      "title": "Uses computers and peripherals safely",
+      "periods": 1,
+      "coveredBy": [
+        "2.2",
+        "2.3",
+        "2.4"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "3.1",
+      "competency": "Uses operating systems",
+      "title": "Handles files",
+      "periods": 2,
+      "coveredBy": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "4.1",
+      "competency": "Uses application software appropriately",
+      "title": "Uses text editing and drawing software effectively",
+      "periods": 5,
+      "coveredBy": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "4.2",
+      "competency": "Uses application software appropriately",
+      "title": "Uses audio software and video software effectively",
+      "periods": 2,
+      "coveredBy": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "new": true
+    },
+    {
+      "grade": 6,
+      "level": "5.1",
+      "competency": "Appreciates the concept of algorithms",
+      "title": "Relates the practical problem solving process to an algorithm",
+      "periods": 2,
+      "coveredBy": [
+        "5.1",
+        "5.3"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "5.2",
+      "competency": "Appreciates the concept of algorithms",
+      "title": "Draws flowcharts to explain a process",
+      "periods": 3,
+      "coveredBy": [
+        "5.2",
+        "5.4"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "6.1",
+      "competency": "Appreciates the Internet for information gathering",
+      "title": "Identifies the Internet as a shareable pool of information resources",
+      "periods": 3,
+      "coveredBy": [
+        "6.3"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "6.2",
+      "competency": "Appreciates the Internet for information gathering",
+      "title": "Uses search engines to obtain information",
+      "periods": 5,
+      "coveredBy": [
+        "6.1",
+        "6.4"
+      ]
+    },
+    {
+      "grade": 6,
+      "level": "6.3",
+      "competency": "Appreciates the Internet for information gathering",
+      "title": "Uses computers and data safely and securely",
+      "periods": 1,
+      "coveredBy": [
+        "6.2"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "1.1",
+      "competency": "Identifies the organization of the computer",
+      "title": "Identifies the components of a CPU",
+      "periods": 1,
+      "coveredBy": [
+        "1.1",
+        "1.3"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "1.2",
+      "competency": "Identifies the organization of the computer",
+      "title": "Describes the evolution of computers",
+      "periods": 1,
+      "coveredBy": [
+        "1.2",
+        "1.4"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "2.1",
+      "competency": "Explores the functions of the operating system",
+      "title": "Describes different types of operating systems",
+      "periods": 1,
+      "coveredBy": [
+        "2.1",
+        "2.2"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "2.2",
+      "competency": "Explores the functions of the operating system",
+      "title": "Identifies computer storage as digital data on different media",
+      "periods": 1,
+      "coveredBy": [
+        "2.3"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "2.3",
+      "competency": "Explores the functions of the operating system",
+      "title": "Creates folders and saves, opens, edits, renames, copies and moves files",
+      "periods": 2,
+      "coveredBy": [
+        "2.4"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "2.4",
+      "competency": "Explores the functions of the operating system",
+      "title": "Explores file properties",
+      "periods": 1,
+      "coveredBy": [
+        "2.5"
+      ],
+      "new": true
+    },
+    {
+      "grade": 7,
+      "level": "3.1",
+      "competency": "Uses various safety precautions in a computer lab",
+      "title": "Protects the physical components of a computer",
+      "periods": 1,
+      "coveredBy": [
+        "3.1",
+        "3.4"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "3.2",
+      "competency": "Uses various safety precautions in a computer lab",
+      "title": "Protects the software components of a computer",
+      "periods": 1,
+      "coveredBy": [
+        "3.2",
+        "3.3"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "4.1",
+      "competency": "Uses text editing software to type effectively",
+      "title": "Uses computers efficiently by developing typing skills",
+      "periods": 1,
+      "coveredBy": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "5.1",
+      "competency": "Uses a programming language to develop simple programs",
+      "title": "Analyzes simple problems by decomposing and connecting them logically",
+      "periods": 2,
+      "coveredBy": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "5.2",
+      "competency": "Uses a programming language to develop simple programs",
+      "title": "Develops simple programs using a visual development environment",
+      "periods": 3,
+      "coveredBy": [
+        "5.4"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "5.3",
+      "competency": "Uses a programming language to develop simple programs",
+      "title": "Describes the concept of variables in programs",
+      "periods": 2,
+      "coveredBy": [
+        "5.5"
+      ],
+      "new": true
+    },
+    {
+      "grade": 7,
+      "level": "5.4",
+      "competency": "Uses a programming language to develop simple programs",
+      "title": "Identifies the concept of errors in a program as bugs",
+      "periods": 1,
+      "coveredBy": [
+        "5.6"
+      ],
+      "new": true
+    },
+    {
+      "grade": 7,
+      "level": "6.1",
+      "competency": "Uses presentation software to create a presentation",
+      "title": "Uses the basic functions of presentation software",
+      "periods": 5,
+      "coveredBy": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "7.1",
+      "competency": "Uses the services of the Internet and develops web pages",
+      "title": "Uses resources available on the Internet, and tells trusted from untrusted sites",
+      "periods": 1,
+      "coveredBy": [
+        "7.1",
+        "7.2",
+        "8.2"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "7.2",
+      "competency": "Uses the services of the Internet and develops web pages",
+      "title": "Uses offline (e-mail) and online (chat and conferencing) communication",
+      "periods": 2,
+      "coveredBy": [
+        "7.3",
+        "8.4"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "7.3",
+      "competency": "Uses the services of the Internet and develops web pages",
+      "title": "Develops web pages using HTML",
+      "periods": 2,
+      "coveredBy": [
+        "7.5"
+      ]
+    },
+    {
+      "grade": 7,
+      "level": "7.4",
+      "competency": "Uses the services of the Internet and develops web pages",
+      "title": "Uses the Internet safely, securely and ethically",
+      "periods": 2,
+      "coveredBy": [
+        "7.4",
+        "8.1",
+        "8.3"
+      ]
+    },
+    {
+      "grade": 8,
+      "level": "1.1",
+      "competency": "Investigates how instructions and data are represented in the computer",
+      "title": "Converts decimal numbers to binary numbers and vice versa",
+      "periods": 3,
+      "coveredBy": [
+        "1.1",
+        "1.2"
+      ]
+    },
+    {
+      "grade": 8,
+      "level": "1.2",
+      "competency": "Investigates how instructions and data are represented in the computer",
+      "title": "Appreciates the working logic (binary concept) in computers",
+      "periods": 2,
+      "coveredBy": [
+        "1.3"
+      ]
+    },
+    {
+      "grade": 8,
+      "level": "2.1",
+      "competency": "Uses computers efficiently with the operating system",
+      "title": "Uses the operating system for configuring and applying settings",
+      "periods": 2,
+      "coveredBy": [
+        "2.3"
+      ]
+    },
+    {
+      "grade": 8,
+      "level": "2.2",
+      "competency": "Uses computers efficiently with the operating system",
+      "title": "Explores basic troubleshooting and maintenance procedures",
+      "periods": 2,
+      "coveredBy": [
+        "2.1",
+        "2.2"
+      ]
+    },
+    {
+      "grade": 8,
+      "level": "3.1",
+      "competency": "Uses word processing software in day to day activities",
+      "title": "Uses the basic functions of word processing software, including tables",
+      "periods": 6,
+      "coveredBy": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ]
+    },
+    {
+      "grade": 8,
+      "level": "4.1",
+      "competency": "Uses flow charts to solve simple problems and develops programs",
+      "title": "Analyzes the problem, and identifies applications for mobile and smart devices",
+      "periods": 2,
+      "coveredBy": [
+        "4.2",
+        "7.1",
+        "7.2",
+        "7.3"
+      ]
+    },
+    {
+      "grade": 8,
+      "level": "4.2",
+      "competency": "Uses flow charts to solve simple problems and develops programs",
+      "title": "Uses control structures to develop simple programs",
+      "periods": 5,
+      "coveredBy": [
+        "4.1",
+        "4.3"
+      ]
+    },
+    {
+      "grade": 8,
+      "level": "5.1",
+      "competency": "Uses a software package for physical computing to implement programming logic",
+      "title": "Uses a simple hardware device to implement physical computing",
+      "periods": 5,
+      "coveredBy": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "new": true
+    },
+    {
+      "grade": 8,
+      "level": "6.1",
+      "competency": "Explores educational information using the Internet",
+      "title": "Searches information on the Internet",
+      "periods": 1,
+      "coveredBy": [
+        "6.1",
+        "6.3"
+      ]
+    },
+    {
+      "grade": 8,
+      "level": "6.2",
+      "competency": "Explores educational information using the Internet",
+      "title": "Creates websites with advanced features",
+      "periods": 2,
+      "coveredBy": [
+        "6.2"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "1.1",
+      "competency": "Prepares specifications for purchasing a computer and peripherals",
+      "title": "Identifies user needs for a computer and its peripherals",
+      "periods": 1,
+      "coveredBy": [
+        "1.2",
+        "1.3"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "1.2",
+      "competency": "Prepares specifications for purchasing a computer and peripherals",
+      "title": "Translates user requirements to computer specifications",
+      "periods": 1,
+      "coveredBy": [
+        "1.1"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "2.1",
+      "competency": "Uses spreadsheet software for calculations and simple analysis",
+      "title": "Describes the basics of spreadsheet software",
+      "periods": 1,
+      "coveredBy": [
+        "2.3"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "2.2",
+      "competency": "Uses spreadsheet software for calculations and simple analysis",
+      "title": "Enters data in a worksheet and formats cells",
+      "periods": 2,
+      "coveredBy": [
+        "2.3"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "2.3",
+      "competency": "Uses spreadsheet software for calculations and simple analysis",
+      "title": "Carries out simple mathematical calculations",
+      "periods": 1,
+      "coveredBy": [
+        "2.1"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "2.4",
+      "competency": "Uses spreadsheet software for calculations and simple analysis",
+      "title": "Uses functions for calculations and data sorting",
+      "periods": 1,
+      "coveredBy": [
+        "2.4",
+        "2.5"
+      ],
+      "new": true
+    },
+    {
+      "grade": 9,
+      "level": "2.5",
+      "competency": "Uses spreadsheet software for calculations and simple analysis",
+      "title": "Uses various charts to display data",
+      "periods": 1,
+      "coveredBy": [
+        "2.2"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "3.1",
+      "competency": "Uses flow charts to solve problems and develops programs",
+      "title": "Uses sequence, selection and iteration for drawing flow charts",
+      "periods": 2,
+      "coveredBy": [
+        "3.1"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "3.2",
+      "competency": "Uses flow charts to solve problems and develops programs",
+      "title": "Uses selection and iteration with visual support",
+      "periods": 5,
+      "coveredBy": [
+        "3.2"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "3.3",
+      "competency": "Uses flow charts to solve problems and develops programs",
+      "title": "Develops programs with nested iterations",
+      "periods": 3,
+      "coveredBy": [
+        "3.5"
+      ],
+      "new": true
+    },
+    {
+      "grade": 9,
+      "level": "3.4",
+      "competency": "Uses flow charts to solve problems and develops programs",
+      "title": "Develops programs with array variables",
+      "periods": 2,
+      "coveredBy": [
+        "3.6"
+      ],
+      "new": true
+    },
+    {
+      "grade": 9,
+      "level": "3.5",
+      "competency": "Uses flow charts to solve problems and develops programs",
+      "title": "Evaluates the solution against the problem",
+      "periods": 1,
+      "coveredBy": [
+        "3.3"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "4.1",
+      "competency": "Improves skills in physical computing",
+      "title": "Programs simple digital systems on a microcontroller based kit",
+      "periods": 5,
+      "coveredBy": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "5.1",
+      "competency": "Investigates computer networks for communication and resource sharing",
+      "title": "Explores the main components of the network in the school computer lab",
+      "periods": 1,
+      "coveredBy": [
+        "5.1",
+        "5.2"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "5.2",
+      "competency": "Investigates computer networks for communication and resource sharing",
+      "title": "Utilizes the computer network for resource sharing and communication",
+      "periods": 1,
+      "coveredBy": [
+        "5.3"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "6.1",
+      "competency": "Explores the impact of ICT on society and career opportunities",
+      "title": "Describes the impact of ICT on society",
+      "periods": 1,
+      "coveredBy": [
+        "6.2",
+        "6.3",
+        "7.1",
+        "7.2",
+        "7.3"
+      ]
+    },
+    {
+      "grade": 9,
+      "level": "6.2",
+      "competency": "Explores the impact of ICT on society and career opportunities",
+      "title": "Explains career opportunities in computing",
+      "periods": 1,
+      "coveredBy": [
+        "6.1"
+      ]
+    }
+  ]
+}

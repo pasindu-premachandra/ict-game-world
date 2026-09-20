@@ -1,0 +1,1667 @@
+{
+  "grade": 9,
+  "languages": [
+    "en"
+  ],
+  "source": {
+    "en": "original/grade-9/english-medium.html"
+  },
+  "replaced": [],
+  "lessons": [
+    {
+      "id": 1,
+      "title": {
+        "en": "Preparation of Computer Specifications",
+        "si": null
+      },
+      "icon": "💻",
+      "cls": "l1",
+      "activities": [
+        {
+          "id": "1.1",
+          "type": "match",
+          "name": {
+            "en": "Match User Roles to Tasks",
+            "si": null
+          },
+          "instruction": {
+            "en": "Match each type of ICT user with their correct responsibility.",
+            "si": null
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "👨‍💻 Programmer",
+                "si": null
+              },
+              "r": {
+                "en": "Develops computer programs",
+                "si": null
+              },
+              "li": "👨‍💻",
+              "ri": "⌨️"
+            },
+            {
+              "l": {
+                "en": "🌐 Network Administrator",
+                "si": null
+              },
+              "r": {
+                "en": "Manages and maintains computer networks",
+                "si": null
+              },
+              "li": "🌐",
+              "ri": "🔧"
+            },
+            {
+              "l": {
+                "en": "📊 System Analyst",
+                "si": null
+              },
+              "r": {
+                "en": "Designs information systems",
+                "si": null
+              },
+              "li": "📊",
+              "ri": "📐"
+            },
+            {
+              "l": {
+                "en": "🧑‍🔬 Software Engineer",
+                "si": null
+              },
+              "r": {
+                "en": "Develops software",
+                "si": null
+              },
+              "li": "🧑‍🔬",
+              "ri": "💾"
+            },
+            {
+              "l": {
+                "en": "📄 Computer Application Assistant",
+                "si": null
+              },
+              "r": {
+                "en": "Uses office application packages",
+                "si": null
+              },
+              "li": "📄",
+              "ri": "📋"
+            },
+            {
+              "l": {
+                "en": "🎨 Web Developer",
+                "si": null
+              },
+              "r": {
+                "en": "Develops and maintains websites",
+                "si": null
+              },
+              "li": "🎨",
+              "ri": "🌍"
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "type": "tf",
+          "name": {
+            "en": "Computer Specifications Facts",
+            "si": null
+          },
+          "instruction": {
+            "en": "Decide whether each statement is True or False.",
+            "si": null
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "The processor is considered the \"brain\" of the computer.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "A Quad Core processor has four processor units.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "CRT monitors consume less electricity than LED monitors.",
+                "si": null
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "The speed of the processor is measured in Hertz (Hz).",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "The monitor size is measured by its diagonal length in inches.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "A 40-page exercise book has more storage space than a 160-page book.",
+                "si": null
+              },
+              "a": false
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "type": "bucket",
+          "name": {
+            "en": "Sort Peripheral Devices",
+            "si": null
+          },
+          "instruction": {
+            "en": "Click an item first, then click the correct category.",
+            "si": null
+          },
+          "buckets": [
+            {
+              "name": {
+                "en": "⌨️ Input Devices",
+                "si": null
+              },
+              "items": [
+                {
+                  "en": "Keyboard",
+                  "si": null
+                },
+                {
+                  "en": "Mouse",
+                  "si": null
+                },
+                {
+                  "en": "Microphone",
+                  "si": null
+                },
+                {
+                  "en": "Scanner",
+                  "si": null
+                },
+                {
+                  "en": "Web Camera",
+                  "si": null
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "🖥️ Output Devices",
+                "si": null
+              },
+              "items": [
+                {
+                  "en": "Monitor",
+                  "si": null
+                },
+                {
+                  "en": "Printer",
+                  "si": null
+                },
+                {
+                  "en": "Speaker",
+                  "si": null
+                },
+                {
+                  "en": "Projector",
+                  "si": null
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "💾 Storage Devices",
+                "si": null
+              },
+              "items": [
+                {
+                  "en": "Hard Disk",
+                  "si": null
+                },
+                {
+                  "en": "Optical Disk",
+                  "si": null
+                },
+                {
+                  "en": "Flash Drive",
+                  "si": null
+                },
+                {
+                  "en": "Pen Drive",
+                  "si": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": {
+        "en": "Electronic Spreadsheets",
+        "si": null
+      },
+      "icon": "📊",
+      "cls": "l2",
+      "activities": [
+        {
+          "id": "2.1",
+          "type": "input",
+          "name": {
+            "en": "Excel Formula Challenge",
+            "si": null
+          },
+          "instruction": {
+            "en": "Type the correct Excel formula for each task.",
+            "si": null
+          },
+          "questions": [
+            {
+              "q": {
+                "en": "To find the total of cells A1 to A10:",
+                "si": null
+              },
+              "ans": "=sum(a1:a10)",
+              "hint": {
+                "en": "Use SUM function",
+                "si": null
+              }
+            },
+            {
+              "q": {
+                "en": "To find the average of B1 to B5:",
+                "si": null
+              },
+              "ans": "=average(b1:b5)",
+              "hint": {
+                "en": "Use AVERAGE function",
+                "si": null
+              }
+            },
+            {
+              "q": {
+                "en": "To find the highest value in C1 to C20:",
+                "si": null
+              },
+              "ans": "=max(c1:c20)",
+              "hint": {
+                "en": "Use MAX function",
+                "si": null
+              }
+            },
+            {
+              "q": {
+                "en": "To find the lowest value in D1 to D15:",
+                "si": null
+              },
+              "ans": "=min(d1:d15)",
+              "hint": {
+                "en": "Use MIN function",
+                "si": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "type": "hotspot",
+          "name": {
+            "en": "Choose the Right Chart",
+            "si": null
+          },
+          "instruction": {
+            "en": "Read each task and click the correct chart type.",
+            "si": null
+          },
+          "rounds": [
+            {
+              "q": {
+                "en": "To show the percentage of students in each grade?",
+                "si": null
+              },
+              "ans": "pie"
+            },
+            {
+              "q": {
+                "en": "To compare monthly sales across the year?",
+                "si": null
+              },
+              "ans": "column"
+            },
+            {
+              "q": {
+                "en": "To show a trend of temperature over time?",
+                "si": null
+              },
+              "ans": "line"
+            },
+            {
+              "q": {
+                "en": "To show data points to find a correlation?",
+                "si": null
+              },
+              "ans": "scatter"
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "type": "tf",
+          "name": {
+            "en": "Spreadsheet Facts",
+            "si": null
+          },
+          "instruction": {
+            "en": "Decide whether each statement is True or False.",
+            "si": null
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "A cell is the intersection of a row and a column.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "A workbook can contain multiple worksheets.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "The first cell in a spreadsheet is A1.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "Ctrl+Z is the shortcut for Redo.",
+                "si": null
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "SUM, AVERAGE, MAX and MIN are spreadsheet functions.",
+                "si": null
+              },
+              "a": true
+            }
+          ]
+        },
+        {
+          "id": "2.4",
+          "competency": "2.4",
+          "type": "input",
+          "name": {
+            "en": "Count and Sort",
+            "si": "ගණන් කිරීම හා වර්ග කිරීම"
+          },
+          "instruction": {
+            "en": "Type the correct spreadsheet function for each task.",
+            "si": "එක් එක් කාර්යය සඳහා නිවැරදි පැතුරුම්පත්ශ්‍රිතය ටයිප් කරන්න."
+          },
+          "questions": [
+            {
+              "q": {
+                "en": "To count how many cells from A1 to A20 hold a number:",
+                "si": "A1 සිට A20 දක්වා සංඛ්‍යාවක් ඇති කොටු කීයක් ඇත්දැයි ගණන් කිරීමට:"
+              },
+              "ans": "=count(a1:a20)",
+              "hint": {
+                "en": "COUNT counts only numbers",
+                "si": "COUNT මඟින් ගණන් කරන්නේ සංඛ්‍යා පමණි"
+              }
+            },
+            {
+              "q": {
+                "en": "To count how many cells from B1 to B20 are not empty:",
+                "si": "B1 සිට B20 දක්වා හිස් නොවන කොටු කීයක් ඇත්දැයි ගණන් කිරීමට:"
+              },
+              "ans": "=counta(b1:b20)",
+              "hint": {
+                "en": "COUNTA counts text as well as numbers",
+                "si": "COUNTA මඟින් සංඛ්‍යා මෙන්ම පාඨද ගණන් කරයි"
+              }
+            },
+            {
+              "q": {
+                "en": "To add up the marks in C2 to C41:",
+                "si": "C2 සිට C41 දක්වා ලකුණු එකතු කිරීමට:"
+              },
+              "ans": "=sum(c2:c41)",
+              "hint": {
+                "en": "Use the SUM function",
+                "si": "SUM ශ්‍රිතය භාවිත කරන්න"
+              }
+            },
+            {
+              "q": {
+                "en": "To find the class average of D2 to D41:",
+                "si": "D2 සිට D41 දක්වා පන්තියේ සාමාන්‍යය සෙවීමට:"
+              },
+              "ans": "=average(d2:d41)",
+              "hint": {
+                "en": "Use the AVERAGE function",
+                "si": "AVERAGE ශ්‍රිතය භාවිත කරන්න"
+              }
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "2.5",
+          "competency": "2.4",
+          "type": "pick",
+          "name": {
+            "en": "Sorting the Data",
+            "si": "දත්ත වර්ග කිරීම"
+          },
+          "instruction": {
+            "en": "Select ONLY the correct statements about sorting data in a spreadsheet.",
+            "si": "පැතුරුම්පතක දත්ත වර්ග කිරීම පිළිබඳ නිවැරදි ප්‍රකාශ පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Sorting puts the rows in a chosen order",
+                "si": "වර්ග කිරීම මඟින් පේළි තෝරාගත් පිළිවෙලකට සකසයි"
+              },
+              "icon": "🔢",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Ascending order goes from smallest to largest",
+                "si": "ආරෝහණ පිළිවෙල කුඩාම සිට විශාලතම දක්වා යයි"
+              },
+              "icon": "⬆️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Descending order goes from largest to smallest",
+                "si": "අවරෝහණ පිළිවෙල විශාලතම සිට කුඩාම දක්වා යයි"
+              },
+              "icon": "⬇️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Text can be sorted from A to Z",
+                "si": "පාඨ A සිට Z දක්වා වර්ග කළ හැකිය"
+              },
+              "icon": "🔤",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "You should select the whole table so the rows stay together",
+                "si": "පේළි එකට රැඳෙන ලෙස මුළු වගුවම තෝරාගත යුතුය"
+              },
+              "icon": "🧱",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Sorting deletes the rows you do not need",
+                "si": "වර්ග කිරීමෙන් ඔබට අවශ්‍ය නොවන පේළි මකා දමයි"
+              },
+              "icon": "🗑️",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Only one column can ever be sorted in a sheet",
+                "si": "පත්‍රයක වර්ග කළ හැක්කේ එක් තීරුවක් පමණි"
+              },
+              "icon": "1️⃣",
+              "correct": false
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": {
+        "en": "Programming",
+        "si": null
+      },
+      "icon": "🧮",
+      "cls": "l3",
+      "activities": [
+        {
+          "id": "3.1",
+          "type": "match",
+          "name": {
+            "en": "Control Structures Match",
+            "si": null
+          },
+          "instruction": {
+            "en": "Match each control structure with its correct behavior.",
+            "si": null
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "➡️ Sequence",
+                "si": null
+              },
+              "r": {
+                "en": "Steps executed one after another from top to bottom",
+                "si": null
+              },
+              "li": "➡️",
+              "ri": "📋"
+            },
+            {
+              "l": {
+                "en": "❓ Selection",
+                "si": null
+              },
+              "r": {
+                "en": "Decides between options based on a condition",
+                "si": null
+              },
+              "li": "❓",
+              "ri": "🔀"
+            },
+            {
+              "l": {
+                "en": "🔁 Repetition",
+                "si": null
+              },
+              "r": {
+                "en": "Repeats steps until a condition is satisfied",
+                "si": null
+              },
+              "li": "🔁",
+              "ri": "♻️"
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "type": "tf",
+          "name": {
+            "en": "Programming Concepts",
+            "si": null
+          },
+          "instruction": {
+            "en": "Decide whether each statement is True or False.",
+            "si": null
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "An array stores many items using a single name.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "\"if...then...else\" is a repetition control structure.",
+                "si": null
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "Lists are used for arrays in Scratch.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "Nested repetition means repetition inside repetition.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "A variable can only store text, not numbers.",
+                "si": null
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "Flow charts use standard symbols for actions.",
+                "si": null
+              },
+              "a": true
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "type": "input",
+          "name": {
+            "en": "MOD and Logic Challenge",
+            "si": null
+          },
+          "instruction": {
+            "en": "Type the correct output of each expression.",
+            "si": null
+          },
+          "questions": [
+            {
+              "q": {
+                "en": "What is 13 MOD 5?",
+                "si": null
+              },
+              "ans": "3",
+              "hint": {
+                "en": "Remainder when 13 divided by 5",
+                "si": null
+              }
+            },
+            {
+              "q": {
+                "en": "What is 24 MOD 2? (Type the number)",
+                "si": null
+              },
+              "ans": "0",
+              "hint": {
+                "en": "24 is even",
+                "si": null
+              }
+            },
+            {
+              "q": {
+                "en": "If x = 8 and y = 3, is x > y? (true/false)",
+                "si": null
+              },
+              "ans": "true",
+              "hint": {
+                "en": "8 is greater",
+                "si": null
+              }
+            },
+            {
+              "q": {
+                "en": "If a = 5 and b = 5, is \"a = b\"? (true/false)",
+                "si": null
+              },
+              "ans": "true",
+              "hint": {
+                "en": "Both are equal",
+                "si": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "3.4",
+          "type": "scratch-hub",
+          "name": {
+            "en": "Scratch Code Builder",
+            "si": null
+          },
+          "instruction": {
+            "en": "Build real Scratch programs by arranging blocks for each control structure.",
+            "si": null
+          }
+        },
+        {
+          "id": "3.5",
+          "competency": "3.3",
+          "type": "trace",
+          "name": {
+            "en": "Trace the Nested Repeat",
+            "si": "නිඩිත පුනර්කරණය අනුගමනය කරමු"
+          },
+          "instruction": {
+            "en": "A repeat inside another repeat is called nested iteration. Read each program and choose the correct output.",
+            "si": "පුනර්කරණයක් තුළ ඇති තවත් පුනර්කරණයක් නිඩිත පුනර්කරණය ලෙස හැඳින්වේ. එක් එක් වැඩසටහන කියවා නිවැරදි ප්‍රතිදානය තෝරන්න."
+          },
+          "questions": [
+            {
+              "code": "repeat 3\n   repeat 2\n      say \"hi\"",
+              "opts": [
+                "2 times",
+                "3 times",
+                "5 times",
+                "6 times"
+              ],
+              "ans": 3,
+              "note": {
+                "en": "3 outer turns times 2 inner turns is 6.",
+                "si": "බාහිර වාර 3 ගුණ අභ්‍යන්තර වාර 2 යනු 6 කි."
+              }
+            },
+            {
+              "code": "set n to 0\nrepeat 4\n   repeat 5\n      change n by 1\nsay n",
+              "opts": [
+                "9",
+                "20",
+                "4",
+                "5"
+              ],
+              "ans": 1,
+              "note": {
+                "en": "4 times 5 is 20.",
+                "si": "4 ගුණ 5 යනු 20 කි."
+              }
+            },
+            {
+              "code": "repeat 2\n   move 10 steps\n   repeat 4\n      turn 90 degrees",
+              "opts": [
+                "A line",
+                "Two full turns and two moves",
+                "Nothing moves",
+                "One square"
+              ],
+              "ans": 1,
+              "note": {
+                "en": "4 turns of 90 degrees is one full turn, done twice.",
+                "si": "අංශක 90 බැගින් හැරවීම් 4ක් යනු සම්පූර්ණ භ්‍රමණයකි, එය දෙවරක් සිදු වේ."
+              }
+            },
+            {
+              "code": "repeat 3\n   repeat 3\n      stamp\n   move 20 steps",
+              "opts": [
+                "3 stamps",
+                "6 stamps",
+                "9 stamps",
+                "20 stamps"
+              ],
+              "ans": 2,
+              "note": {
+                "en": "3 outer turns, 3 stamps each, is 9 stamps.",
+                "si": "බාහිර වාර 3, එක් වරකට මුද්‍රා 3 බැගින්, මුද්‍රා 9 කි."
+              }
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "3.6",
+          "competency": "3.4",
+          "type": "input",
+          "name": {
+            "en": "The Array Challenge",
+            "si": "ආරාව විචල්‍ය අභියෝගය"
+          },
+          "instruction": {
+            "en": "An array variable holds many values under one name. Scratch calls it a list. Type the answer.",
+            "si": "ආරාව විචල්‍යයක් එක් නමක් යටතේ අගයන් රැසක් තබා ගනී. Scratch හි එය ලැයිස්තුවක් ලෙස හැඳින්වේ. පිළිතුර ටයිප් කරන්න."
+          },
+          "questions": [
+            {
+              "q": {
+                "en": "marks holds 45, 60, 72, 88. How many items are in the array?",
+                "si": "marks හි 45, 60, 72, 88 ඇත. ආරාවේ අගයන් කීයක් තිබේද?"
+              },
+              "ans": "4",
+              "hint": {
+                "en": "Count the values",
+                "si": "අගයන් ගණන් කරන්න"
+              }
+            },
+            {
+              "q": {
+                "en": "In Scratch, item 1 of marks gives which value from 45, 60, 72, 88?",
+                "si": "Scratch හි marks හි 1 වන අගය, 45, 60, 72, 88 අතරින් කුමක්ද?"
+              },
+              "ans": "45",
+              "hint": {
+                "en": "Scratch lists start counting at 1",
+                "si": "Scratch ලැයිස්තු ගණන් කිරීම ආරම්භ වන්නේ 1 සිටය"
+              }
+            },
+            {
+              "q": {
+                "en": "What is the word Scratch uses for an array?",
+                "si": "ආරාවක් සඳහා Scratch භාවිත කරන වචනය කුමක්ද?"
+              },
+              "ans": "list",
+              "hint": {
+                "en": "You add it from the Variables section",
+                "si": "එය Variables කොටසෙන් එක් කරයි"
+              }
+            },
+            {
+              "q": {
+                "en": "One name holding 30 student marks saves you from making how many separate variables?",
+                "si": "සිසුන් 30 දෙනෙකුගේ ලකුණු එක් නමක තබා ගැනීමෙන් වෙන වෙනම විචල්‍ය කීයක් සෑදීමෙන් වැළකේද?"
+              },
+              "ans": "30",
+              "hint": {
+                "en": "One per student, without the array",
+                "si": "ආරාව නැතිනම් සිසුවෙකුට එකක් බැගින්"
+              }
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": {
+        "en": "Use of Microcontrollers",
+        "si": null
+      },
+      "icon": "⚙️",
+      "cls": "l4",
+      "activities": [
+        {
+          "id": "4.1",
+          "type": "match",
+          "name": {
+            "en": "Microcontroller Components",
+            "si": null
+          },
+          "instruction": {
+            "en": "Match each component with its function.",
+            "si": null
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🧠 CPU",
+                "si": null
+              },
+              "r": {
+                "en": "Processes data into information",
+                "si": null
+              },
+              "li": "🧠",
+              "ri": "⚡"
+            },
+            {
+              "l": {
+                "en": "💾 Non-volatile Memory",
+                "si": null
+              },
+              "r": {
+                "en": "Keeps data even without electricity",
+                "si": null
+              },
+              "li": "💾",
+              "ri": "🔒"
+            },
+            {
+              "l": {
+                "en": "⚡ Volatile Memory",
+                "si": null
+              },
+              "r": {
+                "en": "Data erased without electricity (RAM)",
+                "si": null
+              },
+              "li": "⚡",
+              "ri": "🗑️"
+            },
+            {
+              "l": {
+                "en": "⏰ System Clock",
+                "si": null
+              },
+              "r": {
+                "en": "Synchronizes all components",
+                "si": null
+              },
+              "li": "⏰",
+              "ri": "🔄"
+            },
+            {
+              "l": {
+                "en": "🔌 Peripherals",
+                "si": null
+              },
+              "r": {
+                "en": "Pins used to input and output data",
+                "si": null
+              },
+              "li": "🔌",
+              "ri": "📡"
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "type": "hotspot",
+          "name": {
+            "en": "Match Sensor to Purpose",
+            "si": null
+          },
+          "instruction": {
+            "en": "Read each purpose and click the correct sensor.",
+            "si": null
+          },
+          "rounds": [
+            {
+              "q": {
+                "en": "To detect human movement (motion sensor)?",
+                "si": null
+              },
+              "ans": "pir"
+            },
+            {
+              "q": {
+                "en": "To estimate the distance from an object?",
+                "si": null
+              },
+              "ans": "ultrasonic"
+            },
+            {
+              "q": {
+                "en": "To detect light levels (day/night)?",
+                "si": null
+              },
+              "ans": "light"
+            },
+            {
+              "q": {
+                "en": "To measure temperature in a room?",
+                "si": null
+              },
+              "ans": "temp"
+            }
+          ]
+        },
+        {
+          "id": "4.3",
+          "type": "tf",
+          "name": {
+            "en": "Microcontroller Facts",
+            "si": null
+          },
+          "instruction": {
+            "en": "Decide whether each statement is True or False.",
+            "si": null
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "Arduino Uno uses an ATMEGA328p microcontroller chip.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "Micro:bit has built-in LED lights, buttons and sensors.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "A breadboard requires soldering to connect components.",
+                "si": null
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "The LED only allows electricity in one direction.",
+                "si": null
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "A PIR sensor outputs 5V when it detects motion.",
+                "si": null
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "Raspberry Pi is an example of a single board computer.",
+                "si": null
+              },
+              "a": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": {
+        "en": "Computer Networks",
+        "si": null
+      },
+      "icon": "🌐",
+      "cls": "l5",
+      "activities": [
+        {
+          "id": "5.1",
+          "type": "match",
+          "name": {
+            "en": "Network Devices",
+            "si": null
+          },
+          "instruction": {
+            "en": "Match each network device with its correct function.",
+            "si": null
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🖥️ Server",
+                "si": null
+              },
+              "r": {
+                "en": "Manages software, hardware, files and communication",
+                "si": null
+              },
+              "li": "🖥️",
+              "ri": "🗄️"
+            },
+            {
+              "l": {
+                "en": "🔀 Switch",
+                "si": null
+              },
+              "r": {
+                "en": "Mediator between two or more computers",
+                "si": null
+              },
+              "li": "🔀",
+              "ri": "🔗"
+            },
+            {
+              "l": {
+                "en": "📶 Router",
+                "si": null
+              },
+              "r": {
+                "en": "Connects one network to another or to the Internet",
+                "si": null
+              },
+              "li": "📶",
+              "ri": "🌍"
+            },
+            {
+              "l": {
+                "en": "💳 NIC",
+                "si": null
+              },
+              "r": {
+                "en": "Connects a computer to a computer network",
+                "si": null
+              },
+              "li": "💳",
+              "ri": "🔌"
+            }
+          ]
+        },
+        {
+          "id": "5.2",
+          "type": "bucket",
+          "name": {
+            "en": "Sort Network Media",
+            "si": null
+          },
+          "instruction": {
+            "en": "Sort each type of media into Wired or Wireless.",
+            "si": null
+          },
+          "buckets": [
+            {
+              "name": {
+                "en": "🔌 Wired Media",
+                "si": null
+              },
+              "items": [
+                {
+                  "en": "Fiber Optic Cable",
+                  "si": null
+                },
+                {
+                  "en": "Twisted Pair Cable",
+                  "si": null
+                },
+                {
+                  "en": "RJ45 Cable",
+                  "si": null
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "📡 Wireless Media",
+                "si": null
+              },
+              "items": [
+                {
+                  "en": "Infrared Waves",
+                  "si": null
+                },
+                {
+                  "en": "Bluetooth",
+                  "si": null
+                },
+                {
+                  "en": "Wi-Fi",
+                  "si": null
+                },
+                {
+                  "en": "Radio Waves",
+                  "si": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "5.3",
+          "type": "pick",
+          "name": {
+            "en": "Network Advantages",
+            "si": null
+          },
+          "instruction": {
+            "en": "Select ONLY the correct advantages of using computer networks.",
+            "si": null
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Share hardware like printers and scanners",
+                "si": null
+              },
+              "icon": "🖨️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Share software and data files",
+                "si": null
+              },
+              "icon": "💾",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Increase individual computer weight",
+                "si": null
+              },
+              "icon": "⚖️",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Send messages and emails easily",
+                "si": null
+              },
+              "icon": "📧",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Enable backup of data in a server",
+                "si": null
+              },
+              "icon": "🔒",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Require less electricity per user",
+                "si": null
+              },
+              "icon": "⚡",
+              "correct": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": {
+        "en": "ICT and Society",
+        "si": null
+      },
+      "icon": "🌍",
+      "cls": "l6",
+      "activities": [
+        {
+          "id": "6.1",
+          "type": "match",
+          "name": {
+            "en": "ICT Jobs and Responsibilities",
+            "si": null
+          },
+          "instruction": {
+            "en": "Match each ICT job with its correct responsibility.",
+            "si": null
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🧪 Software QA Engineer",
+                "si": null
+              },
+              "r": {
+                "en": "Assures that software functions properly",
+                "si": null
+              },
+              "li": "🧪",
+              "ri": "✅"
+            },
+            {
+              "l": {
+                "en": "🗄️ Database Administrator",
+                "si": null
+              },
+              "r": {
+                "en": "Plans, installs and maintains databases",
+                "si": null
+              },
+              "li": "🗄️",
+              "ri": "💾"
+            },
+            {
+              "l": {
+                "en": "🎨 Graphic Designer",
+                "si": null
+              },
+              "r": {
+                "en": "Develops web pages and banners using software",
+                "si": null
+              },
+              "li": "🎨",
+              "ri": "🖼️"
+            },
+            {
+              "l": {
+                "en": "🔧 Network Administrator",
+                "si": null
+              },
+              "r": {
+                "en": "Installs, configures and maintains networks",
+                "si": null
+              },
+              "li": "🔧",
+              "ri": "🌐"
+            },
+            {
+              "l": {
+                "en": "💡 IT Consultant",
+                "si": null
+              },
+              "r": {
+                "en": "Advises organizations on ICT matters",
+                "si": null
+              },
+              "li": "💡",
+              "ri": "📋"
+            }
+          ]
+        },
+        {
+          "id": "6.2",
+          "type": "hotspot",
+          "name": {
+            "en": "Choose the Correct Term",
+            "si": null
+          },
+          "instruction": {
+            "en": "Read each definition and click the correct term.",
+            "si": null
+          },
+          "rounds": [
+            {
+              "q": {
+                "en": "The gap between those who have and have not access?",
+                "si": null
+              },
+              "ans": "digitaldivide"
+            },
+            {
+              "q": {
+                "en": "Harmful waste items from computers and electronics?",
+                "si": null
+              },
+              "ans": "ewaste"
+            },
+            {
+              "q": {
+                "en": "The 3R concept for disposal of e-waste?",
+                "si": null
+              },
+              "ans": "reduce"
+            },
+            {
+              "q": {
+                "en": "Teaching using ICT and the Internet?",
+                "si": null
+              },
+              "ans": "elearning"
+            }
+          ]
+        },
+        {
+          "id": "6.3",
+          "type": "pick",
+          "name": {
+            "en": "Reduce, Reuse, Recycle",
+            "si": null
+          },
+          "instruction": {
+            "en": "Select ONLY the correct methods for the 3R concept.",
+            "si": null
+          },
+          "items": [
+            {
+              "text": {
+                "en": "Repair and use again instead of buying new",
+                "si": null
+              },
+              "icon": "🔧",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Throw e-waste into regular garbage bins",
+                "si": null
+              },
+              "icon": "🗑️",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Hand over e-waste to a recycling agency",
+                "si": null
+              },
+              "icon": "♻️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Minimize purchase of unnecessary devices",
+                "si": null
+              },
+              "icon": "📉",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Burn e-waste openly to dispose of it",
+                "si": null
+              },
+              "icon": "🔥",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Donate old working devices to others",
+                "si": null
+              },
+              "icon": "🎁",
+              "correct": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": {
+        "en": "ICT All Around Us",
+        "si": "තොරතුරු තාක්ෂණය අප වටා"
+      },
+      "icon": "🌏",
+      "cls": "l7",
+      "activities": [
+        {
+          "id": "7.1",
+          "competency": "6.1",
+          "type": "match",
+          "name": {
+            "en": "Match the e-Service",
+            "si": "ඊ-සේවාව යුගල කරමු"
+          },
+          "instruction": {
+            "en": "Match each service with what it lets people do.",
+            "si": "එක් එක් සේවාව එමඟින් මිනිසුන්ට කළ හැකි දේ සමඟ යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🎓 e-Learning",
+                "si": "🎓 ඊ-ඉගෙනුම"
+              },
+              "r": {
+                "en": "Following a lesson through the Internet",
+                "si": "අන්තර්ජාලය හරහා පාඩමක් හැදෑරීම"
+              },
+              "li": "🎓",
+              "ri": "💻"
+            },
+            {
+              "l": {
+                "en": "🛒 e-Commerce",
+                "si": "🛒 ඊ-වාණිජ්‍ය"
+              },
+              "r": {
+                "en": "Buying and selling goods on a website",
+                "si": "වෙබ් අඩවියක භාණ්ඩ මිලදී ගැනීම හා විකිණීම"
+              },
+              "li": "🛒",
+              "ri": "🌐"
+            },
+            {
+              "l": {
+                "en": "📱 m-Commerce",
+                "si": "📱 එම්-වාණිජ්‍ය"
+              },
+              "r": {
+                "en": "Buying and selling using a mobile phone",
+                "si": "ජංගම දුරකථනයක් භාවිතයෙන් මිලදී ගැනීම හා විකිණීම"
+              },
+              "li": "📱",
+              "ri": "💳"
+            },
+            {
+              "l": {
+                "en": "🩺 e-Health",
+                "si": "🩺 ඊ-සෞඛ්‍ය"
+              },
+              "r": {
+                "en": "Booking a doctor or reading test results online",
+                "si": "මාර්ගගත ව වෛද්‍යවරයෙකු වෙන් කර ගැනීම හෝ පරීක්ෂණ ප්‍රතිඵල කියවීම"
+              },
+              "li": "🩺",
+              "ri": "📋"
+            },
+            {
+              "l": {
+                "en": "🏛️ e-Government",
+                "si": "🏛️ ඊ-රාජ්‍ය"
+              },
+              "r": {
+                "en": "Getting a government service on a website",
+                "si": "වෙබ් අඩවියකින් රාජ්‍ය සේවාවක් ලබා ගැනීම"
+              },
+              "li": "🏛️",
+              "ri": "📄"
+            },
+            {
+              "l": {
+                "en": "🏢 Office automation",
+                "si": "🏢 කාර්යාලයීය ස්වයංකරණය"
+              },
+              "r": {
+                "en": "Doing office work with computers instead of paper",
+                "si": "කඩදාසි වෙනුවට පරිගණක යොදා කාර්යාල වැඩ කිරීම"
+              },
+              "li": "🏢",
+              "ri": "🖨️"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "7.2",
+          "competency": "6.1",
+          "type": "pick",
+          "name": {
+            "en": "The Digital Divide",
+            "si": "අංකිත බෙදුම"
+          },
+          "instruction": {
+            "en": "The digital divide is the gap between people who can use ICT and people who cannot. Select ONLY the correct statements.",
+            "si": "අංකිත බෙදුම යනු තොරතුරු තාක්ෂණය භාවිත කළ හැකි අය හා නොහැකි අය අතර පරතරයයි. නිවැරදි ප්‍රකාශ පමණක් තෝරන්න."
+          },
+          "items": [
+            {
+              "text": {
+                "en": "A village with no Internet is on the wrong side of the divide",
+                "si": "අන්තර්ජාලය නොමැති ගමක් බෙදුමේ වැරදි පැත්තේ ඇත"
+              },
+              "icon": "🏘️",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Cost of devices is one reason the divide exists",
+                "si": "උපාංගවල මිල බෙදුම පවතින එක් හේතුවකි"
+              },
+              "icon": "💰",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Not knowing how to use a computer widens the divide",
+                "si": "පරිගණකයක් භාවිත කිරීම නොදැනීම බෙදුම පුළුල් කරයි"
+              },
+              "icon": "❓",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "School computer labs help to close the divide",
+                "si": "පාසල් පරිගණක විද්‍යාගාර බෙදුම අඩු කිරීමට උපකාර වේ"
+              },
+              "icon": "🏫",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The divide means the Internet is divided into two halves",
+                "si": "බෙදුම යන්නෙන් අදහස් වන්නේ අන්තර්ජාලය කොටස් දෙකකට බෙදී ඇති බවයි"
+              },
+              "icon": "✂️",
+              "correct": false
+            },
+            {
+              "text": {
+                "en": "Everyone in the country already has equal access to ICT",
+                "si": "රටේ සැමට දැනටමත් තොරතුරු තාක්ෂණයට සමාන ප්‍රවේශයක් ඇත"
+              },
+              "icon": "🟰",
+              "correct": false
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "7.3",
+          "competency": "6.1",
+          "type": "bucket",
+          "name": {
+            "en": "Good and Harmful Effects of ICT",
+            "si": "තොරතුරු තාක්ෂණයේ යහපත් හා අයහපත් බලපෑම්"
+          },
+          "instruction": {
+            "en": "Click an effect first, then click the correct bucket.",
+            "si": "මුලින් බලපෑමක් ක්ලික් කර, පසුව නිවැරදි බඳුන ක්ලික් කරන්න."
+          },
+          "buckets": [
+            {
+              "name": {
+                "en": "👍 Good for society",
+                "si": "👍 සමාජයට යහපත්"
+              },
+              "items": [
+                {
+                  "en": "A student in a village can follow a city lesson",
+                  "si": "ගමක සිටින සිසුවෙකුට නගරයේ පාඩමක් හැදෑරිය හැකිය"
+                },
+                {
+                  "en": "Government forms are filled without travelling",
+                  "si": "ගමන් නොකර රාජ්‍ය ආකෘති පත්‍ර පිරවිය හැකිය"
+                },
+                {
+                  "en": "A small shop can sell across the whole country",
+                  "si": "කුඩා කඩයකට මුළු රට පුරා විකිණිය හැකිය"
+                },
+                {
+                  "en": "Test results reach the patient the same day",
+                  "si": "පරීක්ෂණ ප්‍රතිඵල එදිනම රෝගියාට ලැබේ"
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "👎 Harmful for society",
+                "si": "👎 සමාජයට අයහපත්"
+              },
+              "items": [
+                {
+                  "en": "Electronic waste piles up and pollutes",
+                  "si": "විද්‍යුත් අපද්‍රව්‍ය එකතු වී දූෂණය වේ"
+                },
+                {
+                  "en": "People with no access fall further behind",
+                  "si": "ප්‍රවේශයක් නැති අය තවත් පසුබසී"
+                },
+                {
+                  "en": "Private information can be stolen",
+                  "si": "පෞද්ගලික තොරතුරු සොරකම් කළ හැකිය"
+                },
+                {
+                  "en": "Some jobs disappear when work is automated",
+                  "si": "වැඩ ස්වයංක්‍රීය වූ විට සමහර රැකියා අහිමි වේ"
+                }
+              ]
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        }
+      ],
+      "origin": "syllabus-enrichment",
+      "siDraft": true
+    }
+  ]
+}

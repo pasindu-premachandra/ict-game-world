@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICT Adventure - Grade 9</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Comic Sans MS', Tahoma, sans-serif; }
+html, body { min-height: 100vh; overflow-x: hidden; }
+body { background: #eef0ff; color: #1e1b4b; padding: 15px; transition: background 0.8s; position: relative; font-size: 18px; }
+
+#bgLayer { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+#bgLayer::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 20% 30%, rgba(99,102,241,0.35), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.7), transparent 55%);
+  animation: bgPulse 8s ease-in-out infinite alternate;
+}
+@keyframes bgPulse { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
+
+body.theme-cpu #bgLayer { background: linear-gradient(135deg, #eef0ff 0%, #c7d2fe 50%, #ffffff 100%); }
+body.theme-cpu #bgLayer::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(99,102,241,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.15) 1px, transparent 1px);
+  background-size: 70px 70px; animation: gridMove 20s linear infinite;
+}
+@keyframes gridMove { to { background-position: 70px 70px; } }
+
+body.theme-sheet #bgLayer { background: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 50%, #ffffff 100%); }
+body.theme-code #bgLayer { background: linear-gradient(135deg, #dde4ff 0%, #818cf8 60%, #f5f3ff 100%); }
+body.theme-micro #bgLayer { background: linear-gradient(135deg, #eef0ff 0%, #b4c0fc 50%, #ffffff 100%); }
+body.theme-net #bgLayer { background: linear-gradient(135deg, #e8ebff 0%, #a5b4fc 55%, #ffffff 100%); }
+body.theme-society #bgLayer { background: linear-gradient(135deg, #f0eaff 0%, #c7b8ff 50%, #ffffff 100%); }
+
+.bg-emoji { position: absolute; font-size: 4em; opacity: 0.35; animation: floatAround 18s ease-in-out infinite; filter: drop-shadow(0 0 15px currentColor); pointer-events: none; }
+@keyframes floatAround {
+  0%, 100% { transform: translate(0, 0) rotate(-8deg) scale(1); }
+  25% { transform: translate(30px, -40px) rotate(8deg) scale(1.1); }
+  50% { transform: translate(-20px, -60px) rotate(-5deg) scale(0.95); }
+  75% { transform: translate(40px, -20px) rotate(10deg) scale(1.05); }
+}
+
+.particle { position: absolute; border-radius: 50%; background: rgba(99,102,241,0.75); animation: floatUp linear infinite; box-shadow: 0 0 12px currentColor; }
+@keyframes floatUp { from { transform: translateY(100vh) scale(0.5); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } to { transform: translateY(-100px) scale(1.3); opacity: 0; } }
+
+.confetti { position: fixed; width: 14px; height: 14px; z-index: 999; pointer-events: none; animation: confettiFall 3s linear forwards; border-radius: 3px; }
+@keyframes confettiFall { from { transform: translateY(-30px) rotate(0deg); opacity: 1; } to { transform: translateY(100vh) rotate(1080deg); opacity: 0; } }
+
+.float-score { position: fixed; font-size: 2.5em; font-weight: 900; color: #4f46e5; text-shadow: 0 0 15px #818cf8, 0 0 30px #ffffff, 2px 2px 4px rgba(0,0,0,0.2); pointer-events: none; z-index: 999; animation: floatScore 1.5s ease-out forwards; }
+@keyframes floatScore { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 20% { transform: translateY(-30px) scale(1.4); opacity: 1; } 100% { transform: translateY(-150px) scale(1); opacity: 0; } }
+
+.container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 2; }
+
+.header-bar { text-align: center; margin-bottom: 20px; padding: 20px; background: rgba(255,255,255,0.85); border-radius: 25px; backdrop-filter: blur(18px); border: 2px solid rgba(99,102,241,0.55); box-shadow: 0 15px 45px rgba(99,102,241,0.25), 0 8px 20px rgba(0,0,0,0.1); }
+h1 { font-size: 2.4em; margin-bottom: 6px; font-weight: 900; background: linear-gradient(90deg, #4f46e5, #818cf8, #4338ca, #6366f1); background-size: 400% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 4s linear infinite; letter-spacing: 1px; filter: drop-shadow(0 2px 4px rgba(99,102,241,0.3)); }
+@keyframes shimmer { to { background-position: 400% 0; } }
+.subtitle { color: #4f46e5; font-size: 1.05em; font-weight: 600; }
+
+.music-ctrl { position: fixed; top: 15px; right: 15px; z-index: 100; background: rgba(255,255,255,0.9); border-radius: 50px; padding: 8px 12px; border: 2px solid rgba(99,102,241,0.7); display: flex; gap: 8px; align-items: center; backdrop-filter: blur(12px); box-shadow: 0 0 25px rgba(99,102,241,0.4); }
+.music-ctrl button { background: rgba(99,102,241,0.25); border: none; color: #4f46e5; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; font-size: 1.4em; transition: all 0.3s; }
+.music-ctrl button:hover { background: rgba(99,102,241,0.55); transform: scale(1.12) rotate(10deg); }
+.music-ctrl button.muted { color: #999; background: rgba(150,150,150,0.25); }
+.music-label { font-size: 0.85em; color: #4f46e5; font-weight: bold; }
+
+.card { background: rgba(255,255,255,0.85); backdrop-filter: blur(18px); border-radius: 28px; padding: 25px; margin-bottom: 20px; border: 2px solid rgba(99,102,241,0.4); box-shadow: 0 20px 50px rgba(99,102,241,0.2), 0 8px 20px rgba(0,0,0,0.08); animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.btn { background: linear-gradient(90deg, #6366f1, #4f46e5); color: #fff; border: none; padding: 16px 34px; font-size: 1.1em; border-radius: 50px; cursor: pointer; font-weight: 900; transition: all 0.3s; margin: 6px; box-shadow: 0 8px 25px rgba(99,102,241,0.5); position: relative; overflow: hidden; }
+.btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.6) 50%, transparent 70%); transform: translateX(-100%); transition: transform 0.6s; }
+.btn:hover::after { transform: translateX(100%); }
+.btn:hover { transform: translateY(-4px) scale(1.06); box-shadow: 0 15px 40px rgba(99,102,241,0.7); }
+.btn:active { transform: scale(0.97); }
+.btn.small { padding: 11px 22px; font-size: 0.95em; }
+.btn.green { background: linear-gradient(90deg, #818cf8, #6366f1); }
+.btn.danger { background: linear-gradient(90deg, #4338ca, #3730a3); }
+
+.lesson-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.lesson-card { position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(199,210,254,0.85), rgba(255,255,255,0.95)); border-radius: 22px; padding: 22px; text-align: center; cursor: pointer; border: 2px solid rgba(99,102,241,0.5); transition: all 0.4s; }
+.lesson-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(99,102,241,0.25), transparent); transition: left 0.7s; }
+.lesson-card:hover::before { left: 100%; }
+.lesson-card:hover { transform: translateY(-10px) scale(1.04); border-color: #6366f1; box-shadow: 0 20px 45px rgba(99,102,241,0.4); }
+.lesson-card .num { font-size: 2.4em; font-weight: 900; color: #4f46e5; text-shadow: 0 2px 4px rgba(99,102,241,0.3); line-height: 1; }
+.lesson-card .emoji { font-size: 3.4em; margin: 8px 0; filter: drop-shadow(0 4px 8px rgba(99,102,241,0.4)); animation: bounceSmall 2s ease-in-out infinite alternate; }
+@keyframes bounceSmall { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+.lesson-card .title { font-size: 1.15em; margin-top: 8px; color: #1e1b4b; font-weight: 900; }
+.lesson-card .title-si { font-size: 0.85em; color: #4338ca; margin-top: 4px; font-weight: 600; }
+.lesson-card .game-count { font-size: 0.85em; color: #4f46e5; margin-top: 10px; background: rgba(99,102,241,0.15); padding: 5px 14px; border-radius: 20px; display: inline-block; font-weight: bold; border: 1px solid rgba(99,102,241,0.35); }
+
+.game-option { display: flex; align-items: center; gap: 20px; padding: 20px; background: rgba(199,210,254,0.4); border-radius: 20px; margin: 14px 0; cursor: pointer; border-left: 6px solid #6366f1; transition: all 0.3s; position: relative; }
+.game-option:hover { background: rgba(165,180,252,0.6); transform: translateX(12px); box-shadow: 0 12px 35px rgba(99,102,241,0.35); }
+.game-option .icon { font-size: 3.2em; filter: drop-shadow(0 3px 6px rgba(99,102,241,0.4)); animation: bounceSmall 1.8s ease-in-out infinite alternate; }
+.game-option .info .name { font-weight: 900; color: #1e1b4b; font-size: 1.2em; }
+.game-option .info .desc { font-size: 0.9em; color: #4338ca; margin-top: 5px; font-weight: 500; }
+.game-option .badge { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 1.6em; opacity: 0.7; }
+
+.scoreboard { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
+.score-box { background: rgba(199,210,254,0.6); padding: 12px 22px; border-radius: 15px; border: 2px solid rgba(99,102,241,0.5); text-align: center; min-width: 120px; backdrop-filter: blur(10px); }
+.score-box .lbl { font-size: 0.8em; color: #4338ca; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold; }
+.score-box .val { font-size: 1.9em; font-weight: 900; color: #4f46e5; text-shadow: 0 2px 4px rgba(99,102,241,0.25); }
+
+.progress-bar { height: 22px; background: rgba(255,255,255,0.85); border-radius: 11px; overflow: hidden; margin: 12px 0; border: 2px solid rgba(99,102,241,0.45); }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #818cf8, #6366f1, #4f46e5); width: 0%; transition: width 0.5s; box-shadow: 0 0 18px rgba(99,102,241,0.7); }
+
+.q-text { font-size: 1.4em; margin-bottom: 10px; text-align: center; font-weight: 900; line-height: 1.4; color: #1e1b4b; }
+.q-text-si { font-size: 1.05em; color: #4338ca; font-style: italic; margin-bottom: 20px; text-align: center; font-weight: 500; }
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.option-btn { padding: 22px; background: rgba(255,255,255,0.9); border: 3px solid rgba(99,102,241,0.5); border-radius: 18px; color: #1e1b4b; cursor: pointer; font-size: 1.1em; transition: all 0.25s; font-weight: 700; line-height: 1.4; }
+.option-btn:hover { background: rgba(199,210,254,0.9); transform: scale(1.04); border-color: #6366f1; }
+.option-btn.correct { background: rgba(129,140,248,0.85); border-color: #4f46e5; color: #fff; animation: correctPop 0.5s; }
+.option-btn.wrong { background: rgba(67,56,202,0.85); border-color: #3730a3; color: #fff; animation: shake 0.4s; }
+@keyframes correctPop { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1) rotate(2deg); } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+
+.feedback { text-align: center; padding: 18px; border-radius: 15px; margin-top: 16px; font-weight: 900; font-size: 1.1em; display: none; animation: fadeIn 0.4s; }
+.feedback.show { display: block; }
+.feedback.ok { background: rgba(129,140,248,0.4); color: #312e81; border: 2px solid #6366f1; }
+.feedback.no { background: rgba(67,56,202,0.35); color: #312e81; border: 2px solid #4338ca; }
+
+.sort-pool, .sort-bins { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 18px 0; }
+.sort-item { background: linear-gradient(90deg, #818cf8, #6366f1); color: #fff; padding: 14px 20px; border-radius: 14px; cursor: pointer; font-weight: 900; font-size: 1em; transition: all 0.3s; box-shadow: 0 6px 18px rgba(99,102,241,0.45); }
+.sort-item:hover { transform: scale(1.08) translateY(-4px); }
+.sort-item.selected { box-shadow: 0 0 0 4px #4f46e5, 0 6px 20px rgba(79,70,229,0.6); transform: scale(1.1); }
+.bin { flex: 1; min-width: 180px; background: rgba(255,255,255,0.85); border-radius: 18px; padding: 18px; text-align: center; cursor: pointer; transition: all 0.3s; border: 3px solid transparent; min-height: 140px; }
+.bin:hover { border-color: #6366f1; transform: translateY(-4px); }
+.bin .bin-title { font-weight: 900; color: #4f46e5; font-size: 1.1em; margin-bottom: 10px; }
+.bin .bin-item { background: rgba(199,210,254,0.9); padding: 8px; border-radius: 8px; font-size: 0.9em; margin: 4px 0; font-weight: bold; color: #1e1b4b; }
+
+.memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 620px; margin: 20px auto; }
+.mem-card { aspect-ratio: 1; background: linear-gradient(135deg, #818cf8, #4f46e5); border-radius: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.95em; text-align: center; padding: 8px; transition: all 0.4s; font-weight: 900; color: #fff; box-shadow: 0 8px 20px rgba(99,102,241,0.4); border: 3px solid rgba(255,255,255,0.4); }
+.mem-card:hover { transform: scale(1.06); }
+.mem-card.flipped { background: rgba(199,210,254,0.9); border-color: #6366f1; color: #1e1b4b; }
+.mem-card.matched { background: linear-gradient(135deg, #a5b4fc, #818cf8); opacity: 0.6; cursor: default; }
+
+.match-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; margin: 20px 0; }
+.match-card { background: rgba(255,255,255,0.9); border-radius: 18px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s; border: 3px solid rgba(99,102,241,0.5); font-weight: bold; color: #1e1b4b; }
+.match-card:hover { border-color: #6366f1; transform: translateY(-6px); box-shadow: 0 12px 28px rgba(99,102,241,0.4); }
+.match-card.selected { border-color: #4f46e5; background: rgba(199,210,254,0.9); }
+.match-card.matched { border-color: #6366f1; opacity: 0.6; cursor: default; pointer-events: none; }
+.match-card .shape { font-size: 2.8em; margin-bottom: 8px; }
+.match-card .txt { font-size: 0.95em; color: #4338ca; }
+
+.result { text-align: center; padding: 30px; }
+.result .trophy { font-size: 7em; animation: bounce 1s infinite alternate; filter: drop-shadow(0 8px 20px rgba(99,102,241,0.5)); }
+@keyframes bounce { from { transform: translateY(0) rotate(-6deg) scale(1); } to { transform: translateY(-22px) rotate(6deg) scale(1.08); } }
+.result .score-big { font-size: 3em; color: #4f46e5; margin: 20px 0; text-shadow: 0 2px 8px rgba(99,102,241,0.35); font-weight: 900; }
+
+.hidden { display: none !important; }
+.screen-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+.screen-header h2 { font-size: 1.5em; color: #4f46e5; text-shadow: 0 2px 6px rgba(99,102,241,0.3); font-weight: 900; }
+
+/* BATCH FOOTER */
+.batch-footer { text-align: center; padding: 30px 15px 45px; position: relative; z-index: 2; }
+.batch-box { display: inline-block; padding: 16px 40px; border: 3px solid #4f46e5; border-radius: 60px; background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%); backdrop-filter: blur(14px); box-shadow: 0 0 40px rgba(99,102,241,0.5), inset 0 0 25px rgba(199,210,254,0.5); position: relative; overflow: hidden; animation: batchPulse 2.2s ease-in-out infinite alternate; white-space: nowrap; }
+@keyframes batchPulse {
+  from { box-shadow: 0 0 30px rgba(99,102,241,0.5), inset 0 0 20px rgba(199,210,254,0.4); transform: scale(1); }
+  to { box-shadow: 0 0 60px rgba(99,102,241,0.85), inset 0 0 35px rgba(165,180,252,0.6); transform: scale(1.025); }
+}
+.batch-box::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(99,102,241,0.3), transparent); animation: shine 3.5s ease-in-out infinite; }
+@keyframes shine { 0% { left: -100%; } 50%, 100% { left: 100%; } }
+.batch-text { font-size: 1.5em; font-weight: 900; letter-spacing: 2px; background: linear-gradient(90deg, #4f46e5, #818cf8, #3730a3, #4f46e5); background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 3s linear infinite; position: relative; z-index: 1; filter: drop-shadow(0 2px 6px rgba(99,102,241,0.4)); display: inline-block; }
+
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  h1 { font-size: 1.6em; }
+  .options-grid { grid-template-columns: 1fr; }
+  .memory-grid { grid-template-columns: repeat(3, 1fr); }
+  .lesson-grid { grid-template-columns: 1fr; }
+  .q-text { font-size: 1.15em; }
+  .batch-text { font-size: 1em; letter-spacing: 1px; }
+  .batch-box { padding: 12px 20px; }
+}
+</style>
+</head>
+<body class="theme-cpu">
+
+<div id="bgLayer"></div>
+
+<div class="music-ctrl">
+  <span class="music-label" id="trackName">💜 Lesson 1</span>
+  <button id="musicBtn" title="Toggle Music">🔊</button>
+</div>
+
+<div class="container">
+  <div class="header-bar">
+    <h1>🎓 ICT ADVENTURE 9 💜</h1>
+    <p class="subtitle">9 ශ්‍රේණිය · තොරතුරු හා සන්නිවේදන තාක්ෂණය · 18 Games! 🎯</p>
+  </div>
+
+  <div id="mainMenu" class="card">
+    <h2 style="text-align:center; color:#4f46e5; margin-bottom:25px; text-shadow: 0 2px 8px rgba(99,102,241,0.35); font-size:1.5em;">📚 පාඩමක් තෝරන්න! (Choose a Lesson!)</h2>
+    <div class="lesson-grid" id="lessonGrid"></div>
+  </div>
+
+  <div id="gameScreen" class="card hidden">
+    <div class="screen-header">
+      <button class="btn small" onclick="backToLessons()">⬅️ Back</button>
+      <h2 id="gameTitle"></h2>
+      <button class="btn small" onclick="backToMain()">🏠 Home</button>
+    </div>
+    <div id="gameContent"></div>
+  </div>
+
+  <div class="batch-footer">
+    <div class="batch-box">
+      <span class="batch-text">🌟 2022 - 2024 Ruwanpura NCoE Batch 🌟</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ AUDIO ============ */
+let audioCtx = null, musicPlaying = false, musicTimer = null, currentTheme = 'cpu', melodyIdx = 0;
+
+const themeMusic = {
+  cpu:    [523.25,659.25,783.99,659.25,587.33,698.46,880.00,698.46,523.25,392.00,440.00,493.88,523.25,587.33,659.25,0],
+  sheet:  [440.00,523.25,587.33,698.46,659.25,587.33,523.25,587.33,440.00,392.00,440.00,523.25,587.33,523.25,440.00,0],
+  code:   [523.25,587.33,659.25,783.99,880.00,783.99,659.25,587.33,523.25,440.00,523.25,659.25,783.99,1046.50,880.00,0],
+  micro:  [392.00,440.00,523.25,587.33,659.25,587.33,523.25,440.00,392.00,329.63,392.00,440.00,523.25,587.33,659.25,0],
+  net:    [659.25,783.99,880.00,1046.50,987.77,880.00,783.99,659.25,587.33,659.25,783.99,880.00,987.77,880.00,783.99,0],
+  society:[349.23,440.00,523.25,698.46,659.25,587.33,523.25,440.00,392.00,349.23,392.00,440.00,523.25,587.33,659.25,0]
+};
+const themeWave = { cpu:'triangle', sheet:'sine', code:'square', micro:'triangle', net:'sine', society:'triangle' };
+const themeTempo = { cpu:380, sheet:400, code:300, micro:370, net:340, society:420 };
+const themeVol = { cpu:0.045, sheet:0.05, code:0.04, micro:0.045, net:0.045, society:0.04 };
+const themeName = { cpu:'💜 Lesson 1', sheet:'📊 Spreadsheets', code:'💻 Programming', micro:'🔧 Microcontrollers', net:'🌐 Networks', society:'🌍 ICT & Society' };
+
+function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
+function playNote(freq, dur, type='sine', vol=0.05) {
+  if (!audioCtx || !freq) return;
+  const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+  osc.type = type; osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0, audioCtx.currentTime);
+  gain.gain.linearRampToValueAtTime(vol, audioCtx.currentTime + 0.02);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+  osc.connect(gain); gain.connect(audioCtx.destination);
+  osc.start(); osc.stop(audioCtx.currentTime + dur);
+}
+function melodyLoop() {
+  if (!musicPlaying) return;
+  const notes = themeMusic[currentTheme] || themeMusic.cpu;
+  const wave = themeWave[currentTheme] || 'triangle';
+  const tempo = themeTempo[currentTheme] || 380;
+  const vol = themeVol[currentTheme] || 0.045;
+  const f = notes[melodyIdx % notes.length];
+  if (f) { playNote(f, tempo/1000 * 0.85, wave, vol); playNote(f/2, tempo/1000 * 0.85, 'sine', vol * 0.5); }
+  melodyIdx = (melodyIdx + 1) % notes.length;
+  musicTimer = setTimeout(melodyLoop, tempo);
+}
+function setThemeMusic(theme) {
+  currentTheme = theme; melodyIdx = 0;
+  document.getElementById('trackName').textContent = themeName[theme] || '🎵';
+  if (musicTimer) clearTimeout(musicTimer);
+  if (musicPlaying) melodyLoop();
+}
+function toggleMusic() {
+  initAudio();
+  const btn = document.getElementById('musicBtn');
+  if (musicPlaying) { musicPlaying = false; clearTimeout(musicTimer); btn.textContent = '🔇'; btn.classList.add('muted'); }
+  else { musicPlaying = true; melodyIdx = 0; melodyLoop(); btn.textContent = '🔊'; btn.classList.remove('muted'); }
+}
+document.getElementById('musicBtn').onclick = toggleMusic;
+
+function sfxCoin() { initAudio(); playNote(988, 0.08, 'square', 0.08); setTimeout(() => playNote(1319, 0.15, 'square', 0.08), 80); }
+function sfxPowerUp() { initAudio(); [523, 659, 784, 1047, 1319, 1568, 2093].forEach((f, i) => setTimeout(() => playNote(f, 0.12, 'square', 0.08), i * 55)); }
+function sfxWhoosh() { initAudio(); if (!audioCtx) return; const osc = audioCtx.createOscillator(), gain = audioCtx.createGain(); osc.type = 'sawtooth'; osc.frequency.setValueAtTime(1200, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.4); gain.gain.setValueAtTime(0.06, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4); osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.4); }
+function sfxOk() { initAudio(); [659, 784, 1047, 1319].forEach((f, i) => setTimeout(() => playNote(f, 0.14, 'triangle', 0.1), i * 60)); setTimeout(sfxCoin, 260); }
+function sfxNo() { initAudio(); [392, 349, 311, 262].forEach((f, i) => setTimeout(() => playNote(f, 0.22, 'sawtooth', 0.08), i * 130)); }
+function sfxClick() { initAudio(); playNote(1200, 0.05, 'square', 0.04); }
+function sfxWin() { initAudio(); const notes = [523, 659, 784, 1047, 1319, 1568, 2093, 1568, 2093]; notes.forEach((f, i) => setTimeout(() => playNote(f, 0.3, 'square', 0.09), i * 110)); setTimeout(sfxPowerUp, 500); }
+function sfxJump() { initAudio(); if (!audioCtx) return; const osc = audioCtx.createOscillator(), gain = audioCtx.createGain(); osc.type = 'square'; osc.frequency.setValueAtTime(400, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.15); gain.gain.setValueAtTime(0.07, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2); osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.2); }
+function sfxStart() { initAudio(); [262, 330, 392, 523].forEach((f, i) => setTimeout(() => playNote(f, 0.15, 'square', 0.09), i * 90)); }
+
+/* ============ EFFECTS ============ */
+function confettiBurst() {
+  const colors = ['#818cf8','#6366f1','#c7d2fe','#a5b4fc','#4f46e5','#ffffff','#e0e7ff'];
+  const emojis = ['🎉','⭐','✨','🎊','💜','🌸','🎈','🏆'];
+  for (let i = 0; i < 80; i++) {
+    setTimeout(() => {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      if (Math.random() < 0.3) { c.textContent = emojis[Math.floor(Math.random() * emojis.length)]; c.style.fontSize = (14 + Math.random() * 16) + 'px'; c.style.background = 'transparent'; }
+      else { c.style.background = colors[Math.floor(Math.random() * colors.length)]; c.style.width = (6 + Math.random() * 10) + 'px'; c.style.height = (6 + Math.random() * 10) + 'px'; }
+      c.style.left = Math.random() * 100 + '%'; c.style.top = '-30px';
+      c.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+      document.body.appendChild(c); setTimeout(() => c.remove(), 4000);
+    }, i * 22);
+  }
+}
+function floatPoints(x, y, text) {
+  const el = document.createElement('div'); el.className = 'float-score'; el.textContent = text;
+  el.style.left = x + 'px'; el.style.top = y + 'px';
+  document.body.appendChild(el); setTimeout(() => el.remove(), 1600);
+}
+
+const themeEmojis = {
+  cpu:  ['💻','🖥️','📱','⌨️','🖱️','🔌','💾','🎮'],
+  sheet:['📊','📈','📉','🧮','📋','🔢','💯','📑'],
+  code: ['💻','🧩','⚙️','🔧','📐','🔨','🖲️','🗜️'],
+  micro:['🔧','⚡','🔌','🤖','📡','🔋','💡','🎛️'],
+  net:  ['🌐','📡','🔗','📶','💻','🖥️','📞','📧'],
+  society:['🌍','❤️','♻️','🏥','🏫','🏦','🛒','💼']
+};
+
+function spawnBgEmojis() {
+  const bg = document.getElementById('bgLayer');
+  bg.querySelectorAll('.bg-emoji').forEach(el => el.remove());
+  const emojis = themeEmojis[currentTheme] || themeEmojis.cpu;
+  for (let i = 0; i < 8; i++) {
+    const el = document.createElement('div');
+    el.className = 'bg-emoji'; el.textContent = emojis[i % emojis.length];
+    el.style.left = (5 + Math.random() * 90) + '%'; el.style.top = (5 + Math.random() * 90) + '%';
+    el.style.animationDelay = (Math.random() * 8) + 's'; el.style.animationDuration = (14 + Math.random() * 10) + 's';
+    bg.appendChild(el);
+  }
+}
+function spawnParticles() {
+  const bg = document.getElementById('bgLayer');
+  setInterval(() => {
+    if (bg.querySelectorAll('.particle').length > 25) return;
+    const p = document.createElement('div'); p.className = 'particle';
+    const size = 4 + Math.random() * 10;
+    p.style.width = size + 'px'; p.style.height = size + 'px';
+    p.style.left = Math.random() * 100 + '%'; p.style.animationDuration = (10 + Math.random() * 15) + 's';
+    const colors = ['rgba(99,102,241,0.75)','rgba(129,140,248,0.7)','rgba(199,210,254,0.8)','rgba(255,255,255,0.9)','rgba(79,70,229,0.7)'];
+    p.style.background = colors[Math.floor(Math.random() * colors.length)]; p.style.color = p.style.background;
+    bg.appendChild(p); setTimeout(() => p.remove(), 26000);
+  }, 600);
+}
+spawnParticles();
+
+/* ============ LESSONS DATA ============ */
+const lessons = [
+  { num:'01', theme:'cpu', emoji:'💻', title:'Computer & Peripheral', titleSi:'පරිගණක හා පර්යන්ත උපාංග',
+    games:[
+      { id:'c1', icon:'🖥️', name:'Computer Types', desc:'Sort computers by category' },
+      { id:'c2', icon:'📦', name:'Peripheral Sorter', desc:'Input / Output / Storage' },
+      { id:'c3', icon:'⚡', name:'Specifications', desc:'Match specs to functions' }
+    ]},
+  { num:'02', theme:'sheet', emoji:'📊', title:'Spreadsheets', titleSi:'විද්‍යුත් පැතුරුම්පත්',
+    games:[
+      { id:'s1', icon:'📋', name:'Cell Address', desc:'Find the correct cell' },
+      { id:'s2', icon:'🧮', name:'Spreadsheet Functions', desc:'SUM, AVERAGE, MAX, MIN' },
+      { id:'s3', icon:'📈', name:'Chart Master', desc:'Choose the right chart type' }
+    ]},
+  { num:'03', theme:'code', emoji:'⚙️', title:'Programming', titleSi:'ක්‍රමලේඛ ගොඩනැගීම',
+    games:[
+      { id:'p1', icon:'🔀', name:'Control Structures', desc:'Sequence / Selection / Repetition' },
+      { id:'p2', icon:'🔷', name:'Flow Symbols', desc:'Match flowchart symbols' },
+      { id:'p3', icon:'🔄', name:'Repeat Blocks', desc:'Scratch repetition quiz' }
+    ]},
+  { num:'04', theme:'micro', emoji:'🔧', title:'Microcontrollers', titleSi:'ක්ෂුද්‍ර පාලක',
+    games:[
+      { id:'m1', icon:'🎛️', name:'micro:bit Parts', desc:'Match components' },
+      { id:'m2', icon:'📡', name:'Sensor Match', desc:'Match sensor to function' },
+      { id:'m3', icon:'💡', name:'Real Applications', desc:'Smart devices using microcontrollers' }
+    ]},
+  { num:'05', theme:'net', emoji:'🌐', title:'Networking', titleSi:'පරිගණක ජාලකරණය',
+    games:[
+      { id:'n1', icon:'📡', name:'Wired or Wireless?', desc:'Classify network media' },
+      { id:'n2', icon:'🖥️', name:'Network Components', desc:'Match device to role' },
+      { id:'n3', icon:'💻', name:'Network OS Quiz', desc:'Networking concepts' }
+    ]},
+  { num:'06', theme:'society', emoji:'🌍', title:'ICT & Society', titleSi:'තොරතුරු තාක්ෂණය සහ සමාජය',
+    games:[
+      { id:'so1', icon:'🏥', name:'e-Services Match', desc:'Match e-idea to field' },
+      { id:'so2', icon:'♻️', name:'3R Sorter', desc:'Reduce / Reuse / Recycle' },
+      { id:'so3', icon:'💼', name:'ICT Jobs Match', desc:'Match job to description' }
+    ]}
+];
+
+/* ============ NAVIGATION ============ */
+function renderLessons() {
+  const grid = document.getElementById('lessonGrid');
+  grid.innerHTML = '';
+  lessons.forEach((L, i) => {
+    const d = document.createElement('div');
+    d.className = 'lesson-card';
+    d.innerHTML = `<div class="num">${L.num}</div>
+      <div class="emoji">${L.emoji}</div>
+      <div class="title">${L.title}</div>
+      <div class="title-si">${L.titleSi}</div>
+      <div class="game-count">🎮 ${L.games.length} games</div>`;
+    d.onclick = () => { sfxJump(); showLesson(i); };
+    grid.appendChild(d);
+  });
+}
+
+function showLesson(i) {
+  const L = lessons[i];
+  document.body.className = 'theme-' + L.theme;
+  setThemeMusic(L.theme);
+  spawnBgEmojis();
+  sfxWhoosh();
+  document.getElementById('mainMenu').classList.add('hidden');
+  document.getElementById('gameScreen').classList.remove('hidden');
+  document.getElementById('gameTitle').textContent = L.emoji + ' ' + L.num + ' · ' + L.title;
+  const c = document.getElementById('gameContent');
+  c.innerHTML = `<h3 style="text-align:center;color:#4338ca;margin-bottom:22px;font-size:1.2em;font-weight:700;">🎯 ${L.titleSi}</h3>`;
+  L.games.forEach((g, idx) => {
+    const d = document.createElement('div');
+    d.className = 'game-option';
+    d.innerHTML = `<div class="icon">${g.icon}</div>
+      <div class="info"><div class="name">${g.name}</div><div class="desc">${g.desc}</div></div>
+      <div class="badge">${['1️⃣','2️⃣','3️⃣'][idx] || '▶️'}</div>`;
+    d.onclick = () => { sfxJump(); startGame(g.id); };
+    c.appendChild(d);
+  });
+}
+function backToLessons() { sfxWhoosh(); stopAllTimers(); document.getElementById('gameScreen').classList.add('hidden'); document.getElementById('mainMenu').classList.remove('hidden'); }
+function backToMain() { sfxWhoosh(); stopAllTimers(); document.body.className = 'theme-cpu'; setThemeMusic('cpu'); spawnBgEmojis(); document.getElementById('gameScreen').classList.add('hidden'); document.getElementById('mainMenu').classList.remove('hidden'); }
+
+let activeTimers = [];
+function stopAllTimers() { activeTimers.forEach(t => clearInterval(t)); activeTimers = []; }
+
+function startGame(id) {
+  stopAllTimers(); sfxStart();
+  document.getElementById('mainMenu').classList.add('hidden');
+  document.getElementById('gameScreen').classList.remove('hidden');
+  const c = document.getElementById('gameContent'); c.innerHTML = '';
+  const titles = {
+    c1:'🖥️ Computer Types', c2:'📦 Peripheral Sorter', c3:'⚡ Specifications',
+    s1:'📋 Cell Address', s2:'🧮 Spreadsheet Functions', s3:'📈 Chart Master',
+    p1:'🔀 Control Structures', p2:'🔷 Flow Symbols', p3:'🔄 Repeat Blocks',
+    m1:'🎛️ micro:bit Parts', m2:'📡 Sensor Match', m3:'💡 Real Applications',
+    n1:'📡 Wired or Wireless?', n2:'🖥️ Network Components', n3:'💻 Network OS Quiz',
+    so1:'🏥 e-Services Match', so2:'♻️ 3R Sorter', so3:'💼 ICT Jobs Match'
+  };
+  document.getElementById('gameTitle').textContent = titles[id] || 'Game';
+  const games = {
+    c1: gC1, c2: gC2, c3: gC3,
+    s1: gS1, s2: gS2, s3: gS3,
+    p1: gP1, p2: gP2, p3: gP3,
+    m1: gM1, m2: gM2, m3: gM3,
+    n1: gN1, n2: gN2, n3: gN3,
+    so1: gSo1, so2: gSo2, so3: gSo3
+  };
+  games[id](c);
+}
+
+/* Generic MC quiz */
+function mcQuiz(c, questions, gameId) {
+  let i = 0, score = 0;
+  function draw() {
+    if (i >= questions.length) {
+      sfxWin(); confettiBurst();
+      const bigEmoji = score === questions.length ? '🏆👑🌟' : score >= questions.length*0.7 ? '🥇🎉⭐' : '🥈💪📚';
+      c.innerHTML = `<div class="result">
+        <div class="trophy">${bigEmoji.split('').slice(0,3).map(e=>`<span style="display:inline-block;animation: bounce 1s infinite alternate;">${e}</span>`).join('')}</div>
+        <div class="score-big">${score}/${questions.length}</div>
+        <p style="color:#4338ca;margin-bottom:20px;font-size:1.2em;font-weight:bold;">
+          ${score===questions.length?'🌟 PERFECT! විශිෂ්ටයි! 🌟':score>=questions.length*0.7?'🎉 Great job! හොඳයි! 🎉':'💪 Keep learning! නැවත උත්සාහ කරන්න! 💪'}
+        </p>
+        <button class="btn" onclick="startGame('${gameId}')">🔁 Try Again 🎯</button></div>`;
+      return;
+    }
+    const q = questions[i];
+    c.innerHTML = `
+      <div class="scoreboard">
+        <div class="score-box"><div class="lbl">🎯 Question</div><div class="val">${i+1}/${questions.length}</div></div>
+        <div class="score-box"><div class="lbl">⭐ Score</div><div class="val">${score}</div></div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${i/questions.length*100}%"></div></div>
+      <div class="q-text">❓ ${q.q}</div>
+      <div class="q-text-si">💭 ${q.qSi}</div>
+      <div class="options-grid" id="opts"></div>
+      <div class="feedback" id="fb"></div>`;
+    const optsBox = document.getElementById('opts');
+    const letters = ['🅰️','🅱️','🅾️','🆎'];
+    q.opts.forEach((o, idx) => {
+      const b = document.createElement('button');
+      b.className = 'option-btn';
+      b.innerHTML = `<span style="font-size:1.2em;">${letters[idx]}</span> ${o}`;
+      b.onclick = (e) => {
+        if (idx === q.ans) { b.classList.add('correct'); score++; sfxOk(); floatPoints(e.clientX-30, e.clientY-30, '⭐ +1'); }
+        else { b.classList.add('wrong'); [...optsBox.children][q.ans].classList.add('correct'); sfxNo(); }
+        [...optsBox.children].forEach(x => x.disabled = true);
+        const fb = document.getElementById('fb');
+        fb.className = 'feedback show ' + (idx===q.ans?'ok':'no');
+        fb.innerHTML = idx===q.ans ? '✅ <b>CORRECT!</b> නිවැරදියි! 🎉' : '❌ Answer: <b>' + q.opts[q.ans] + '</b>';
+        setTimeout(() => { i++; draw(); }, 1400);
+      };
+      optsBox.appendChild(b);
+    });
+  }
+  draw();
+}
+
+/* Generic sort */
+function sortGame(c, items, bins, gameId) {
+  let selected = null, placed = 0;
+  c.innerHTML = `
+    <p class="q-text">🎯 Click an item, then click the correct bin! 📦</p>
+    <p class="q-text-si">💫 අයිතමයක් ක්ලික් කර නිවැරදි කොටුව ක්ලික් කරන්න!</p>
+    <div class="progress-bar"><div class="progress-fill" id="srtP"></div></div>
+    <div class="sort-pool" id="srtPool"></div>
+    <div class="sort-bins" id="srtBins"></div>
+    <div class="feedback" id="srtFb"></div>`;
+  const pool = document.getElementById('srtPool');
+  [...items].sort(() => Math.random() - 0.5).forEach(it => {
+    const d = document.createElement('div');
+    d.className = 'sort-item'; d.textContent = it.name; d.dataset.bin = it.bin;
+    d.onclick = () => {
+      sfxClick();
+      document.querySelectorAll('.sort-item').forEach(x => x.classList.remove('selected'));
+      d.classList.add('selected'); selected = d;
+    };
+    pool.appendChild(d);
+  });
+  const binsEl = document.getElementById('srtBins');
+  bins.forEach(b => {
+    const el = document.createElement('div');
+    el.className = 'bin'; el.dataset.bin = b.id;
+    el.innerHTML = `<div class="bin-title" style="font-size:1.3em;">${b.emoji} ${b.name}</div><div class="bin-items"></div>`;
+    el.onclick = () => {
+      if (!selected) return;
+      if (el.dataset.bin === selected.dataset.bin) {
+        sfxCoin();
+        const clone = selected.cloneNode(true);
+        clone.classList.remove('selected'); clone.classList.add('bin-item'); clone.onclick = null;
+        el.querySelector('.bin-items').appendChild(clone);
+        selected.remove(); selected = null;
+        placed++;
+        document.getElementById('srtP').style.width = (placed/items.length*100)+'%';
+        if (placed === items.length) {
+          document.getElementById('srtFb').className = 'feedback show ok';
+          document.getElementById('srtFb').innerHTML = '🎉 <b>ALL SORTED!</b> Excellent! 🌟';
+          sfxWin(); confettiBurst();
+        }
+      } else { sfxNo(); el.style.borderColor = '#4338ca'; setTimeout(() => el.style.borderColor = 'transparent', 400); }
+    };
+    binsEl.appendChild(el);
+  });
+}
+
+/* Generic memory match */
+function memoryGame(c, pairs, gameId) {
+  let deck = [];
+  pairs.forEach(p => { deck.push({t:p.a, key:p.key}); deck.push({t:p.b, key:p.key}); });
+  deck.sort(() => Math.random() - 0.5);
+  let flipped = [], matched = 0, moves = 0, lock = false;
+  c.innerHTML = `
+    <p class="q-text" style="text-align:center;">🃏 Match the pairs! 🎯 (Moves: <span id="mv" style="color:#4f46e5;">0</span>)</p>
+    <div class="memory-grid" id="mg"></div>
+    <div class="feedback" id="memFb"></div>`;
+  const mg = document.getElementById('mg');
+  deck.forEach(card => {
+    const el = document.createElement('div');
+    el.className = 'mem-card'; el.dataset.key = card.key;
+    el.innerHTML = '<div class="back" style="font-size:2em;">❓</div>';
+    el.onclick = () => {
+      if (lock || el.classList.contains('flipped') || el.classList.contains('matched')) return;
+      sfxClick();
+      el.classList.add('flipped'); el.innerHTML = `<div style="font-size:1.1em;font-weight:900;">${card.t}</div>`;
+      flipped.push(el);
+      if (flipped.length === 2) {
+        moves++; document.getElementById('mv').textContent = moves; lock = true;
+        const [a, b] = flipped;
+        if (a.dataset.key === b.dataset.key) {
+          setTimeout(() => {
+            a.classList.add('matched'); b.classList.add('matched');
+            matched++; sfxCoin(); flipped = []; lock = false;
+            if (matched === pairs.length) {
+              document.getElementById('memFb').className = 'feedback show ok';
+              document.getElementById('memFb').innerHTML = `🎉 <b>Matched in ${moves} moves!</b> 🌟`;
+              sfxWin(); confettiBurst();
+            }
+          }, 500);
+        } else {
+          sfxNo();
+          setTimeout(() => {
+            a.classList.remove('flipped'); a.innerHTML = '<div class="back" style="font-size:2em;">❓</div>';
+            b.classList.remove('flipped'); b.innerHTML = '<div class="back" style="font-size:2em;">❓</div>';
+            flipped = []; lock = false;
+          }, 900);
+        }
+      }
+    };
+    mg.appendChild(el);
+  });
+}
+
+/* ============ LESSON 1: COMPUTER & PERIPHERAL ============ */
+function gC1(c) {
+  sortGame(c, [
+    { name:'🖥️ Server', bin:'fixed' }, { name:'💻 Desktop', bin:'fixed' },
+    { name:'🖥️ Workstation', bin:'fixed' }, { name:'🖱️ All-in-One', bin:'fixed' },
+    { name:'💻 Laptop', bin:'portable' }, { name:'📓 Notebook', bin:'portable' },
+    { name:'📱 Tablet', bin:'portable' }, { name:'📞 Smartphone', bin:'portable' }
+  ], [
+    { id:'fixed', name:'Stationary Computer', emoji:'🏢' },
+    { id:'portable', name:'Portable Computer', emoji:'🎒' }
+  ], 'c1');
+}
+
+function gC2(c) {
+  sortGame(c, [
+    { name:'⌨️ Keyboard', bin:'input' }, { name:'🖱️ Mouse', bin:'input' },
+    { name:'🎤 Microphone', bin:'input' }, { name:'📷 Scanner', bin:'input' },
+    { name:'🖥️ Monitor', bin:'output' }, { name:'🖨️ Printer', bin:'output' },
+    { name:'🔊 Speaker', bin:'output' }, { name:'📽️ Projector', bin:'output' },
+    { name:'💾 Hard Disk', bin:'storage' }, { name:'💿 DVD Drive', bin:'storage' },
+    { name:'🔑 Flash Drive', bin:'storage' }, { name:'📼 Magnetic Tape', bin:'storage' }
+  ], [
+    { id:'input', name:'Input', emoji:'📥' },
+    { id:'output', name:'Output', emoji:'📤' },
+    { id:'storage', name:'Storage', emoji:'💾' }
+  ], 'c2');
+}
+
+function gC3(c) {
+  mcQuiz(c, [
+    { q:'CPU speed is measured in?', qSi:'CPU වේගය මනිනු ලබන්නේ?',
+      opts:['Meters','MHz / GHz','Liters','Kilograms'], ans:1 },
+    { q:'Which is the main storage in a computer?', qSi:'පරිගණකයේ ප්‍රධාන ආවරණ උපාංගය?',
+      opts:['RAM','Hard Disk','CPU','Monitor'], ans:1 },
+    { q:'Which port connects a network cable?', qSi:'ජාල කේබලය සම්බන්ධ කරන පෝට් එක?',
+      opts:['VGA','HDMI','RJ45','USB'], ans:2 },
+    { q:'HDMI carries what signals?', qSi:'HDMI මගින් ගෙන යන සංඥා?',
+      opts:['Only video','Only audio','Both audio & video','Only data'], ans:2 },
+    { q:'RAM is what type of memory?', qSi:'RAM යනු කුමන මතකයද?',
+      opts:['Non-volatile','Volatile','Permanent','Optical'], ans:1 },
+    { q:'Which warranty is provided by manufacturer?', qSi:'නිෂ්පාදකයා ලබා දෙන වගකීම?',
+      opts:['Extended','Manufacturer','Onsite','Third-party'], ans:1 },
+    { q:'Screen size is measured in?', qSi:'තිර ප්‍රමාණය මනිනු ලබන්නේ?',
+      opts:['Centimeters','Inches (diagonal)','Millimeters','Pixels'], ans:1 },
+    { q:'Which is NOT an input device?', qSi:'ආදාන උපාංගයක් නොවන්නේ?',
+      opts:['Keyboard','Mouse','Monitor','Microphone'], ans:2 }
+  ], 'c3');
+}
+
+/* ============ LESSON 2: SPREADSHEETS ============ */
+function gS1(c) {
+  mcQuiz(c, [
+    { q:'Where is column D and row 5 located?', qSi:'D තීරුව සහ 5 පේළිය යන ස්ථානය?',
+      opts:['D5','5D','D-5','RowD5'], ans:0 },
+    { q:'Columns are labeled with?', qSi:'තීරු නම් කරන්නේ?',
+      opts:['Numbers 1,2,3','Letters A,B,C','Both','Symbols'], ans:1 },
+    { q:'Rows are labeled with?', qSi:'පේළි නම් කරන්නේ?',
+      opts:['Letters','Numbers 1,2,3','Both','Symbols'], ans:1 },
+    { q:'The intersection of a row and column is called?', qSi:'පේළියක් සහ තීරුවක් හමුවන ස්ථානය?',
+      opts:['Cell','Range','Box','Frame'], ans:0 },
+    { q:'A group of cells is called?', qSi:'කෝෂ කිහිපයක් එකතුව?',
+      opts:['Cell Range','Cell Box','Cell Set','Cell Union'], ans:0 },
+    { q:'The formula bar shows?', qSi:'සූත්‍ර තීරය පෙන්වන්නේ?',
+      opts:['Date','Content of selected cell','Menu','Toolbar'], ans:1 }
+  ], 's1');
+}
+
+function gS2(c) {
+  mcQuiz(c, [
+    { q:'Which function adds all numbers?', qSi:'සියලු සංඛ්‍යා එකතු කරන ශ්‍රිතය?',
+      opts:['SUM','AVERAGE','MAX','MIN'], ans:0 },
+    { q:'Which function finds the average?', qSi:'සාමාන්‍යය සොයන ශ්‍රිතය?',
+      opts:['SUM','AVERAGE','MAX','MIN'], ans:1 },
+    { q:'Which function finds the largest value?', qSi:'විශාලතම අගය සොයන ශ්‍රිතය?',
+      opts:['SUM','AVERAGE','MAX','MIN'], ans:2 },
+    { q:'Which function finds the smallest value?', qSi:'කුඩාම අගය සොයන ශ්‍රිතය?',
+      opts:['SUM','AVERAGE','MAX','MIN'], ans:3 },
+    { q:'Formulas start with?', qSi:'සූත්‍ර ආරම්භ වන්නේ?',
+      opts:['=','+','-','*'], ans:0 },
+    { q:'Which symbol multiplies?', qSi:'ගුණ කිරීමට යොදන සංකේතය?',
+      opts:['+','-','*','/'], ans:2 }
+  ], 's2');
+}
+
+function gS3(c) {
+  mcQuiz(c, [
+    { q:'Best for showing trends over time?', qSi:'කාලය සමග ප්‍රවණතා පෙන්වීමට හොඳම ප්‍රස්තාරය?',
+      opts:['Pie Chart','Line Chart','Column Chart','Scatter'], ans:1 },
+    { q:'Best for showing parts of a whole?', qSi:'මුළු එකතුවේ කොටස් පෙන්වීමට හොඳම?',
+      opts:['Line','Pie Chart','Bar','Scatter'], ans:1 },
+    { q:'Best for comparing categories?', qSi:'වර්ග සංසන්දනයට හොඳම?',
+      opts:['Column Chart','Pie Chart','Line','Scatter'], ans:0 },
+    { q:'Best for showing relationships between two variables?', qSi:'විචල්‍ය 2ක් අතර සම්බන්ධය?',
+      opts:['Pie','Line','Scatter','Column'], ans:2 }
+  ], 's3');
+}
+
+/* ============ LESSON 3: PROGRAMMING ============ */
+function gP1(c) {
+  mcQuiz(c, [
+    { q:'Which runs steps one after another?', qSi:'පියවර එකින් එක ක්‍රියාත්මක වන වුහය?',
+      opts:['Sequence','Selection','Repetition','Loop'], ans:0 },
+    { q:'Which uses IF-THEN-ELSE?', qSi:'IF-THEN-ELSE භාවිත කරන වුහය?',
+      opts:['Sequence','Selection','Repetition','Random'], ans:1 },
+    { q:'Which repeats steps?', qSi:'පියවර නැවත නැවත කරන වුහය?',
+      opts:['Sequence','Selection','Repetition','Linear'], ans:2 },
+    { q:'Nested repetition means?', qSi:'නිවිත පුනර්කරණය යනු?',
+      opts:['Single loop','Loop within a loop','No loop','Random loop'], ans:1 },
+    { q:'A "coin jar filling" is an example of?', qSi:'කාසි කැටය පිරීම උදාහරණයක්?',
+      opts:['Sequence','Selection','Repetition','None'], ans:2 },
+    { q:'A dice roll showing 1-6 is?', qSi:'දාදු කැටය 1-6 පෙන්වීම?',
+      opts:['Simple selection','Multi-way selection','Sequence','Loop'], ans:1 }
+  ], 'p1');
+}
+
+function gP2(c) {
+  memoryGame(c, [
+    { a:'⬭ Oval', b:'Start / End', key:'o' },
+    { a:'▭ Rectangle', b:'Process', key:'r' },
+    { a:'◇ Diamond', b:'Decision', key:'d' },
+    { a:'▱ Parallelogram', b:'Input / Output', key:'p' },
+    { a:'→ Arrow', b:'Flow direction', key:'ar' }
+  ], 'p2');
+}
+
+function gP3(c) {
+  mcQuiz(c, [
+    { q:'Scratch "repeat 10" runs how many times?', qSi:'Scratch "repeat 10" කී වරක් ද?',
+      opts:['1','5','10','Infinite'], ans:2 },
+    { q:'Scratch "forever" runs how many times?', qSi:'Scratch "forever" කී වරක් ද?',
+      opts:['1','10','100','Infinitely'], ans:3 },
+    { q:'"repeat until" block stops when?', qSi:'"repeat until" නවතින්නේ?',
+      opts:['Immediately','When condition is true','After 1 loop','Never'], ans:1 },
+    { q:'An array in Scratch is called?', qSi:'Scratch හි අරාව හඳුන්වන්නේ?',
+      opts:['Variable','List','Array','Table'], ans:1 },
+    { q:'"length of" block returns?', qSi:'"length of" block ලබා දෙන්නේ?',
+      opts:['First item','Last item','Number of items','Random item'], ans:2 }
+  ], 'p3');
+}
+
+/* ============ LESSON 4: MICROCONTROLLERS ============ */
+function gM1(c) {
+  mcQuiz(c, [
+    { q:'micro:bit has how many programmable buttons?', qSi:'micro:bit හි කී බොත්තම් ද?',
+      opts:['1','2','3','4'], ans:1 },
+    { q:'A = ? B = ?', qSi:'A = ? B = ?',
+      opts:['Left, Right','Right, Left','Top, Bottom','Up, Down'], ans:0 },
+    { q:'How many LEDs does micro:bit have?', qSi:'micro:bit හි කී LED ද?',
+      opts:['5','10','25','50'], ans:2 },
+    { q:'micro:bit connects to computer via?', qSi:'micro:bit පරිගණකයට සම්බන්ධ වන්නේ?',
+      opts:['VGA','HDMI','Micro USB','RJ45'], ans:2 },
+    { q:'Which sensor detects motion?', qSi:'චලනය හඳුනා ගන්නා සංවේදකය?',
+      opts:['Temperature','Light','Accelerometer','Compass'], ans:2 },
+    { q:'Which sensor detects magnetic direction?', qSi:'චුම්බක දිශාව හඳුනා ගන්නා?',
+      opts:['Compass','Light','Temperature','Motion'], ans:0 }
+  ], 'm1');
+}
+
+function gM2(c) {
+  memoryGame(c, [
+    { a:'🌡️ Temperature', b:'Heat detection', key:'t' },
+    { a:'💡 Light', b:'Brightness detection', key:'l' },
+    { a:'📡 PIR Sensor', b:'Human motion', key:'p' },
+    { a:'📶 Ultrasonic', b:'Distance measure', key:'u' },
+    { a:'🧭 Compass', b:'Direction finding', key:'c' }
+  ], 'm2');
+}
+
+function gM3(c) {
+  mcQuiz(c, [
+    { q:'Solar lamp uses which sensor?', qSi:'සූර්ය ලාම්පුව භාවිත කරන්නේ?',
+      opts:['Temperature','Light sensor','Compass','Motion'], ans:1 },
+    { q:'Washing machine uses microcontroller to?', qSi:'රෙදි සෝදන යන්ත්‍රයේ ක්ෂුද්‍ර පාලකය භාවිත කරන්නේ?',
+      opts:['Auto wash','Sound','Display','All of these'], ans:3 },
+    { q:'Microwave oven controls?', qSi:'ක්ෂුද්‍ර තරංග උදුන පාලනය කරන්නේ?',
+      opts:['Only time','Temperature & time','Only temperature','None'], ans:1 },
+    { q:'Arduino Uno uses which chip?', qSi:'Arduino Uno භාවිත කරන චිපය?',
+      opts:['Intel i5','ATMEGA328p','ARM Cortex','AMD Ryzen'], ans:1 },
+    { q:'Which is a Single Board Computer?', qSi:'තනි පුවරු පරිගණකයක් වන්නේ?',
+      opts:['Arduino','Raspberry Pi','micro:bit','Breadboard'], ans:1 }
+  ], 'm3');
+}
+
+/* ============ LESSON 5: NETWORKING ============ */
+function gN1(c) {
+  sortGame(c, [
+    { name:'🔌 Twisted Pair', bin:'wired' }, { name:'💡 Optical Fiber', bin:'wired' },
+    { name:'📡 Infrared Waves', bin:'wireless' }, { name:'🔵 Bluetooth', bin:'wireless' },
+    { name:'📶 Wi-Fi Waves', bin:'wireless' }, { name:'📻 Radio Waves', bin:'wireless' }
+  ], [
+    { id:'wired', name:'Wired (රැහැන් සහිත)', emoji:'🔌' },
+    { id:'wireless', name:'Wireless (රැහැන් රහිත)', emoji:'📡' }
+  ], 'n1');
+}
+
+function gN2(c) {
+  mcQuiz(c, [
+    { q:'What connects two computers?', qSi:'පරිගණක 2ක් සම්බන්ධ කරන්නේ?',
+      opts:['Switch','CPU','Mouse','Monitor'], ans:0 },
+    { q:'What connects LAN to internet?', qSi:'LAN අන්තර්ජාලයට සම්බන්ධ කරන්නේ?',
+      opts:['Switch','Router','Hub','Mouse'], ans:1 },
+    { q:'What stores shared files?', qSi:'හවුල් ගොනු ගබඩා කරන්නේ?',
+      opts:['Client','Server','Router','Printer'], ans:1 },
+    { q:'NIC stands for?', qSi:'NIC යනු?',
+      opts:['Network Internet Card','Network Interface Card','New Internet Card','Network Internal Card'], ans:1 },
+    { q:'Which is used for a wired network?', qSi:'රැහැන් සහිත ජාලයට?',
+      opts:['RJ45 Cable','Bluetooth','Wi-Fi','Infrared'], ans:0 }
+  ], 'n2');
+}
+
+function gN3(c) {
+  mcQuiz(c, [
+    { q:'Main purpose of networking?', qSi:'ජාලකරණයේ ප්‍රධාන අරමුණ?',
+      opts:['Share resources','Play games','Slow down','Security'], ans:0 },
+    { q:'Which is a benefit of networking?', qSi:'ජාලකරණයේ වාසියක්?',
+      opts:['Share printer','Cannot share','Only offline','No communication'], ans:0 },
+    { q:'CLI stands for?', qSi:'CLI යනු?',
+      opts:['Command Line Interface','Common Link Interface','Central Line Input','Computer Link Input'], ans:0 },
+    { q:'Which can be shared on a network?', qSi:'ජාලයක හවුල් කළ හැක්කේ?',
+      opts:['Only files','Only printers','Software, hardware, files','Nothing'], ans:2 }
+  ], 'n3');
+}
+
+/* ============ LESSON 6: ICT & SOCIETY ============ */
+function gSo1(c) {
+  mcQuiz(c, [
+    { q:'e-Education means?', qSi:'e-Education යනු?',
+      opts:['Online learning','Electronic books only','No education','School only'], ans:0 },
+    { q:'e-Health refers to?', qSi:'e-Health යනු?',
+      opts:['Health apps only','ICT in healthcare','Only hospital','No medicine'], ans:1 },
+    { q:'e-Government provides?', qSi:'e-Government සපයන්නේ?',
+      opts:['Only taxes','Online public services','Only police','Nothing'], ans:1 },
+    { q:'e-Commerce means?', qSi:'e-Commerce යනු?',
+      opts:['Only shops','Online buying/selling','Only banking','Only travel'], ans:1 },
+    { q:'Digital divide is?', qSi:'අංකිත බෙදීම යනු?',
+      opts:['Between tech users & non-users','File split','New folder','Internet split'], ans:0 }
+  ], 'so1');
+}
+
+function gSo2(c) {
+  sortGame(c, [
+    { name:'🛍️ Buy less stuff', bin:'reduce' }, { name:'🚫 Avoid new gadgets', bin:'reduce' },
+    { name:'🔧 Repair old device', bin:'reuse' }, { name:'♻️ Give away working items', bin:'reuse' },
+    { name:'🔋 Send battery to recycling center', bin:'recycle' }, { name:'💻 Recycle old computer', bin:'recycle' }
+  ], [
+    { id:'reduce', name:'Reduce (අවම කරමු)', emoji:'📉' },
+    { id:'reuse', name:'Reuse (නැවත භාවිත)', emoji:'♻️' },
+    { id:'recycle', name:'Recycle (ප්‍රතිචක්‍රීකරණය)', emoji:'🔄' }
+  ], 'so2');
+}
+
+function gSo3(c) {
+  memoryGame(c, [
+    { a:'👨‍💻 Software Engineer', b:'Creates software', key:'se' },
+    { a:'🌐 Web Developer', b:'Builds websites', key:'wd' },
+    { a:'🔧 Network Admin', b:'Manages networks', key:'na' },
+    { a:'📊 System Analyst', b:'Designs systems', key:'sa' },
+    { a:'🎨 Graphic Designer', b:'Creates visuals', key:'gd' }
+  ], 'so3');
+}
+
+/* ============ INIT ============ */
+renderLessons();
+spawnBgEmojis();
+document.body.addEventListener('click', function once() {
+  initAudio();
+  if (!musicPlaying) { musicPlaying = true; melodyIdx = 0; melodyLoop(); }
+  document.body.removeEventListener('click', once);
+}, { once: true });
+</script>
+</body>
+</html>

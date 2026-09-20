@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICT Game World - codebase and infra plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Palette lifted from the project's own tokens.css, grade 9 "night lab" world. */
+:root{
+  --page:#0d1626; --surface:#192437; --surface-2:#1f2c42; --line:#2d3645; --line-soft:#303d55;
+  --text:#e6edf6; --text-muted:#b0c0d1; --text-dim:#8697ab;
+  --base:#43d0f9; --base-hover:#77e1ff; --base-dark:#0080ad; --base-soft:#003850; --base-ink:#92e5ff;
+  --on-base:#062033;
+  --ok:#03a14a; --ok-soft:#0d2e1d; --ok-ink:#6ee89b;
+  --no:#ec485f; --no-soft:#3a1620; --no-ink:#ff9aa7;
+  --warn:#f2b036; --warn-soft:#332616; --warn-ink:#ffd489;
+  --tip:#2f8adc; --tip-soft:#12263c; --tip-ink:#8ec8fb;
+  --gold:#f9c230; --flame:#f3562e;
+  --font-display:"Baloo 2",system-ui,sans-serif;
+  --font-body:"Nunito",system-ui,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:20px;
+  --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; background:var(--page); color:var(--text);
+  font-family:var(--font-body); font-size:17px; line-height:1.6;
+  padding:var(--sp-8) var(--sp-4) 96px;
+}
+.wrap{max-width:960px;margin:0 auto;}
+h1,h2,h3{font-family:var(--font-display);line-height:1.2;margin:0;}
+h1{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-.01em;}
+h2{font-size:clamp(21px,3.4vw,28px);font-weight:700;margin-bottom:var(--sp-3);}
+h3{font-size:18px;font-weight:700;}
+p{margin:0 0 var(--sp-4);}
+a{color:var(--base);}
+code{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.88em;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;
+  word-break:break-word;color:var(--base-ink);}
+
+header{border-bottom:2px solid var(--line);padding-bottom:var(--sp-6);margin-bottom:var(--sp-8);}
+.eyebrow{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--base);margin-bottom:var(--sp-2);}
+.lede{font-size:19px;color:var(--text-muted);max-width:68ch;margin-top:var(--sp-4);}
+
+section{margin-bottom:var(--sp-10);}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--sp-5);}
+.grid{display:grid;gap:var(--sp-4);}
+@media(min-width:720px){.g3{grid-template-columns:repeat(3,1fr);}.g2{grid-template-columns:repeat(2,1fr);}}
+
+.lane{border-left:4px solid var(--line-soft);padding-left:var(--sp-4);}
+.lane.done{border-left-color:var(--ok);}
+.lane.now{border-left-color:var(--base);}
+.lane.flight{border-left-color:var(--warn);}
+.lane h3{margin-bottom:4px;}
+.lane .status{font-size:13px;font-weight:700;font-family:var(--font-display);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--sp-2);}
+.done .status{color:var(--ok-ink);} .now .status{color:var(--base-ink);} .flight .status{color:var(--warn-ink);}
+.lane p{font-size:15px;color:var(--text-muted);margin:0;}
+
+.stats{display:grid;gap:var(--sp-3);grid-template-columns:repeat(2,1fr);}
+@media(min-width:720px){.stats{grid-template-columns:repeat(4,1fr);}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4);text-align:center;}
+.stat .n{font-family:var(--font-display);font-size:34px;font-weight:800;color:var(--base);line-height:1;}
+.stat .l{font-size:13px;color:var(--text-dim);margin-top:6px;}
+
+figure{margin:0;}
+/* Below ~760px the 900-unit viewBox would squeeze labels to about 4px, so the
+   figure scrolls sideways inside its own box rather than shrinking further. */
+.figscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:var(--sp-4);}
+figure svg{width:100%;min-width:720px;height:auto;display:block;}
+.figscroll-hint{font-size:13px;color:var(--text-dim);margin-top:var(--sp-2);}
+@media(min-width:800px){.figscroll-hint{display:none;}}
+figcaption{font-size:14px;color:var(--text-dim);margin-top:var(--sp-3);}
+
+table{width:100%;border-collapse:collapse;font-size:15px;}
+th,td{text-align:left;padding:10px var(--sp-3);border-bottom:1px solid var(--line);vertical-align:top;}
+th{font-family:var(--font-display);font-weight:700;font-size:13px;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--text-dim);}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+.pill{display:inline-block;font-family:var(--font-display);font-size:12px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;white-space:nowrap;}
+.pill.ok{background:var(--ok-soft);color:var(--ok-ink);border:1px solid #1d5c38;}
+.pill.no{background:var(--no-soft);color:var(--no-ink);border:1px solid #6d2634;}
+.pill.warn{background:var(--warn-soft);color:var(--warn-ink);border:1px solid #6b5326;}
+.pill.tip{background:var(--tip-soft);color:var(--tip-ink);border:1px solid #23496e;}
+
+.note{border-radius:var(--r-md);padding:var(--sp-4);font-size:15px;border:1px solid;}
+.note.warn{background:var(--warn-soft);border-color:#6b5326;}
+.note.tip{background:var(--tip-soft);border-color:#23496e;}
+.note strong{font-family:var(--font-display);}
+.note p:last-child{margin-bottom:0;}
+
+/* Decisions */
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:var(--sp-5);margin-bottom:var(--sp-6);}
+.q-head{display:flex;gap:var(--sp-3);align-items:baseline;flex-wrap:wrap;margin-bottom:var(--sp-2);}
+.q-id{font-family:var(--font-display);font-weight:800;font-size:13px;letter-spacing:.1em;
+  color:var(--on-base);background:var(--base);padding:3px 10px;border-radius:999px;}
+.q-ask{font-family:var(--font-display);font-size:20px;font-weight:700;}
+.q-hard{font-size:15px;color:var(--text-muted);margin-bottom:var(--sp-4);}
+.q-hard b{color:var(--warn-ink);font-weight:700;}
+
+fieldset{border:0;margin:0;padding:0;}
+legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.opt{display:block;border:2px solid var(--line);border-radius:var(--r-md);
+  padding:var(--sp-4);margin-bottom:var(--sp-3);cursor:pointer;background:var(--surface-2);
+  transition:border-color .18s,background .18s;}
+.opt:hover{border-color:var(--line-soft);}
+.opt:has(input:checked){border-color:var(--base);background:var(--base-soft);}
+.opt:has(input:focus-visible){outline:3px solid var(--base-ink);outline-offset:2px;}
+.opt-top{display:flex;gap:10px;align-items:flex-start;}
+.opt input{margin:5px 0 0;flex:none;width:19px;height:19px;accent-color:var(--base);}
+.opt-lab{font-family:var(--font-display);font-weight:700;font-size:17px;}
+.opt-body{font-size:15px;color:var(--text-muted);margin:6px 0 0 29px;}
+.opt-cost{font-size:14px;color:var(--text-dim);margin:8px 0 0 29px;padding-top:8px;border-top:1px dashed var(--line);}
+.opt-cost b{color:var(--no-ink);font-weight:700;}
+.rec{background:var(--ok-soft);color:var(--ok-ink);border:1px solid #1d5c38;
+  font-family:var(--font-display);font-size:11px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-left:8px;white-space:nowrap;}
+
+.qbtn{font-family:var(--font-display);font-weight:800;font-size:16px;
+  background:var(--base);color:var(--on-base);border:0;border-bottom:5px solid var(--base-dark);
+  border-radius:var(--r-md);padding:12px 24px;cursor:pointer;min-height:48px;transition:transform .12s;}
+.qbtn:hover{background:var(--base-hover);}
+.qbtn:active{transform:translateY(3px);border-bottom-width:2px;}
+.qbtn:focus-visible{outline:3px solid var(--base-ink);outline-offset:3px;}
+.sent{display:none;margin-top:var(--sp-3);font-size:14px;color:var(--ok-ink);font-weight:700;}
+.q.queued .sent{display:block;}
+.q.queued{border-color:var(--ok);}
+
+ul{margin:0 0 var(--sp-4);padding-left:20px;}
+li{margin-bottom:6px;}
+.src{font-size:13px;color:var(--text-dim);}
+footer{border-top:2px solid var(--line);padding-top:var(--sp-5);margin-top:var(--sp-10);
+  font-size:14px;color:var(--text-dim);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">ICT Game World / task: codebase-and-infra</div>
+  <h1>Turning the design into a codebase</h1>
+  <p class="lede">The design system is signed off and the content is being enriched right now, but there is still no app code and no repo. This is the plan for the codebase and the Supabase plus Vercel infra underneath it, and the four decisions I need from you before I write any of it.</p>
+</header>
+
+<section>
+  <h2>Where the three lanes stand</h2>
+  <div class="grid g3">
+    <div class="lane done">
+      <div class="status">Done</div>
+      <h3>Design</h3>
+      <p>Open Design system finished: <code>tokens.css</code>, a 1,055 line showcase, <code>DESIGN.md</code>. Shared with Ishini and Dilini at <a href="https://685247f2.ht-ml.app/">685247f2.ht-ml.app</a>.</p>
+    </div>
+    <div class="lane flight">
+      <div class="status">In flight</div>
+      <h3>Content</h3>
+      <p>Task <code>syllabus-enrichment</code> has pulled all eight NIE syllabi plus the Sinhala pages. No enriched content written yet, so the shape it writes into is still ours to choose.</p>
+    </div>
+    <div class="lane now">
+      <div class="status">This task</div>
+      <h3>Code and infra</h3>
+      <p>Nothing exists. <code>ict-game-world\</code> holds only <code>.claude\</code>, and it is not a git work tree. Every line below is new.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>What has to be ported</h2>
+  <div class="stats">
+    <div class="stat"><div class="n">87</div><div class="l">activities</div></div>
+    <div class="stat"><div class="n">18</div><div class="l">adventure mini games</div></div>
+    <div class="stat"><div class="n">15</div><div class="l">activity types</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">source HTML files</div></div>
+  </div>
+  <div class="tw" style="margin-top:var(--sp-5)">
+  <table>
+    <thead><tr><th>Grade</th><th class="num">Activities</th><th>Activity types</th><th>Sinhala twin</th></tr></thead>
+    <tbody>
+      <tr><td>6</td><td class="num">22</td><td>order, match, pick, bucket, symmatch</td><td><span class="pill ok">ids match exactly</span></td></tr>
+      <tr><td>7</td><td class="num">29</td><td>order, match, pick, bucket, symmatch</td><td><span class="pill ok">ids match exactly</span></td></tr>
+      <tr><td>8</td><td class="num">17</td><td>tf, input, hotspot, trace, query, gate, bits</td><td><span class="pill ok">ids match exactly</span></td></tr>
+      <tr><td>9 English medium</td><td class="num">19</td><td>match, tf, bucket, input, hotspot, pick, plus the Scratch hub</td><td><span class="pill no">none</span></td></tr>
+      <tr><td>9 ICT Adventure</td><td class="num">18</td><td>mcQuiz, sortGame, memoryGame</td><td><span class="pill warn">Sinhala subtitles only</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="src" style="margin-top:var(--sp-3)">Counted from the sources this session. English and Sinhala activity id sets were compared directly for grades 6, 7 and 8 and are identical, which is what makes a single bilingual data file safe. Grade 9 English medium has no Sinhala file at all, so those strings start empty.</p>
+</section>
+
+<section>
+  <h2>The shape I want to build</h2>
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 900 400" role="img" aria-labelledby="pipe-t pipe-d" xmlns="http://www.w3.org/2000/svg">
+      <title id="pipe-t">Content pipeline from nine HTML files to the deployed app</title>
+      <desc id="pipe-d">Nine source HTML files are parsed by an extract script into one JSON file per grade. The syllabus enrichment task writes into those same JSON files. The engine reads them and is deployed to Vercel, with Supabase holding the leaderboard.</desc>
+      <defs>
+        <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+          <path d="M0,0 L7,3.2 L0,6.4 z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <g font-family="Nunito, system-ui, sans-serif" font-size="12.5">
+
+        <!-- 1. sources -->
+        <g id="n-src"><title>The nine original HTML files, copied untouched into original/</title>
+          <rect x="14" y="108" width="150" height="122" rx="12" fill="#1f2c42" stroke="#2d3645" stroke-width="2"/>
+          <text x="89" y="133" text-anchor="middle" fill="#e6edf6" font-size="13.5" font-weight="700" font-family="Baloo 2, system-ui">original/</text>
+          <text x="89" y="156" text-anchor="middle" fill="#b0c0d1">9 HTML files</text>
+          <text x="89" y="176" text-anchor="middle" fill="#8697ab" font-size="11.5">engine + CSS + content</text>
+          <text x="89" y="193" text-anchor="middle" fill="#8697ab" font-size="11.5">fused in each one</text>
+          <text x="89" y="215" text-anchor="middle" fill="#ec485f" font-size="11.5" font-weight="700">read only, never edited</text>
+        </g>
+
+        <!-- 2. extract -->
+        <g id="n-ext"><title>scripts/extract.mjs parses the LESSONS literal out of each file and pairs English with Sinhala by activity id</title>
+          <rect x="204" y="128" width="128" height="82" rx="12" fill="#12263c" stroke="#23496e" stroke-width="2"/>
+          <text x="268" y="158" text-anchor="middle" fill="#8ec8fb" font-size="13" font-weight="700" font-family="Baloo 2, system-ui">extract.mjs</text>
+          <text x="268" y="179" text-anchor="middle" fill="#b0c0d1" font-size="11.5">pairs en + si</text>
+          <text x="268" y="195" text-anchor="middle" fill="#b0c0d1" font-size="11.5">by activity id</text>
+        </g>
+        <path id="e-1" d="M168,169 L200,169" stroke="#8697ab" stroke-width="2" fill="none" marker-end="url(#ah)" color="#8697ab"/>
+
+        <!-- 3. the seam -->
+        <g id="n-data"><title>data/grade-6..9.json: the single source of truth for structure and strings, and the seam the content task writes into</title>
+          <rect x="372" y="108" width="156" height="122" rx="12" fill="#003850" stroke="#43d0f9" stroke-width="3"/>
+          <text x="450" y="134" text-anchor="middle" fill="#43d0f9" font-size="13.5" font-weight="700" font-family="Baloo 2, system-ui">data/grade-N.json</text>
+          <text x="450" y="157" text-anchor="middle" fill="#e6edf6" font-size="11.5">{ en, si, ta? } inline</text>
+          <text x="450" y="177" text-anchor="middle" fill="#92e5ff" font-size="11.5" font-weight="700">THE SEAM</text>
+          <text x="450" y="197" text-anchor="middle" fill="#b0c0d1" font-size="11.5">structure + strings</text>
+          <text x="450" y="215" text-anchor="middle" fill="#b0c0d1" font-size="11.5">in one file per grade</text>
+        </g>
+        <path id="e-2" d="M336,169 L368,169" stroke="#8697ab" stroke-width="2" fill="none" marker-end="url(#ah)" color="#8697ab"/>
+
+        <!-- enrichment writes in from above -->
+        <g id="n-enrich"><title>The syllabus-enrichment task writes enriched content straight into the same JSON files</title>
+          <rect x="356" y="14" width="188" height="56" rx="12" fill="#332616" stroke="#6b5326" stroke-width="2"/>
+          <text x="450" y="38" text-anchor="middle" fill="#ffd489" font-size="12.5" font-weight="700" font-family="Baloo 2, system-ui">syllabus-enrichment</text>
+          <text x="450" y="57" text-anchor="middle" fill="#b0c0d1" font-size="11.5">writes content here too</text>
+        </g>
+        <path id="e-enrich" d="M450,74 L450,104" stroke="#f2b036" stroke-width="2.5" fill="none" stroke-dasharray="6 4" marker-end="url(#ah)" color="#f2b036"/>
+
+        <!-- checker -->
+        <g id="n-check"><title>scripts/check-data.mjs compares the JSON back against original/ and gates everything downstream</title>
+          <rect x="356" y="268" width="188" height="58" rx="12" fill="#0d2e1d" stroke="#1d5c38" stroke-width="2"/>
+          <text x="450" y="292" text-anchor="middle" fill="#6ee89b" font-size="12.5" font-weight="700" font-family="Baloo 2, system-ui">check-data.mjs</text>
+          <text x="450" y="311" text-anchor="middle" fill="#b0c0d1" font-size="11.5">parity gate vs original/</text>
+        </g>
+        <path id="e-check" d="M450,264 L450,234" stroke="#03a14a" stroke-width="2.5" fill="none" marker-end="url(#ah)" color="#03a14a"/>
+        <path id="e-check2" d="M356,297 C300,297 240,260 200,214" stroke="#03a14a" stroke-width="2" fill="none" stroke-dasharray="5 4" marker-end="url(#ah)" color="#03a14a"/>
+
+        <!-- 4. engine -->
+        <g id="n-eng"><title>The shared engine: app shell, router, i18n and one module per activity type</title>
+          <rect x="572" y="108" width="148" height="122" rx="12" fill="#1f2c42" stroke="#2d3645" stroke-width="2"/>
+          <text x="646" y="134" text-anchor="middle" fill="#e6edf6" font-size="13.5" font-weight="700" font-family="Baloo 2, system-ui">engine</text>
+          <text x="646" y="157" text-anchor="middle" fill="#b0c0d1" font-size="11.5">shell + router + i18n</text>
+          <text x="646" y="177" text-anchor="middle" fill="#b0c0d1" font-size="11.5">15 activity modules</text>
+          <text x="646" y="197" text-anchor="middle" fill="#b0c0d1" font-size="11.5">tokens.css</text>
+          <text x="646" y="216" text-anchor="middle" fill="#8697ab" font-size="11.5">no build step</text>
+        </g>
+        <path id="e-3" d="M532,169 L568,169" stroke="#8697ab" stroke-width="2" fill="none" marker-end="url(#ah)" color="#8697ab"/>
+
+        <!-- 5. outputs -->
+        <g id="n-vercel"><title>Vercel: static hosting plus one serverless function for the daily keep-alive cron</title>
+          <rect x="762" y="90" width="124" height="66" rx="12" fill="#1f2c42" stroke="#43d0f9" stroke-width="2"/>
+          <text x="824" y="116" text-anchor="middle" fill="#43d0f9" font-size="13" font-weight="700" font-family="Baloo 2, system-ui">Vercel</text>
+          <text x="824" y="136" text-anchor="middle" fill="#b0c0d1" font-size="11.5">static + 1 cron fn</text>
+        </g>
+        <g id="n-supa"><title>Supabase: the class leaderboard, with the device-local board as the offline fallback</title>
+          <rect x="762" y="180" width="124" height="66" rx="12" fill="#1f2c42" stroke="#03a14a" stroke-width="2"/>
+          <text x="824" y="206" text-anchor="middle" fill="#6ee89b" font-size="13" font-weight="700" font-family="Baloo 2, system-ui">Supabase</text>
+          <text x="824" y="226" text-anchor="middle" fill="#b0c0d1" font-size="11.5">class leaderboard</text>
+        </g>
+        <path id="e-4" d="M724,150 L758,126" stroke="#8697ab" stroke-width="2" fill="none" marker-end="url(#ah)" color="#8697ab"/>
+        <path id="e-5" d="M724,190 L758,210" stroke="#8697ab" stroke-width="2" fill="none" marker-end="url(#ah)" color="#8697ab"/>
+
+        <text x="14" y="368" fill="#8697ab" font-size="11.5">Solid arrows are build time. The dashed amber arrow is the other task writing content. The dashed green arrow is the parity gate reading the originals back.</text>
+      </g>
+    </svg>
+    </div>
+    <p class="figscroll-hint">Scroll the diagram sideways, or turn the phone.</p>
+    <figcaption>The point of the drawing is the box in the middle. Everything else is replaceable; that file is where two tasks meet, which is why <strong>O2</strong> below is the decision that matters most.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Infra facts that shape this</h2>
+  <p>Both platforms have limits that change the design rather than just the config, so they are here rather than buried in the task file.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Constraint</th><th>The number</th><th>What it forces</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Supabase Free active projects</td>
+        <td class="num">2 max</td>
+        <td>Across every org where you are Owner or Admin. Paused ones do not count. <strong>We do not know your current count</strong>, and that is question O4.</td>
+      </tr>
+      <tr>
+        <td>Supabase Free pausing</td>
+        <td class="num">1 week idle</td>
+        <td>Their wording is "a few user requests to the database each day over the previous week". Vague on purpose.</td>
+      </tr>
+      <tr>
+        <td>Vercel Hobby cron interval</td>
+        <td class="num">once per day</td>
+        <td>A more frequent expression <strong>fails the deploy outright</strong>. Precision is per hour, plus or minus 59 minutes.</td>
+      </tr>
+      <tr>
+        <td>Vercel cron target</td>
+        <td class="num">1 function</td>
+        <td>A cron can only hit a Vercel Function, so the otherwise static site needs one <code>api/</code> file. That does not force a build step.</td>
+      </tr>
+      <tr>
+        <td>Supabase Free database</td>
+        <td class="num">500 MB</td>
+        <td>Far more than nicknames and scores will ever need. Not a constraint here.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note warn" style="margin-top:var(--sp-5)">
+    <p><strong>The honest version of the keep-alive.</strong> One ping a day is the <em>most</em> Vercel Hobby will allow, and it sits at the low end of what Supabase calls "a few requests a day". So the daily cron lowers the chance of a pause, it does not remove it, and I cannot promise otherwise. The real protection stays what the gate already chose: the leaderboard is device local first and syncs when the server answers, so a paused project degrades to a working offline board instead of a broken screen. Worth knowing because the risk lands in the school holidays, exactly when nobody is playing.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Four decisions</h2>
+  <p>Each one queues a single prompt when you press its button. Answer the ones you care about and leave the rest; my pick is marked and I will take it if you say nothing.</p>
+
+  <!-- O1 -->
+  <form class="q" data-lavish-question="o1" onsubmit="event.preventDefault();const v=new FormData(event.currentTarget).get('o1');if(!v)return;window.lavish.queuePrompt('O1 scope: '+v,{tag:'choice',text:'O1 scope: '+v,element:event.currentTarget,data:{question:'O1 scope',answer:v}});event.currentTarget.classList.add('queued');">
+    <div class="q-head"><span class="q-id">O1</span><span class="q-ask">How far does this task go?</span></div>
+    <p class="q-hard"><b>What makes it hard:</b> the full job is 87 activities plus 18 mini games across 15 types, 4 grades and 2 languages. Doing all of it behind one gate means nothing is playable until very late, and any architecture mistake is found after it has been copied 15 times.</p>
+    <fieldset><legend>O1 scope</legend>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o1" value="A - prove the architecture on grade 6, live" checked><span class="opt-lab">A. Prove it on grade 6, deployed<span class="rec">my pick</span></span></span>
+        <span class="opt-body">Repo, all 87 plus 18 extracted and parity checked, app shell, the 5 grade 6 types, Supabase schema, Vercel live. Grade 6 is a real slice: 22 activities across 5 of the 15 types, in both languages.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> one follow-up task to port the other 10 types. They are repetition once the first 5 prove the pattern.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o1" value="B - everything in one task"><span class="opt-lab">B. Everything in one task</span></span>
+        <span class="opt-body">All 4 grades, all 15 types, leaderboard, PWA, deploy. One gate, then a long uninterrupted run.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> an engine mistake gets replicated across 15 modules before anything is played end to end.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o1" value="C - foundation only, no infra"><span class="opt-lab">C. Foundation only, no infra</span></span>
+        <span class="opt-body">Repo, extraction, parity checker. Stop before the app shell and before touching Supabase or Vercel.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> every infra unknown stays unknown, including whether you have a free Supabase slot.</span></label>
+    </fieldset>
+    <button class="qbtn" type="submit">Queue this answer</button>
+    <div class="sent">Queued. Press Send to Agent when you are done.</div>
+  </form>
+
+  <!-- O2 -->
+  <form class="q" data-lavish-question="o2" onsubmit="event.preventDefault();const v=new FormData(event.currentTarget).get('o2');if(!v)return;window.lavish.queuePrompt('O2 data model: '+v,{tag:'choice',text:'O2 data model: '+v,element:event.currentTarget,data:{question:'O2 data model',answer:v}});event.currentTarget.classList.add('queued');">
+    <div class="q-head"><span class="q-id">O2</span><span class="q-ask">What shape is the data model?</span></div>
+    <p class="q-hard"><b>What makes it hard:</b> this is the blue box in the diagram, and it is the one thing two tasks both write to. <code>syllabus-enrichment</code> is running right now and will be editing whatever we pick. Changing it later means re-running extraction and re-doing whatever content has landed by then.</p>
+    <fieldset><legend>O2 data model</legend>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o2" value="A - JSON per grade, {en,si} inline" checked><span class="opt-lab">A. JSON per grade, strings inline<span class="rec">my pick</span></span></span>
+        <span class="opt-body"><code>data/grade-6.json</code> with <code>{en, si}</code> on every string and room for <code>ta</code>. One file per grade is the single source of truth for structure and strings, only the grade in play loads, a teacher or a content task can edit it without touching JavaScript, and a stray character cannot break the app.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> if a real translator ever wants one file per language, we would generate it from this rather than author it. That is a script, not a migration.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o2" value="B - JS modules per grade"><span class="opt-lab">B. JS modules per grade</span></span>
+        <span class="opt-body">Same shape, but <code>data/grade-6.js</code> with an <code>export default</code>. Marginally faster to import and it can carry comments.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> content edits happen inside executable code, so a bad quote in a Sinhala string is a white screen rather than a caught parse error.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o2" value="C - JSON structure plus separate locale catalogues"><span class="opt-lab">C. Structure plus separate locale files</span></span>
+        <span class="opt-body">Content structure in one file, strings in <code>i18n/si.json</code> keyed by path. The classic split, and the nicest thing to hand a translator.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> every string needs a stable key and two files must stay in sync, so the parity checker has to verify key coverage as well. That machinery only pays off with a translator workflow we do not have.</span></label>
+    </fieldset>
+    <button class="qbtn" type="submit">Queue this answer</button>
+    <div class="sent">Queued. Press Send to Agent when you are done.</div>
+  </form>
+
+  <!-- O3 -->
+  <form class="q" data-lavish-question="o3" onsubmit="event.preventDefault();const v=new FormData(event.currentTarget).get('o3');if(!v)return;window.lavish.queuePrompt('O3 git: '+v,{tag:'choice',text:'O3 git: '+v,element:event.currentTarget,data:{question:'O3 git and GitHub',answer:v}});event.currentTarget.classList.add('queued');">
+    <div class="q-head"><span class="q-id">O3</span><span class="q-ask">Git now, and whose GitHub?</span></div>
+    <p class="q-hard"><b>What makes it hard:</b> it is Ishini and Dilini's assessed final-year project. A public commit history under your name is a fact an examiner could read the wrong way, and the task file already flags that her college's rules on outside help apply.</p>
+    <fieldset><legend>O3 git</legend>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o3" value="A - git init locally, no remote yet" checked><span class="opt-lab">A. Local git only, no remote<span class="rec">my pick</span></span></span>
+        <span class="opt-body">History from the first commit, nothing published. Decide the remote later, once the college rules are confirmed.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> no off-machine backup until we push. Low, since the Drive sync already covers this folder.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o3" value="B - local plus private GitHub repo under Pasindu"><span class="opt-lab">B. Private repo under your account</span></span>
+        <span class="opt-body">Backed up and easy for you to work from anywhere.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> the authorship trail reads as yours on a project being graded as theirs.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o3" value="C - local plus private repo under Ishini's account"><span class="opt-lab">C. Private repo under Ishini's account</span></span>
+        <span class="opt-body">The history belongs to the student whose project it is, which is the cleanest story if anyone asks.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> needs her to create it and add you, so it blocks on someone else.</span></label>
+    </fieldset>
+    <button class="qbtn" type="submit">Queue this answer</button>
+    <div class="sent">Queued. Press Send to Agent when you are done.</div>
+  </form>
+
+  <!-- O4 -->
+  <form class="q" data-lavish-question="o4" onsubmit="event.preventDefault();const v=new FormData(event.currentTarget).get('o4');if(!v)return;window.lavish.queuePrompt('O4 Supabase timing: '+v,{tag:'choice',text:'O4 Supabase: '+v,element:event.currentTarget,data:{question:'O4 Supabase timing',answer:v}});event.currentTarget.classList.add('queued');">
+    <div class="q-head"><span class="q-id">O4</span><span class="q-ask">Supabase now, or build against a stub?</span></div>
+    <p class="q-hard"><b>What makes it hard:</b> only you can create the project, and the Free plan allows <b>2 active projects across every org you own or admin</b>. Nobody has checked how many you are already using, so this could need a paid slot or a cleanup before it can happen at all.</p>
+    <fieldset><legend>O4 Supabase timing</legend>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o4" value="A - build against a local storage adapter, wire Supabase later" checked><span class="opt-lab">A. Local adapter now, wire it later<span class="rec">my pick</span></span></span>
+        <span class="opt-body">The leaderboard writes through a storage adapter with two backends. <code>local</code> works today; <code>supabase</code> drops in when the project exists. We need the local one regardless, because it is the offline fallback the gate already chose.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> essentially none. The adapter is not throwaway work, it is the offline path.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="o4" value="B - stop and create the Supabase project first"><span class="opt-lab">B. Create Supabase first</span></span>
+        <span class="opt-body">You make the project in Mumbai <code>ap-south-1</code>, connect the scoped MCP, and I build straight against the real schema.</span>
+        <span class="opt-cost"><b>Cost if wrong:</b> everything waits on you, including work that has nothing to do with the database.</span></label>
+    </fieldset>
+    <button class="qbtn" type="submit">Queue this answer</button>
+    <div class="sent">Queued. Press Send to Agent when you are done.</div>
+  </form>
+</section>
+
+<section>
+  <h2>What I would do the moment you say go</h2>
+  <p>Assuming the four picks above, in this order. Steps 1 to 4 are the ones that matter; everything after is ordinary work.</p>
+  <ul>
+    <li><strong>1. <code>git init</code></strong> plus a <code>.gitignore</code> that keeps <code>.claude/</code>, <code>node_modules</code>, <code>.env*</code> and the macOS <code>._*</code> junk out.</li>
+    <li><strong>2. <code>original/</code></strong> - the 9 source files copied byte for byte. This is the parity baseline and it is never edited again.</li>
+    <li><strong>3. <code>scripts/extract.mjs</code></strong> - parse the <code>LESSONS</code> literal out of each file, pair English with Sinhala by activity id, emit <code>data/grade-6..9.json</code> and <code>data/adventure-9.json</code>. Grade 9 Sinhala stays explicitly <code>null</code> rather than missing, so the gap is visible instead of silent.</li>
+    <li><strong>4. <code>scripts/check-data.mjs</code></strong> - the test suite this project has never had. Same lessons, ids, types and answers as <code>original/</code>. It must be green before a single line of UI, because this is the step that can silently change an answer in a game children are graded on.</li>
+    <li><strong>5.</strong> <code>tokens.css</code> copied across, and the four fonts self-hosted with the weights cut to what <code>DESIGN.md</code> actually uses.</li>
+    <li><strong>6.</strong> App shell: hash router, state, language switch, grade picker, lesson path, activity, result.</li>
+    <li><strong>7.</strong> The 5 grade 6 activity types, with the 3 column symbol match fixed for phones, which is the one real mobile bug in the originals.</li>
+    <li><strong>8.</strong> Player and leaderboard against the storage adapter.</li>
+    <li><strong>9 to 12.</strong> Supabase schema with RLS and a validating <code>submit_score()</code>, PWA offline, <code>vercel.json</code> plus the keep-alive function, then deploy when you say go.</li>
+  </ul>
+  <div class="note tip">
+    <p><strong>On the leaderboard and the law.</strong> Every player here is under 16, which is the child threshold in Sri Lanka's PDPA No. 9 of 2022. So the schema takes a nickname, an avatar and a class code, and nothing else. No real names, no email, no device fingerprint beyond a random id. Row level security is on with no anonymous writes at all; scores go in through a validating function that caps points and nickname length, and the leaderboard reads from views that expose nothing else. Ishini can delete any row.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Risks, and what is deliberately not here</h2>
+  <ul>
+    <li><strong>Extraction is the dangerous step.</strong> A parsing slip changes an answer. <code>check-data.mjs</code> gates everything after it, and that is the whole reason it is step 4 rather than an afterthought.</li>
+    <li><strong>Grade 9 has no Sinhala source.</strong> Those strings start empty and the app has to fall back to English rather than render a blank. Filling them is <code>syllabus-enrichment</code>'s job or a teacher's, not mine to invent.</li>
+    <li><strong>Supabase can still pause.</strong> Covered above. The offline board is the answer, not the cron.</li>
+    <li><strong>Carried over from the redesign task and deliberately left out of this report:</strong> the Sinhala typo fixes T1 to T5, the grade 6 activity 1.3 distractor, and the grade 8 lesson 5 title. They are content decisions, they belong with <code>syllabus-enrichment</code>, and the data files can absorb them after extraction. Say the word if you would rather settle them here.</li>
+  </ul>
+</section>
+
+<footer>
+  Task <code>codebase-and-infra</code> - plan in <code>.claude/tasks/codebase-and-infra/README.md</code>. Sibling tasks: <code>redesign-trilingual</code> (design, done) and <code>syllabus-enrichment</code> (content, in flight).<br>
+  Sources: counts measured from the 9 source files this session; Supabase limits from context7 <code>/supabase/supabase</code> and supabase.com/docs/guides/platform/regions; Vercel cron limits from vercel.com/docs/cron-jobs/usage-and-pricing.
+</footer>
+
+</div>
+</body>
+</html>

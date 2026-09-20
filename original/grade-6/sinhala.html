@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6 ශ්‍රේණිය ICT ක්‍රීඩාව | Ruwanpura NCoE</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef7f4;
+    --ink:#1f2d3d;
+    --muted:#5b6b7c;
+    --line:#d9e6e2;
+    --teal:#14b8a6;--teal-d:#0f766e;--teal-l:#ccfbf1;
+    --amber:#fbbf24;--amber-d:#d97706;--amber-l:#fef3c7;
+    --coral:#fb7185;--coral-d:#e11d48;--coral-l:#ffe4e6;
+    --indigo:#818cf8;--indigo-d:#4338ca;--indigo-l:#e0e7ff;
+    --green:#22c55e;--green-d:#15803d;--green-l:#dcfce7;
+    --pink:#f472b6;--pink-d:#be185d;--pink-l:#fce7f3;
+    --blue:#60a5fa;--blue-d:#1d4ed8;--blue-l:#dbeafe;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Noto Sans Sinhala',system-ui,sans-serif;
+    font-size:18px;
+    min-height:100vh;display:flex;flex-direction:column;
+    -webkit-tap-highlight-color:transparent;overflow-x:hidden;
+  }
+
+  /* Floating decorations */
+  .floaters{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .floater{
+    position:absolute;font-size:34px;opacity:.28;
+    animation:floatAround 14s ease-in-out infinite;
+  }
+  @keyframes floatAround{
+    0%,100%{transform:translate(0,0) rotate(-8deg) scale(1);}
+    25%{transform:translate(20px,-30px) rotate(6deg) scale(1.08);}
+    50%{transform:translate(-15px,-15px) rotate(-4deg) scale(.96);}
+    75%{transform:translate(15px,20px) rotate(10deg) scale(1.05);}
+  }
+
+  /* Header */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:14px 20px;background:#fff;border-bottom:5px solid var(--teal);
+    flex-wrap:wrap;position:sticky;top:0;z-index:100;
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-chip{
+    background:linear-gradient(135deg,var(--teal),var(--indigo-d));
+    color:#fff;font-weight:900;font-size:18px;padding:9px 18px;border-radius:14px;
+    letter-spacing:.5px;box-shadow:0 3px 8px rgba(20,184,166,.35);
+  }
+  .brand-text{font-weight:800;font-size:17px;color:var(--teal-d);}
+  .music-btn{
+    border:none;background:var(--amber);color:#5a3b00;font-family:inherit;
+    font-weight:900;font-size:16px;padding:12px 22px;border-radius:999px;
+    cursor:pointer;box-shadow:0 4px 0 var(--amber-d);transition:all .15s;
+  }
+  .music-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--amber-d);}
+  .music-btn.on{background:var(--teal);color:#fff;box-shadow:0 4px 0 var(--teal-d);}
+
+  main{flex:1;width:100%;max-width:1100px;margin:0 auto;padding:20px;position:relative;z-index:1;}
+  .screen{display:none;animation:fade .35s;}
+  .screen.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+  h1{font-size:32px;margin:0 0 10px;text-align:center;color:var(--teal-d);line-height:1.35;font-weight:900;}
+  h2{font-size:24px;margin:0 0 16px;text-align:center;color:var(--indigo-d);font-weight:800;}
+  .sub{text-align:center;color:var(--muted);font-size:17px;margin:0 0 22px;line-height:1.7;font-weight:600;}
+
+  /* Buttons */
+  .btn{
+    border:none;font-family:inherit;font-weight:900;font-size:18px;
+    padding:16px 30px;border-radius:18px;cursor:pointer;color:#fff;
+    background:var(--teal);box-shadow:0 6px 0 var(--teal-d);
+    transition:all .12s;display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--teal-d);}
+  .btn.amber{background:var(--amber);color:#5a3b00;box-shadow:0 6px 0 var(--amber-d);}
+  .btn.amber:active{box-shadow:0 2px 0 var(--amber-d);}
+  .btn.indigo{background:var(--indigo);box-shadow:0 6px 0 var(--indigo-d);}
+  .btn.indigo:active{box-shadow:0 2px 0 var(--indigo-d);}
+  .btn.coral{background:var(--coral);box-shadow:0 6px 0 var(--coral-d);}
+  .btn.coral:active{box-shadow:0 2px 0 var(--coral-d);}
+  .btn.ghost{background:#fff;color:var(--teal-d);box-shadow:0 6px 0 var(--line);}
+  .btn.ghost:active{box-shadow:0 2px 0 var(--line);}
+  .btn.small{padding:12px 22px;font-size:16px;border-radius:13px;}
+  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
+
+  /* Home */
+  .hero{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:14px;}
+  .hero-svg{width:180px;height:180px;animation:bob 2.8s ease-in-out infinite;filter:drop-shadow(0 8px 16px rgba(20,184,166,.3));}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-14px) rotate(2deg);}}
+  .hero-bubble{
+    background:#fff;border:4px dashed var(--teal);border-radius:22px;
+    padding:14px 26px;font-weight:800;font-size:18px;color:var(--teal-d);
+    text-align:center;max-width:640px;line-height:1.7;
+  }
+
+  /* Lesson grid */
+  .lesson-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;margin-top:22px;
+  }
+  .lesson-card{
+    background:#fff;border-radius:26px;padding:24px 18px 20px;cursor:pointer;
+    border:4px solid var(--line);box-shadow:0 8px 0 var(--line);
+    transition:transform .14s, box-shadow .14s, border-color .2s;
+    display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .lesson-card::before{
+    content:'';position:absolute;top:-30px;right:-30px;width:110px;height:110px;
+    border-radius:50%;opacity:.35;
+  }
+  .lesson-card.l1::before{background:var(--teal-l);}
+  .lesson-card.l2::before{background:var(--coral-l);}
+  .lesson-card.l3::before{background:var(--amber-l);}
+  .lesson-card.l4::before{background:var(--indigo-l);}
+  .lesson-card.l5::before{background:var(--green-l);}
+  .lesson-card.l6::before{background:var(--pink-l);}
+  .lesson-card:active{transform:translateY(5px);box-shadow:0 3px 0 var(--line);}
+  .lesson-card:hover{border-color:var(--teal);}
+  .lesson-icon{
+    width:88px;height:88px;border-radius:26px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:46px;background:var(--teal-l);position:relative;z-index:1;
+    box-shadow:inset 0 -4px 0 rgba(0,0,0,.06);
+  }
+  .lesson-card.l1 .lesson-icon{background:var(--teal-l);}
+  .lesson-card.l2 .lesson-icon{background:var(--coral-l);}
+  .lesson-card.l3 .lesson-icon{background:var(--amber-l);}
+  .lesson-card.l4 .lesson-icon{background:var(--indigo-l);}
+  .lesson-card.l5 .lesson-icon{background:var(--green-l);}
+  .lesson-card.l6 .lesson-icon{background:var(--pink-l);}
+  .lesson-num{
+    position:absolute;top:14px;left:16px;font-size:14px;font-weight:900;
+    color:var(--teal-d);background:var(--teal-l);padding:5px 14px;border-radius:999px;
+    z-index:1;
+  }
+  .lesson-title{font-weight:900;font-size:19px;line-height:1.5;position:relative;z-index:1;}
+  .lesson-progress{
+    font-size:15px;font-weight:800;color:var(--muted);
+    background:var(--bg);padding:6px 16px;border-radius:999px;position:relative;z-index:1;
+  }
+
+  /* Activity list */
+  .act-list{display:grid;gap:14px;max-width:760px;margin:0 auto;}
+  .act-item{
+    background:#fff;border:4px solid var(--line);border-radius:20px;
+    padding:18px 20px;cursor:pointer;display:flex;align-items:center;gap:16px;
+    box-shadow:0 6px 0 var(--line);transition:all .14s;
+  }
+  .act-item:active{transform:translateY(4px);box-shadow:0 2px 0 var(--line);}
+  .act-item.done{border-color:var(--green);background:#f0fdf4;}
+  .act-item.done .act-num{background:var(--green);color:#fff;}
+  .act-num{
+    width:52px;height:52px;border-radius:16px;background:var(--amber-l);
+    color:var(--amber-d);display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:20px;flex-shrink:0;
+  }
+  .act-name{flex:1;font-weight:800;font-size:17px;line-height:1.55;}
+  .act-type{
+    font-size:14px;color:var(--muted);font-weight:800;
+    background:var(--bg);padding:6px 14px;border-radius:999px;flex-shrink:0;
+  }
+
+  /* Activity view */
+  .act-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap;}
+  .score-pill{
+    background:#fff;border:3px solid var(--line);border-radius:999px;
+    padding:9px 22px;font-weight:900;font-size:17px;color:var(--teal-d);
+    margin-left:auto;
+  }
+  .act-body{background:#fff;border-radius:26px;padding:26px;border:4px solid var(--line);}
+  .act-instruction{
+    background:var(--teal-l);color:var(--teal-d);border-radius:20px;
+    padding:18px 22px;font-weight:800;font-size:18px;line-height:1.75;
+    margin-bottom:22px;display:flex;gap:12px;align-items:flex-start;
+  }
+  .act-instruction::before{content:'💡';font-size:26px;flex-shrink:0;}
+
+  /* MCQ */
+  .q-text{font-size:21px;font-weight:800;line-height:1.7;margin:8px 0 20px;}
+  .options{display:grid;gap:13px;}
+  .opt{
+    border:4px solid var(--line);background:#fff;border-radius:18px;
+    padding:17px 20px;font-family:inherit;font-size:18px;font-weight:700;
+    cursor:pointer;color:var(--ink);text-align:left;transition:all .13s;
+    box-shadow:0 5px 0 var(--line);
+  }
+  .opt:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line);}
+  .opt.correct{background:var(--green-l);border-color:var(--green);color:var(--green-d);}
+  .opt.wrong{background:var(--coral-l);border-color:var(--coral);color:var(--coral-d);}
+  .opt:disabled{cursor:default;}
+  .feedback{margin-top:18px;font-weight:800;font-size:19px;min-height:28px;text-align:center;}
+
+  /* Match */
+  .match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .match-col{display:grid;gap:12px;align-content:start;}
+  .match-item{
+    background:#fff;border:4px solid var(--line);border-radius:18px;
+    padding:16px 18px;font-weight:700;font-size:17px;line-height:1.6;
+    cursor:pointer;transition:all .13s;text-align:center;
+    box-shadow:0 5px 0 var(--line);
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    min-height:74px;
+  }
+  .match-item:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line);}
+  .match-item.selected{border-color:var(--indigo);background:var(--indigo-l);color:var(--indigo-d);}
+  .match-item.matched{
+    border-color:var(--green);background:var(--green-l);color:var(--green-d);
+    pointer-events:none;opacity:.9;
+  }
+  .match-item.shake{animation:shake .4s;}
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-8px);}
+    75%{transform:translateX(8px);}
+  }
+  .match-icon{font-size:32px;flex-shrink:0;}
+
+  /* Symbol match */
+  .sym-match-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  .sym-card{
+    background:#fff;border:4px solid var(--line);border-radius:18px;
+    padding:14px 10px;font-weight:700;font-size:16px;line-height:1.45;
+    cursor:pointer;transition:all .13s;text-align:center;
+    box-shadow:0 5px 0 var(--line);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    min-height:130px;justify-content:center;
+  }
+  .sym-card:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line);}
+  .sym-card.selected{border-color:var(--indigo);background:var(--indigo-l);color:var(--indigo-d);}
+  .sym-card.matched{
+    border-color:var(--green);background:var(--green-l);color:var(--green-d);
+    pointer-events:none;opacity:.9;
+  }
+  .sym-card.shake{animation:shake .4s;}
+  .sym-card svg{width:88px;height:54px;}
+
+  /* Order */
+  .order-list{display:grid;gap:12px;}
+  .order-item{
+    background:#fff;border:4px solid var(--line);border-radius:18px;
+    padding:15px 18px;font-weight:700;font-size:17px;line-height:1.6;
+    display:flex;align-items:center;gap:14px;
+    box-shadow:0 5px 0 var(--line);
+  }
+  .order-item .num{
+    width:40px;height:40px;border-radius:12px;background:var(--amber-l);
+    color:var(--amber-d);display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:17px;flex-shrink:0;
+  }
+  .order-item .txt{flex:1;display:flex;align-items:center;gap:10px;}
+  .order-item .movers{display:flex;gap:6px;flex-direction:column;}
+  .mover{
+    border:none;background:var(--teal-l);color:var(--teal-d);
+    width:40px;height:30px;border-radius:10px;font-weight:900;
+    cursor:pointer;font-size:15px;line-height:1;
+  }
+  .mover:disabled{opacity:.35;cursor:default;}
+  .order-item.correct{border-color:var(--green);background:var(--green-l);}
+  .order-item.correct .num{background:var(--green);color:#fff;}
+
+  /* Bucket */
+  .bucket-items{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:20px;min-height:70px;}
+  .b-item{
+    background:#fff;border:4px solid var(--line);border-radius:15px;
+    padding:12px 18px;font-weight:800;font-size:16px;cursor:pointer;
+    transition:all .13s;box-shadow:0 5px 0 var(--line);
+    display:flex;align-items:center;gap:8px;
+  }
+  .b-item:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line);}
+  .b-item.selected{border-color:var(--indigo);background:var(--indigo-l);color:var(--indigo-d);}
+  .b-item.placed{opacity:.25;pointer-events:none;}
+  .buckets{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .bucket{
+    background:var(--bg);border:4px dashed var(--line);border-radius:22px;
+    padding:16px;min-height:160px;cursor:pointer;transition:all .15s;
+  }
+  .bucket:hover{border-color:var(--teal);}
+  .bucket.active{background:var(--teal-l);border-color:var(--teal);border-style:solid;}
+  .bucket-title{
+    font-weight:900;font-size:17px;color:var(--teal-d);
+    text-align:center;margin-bottom:12px;padding-bottom:11px;
+    border-bottom:3px solid var(--line);
+  }
+  .bucket-contents{display:flex;flex-wrap:wrap;gap:8px;}
+  .b-chip{
+    background:var(--green-l);color:var(--green-d);font-weight:800;
+    font-size:15px;padding:8px 14px;border-radius:12px;
+  }
+
+  /* Pick */
+  .pick-list{display:grid;gap:12px;}
+  .pick-item{
+    background:#fff;border:4px solid var(--line);border-radius:18px;
+    padding:16px 18px;font-weight:700;font-size:17px;line-height:1.6;
+    cursor:pointer;transition:all .13s;display:flex;align-items:center;gap:14px;
+    box-shadow:0 5px 0 var(--line);
+  }
+  .pick-item:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line);}
+  .pick-box{
+    width:32px;height:32px;border-radius:10px;border:4px solid var(--line);
+    flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:900;
+  }
+  .pick-item.picked{border-color:var(--indigo);background:var(--indigo-l);}
+  .pick-item.picked .pick-box{border-color:var(--indigo);background:var(--indigo);color:#fff;}
+  .pick-item.correct{border-color:var(--green);background:var(--green-l);}
+  .pick-item.correct .pick-box{border-color:var(--green);background:var(--green);color:#fff;}
+  .pick-item.wrong{border-color:var(--coral);background:var(--coral-l);}
+  .pick-item.wrong .pick-box{border-color:var(--coral);background:var(--coral);color:#fff;}
+  .pick-icon{font-size:28px;flex-shrink:0;}
+
+  /* Result */
+  .result-box{
+    background:#fff;border-radius:28px;padding:36px 24px;text-align:center;
+    border:4px solid var(--line);
+  }
+  .result-emoji{font-size:76px;line-height:1;margin-bottom:10px;animation:pop .5s;}
+  @keyframes pop{0%{transform:scale(0);}70%{transform:scale(1.15);}100%{transform:scale(1);}}
+  .stars{font-size:56px;letter-spacing:8px;margin:18px 0;}
+  .result-msg{font-size:19px;font-weight:700;color:var(--muted);line-height:1.8;}
+
+  /* Footer */
+  .footer{
+    padding:40px 16px 50px;text-align:center;position:relative;z-index:1;
+  }
+  .footer-badge{
+    display:inline-flex;flex-direction:column;align-items:center;gap:8px;
+    padding:34px 66px;border-radius:42px;position:relative;
+    background:linear-gradient(135deg,#0f766e 0%,#14b8a6 25%,#6366f1 55%,#fb7185 80%,#fbbf24 100%);
+    background-size:280% 280%;
+    animation:gradientShift 8s ease infinite, badgePulse 3s ease-in-out infinite;
+    box-shadow:
+      0 0 0 7px rgba(255,255,255,.95),
+      0 0 0 14px rgba(20,184,166,.35),
+      0 24px 70px rgba(99,102,241,.45),
+      0 12px 36px rgba(251,113,133,.35);
+    transform:rotate(-1deg);
+  }
+  @keyframes gradientShift{
+    0%,100%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+  }
+  @keyframes badgePulse{
+    0%,100%{transform:rotate(-1deg) scale(1);}
+    50%{transform:rotate(1deg) scale(1.035);}
+  }
+  .badge-stars{
+    font-size:26px;letter-spacing:10px;
+    animation:twinkle 1.8s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle{from{opacity:.7;transform:scale(.95);}to{opacity:1;transform:scale(1.1);}}
+  .badge-years{
+    font-size:30px;font-weight:900;letter-spacing:5px;
+    color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.3);
+  }
+  .badge-name{
+    font-size:48px;font-weight:900;letter-spacing:2px;
+    color:#fff;line-height:1.05;
+    text-shadow:0 4px 16px rgba(0,0,0,.4), 0 0 24px rgba(255,255,255,.3);
+  }
+  .badge-sub{
+    font-size:17px;font-weight:800;letter-spacing:5px;
+    color:rgba(255,255,255,.95);text-transform:uppercase;margin-top:4px;
+  }
+  .badge-emoji{
+    position:absolute;font-size:36px;animation:floatAround 5s ease-in-out infinite;
+  }
+  .badge-emoji.e1{top:-22px;left:-18px;animation-delay:.2s;}
+  .badge-emoji.e2{top:-22px;right:-18px;animation-delay:.8s;}
+  .badge-emoji.e3{bottom:-20px;left:15%;animation-delay:1.4s;}
+  .badge-emoji.e4{bottom:-20px;right:15%;animation-delay:.5s;}
+
+  /* Confetti */
+  .confetti{
+    position:fixed;top:-20px;width:13px;height:13px;border-radius:3px;
+    animation:fall linear forwards;z-index:9998;pointer-events:none;
+  }
+  @keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.15;}}
+
+  @media (max-width:640px){
+    h1{font-size:24px;}
+    h2{font-size:20px;}
+    body{font-size:16px;}
+    .hero-svg{width:130px;height:130px;}
+    .hero-bubble{font-size:16px;padding:12px 18px;}
+    .match-wrap{grid-template-columns:1fr;}
+    .sym-match-wrap{grid-template-columns:1fr;}
+    .buckets{grid-template-columns:1fr;}
+    .footer-badge{padding:24px 32px;}
+    .badge-name{font-size:30px;}
+    .badge-years{font-size:20px;}
+    .lesson-title{font-size:17px;}
+    .act-name{font-size:15px;}
+    .q-text{font-size:18px;}
+    .opt{font-size:16px;padding:14px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="floaters" id="floaters"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-chip">ICT</span>
+    <span class="brand-text">6 ශ්‍රේණිය • තොරතුරු හා සන්නිවේදන තාක්ෂණය</span>
+  </div>
+  <button id="musicBtn" class="music-btn">🔇 සංගීතය</button>
+</header>
+
+<main id="app"></main>
+
+<footer class="footer">
+  <div class="footer-badge">
+    <div class="badge-emoji e1">💻</div>
+    <div class="badge-emoji e2">🖱️</div>
+    <div class="badge-emoji e3">⭐</div>
+    <div class="badge-emoji e4">🎓</div>
+    <div class="badge-stars">⭐ ✦ ⭐</div>
+    <div class="badge-years">2022 – 2024</div>
+    <div class="badge-name">Ruwanpura NCoE</div>
+    <div class="badge-sub">✦ කණ්ඩායම ✦</div>
+  </div>
+</footer>
+
+<script>
+/* ================================================================
+   AUDIO ENGINE
+   ================================================================ */
+let actx=null,musicOn=false,musicTimer=null,musicGain=null,currentMelody='home';
+
+const MELODIES={
+  home:{
+    notes:[[329.63,1],[392,1],[440,1],[392,1],[329.63,1],[293.66,2],
+           [329.63,1],[392,1],[440,1],[493.88,1],[440,1],[392,2]],
+    wave:'triangle',tempo:.30,bass:[164.81,220,164.81,196]
+  },
+  mcq:{
+    notes:[[523.25,1],[659.25,1],[783.99,1],[1046.5,1],[987.77,1],[783.99,1],[659.25,1],[523.25,1],
+           [587.33,1],[698.46,1],[880,1],[1174.66,1],[1046.5,1],[880,1],[698.46,1],[587.33,1]],
+    wave:'square',tempo:.16,bass:[130.81,146.83,130.81,146.83]
+  },
+  match:{
+    notes:[[392,1],[493.88,1],[587.33,1],[783.99,1],[698.46,1],[587.33,1],[493.88,1],[392,1],
+           [440,1],[523.25,1],[659.25,1],[880,1],[783.99,1],[659.25,1],[523.25,1],[440,1]],
+    wave:'sine',tempo:.21,bass:[196,220,196,220]
+  },
+  order:{
+    notes:[[523.25,1],[523.25,1],[392,1],[392,1],[440,1],[440,1],[392,2],
+           [349.23,1],[349.23,1],[329.63,1],[329.63,1],[293.66,1],[293.66,1],[261.63,2]],
+    wave:'triangle',tempo:.26,bass:[130.81,130.81,146.83,130.81]
+  },
+  bucket:{
+    notes:[[659.25,1],[783.99,1],[659.25,1],[783.99,1],[880,1],[783.99,1],[659.25,1],[587.33,1],
+           [523.25,1],[659.25,1],[523.25,1],[659.25,1],[783.99,1],[659.25,1],[523.25,2]],
+    wave:'sine',tempo:.18,bass:[164.81,196,164.81,196]
+  },
+  pick:{
+    notes:[[783.99,1],[659.25,1],[523.25,1],[659.25,1],[783.99,1],[1046.5,1],[783.99,1],[659.25,1],
+           [880,1],[698.46,1],[587.33,1],[698.46,1],[880,1],[1174.66,1],[880,1],[698.46,1]],
+    wave:'square',tempo:.15,bass:[196,164.81,196,220]
+  }
+};
+
+function ensureAudio(){
+  if(!actx){
+    try{
+      actx=new (window.AudioContext||window.webkitAudioContext)();
+      musicGain=actx.createGain();musicGain.gain.value=.045;
+      musicGain.connect(actx.destination);
+    }catch(e){return;}
+  }
+  if(actx.state==='suspended')actx.resume();
+}
+
+function playMelody(){
+  if(!musicOn||!actx)return;
+  const m=MELODIES[currentMelody]||MELODIES.home;
+  const beat=m.tempo;let t=actx.currentTime+.05;
+
+  m.notes.forEach(([f,d])=>{
+    if(f>0){
+      const o=actx.createOscillator(),g=actx.createGain();
+      o.type=m.wave;o.frequency.value=f;
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.exponentialRampToValueAtTime(1,t+.025);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+d*beat*.9);
+      o.connect(g);g.connect(musicGain);o.start(t);o.stop(t+d*beat);
+    }
+    t+=d*beat;
+  });
+
+  const totalMelodyTime=m.notes.reduce((a,n)=>a+n[1],0)*beat;
+  const bassNotes=m.bass||[];
+  bassNotes.forEach((bf,i)=>{
+    const bt=actx.currentTime+.05+(totalMelodyTime/bassNotes.length)*i;
+    const bo=actx.createOscillator(),bg=actx.createGain();
+    bo.type='sine';bo.frequency.value=bf;
+    bg.gain.setValueAtTime(0.0001,bt);
+    bg.gain.exponentialRampToValueAtTime(.55,bt+.04);
+    bg.gain.exponentialRampToValueAtTime(0.0001,bt+beat*2);
+    bo.connect(bg);bg.connect(musicGain);bo.start(bt);bo.stop(bt+beat*2+.05);
+  });
+
+  musicTimer=setTimeout(playMelody,totalMelodyTime*1000+400);
+}
+
+function switchMusic(key){
+  currentMelody=key;
+  if(!musicOn)return;
+  clearTimeout(musicTimer);
+  playMelody();
+}
+
+function toggleMusic(){
+  ensureAudio();musicOn=!musicOn;
+  const b=document.getElementById('musicBtn');
+  if(musicOn){
+    b.textContent='🔊 සංගීතය';b.classList.add('on');playMelody();
+  }else{
+    b.textContent='🔇 සංගීතය';b.classList.remove('on');clearTimeout(musicTimer);
+  }
+}
+document.getElementById('musicBtn').onclick=toggleMusic;
+
+function blip(f,d=.1,type='sine',v=.13,delay=0){
+  if(!actx)return;const t=actx.currentTime+delay;
+  const o=actx.createOscillator(),g=actx.createGain();
+  o.type=type;o.frequency.value=f;
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(v,t+.012);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+d);
+  o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+d+.03);
+}
+const sfx={
+  correct(){ensureAudio();[659.25,783.99,987.77,1318.51].forEach((f,i)=>blip(f,.18,'sine',.17,i*.07));},
+  wrong(){ensureAudio();blip(196,.22,'sawtooth',.1,0);blip(146.83,.28,'sawtooth',.1,.13);},
+  click(){ensureAudio();blip(880,.05,'square',.05);},
+  win(){ensureAudio();[523.25,659.25,783.99,1046.5,1318.51,1567.98].forEach((f,i)=>blip(f,.3,'triangle',.16,i*.12));}
+};
+
+/* ================================================================
+   FLOW CHART SYMBOLS
+   ================================================================ */
+const SYMBOLS={
+  oval:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="5" width="90" height="40" rx="20" ry="20" fill="#a7f3d0" stroke="#0f766e" stroke-width="3"/>
+  </svg>`,
+  parallelogram:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="20,5 95,5 80,45 5,45" fill="#fde68a" stroke="#d97706" stroke-width="3"/>
+  </svg>`,
+  rectangle:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="5" width="90" height="40" fill="#fed7aa" stroke="#d97706" stroke-width="3"/>
+  </svg>`,
+  diamond:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="50,3 97,25 50,47 3,25" fill="#c7d2fe" stroke="#4338ca" stroke-width="3"/>
+  </svg>`,
+  arrow:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <line x1="10" y1="25" x2="80" y2="25" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+    <polygon points="75,15 95,25 75,35" fill="#0f766e"/>
+  </svg>`
+};
+
+/* ================================================================
+   LESSONS DATA (Sinhala Medium)
+   ================================================================ */
+const LESSONS=[
+/* ------------------- පාඩම 1 ------------------- */
+{
+  id:1,title:'පරිගණකයේ වැදගත්කම',icon:'💻',cls:'l1',
+  activities:[
+    {
+      id:'1.1',type:'order',name:'පරිගණකයේ මූලික කාර්ය අනුපිළිවෙලට සකසන්න',
+      instruction:'පරිගණකයේ මූලික කාර්යයන් වන ආදානය, සැකසීම සහ ප්‍රතිදානය නිවැරදි අනුපිළිවෙලට සකසන්න.',
+      correctOrder:[
+        {text:'ආදානය (Input)',icon:'⌨️'},
+        {text:'සැකසීම (Process)',icon:'⚙️'},
+        {text:'ප්‍රතිදානය (Output)',icon:'🖥️'}
+      ]
+    },
+    {
+      id:'1.2',type:'match',name:'පරිගණකයේ ලක්ෂණ හඳුනා ගනිමු',
+      instruction:'පරිගණකයේ ලක්ෂණ හා ඒවාට ගැලපෙන විස්තර යුගල කරන්න.',
+      pairs:[
+        {l:'⚡ වේගය හා කාර්යක්ෂමතාව',r:'තත්පරයක් තුළ කෝටි බිලියන ගණනක් ගණනය කළ හැක',li:'⚡',ri:'⏱️'},
+        {l:'🎯 නිරවද්‍යතාව',r:'නිවැරදි දත්ත ලබා දුන් විට නිවැරදි තොරතුරු ලැබේ',li:'🎯',ri:'✅'},
+        {l:'🛡️ විශ්වාසනීතාව',r:'ක්‍රියාවලිය හා ප්‍රතිදානය කෙරෙහි විශ්වාසය තැබිය හැක',li:'🛡️',ri:'🔒'},
+        {l:'🔁 නිරන්තරතාව',r:'එකම ආදානයට සෑම විටම එකම ප්‍රතිදානය ලැබේ',li:'🔁',ri:'♻️'},
+        {l:'💾 ගබඩා ධාරිතාව',r:'දත්ත විශාල ප්‍රමාණයක් ගබඩා කර තබා ගත හැක',li:'💾',ri:'📦'},
+        {l:'🧠 බුද්ධිමය බව',r:'ලබා දෙන උපදෙස් අනුව කටයුතු කරයි',li:'🧠',ri:'🤖'}
+      ]
+    },
+    {
+      id:'1.3',type:'pick',name:'නිහිත පරිගණක සහිත උපකරණ තෝරන්න',
+      instruction:'නිහිත (embedded) පරිගණක පද්ධති ඇතුළත් උපකරණ පමණක් තෝරන්න.',
+      items:[
+        {text:'සුහුරු ජංගම දුරකථන',icon:'📱',correct:true},
+        {text:'සාමාන්‍ය පොත් රාක්කය',icon:'📚',correct:false},
+        {text:'නවීන රූපවාහිනී යන්ත්‍ර',icon:'📺',correct:true},
+        {text:'රෙදි සෝදන යන්ත්‍ර',icon:'🧺',correct:true},
+        {text:'සාමාන්‍ය පැන්සල',icon:'✏️',correct:false},
+        {text:'නවීන මෝටර් රථ',icon:'🚗',correct:true},
+        {text:'කෑදර පුටුව',icon:'🪑',correct:false}
+      ]
+    },
+    {
+      id:'1.4',type:'bucket',name:'පරිගණක සංරචක වර්ග කරමු',
+      instruction:'පළමුව අයිතමය ක්ලික් කරන්න. පසුව නිවැරදි කාණ්ඩය ක්ලික් කරන්න.',
+      buckets:[
+        {name:'⌨️ ආදාන උපාංග',items:['යතුරු පුවරුව','මුසිකය','මයික්‍රොෆෝනය','වෙබ් කැමරාව','ස්කෑනරය']},
+        {name:'🖥️ ප්‍රතිදාන උපාංග',items:['සන්දර්ශකය','මුද්‍රණ යන්ත්‍රය','ශබ්ද විකාශක','ප්‍රක්ෂේපණ යන්ත්‍රය']},
+        {name:'💾 ආවයන උපාංග',items:['දෘඩ තැටිය','CD','DVD','පෑන් ඩ්‍රයිවය']}
+      ]
+    }
+  ]
+},
+/* ------------------- පාඩම 2 ------------------- */
+{
+  id:2,title:'පරිගණක විද්‍යාගාරය ආරක්ෂිතව හාවිතය',icon:'🧑‍🏫',cls:'l2',
+  activities:[
+    {
+      id:'2.1',type:'pick',name:'විද්‍යාගාරයේ නිවැරදි හැසිරීම් තෝරන්න',
+      instruction:'පරිගණක විද්‍යාගාරයේ නිවැරදි හැසිරීම් පමණක් තෝරන්න.',
+      items:[
+        {text:'පාවහන් ගලවා විද්‍යාගාරයට ඇතුළු වීම',icon:'👟',correct:true},
+        {text:'විද්‍යාගාරය තුළ දුව පැන සෙල්ලම් කිරීම',icon:'🏃',correct:false},
+        {text:'ගුරුවරයාගේ උපදෙස් අනුව කටයුතු කිරීම',icon:'👩‍🏫',correct:true},
+        {text:'විදුලි උපාංග අල්ලා ඇදීම',icon:'⚡',correct:false},
+        {text:'හාවිතයෙන් පසු උපකරණ නිසි පරිදි ක්‍රියා විරහිත කිරීම',icon:'🔌',correct:true},
+        {text:'ආහාර හා දියර වර්ග විද්‍යාගාරයට රැගෙන ඒම',icon:'🍔',correct:false},
+        {text:'විද්‍යාගාරය පිරිසිදුව හා දූවිලි රහිතව තබා ගැනීම',icon:'🧹',correct:true}
+      ]
+    },
+    {
+      id:'2.2',type:'order',name:'පරිගණකය ක්‍රියාත්මක කිරීමේ පිළිවෙල',
+      instruction:'පරිගණකය නිවැරදිව ක්‍රියාත්මක කිරීමේ පියවර අනුපිළිවෙලට සකසන්න.',
+      correctOrder:[
+        {text:'විදුලි බලය සැපයීම (බිත්ති ස්විචය ක්‍රියාත්මක කිරීම)',icon:'🔌'},
+        {text:'නිර්බාධක ජව සැපයුම (UPS) ක්‍රියාත්මක කිරීම',icon:'🔋'},
+        {text:'පද්ධති ඒකකය (System Unit) ක්‍රියාත්මක කිරීම',icon:'🖥️'},
+        {text:'සන්දර්ශකය (Monitor) ක්‍රියාත්මක කිරීම',icon:'📺'}
+      ]
+    },
+    {
+      id:'2.3',type:'match',name:'නිවැරදි ඉරියව් හඳුනා ගනිමු',
+      instruction:'නිවැරදි ඉරියව්ව හා එයින් වැළකෙන ගැටලුව යුගල කරන්න.',
+      pairs:[
+        {l:'👁️ සන්දර්ශකය ඇස් මට්ටමට තබා ගැනීම',r:'ඇසේ වේදනාව හා හිසරදය වැළකේ',li:'👁️',ri:'🤕'},
+        {l:'📏 ඇසත් තිරයත් අතර දුර අගල් 18–28',r:'ඇස් පෙනීමේ දුර්වලතා වැළකේ',li:'📏',ri:'👓'},
+        {l:'🪑 කොන්ද කෙළින් තබා හේත්තු වීම',r:'කොන්දේ වේදනාව වැළකේ',li:'🪑',ri:'🦴'},
+        {l:'🦶 පාද පොළොවට ලම්බකව තබා ගැනීම',r:'පාදවල අපහසුතා වැළකේ',li:'🦶',ri:'🦵'},
+        {l:'💪 යතුරු පුවරුව වැලමිට මට්ටමින් තැබීම',r:'අත්වල ඇතිලි වේදනා වැළකේ',li:'💪',ri:'✋'}
+      ]
+    },
+    {
+      id:'2.4',type:'match',name:'3R ක්‍රමය හඳුනා ගනිමු',
+      instruction:'එක් එක් R අකුර හා එහි අර්ථය යුගල කරන්න.',
+      pairs:[
+        {l:'🔻 Reduce (අවම කිරීම)',r:'උපකරණ නිවැරදිව නඩත්තු කර දිගු කලක් භාවිතය',li:'🔻',ri:'📉'},
+        {l:'🔁 Reuse (නැවත භාවිතය)',r:'පැරණි උපකරණ පරිත්‍යාග කිරීම හෝ වෙනත් අවශ්‍යතා සඳහා යොදා ගැනීම',li:'🔁',ri:'🎁'},
+        {l:'♻️ Recycle (ප්‍රතිචක්‍රීකරණය)',r:'ඉවත් කළ යුතු උපකරණ විද්‍යුත් අපද්‍රව්‍ය ආයතනයකට භාර දීම',li:'♻️',ri:'🏭'}
+      ]
+    }
+  ]
+},
+/* ------------------- පාඩම 3 ------------------- */
+{
+  id:3,title:'මෙහෙයුම් පද්ධති හා ගොනු හැසිරවීම',icon:'🪟',cls:'l3',
+  activities:[
+    {
+      id:'3.1',type:'match',name:'කවුළු බොත්තම් හඳුනා ගනිමු',
+      instruction:'කවුළුවේ ඇති බොත්තම් හා ඒවායේ කාර්යය යුගල කරන්න.',
+      pairs:[
+        {l:'➖ අවම කිරීමේ බොත්තම',r:'කවුළුව කාර්ය තීරුවට සඟවයි',li:'➖',ri:'📥'},
+        {l:'⬜ උපරිම කිරීමේ බොත්තම',r:'කවුළුව මුළු තිරය පුරා විහිදුවයි',li:'⬜',ri:'🔍'},
+        {l:'❌ වසා දැමීමේ බොත්තම',r:'කවුළුව සම්පූර්ණයෙන්ම වසා දමයි',li:'❌',ri:'🚪'},
+        {l:'🔲 ප්‍රතිප්‍රමාණ කිරීම',r:'මුසිකයෙන් කවුළුවේ ප්‍රමාණය වෙනස් කරයි',li:'🔲',ri:'↔️'}
+      ]
+    },
+    {
+      id:'3.2',type:'match',name:'ගොනු දිගු (File Extensions) හඳුනා ගනිමු',
+      instruction:'ගොනු දිගු හා ඒවායේ අන්තර්ගතය යුගල කරන්න.',
+      pairs:[
+        {l:'.txt',r:'පාඩ සහිත ගොනුවක්',li:'📄',ri:'📝'},
+        {l:'.mp3',r:'හඬ සහිත ගොනුවක්',li:'🎵',ri:'🔊'},
+        {l:'.jpg',r:'පින්තුර සහිත ගොනුවක්',li:'🖼️',ri:'📷'},
+        {l:'.avi',r:'වීඩියෝ සහිත ගොනුවක්',li:'🎬',ri:'📹'},
+        {l:'.docx',r:'වදන් සැකසුම් ගොනුවක්',li:'📘',ri:'✍️'}
+      ]
+    },
+    {
+      id:'3.3',type:'pick',name:'ගොනු හැසිරවීමේ කාර්ය තෝරන්න',
+      instruction:'ගොනු හැසිරවීමට අදාළ කාර්යයන් පමණක් තෝරන්න.',
+      items:[
+        {text:'නව ගොනුවක් නිර්මාණය කිරීම',icon:'🆕',correct:true},
+        {text:'ගොනුවක් විවෘත කිරීම',icon:'📂',correct:true},
+        {text:'ගොනුවක් සංස්කරණය කිරීම',icon:'✏️',correct:true},
+        {text:'ගොනුවක් වසා දැමීම',icon:'❌',correct:true},
+        {text:'ගොනුවක් සේදීම',icon:'🧼',correct:false},
+        {text:'ගොනුවක් සුරැකීම',icon:'💾',correct:true},
+        {text:'ගොනුවක් පිසීම',icon:'🍳',correct:false}
+      ]
+    }
+  ]
+},
+/* ------------------- පාඩම 4 ------------------- */
+{
+  id:4,title:'මුසිකය හා යතුරු පුවරුව',icon:'🖱️',cls:'l4',
+  activities:[
+    {
+      id:'4.1',type:'match',name:'මුසිකයේ කොටස් හා කාර්ය',
+      instruction:'මුසිකයේ කොටස් හා ඒවායේ කාර්යය යුගල කරන්න.',
+      pairs:[
+        {l:'🟢 වම් බොත්තම',r:'අයිතම තෝරා ගැනීමට හා විවෘත කිරීමට',li:'🟢',ri:'👆'},
+        {l:'🔴 දකුණු බොත්තම',r:'මෙනුව විවෘත කිරීමට',li:'🔴',ri:'📋'},
+        {l:'⚫ රෝල් කිරීමේ රෝදය',r:'පිටුවක් ඉහළ පහළ යාමට',li:'⚫',ri:'↕️'}
+      ]
+    },
+    {
+      id:'4.2',type:'match',name:'යතුරු පුවරු යතුරු හා කාර්ය',
+      instruction:'යතුරු පුවරුවේ යතුරු හා ඒවායේ කාර්යය යුගල කරන්න.',
+      pairs:[
+        {l:'⎵ Space Bar',r:'වචන අතර ඉඩ තැබීමට',li:'⎵',ri:'↔️'},
+        {l:'⇥ Tab යතුර',r:'වචන අතර විශාල ඉඩක් තැබීමට',li:'⇥',ri:'➡️'},
+        {l:'↵ Enter යතුර',r:'කර්සරය එක් පේළියක් පහළට යැවීමට',li:'↵',ri:'⬇️'},
+        {l:'← Backspace යතුර',r:'කර්සරයට වමින් ඇති අකුරක් මැකීමට',li:'←',ri:'🗑️'},
+        {l:'⇧ Shift යතුර',r:'විශාල අකුරු හා සංකේත ලිවීමට',li:'⇧',ri:'🔠'},
+        {l:'🔒 Caps Lock යතුර',r:'සියලු අකුරු විශාල අකුරු ලෙස ලිවීමට',li:'🔒',ri:'🅰️'}
+      ]
+    },
+    {
+      id:'4.3',type:'pick',name:'මුසිකය නිවැරදිව භාවිතය තෝරන්න',
+      instruction:'මුසිකය නිවැරදිව භාවිතා කරන ආකාරයන් පමණක් තෝරන්න.',
+      items:[
+        {text:'මුසිකය සැහැල්ලුවෙන් නිවැරදිව අල්ලා ගැනීම',icon:'✅',correct:true},
+        {text:'මුසිකය තදින් මිරිකීම',icon:'💪',correct:false},
+        {text:'ඇඟිලි බොත්තම් මත සුවපහසුව තබා ගැනීම',icon:'🖐️',correct:true},
+        {text:'මුසිකයේ බොත්තම් තදින් ගසා භාවිතය',icon:'👊',correct:false},
+        {text:'සිනිඳු හා සැහැල්ලු චලනයන් භාවිතය',icon:'🌊',correct:true}
+      ]
+    }
+  ]
+},
+/* ------------------- පාඩම 5 (ගැලීම් සටහන්) ------------------- */
+{
+  id:5,title:'ඇල්ගොරිතම හා ගැලීම් සටහන්',icon:'🧩',cls:'l5',
+  activities:[
+    {
+      id:'5.1',type:'order',name:'පලතුරු සලාදය සෑදීමේ ඇල්ගොරිතමය',
+      instruction:'පලතුරු සලාදයක් සෑදීමට අදාළ පියවර නිවැරදි අනුපිළිවෙලට සකසන්න.',
+      correctOrder:[
+        {text:'ආරම්භය',icon:'🚦'},
+        {text:'පලතුරු වර්ග කිහිපයක් සොයා ගැනීම',icon:'🍎'},
+        {text:'පලතුරු සියල්ල හොඳින් සෝදා ගැනීම',icon:'🚿'},
+        {text:'පලතුරු කුඩා කැබලිවලට කපා ගැනීම',icon:'🔪'},
+        {text:'පලතුරු කැබලි සියල්ල හාජනයකට දැමීම',icon:'🥣'},
+        {text:'සීනි ස්වල්පයක් එකතු කර කලවම් කිරීම',icon:'🥄'},
+        {text:'පලතුරු සලාදය බදුන්වල දමා පිළිගැන්වීම',icon:'🍽️'},
+        {text:'අවසානය',icon:'🏁'}
+      ]
+    },
+    {
+      id:'5.2',type:'symmatch',name:'ගැලීම් සටහන් සංකේත යුගල කරමු',
+      instruction:'සංකේතය ක්ලික් කරන්න → එහි නම ක්ලික් කරන්න → එහි අර්ථය ක්ලික් කරන්න.',
+      triples:[
+        {symbol:'oval',name:'ඕවලාකාර හැඩය',meaning:'ආරම්භය සහ අවසානය',color:'#a7f3d0'},
+        {symbol:'parallelogram',name:'සමාන්තරාස්‍ර හැඩය',meaning:'ආදානය හා ප්‍රතිදානය',color:'#fde68a'},
+        {symbol:'rectangle',name:'සෘජුකෝණාස්‍ර හැඩය',meaning:'සැකසීම / ක්‍රියාවලිය',color:'#fed7aa'},
+        {symbol:'diamond',name:'දියමන්ති හැඩය',meaning:'තීරණ ගැනීම',color:'#c7d2fe'},
+        {symbol:'arrow',name:'ඊතලය',meaning:'දත්ත ගැලීමේ දිශාව',color:'#bae6fd'}
+      ]
+    },
+    {
+      id:'5.3',type:'order',name:'සෘජුකෝණාස්‍රයේ වර්ගඵලය ඇල්ගොරිතමය',
+      instruction:'සෘජුකෝණාස්‍රයේ වර්ගඵලය සෙවීමේ පියවර නිවැරදි අනුපිළිවෙලට සකසන්න.',
+      correctOrder:[
+        {text:'ආරම්භය',icon:'🚦'},
+        {text:'සෘජුකෝණාස්‍රයේ දිග ලබා ගැනීම',icon:'📏'},
+        {text:'සෘජුකෝණාස්‍රයේ පළල ලබා ගැනීම',icon:'📐'},
+        {text:'වර්ගඵලය = දිග × පළල',icon:'✖️'},
+        {text:'සෘජුකෝණාස්‍රයේ වර්ගඵලය ප්‍රකාශ කිරීම',icon:'📊'},
+        {text:'අවසානය',icon:'🏁'}
+      ]
+    },
+    {
+      id:'5.4',type:'bucket',name:'ආදානය, සැකසීම, ප්‍රතිදානය වර්ග කරමු',
+      instruction:'පළමුව අයිතමය ක්ලික් කරන්න. පසුව නිවැරදි කාණ්ඩය ක්ලික් කරන්න.',
+      buckets:[
+        {name:'📥 ආදානය (Input)',items:['පලතුරු වර්ග','දිග හා පළල','ශිෂ්‍ය ලකුණු']},
+        {name:'⚙️ සැකසීම (Process)',items:['පලතුරු සේදීම','දිග × පළල','සීනි එකතු කිරීම']},
+        {name:'📤 ප්‍රතිදානය (Output)',items:['පලතුරු සලාදය','සෘජුකෝණාස්‍රයේ වර්ගඵලය','මුළු ලකුණු']}
+      ]
+    }
+  ]
+},
+/* ------------------- පාඩම 6 ------------------- */
+{
+  id:6,title:'අන්තර්ජාලය හාවිතය',icon:'🌐',cls:'l6',
+  activities:[
+    {
+      id:'6.1',type:'bucket',name:'වෙබ් අතිරික්සු හා සෙවුම් යන්ත්‍ර වෙන් කරමු',
+      instruction:'පළමුව අයිතමය ක්ලික් කරන්න. පසුව නිවැරදි කාණ්ඩය ක්ලික් කරන්න.',
+      buckets:[
+        {name:'🌐 වෙබ් අතිරික්සු',items:['Google Chrome','Mozilla Firefox','Internet Explorer']},
+        {name:'🔍 සෙවුම් යන්ත්‍ර',items:['Google','Yahoo','Bing']}
+      ]
+    },
+    {
+      id:'6.2',type:'pick',name:'අන්තර්ජාලයේ ආරක්ෂිත හැසිරීම් තෝරන්න',
+      instruction:'අන්තර්ජාලය භාවිතයේ දී ආරක්ෂිත හැසිරීම් පමණක් තෝරන්න.',
+      items:[
+        {text:'අකුරු, සංඛ්‍යා සහ සංකේත සහිත ශක්තිමත් මුරපද භාවිතය',icon:'🔐',correct:true},
+        {text:'නොදන්නා අයගෙන් ලැබෙන විද්‍යුත් තැපැල් විවෘත කිරීම',icon:'📧',correct:false},
+        {text:'වෙබ් අඩවියෙන් පසු සැමවිටම log out වීම',icon:'🚪',correct:true},
+        {text:'මුරපද අන් අය සමඟ බෙදා ගැනීම',icon:'🗣️',correct:false},
+        {text:'ගුරුවරයාගේ හෝ මවුපියන්ගේ මග පෙන්වීම ලබා ගැනීම',icon:'👨‍👩‍👧',correct:true},
+        {text:'නොදන්නා සබැඳි ක්ලික් කිරීම',icon:'🖱️',correct:false}
+      ]
+    },
+    {
+      id:'6.3',type:'match',name:'අන්තර්ජාල පද හඳුනා ගනිමු',
+      instruction:'අන්තර්ජාලයට අදාළ පද හා ඒවායේ අර්ථය යුගල කරන්න.',
+      pairs:[
+        {l:'🌐 අන්තර්ජාලය',r:'ලෝකය පුරා විසිරි ඇති පරිගණක ජාලවල එකතුව',li:'🌐',ri:'🕸️'},
+        {l:'🧭 වෙබ් අතිරික්සුව',r:'වෙබ් පිටු බලා ගැනීමට භාවිත වන මාදුකාංගය',li:'🧭',ri:'📄'},
+        {l:'🔍 සෙවුම් යන්ත්‍රය',r:'අවශ්‍ය තොරතුරු සොයා දෙන වැඩසටහන',li:'🔍',ri:'🔎'},
+        {l:'🔐 මුරපදය',r:'පරිගණකයට ඇතුළු වීමට අවශ්‍ය රහස් වචනය',li:'🔐',ri:'🗝️'},
+        {l:'📧 විද්‍යුත් තැපෑල',r:'අන්තර්ජාලය ඔස්සේ පණිවිඩ යැවීමට යොදන සේවාව',li:'📧',ri:'✉️'}
+      ]
+    },
+    {
+      id:'6.4',type:'match',name:'වෙබ් අතිරික්සුව හා සෙවුම් යන්ත්‍රය',
+      instruction:'සෑම කරුණක්ම අදාළ කාණ්ඩයට යුගල කරන්න.',
+      pairs:[
+        {l:'වෙබ් අඩවි වෙත පිවිස ඒවායේ පිටු බලා ගැනීමට යොදයි',r:'🌐 වෙබ් අතිරික්සුව',li:'📄',ri:'🌐'},
+        {l:'විශාල තොරතුරු එකතුවකින් අවශ්‍ය දේ සොයා දෙයි',r:'🔍 සෙවුම් යන්ත්‍රය',li:'🔎',ri:'🔍'},
+        {l:'වෙබ් ලිපිනය භාවිතයෙන් වෙබ් අඩවිය විවෘත කරයි',r:'🌐 වෙබ් අතිරික්සුව',li:'🔗',ri:'🌐'},
+        {l:'අදාළ වෙබ් අඩවි ලැයිස්තුවක් ලබා දෙයි',r:'🔍 සෙවුම් යන්ත්‍රය',li:'📋',ri:'🔍'}
+      ]
+    }
+  ]
+}
+];
+
+/* ================================================================
+   FLOATING DECORATIONS
+   ================================================================ */
+const FLOAT_EMOJIS=['💻','🖱️','⌨️','📀','🖥️','📱','⭐','🎮','📁','🔍','🌐','💾','🖨️','📸','🎵','✏️'];
+function buildFloaters(){
+  const c=document.getElementById('floaters');
+  const positions=[
+    {top:'8%',left:'3%'},{top:'16%',right:'5%'},{top:'32%',left:'2%'},
+    {top:'48%',right:'3%'},{top:'62%',left:'4%'},{top:'78%',right:'4%'},
+    {top:'88%',left:'8%'},{top:'12%',right:'12%'},{top:'55%',left:'8%'},
+    {top:'72%',right:'10%'}
+  ];
+  positions.forEach((p,i)=>{
+    const d=document.createElement('div');
+    d.className='floater';
+    d.textContent=FLOAT_EMOJIS[i%FLOAT_EMOJIS.length];
+    Object.assign(d.style,p);
+    d.style.animationDelay=(i*.7)+'s';
+    d.style.animationDuration=(11+Math.random()*8)+'s';
+    c.appendChild(d);
+  });
+}
+
+/* ================================================================
+   STATE + ROUTER
+   ================================================================ */
+const state={currentLesson:null,currentActivity:null,completed:{}};
+function render(html){document.getElementById('app').innerHTML=html;}
+function goHome(){sfx.click();state.currentLesson=null;state.currentActivity=null;switchMusic('home');renderHome();}
+function goLesson(id){sfx.click();state.currentLesson=LESSONS.find(l=>l.id===id);renderLesson();}
+function goActivity(lid,aid){
+  sfx.click();
+  state.currentLesson=LESSONS.find(l=>l.id===lid);
+  state.currentActivity=state.currentLesson.activities.find(a=>a.id===aid);
+  switchMusic(state.currentActivity.type);
+  renderActivity();
+}
+
+/* ================================================================
+   HOME
+   ================================================================ */
+function renderHome(){
+  let cards='';
+  LESSONS.forEach(l=>{
+    const done=l.activities.filter(a=>state.completed[l.id+'-'+a.id]).length;
+    cards+=`
+      <div class="lesson-card ${l.cls}" onclick="goLesson(${l.id})">
+        <div class="lesson-num">පාඩම ${l.id}</div>
+        <div class="lesson-icon">${l.icon}</div>
+        <div class="lesson-title">${l.title}</div>
+        <div class="lesson-progress">${done}/${l.activities.length} සම්පූර්ණයි</div>
+      </div>`;
+  });
+  render(`
+    <section class="screen active">
+      <div class="hero">
+        <svg class="hero-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#0f766e" stroke-width="7" stroke-linecap="round">
+            <line x1="70" y1="22" x2="70" y2="44"/><line x1="95" y1="22" x2="95" y2="44"/>
+            <line x1="120" y1="22" x2="120" y2="44"/><line x1="145" y1="22" x2="145" y2="44"/>
+            <line x1="70" y1="156" x2="70" y2="178"/><line x1="95" y1="156" x2="95" y2="178"/>
+            <line x1="120" y1="156" x2="120" y2="178"/><line x1="145" y1="156" x2="145" y2="178"/>
+            <line x1="22" y1="70" x2="44" y2="70"/><line x1="22" y1="95" x2="44" y2="95"/>
+            <line x1="22" y1="120" x2="44" y2="120"/><line x1="22" y1="145" x2="44" y2="145"/>
+            <line x1="156" y1="70" x2="178" y2="70"/><line x1="156" y1="95" x2="178" y2="95"/>
+            <line x1="156" y1="120" x2="178" y2="120"/><line x1="156" y1="145" x2="178" y2="145"/>
+          </g>
+          <rect x="44" y="44" width="112" height="112" rx="26" fill="#14b8a6"/>
+          <rect x="56" y="56" width="88" height="88" rx="18" fill="#5eead4"/>
+          <circle cx="82" cy="90" r="12" fill="#fff"/>
+          <circle cx="118" cy="90" r="12" fill="#fff"/>
+          <circle cx="84" cy="92" r="6" fill="#1f2d3d"/>
+          <circle cx="120" cy="92" r="6" fill="#1f2d3d"/>
+          <circle cx="86" cy="89" r="2" fill="#fff"/>
+          <circle cx="122" cy="89" r="2" fill="#fff"/>
+          <circle cx="66" cy="110" r="7" fill="#fb7185" opacity=".55"/>
+          <circle cx="134" cy="110" r="7" fill="#fb7185" opacity=".55"/>
+          <path d="M86 116 Q100 132 114 116" stroke="#1f2d3d" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="30" cy="140" r="13" fill="#fbbf24"/>
+          <circle cx="170" cy="140" r="13" fill="#fbbf24"/>
+          <line x1="60" y1="44" x2="48" y2="22" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="47" cy="20" r="7" fill="#fb7185"/>
+          <line x1="140" y1="44" x2="152" y2="22" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="153" cy="20" r="7" fill="#fb7185"/>
+        </svg>
+        <div class="hero-bubble">ආයුබෝවන්! මම ඔබේ ICT මිතුරා 🤖 එන්න, ක්‍රීඩා කරමින් 6 ශ්‍රේණිය ICT ඉගෙන ගමු! 🎓✨</div>
+      </div>
+      <h1>6 ශ්‍රේණිය ICT ක්‍රීඩා ලෝකය 🎮</h1>
+      <p class="sub">පාඩමක් තෝරන්න. සෑම පාඩමකම ක්‍රියාකාරකම් 3–4ක් ඇත. සියල්ල සම්පූර්ණ කර තරු ලබා ගන්න! ⭐</p>
+      <div class="lesson-grid">${cards}</div>
+    </section>
+  `);
+}
+
+/* ================================================================
+   LESSON
+   ================================================================ */
+function renderLesson(){
+  const l=state.currentLesson;if(!l)return goHome();
+  let items='';
+  l.activities.forEach((a,i)=>{
+    const done=state.completed[l.id+'-'+a.id];
+    items+=`
+      <div class="act-item ${done?'done':''}" onclick="goActivity(${l.id},'${a.id}')">
+        <div class="act-num">${done?'✓':i+1}</div>
+        <div class="act-name">${a.name}</div>
+        <div class="act-type">${typeLabel(a.type)}</div>
+      </div>`;
+  });
+  render(`
+    <section class="screen active">
+      <div class="act-header"><button class="btn ghost small" onclick="goHome()">← මුල් පිටුව</button></div>
+      <h1>${l.icon} පාඩම ${l.id}</h1>
+      <h2 style="color:var(--teal-d);font-size:20px;">${l.title}</h2>
+      <p class="sub">ක්‍රියාකාරකමක් තෝරන්න 👇</p>
+      <div class="act-list">${items}</div>
+    </section>
+  `);
+}
+function typeLabel(t){
+  return {mcq:'ප්‍රශ්නාවලිය',match:'යුගල කිරීම',order:'අනුපිළිවෙල',bucket:'වර්ගීකරණය',pick:'තෝරා ගැනීම',symmatch:'සංකේත යුගල'}[t]||'';
+}
+
+/* ================================================================
+   ACTIVITY DISPATCH
+   ================================================================ */
+function renderActivity(){
+  const a=state.currentActivity,l=state.currentLesson;
+  if(!a||!l)return goHome();
+  render(`
+    <section class="screen active">
+      <div class="act-header">
+        <button class="btn ghost small" onclick="goLesson(${l.id})">← පාඩමට</button>
+        <div class="score-pill" id="scorePill">ලකුණු: 0</div>
+      </div>
+      <h1 style="font-size:24px;">${a.name}</h1>
+      <div class="act-body" id="actBody"></div>
+    </section>
+  `);
+  const c=document.getElementById('actBody');
+  const fns={mcq:renderMCQ,match:renderMatch,order:renderOrder,bucket:renderBucket,pick:renderPick,symmatch:renderSymMatch};
+  (fns[a.type]||renderMCQ)(c,a);
+}
+
+/* ================================================================
+   MCQ
+   ================================================================ */
+function renderMCQ(c,a){
+  let idx=0,score=0;const total=a.questions.length;
+  function draw(){
+    if(idx>=total)return finish();
+    const q=a.questions[idx];
+    c.innerHTML=`
+      <div class="act-instruction">${a.instruction}</div>
+      <div style="font-size:15px;color:var(--muted);font-weight:900;margin-bottom:8px;">
+        ප්‍රශ්නය ${idx+1} / ${total}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts"></div>
+      <div class="feedback" id="fb"></div>`;
+    const o=document.getElementById('opts');
+    q.opts.forEach((t,i)=>{
+      const b=document.createElement('button');
+      b.className='opt';b.textContent=t;
+      b.onclick=()=>pick(i,b);o.appendChild(b);
+    });
+    document.getElementById('scorePill').textContent=`ලකුණු: ${score} / ${total}`;
+  }
+  function pick(i,btn){
+    const q=a.questions[idx];const all=document.querySelectorAll('.opt');
+    all.forEach(x=>x.disabled=true);
+    if(i===q.ans){btn.classList.add('correct');score++;sfx.correct();
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ නිවැරදියි! 🎉</span>';}
+    else{btn.classList.add('wrong');all[q.ans].classList.add('correct');sfx.wrong();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ වැරදියි. කොළ පැහැය නිවැරදි පිළිතුරයි.</span>';}
+    document.getElementById('scorePill').textContent=`ලකුණු: ${score} / ${total}`;
+    setTimeout(()=>{idx++;draw();},1600);
+  }
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;sfx.win();
+    const stars=score===total?3:score>=total*.6?2:1;
+    c.innerHTML=`
+      <div class="result-box">
+        <div class="result-emoji">${stars===3?'🏆':stars===2?'👏':'💪'}</div>
+        <h2 style="color:var(--teal-d);">සම්පූර්ණයි!</h2>
+        <div class="stars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+        <p class="result-msg">ඔබ ලකුණු <b>${score} / ${total}</b></p>
+        <div class="btn-row">
+          <button class="btn" onclick="goLesson(${state.currentLesson.id})">← පාඩමට</button>
+          <button class="btn ghost" onclick="goHome()">🏠 මුල් පිටුව</button>
+        </div>
+      </div>`;
+  }
+  draw();
+}
+
+/* ================================================================
+   MATCH
+   ================================================================ */
+function renderMatch(c,a){
+  const pairs=a.pairs;
+  const left=pairs.map((p,i)=>({text:p.l,key:i,icon:p.li}));
+  const right=shuffle(pairs.map((p,i)=>({text:p.r,key:i,icon:p.ri})));
+  let sel=null,matched=0,wrongAttempts=0;const total=pairs.length;
+  function updatePill(){document.getElementById('scorePill').textContent=`ගැලපීම්: ${matched} / ${total}`;}
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="match-wrap"><div class="match-col" id="lc"></div><div class="match-col" id="rc"></div></div>
+    <div class="feedback" id="fb"></div>`;
+  const lc=document.getElementById('lc'),rc=document.getElementById('rc');
+  left.forEach(it=>{
+    const d=document.createElement('div');d.className='match-item';
+    d.innerHTML=`<span class="match-icon">${it.icon||''}</span><span>${it.text}</span>`;
+    d.dataset.key=it.key;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#lc .match-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');sel={el:d,it};};
+    lc.appendChild(d);
+  });
+  right.forEach(it=>{
+    const d=document.createElement('div');d.className='match-item';
+    d.innerHTML=`<span class="match-icon">${it.icon||''}</span><span>${it.text}</span>`;
+    d.dataset.key=it.key;
+    d.onclick=()=>{
+      if(d.classList.contains('matched'))return;
+      if(!sel){document.getElementById('fb').textContent='මුලින්ම වම් පසින් එකක් තෝරන්න.';return;}
+      if(sel.it.key===it.key){
+        sel.el.classList.remove('selected');sel.el.classList.add('matched');d.classList.add('matched');
+        matched++;sfx.correct();updatePill();
+        document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ නිවැරදි ගැලපීම! 👏</span>';
+        sel=null;if(matched===total)finish();
+      }else{
+        d.classList.add('shake');const sl=sel.el;sl.classList.add('shake');
+        setTimeout(()=>{d.classList.remove('shake');sl.classList.remove('shake');},450);
+        sfx.wrong();wrongAttempts++;
+        document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ ගැලපෙන්නේ නැත. නැවත උත්සාහ කරන්න.</span>';
+        sl.classList.remove('selected');sel=null;
+      }
+    };
+    rc.appendChild(d);
+  });
+  updatePill();
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;
+    setTimeout(()=>{
+      sfx.win();
+      const stars=wrongAttempts===0?3:wrongAttempts<=2?2:1;
+      c.innerHTML=`
+        <div class="result-box">
+          <div class="result-emoji">${stars===3?'🌟':stars===2?'👏':'💪'}</div>
+          <h2 style="color:var(--teal-d);">සියල්ල ගැලපුවා!</h2>
+          <div class="stars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+          <p class="result-msg">වැරදි උත්සාහ: <b>${wrongAttempts}</b></p>
+          <div class="btn-row">
+            <button class="btn" onclick="goLesson(${state.currentLesson.id})">← පාඩමට</button>
+            <button class="btn ghost" onclick="goHome()">🏠 මුල් පිටුව</button>
+          </div>
+        </div>`;
+    },900);
+  }
+}
+
+/* ================================================================
+   SYMBOL MATCH
+   ================================================================ */
+function renderSymMatch(c,a){
+  const triples=a.triples;
+  const symbolOrder=shuffle(triples.map((t,i)=>({...t,key:i})));
+  const nameOrder=shuffle(triples.map((t,i)=>({...t,key:i})));
+  const meaningOrder=shuffle(triples.map((t,i)=>({...t,key:i})));
+
+  let selSym=null,selName=null,selMean=null;
+  let matchedCount=0;
+  const total=triples.length;
+
+  function updatePill(){
+    document.getElementById('scorePill').textContent=`ගැලපීම්: ${matchedCount} / ${total}`;
+  }
+
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-weight:900;font-size:14px;color:var(--muted);text-align:center;margin-bottom:10px;">
+      <div>සංකේතය</div><div>නම</div><div>අර්ථය</div>
+    </div>
+    <div class="sym-match-wrap">
+      <div id="symCol" style="display:grid;gap:12px;"></div>
+      <div id="nameCol" style="display:grid;gap:12px;"></div>
+      <div id="meanCol" style="display:grid;gap:12px;"></div>
+    </div>
+    <div class="feedback" id="fb"></div>
+  `;
+
+  const symCol=document.getElementById('symCol');
+  const nameCol=document.getElementById('nameCol');
+  const meanCol=document.getElementById('meanCol');
+
+  symbolOrder.forEach(t=>{
+    const d=document.createElement('div');d.className='sym-card';d.dataset.key=t.key;
+    d.innerHTML=`<div style="display:flex;justify-content:center;">${SYMBOLS[t.symbol]}</div>`;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#symCol .sym-card').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selSym={el:d,key:t.key};checkTriple();};
+    symCol.appendChild(d);
+  });
+
+  nameOrder.forEach(t=>{
+    const d=document.createElement('div');d.className='sym-card';d.dataset.key=t.key;
+    d.innerHTML=`<span style="font-size:15px;">${t.name}</span>`;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#nameCol .sym-card').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selName={el:d,key:t.key};checkTriple();};
+    nameCol.appendChild(d);
+  });
+
+  meaningOrder.forEach(t=>{
+    const d=document.createElement('div');d.className='sym-card';d.dataset.key=t.key;
+    d.innerHTML=`<span style="font-size:15px;">${t.meaning}</span>`;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#meanCol .sym-card').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selMean={el:d,key:t.key};checkTriple();};
+    meanCol.appendChild(d);
+  });
+
+  updatePill();
+
+  function checkTriple(){
+    if(selSym&&selName&&selMean){
+      const k1=selSym.key,k2=selName.key,k3=selMean.key;
+      if(k1===k2 && k2===k3){
+        [selSym.el,selName.el,selMean.el].forEach(el=>{
+          el.classList.remove('selected');el.classList.add('matched');
+        });
+        matchedCount++;sfx.correct();
+        document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ නිවැරදි ත්‍රිත්වය! 🎉</span>';
+        selSym=selName=selMean=null;
+        updatePill();
+        if(matchedCount===total)finish();
+      }else{
+        [selSym.el,selName.el,selMean.el].forEach(el=>{
+          el.classList.add('shake');
+          setTimeout(()=>el.classList.remove('shake'),450);
+        });
+        sfx.wrong();
+        document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ නිවැරදි ත්‍රිත්වය නොවේ. නැවත උත්සාහ කරන්න.</span>';
+        setTimeout(()=>{
+          [selSym.el,selName.el,selMean.el].forEach(el=>el.classList.remove('selected'));
+          selSym=selName=selMean=null;
+        },500);
+      }
+    }
+  }
+
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;
+    setTimeout(()=>{
+      sfx.win();
+      c.innerHTML=`
+        <div class="result-box">
+          <div class="result-emoji">🏆</div>
+          <h2 style="color:var(--teal-d);">සියලු ගැලීම් සටහන් සංකේත ගැලපුවා!</h2>
+          <div class="stars">⭐⭐⭐</div>
+          <p class="result-msg">නියමයි! ඔබ ගැලීම් සටහන් සංකේත හොඳින් දන්නවා.</p>
+          <div class="btn-row">
+            <button class="btn" onclick="goLesson(${state.currentLesson.id})">← පාඩමට</button>
+            <button class="btn ghost" onclick="goHome()">🏠 මුල් පිටුව</button>
+          </div>
+        </div>`;
+    },900);
+  }
+}
+
+/* ================================================================
+   ORDER
+   ================================================================ */
+function renderOrder(c,a){
+  const correct=a.correctOrder.map(x=>typeof x==='string'?x:x.text);
+  let current=shuffle(a.correctOrder.map((x,i)=>({text:typeof x==='string'?x:x.text,icon:typeof x==='string'?null:x.icon,orig:i})));
+
+  function draw(){
+    c.innerHTML=`
+      <div class="act-instruction">${a.instruction}</div>
+      <div class="order-list" id="ol"></div>
+      <div class="btn-row" style="margin-top:18px;">
+        <button class="btn indigo" id="ck">✔ පරීක්ෂා කරන්න</button>
+      </div>
+      <div class="feedback" id="fb"></div>`;
+    const list=document.getElementById('ol');
+    current.forEach((it,i)=>{
+      const d=document.createElement('div');d.className='order-item';
+      d.innerHTML=`
+        <div class="num">${i+1}</div>
+        <div class="txt">${it.icon?`<span style="font-size:24px;">${it.icon}</span>`:''}<span>${it.text}</span></div>
+        <div class="movers">
+          <button class="mover" ${i===0?'disabled':''} data-dir="up">▲</button>
+          <button class="mover" ${i===current.length-1?'disabled':''} data-dir="down">▼</button>
+        </div>`;
+      list.appendChild(d);
+      d.querySelector('[data-dir="up"]').onclick=()=>swap(i,i-1);
+      d.querySelector('[data-dir="down"]').onclick=()=>swap(i,i+1);
+    });
+    document.getElementById('ck').onclick=check;
+  }
+  function swap(i,j){
+    if(j<0||j>=current.length)return;sfx.click();
+    [current[i],current[j]]=[current[j],current[i]];draw();
+  }
+  function check(){
+    let allCorrect=true;
+    document.querySelectorAll('.order-item').forEach((el,i)=>{
+      if(current[i].text===correct[i])el.classList.add('correct');
+      else allCorrect=false;
+    });
+    if(allCorrect){
+      sfx.correct();
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ නිවැරදි අනුපිළිවෙල! 🎉</span>';
+      state.completed[state.currentLesson.id+'-'+a.id]=true;
+      setTimeout(()=>{
+        sfx.win();
+        c.innerHTML=`
+          <div class="result-box">
+            <div class="result-emoji">✅</div>
+            <h2 style="color:var(--teal-d);">හොඳින් කළා!</h2>
+            <div class="stars">⭐⭐⭐</div>
+            <div class="btn-row">
+              <button class="btn" onclick="goLesson(${state.currentLesson.id})">← පාඩමට</button>
+              <button class="btn ghost" onclick="goHome()">🏠 මුල් පිටුව</button>
+            </div>
+          </div>`;
+      },1400);
+    }else{
+      sfx.wrong();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ සමහර පියවර වැරදියි. නැවත උත්සාහ කරන්න.</span>';
+      setTimeout(()=>{document.querySelectorAll('.order-item.correct').forEach(el=>el.classList.remove('correct'));},1400);
+    }
+  }
+  draw();
+}
+
+/* ================================================================
+   BUCKET
+   ================================================================ */
+function renderBucket(c,a){
+  const allItems=[];a.buckets.forEach((b,bi)=>b.items.forEach(t=>allItems.push({text:t,bucket:bi})));
+  const pool=shuffle(allItems.slice());let selected=null,placed=0;const total=allItems.length;
+  function updatePill(){document.getElementById('scorePill').textContent=`ලකුණු: ${placed} / ${total}`;}
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="bucket-items" id="pool"></div>
+    <div class="buckets" id="bks"></div>
+    <div class="feedback" id="fb"></div>`;
+  const poolEl=document.getElementById('pool');
+  pool.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='b-item';d.textContent=it.text;
+    d.onclick=()=>{
+      if(d.classList.contains('placed'))return;sfx.click();
+      document.querySelectorAll('.b-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selected={el:d,item:it};
+    };
+    poolEl.appendChild(d);
+  });
+  const bksEl=document.getElementById('bks');
+  a.buckets.forEach((b,bi)=>{
+    const d=document.createElement('div');d.className='bucket';d.dataset.bi=bi;
+    d.innerHTML=`<div class="bucket-title">${b.name}</div><div class="bucket-contents"></div>`;
+    d.onclick=()=>drop(bi,d);bksEl.appendChild(d);
+  });
+  updatePill();
+  function drop(bi,el){
+    if(!selected)return;const it=selected.item;
+    if(it.bucket===bi){
+      el.classList.add('active');setTimeout(()=>el.classList.remove('active'),500);
+      const chip=document.createElement('div');chip.className='b-chip';chip.textContent=it.text;
+      el.querySelector('.bucket-contents').appendChild(chip);
+      selected.el.classList.remove('selected');selected.el.classList.add('placed');
+      selected=null;placed++;sfx.correct();
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ නිවැරදි කාණ්ඩය!</span>';
+      updatePill();
+      if(placed===total)finish();
+    }else{
+      el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),450);sfx.wrong();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ වැරදි කාණ්ඩය. නැවත උත්සාහ කරන්න.</span>';
+    }
+  }
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;
+    setTimeout(()=>{
+      sfx.win();
+      c.innerHTML=`
+        <div class="result-box">
+          <div class="result-emoji">🗂️</div>
+          <h2 style="color:var(--teal-d);">සියල්ල වර්ග කළා!</h2>
+          <div class="stars">⭐⭐⭐</div>
+          <div class="btn-row">
+            <button class="btn" onclick="goLesson(${state.currentLesson.id})">← පාඩමට</button>
+            <button class="btn ghost" onclick="goHome()">🏠 මුල් පිටුව</button>
+          </div>
+        </div>`;
+    },900);
+  }
+}
+
+/* ================================================================
+   PICK
+   ================================================================ */
+function renderPick(c,a){
+  const items=shuffle(a.items.slice());const picked=new Set();
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="pick-list" id="pl"></div>
+    <div class="btn-row" style="margin-top:18px;">
+      <button class="btn indigo" id="ck">✔ පරීක්ෂා කරන්න</button>
+    </div>
+    <div class="feedback" id="fb"></div>`;
+  const list=document.getElementById('pl');
+  items.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='pick-item';
+    d.innerHTML=`<div class="pick-box"></div>${it.icon?`<span class="pick-icon">${it.icon}</span>`:''}<div style="flex:1;">${it.text}</div>`;
+    d.onclick=()=>{
+      sfx.click();
+      if(picked.has(i)){picked.delete(i);d.classList.remove('picked');d.querySelector('.pick-box').textContent='';}
+      else{picked.add(i);d.classList.add('picked');d.querySelector('.pick-box').textContent='✓';}
+    };
+    list.appendChild(d);
+  });
+  document.getElementById('ck').onclick=()=>{
+    let correct=true;
+    document.querySelectorAll('.pick-item').forEach((el,i)=>{
+      const it=items[i];const wasPicked=picked.has(i);
+      if(it.correct&&wasPicked){el.classList.remove('picked');el.classList.add('correct');el.querySelector('.pick-box').textContent='✓';}
+      else if(it.correct&&!wasPicked){el.classList.add('correct');el.querySelector('.pick-box').textContent='✓';correct=false;}
+      else if(!it.correct&&wasPicked){el.classList.remove('picked');el.classList.add('wrong');el.querySelector('.pick-box').textContent='✘';correct=false;}
+    });
+    if(correct){
+      sfx.correct();
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ නියමයි! සියල්ල නිවැරදි! 🎉</span>';
+      state.completed[state.currentLesson.id+'-'+a.id]=true;
+      setTimeout(()=>{
+        sfx.win();
+        c.innerHTML=`
+          <div class="result-box">
+            <div class="result-emoji">🌟</div>
+            <h2 style="color:var(--teal-d);">නියමයි!</h2>
+            <div class="stars">⭐⭐⭐</div>
+            <div class="btn-row">
+              <button class="btn" onclick="goLesson(${state.currentLesson.id})">← පාඩමට</button>
+              <button class="btn ghost" onclick="goHome()">🏠 මුල් පිටුව</button>
+            </div>
+          </div>`;
+      },1500);
+    }else{
+      sfx.wrong();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ සමහරක් වැරදියි. රතු/කොළ වර්ණ බලන්න.</span>';
+    }
+  };
+}
+
+/* ================================================================
+   UTIL + INIT
+   ================================================================ */
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+document.addEventListener('pointerdown',ensureAudio,{once:true});
+buildFloaters();
+renderHome();
+</script>
+</body>
+</html>

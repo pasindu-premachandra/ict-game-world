@@ -1,0 +1,40 @@
+Playwright proof run - grade 6, both languages
+date: 2026-09-20
+-----------------------------------------------------------------------
+
+Activity types played to completion, solved correctly (grade 6):
+
+Type        Activity   Score    Saved
+order       1.1        100      6/1.1 = 100
+match       1.2        100      6/1.2 = 100
+pick        1.3        100      6/1.3 = 100
+bucket      1.4        100      6/1.4 = 100
+symmatch    5.2        100      6/5.2 = 100
+
+Scoring discriminates (it is not always 100):
+  pick 1.3 with every box ticked ........ 57 points
+  order 1.1 left shuffled ............... 33 points
+  best-score-only held: progress stayed 100 after both wrong replays
+
+Matrix: 5 activity types x 2 languages at 360px = 10 combinations
+  rendered ............. 10/10
+  horizontal overflow .. 0
+  console errors ....... 0
+  stray null text ...... 0
+Desktop 1366: 5/5 activities, 0 overflow
+
+Offline (gate D9), local server stopped mid-session:
+  server reachable ..... false
+  app loaded ........... yes, from the service worker cache
+  precached files ...... 34 (5 data files, 12 fonts, shell)
+  activity rendered .... yes, 7 options, Sinhala, self-hosted fonts loaded
+
+Bugs found and fixed during this run:
+  1. mergeLang wrapped id and type as {en,si} for grade 9 (no Sinhala file),
+     breaking every id lookup and making all grade 9 activities unplayable.
+  2. replaceChildren(null) rendered the literal text 'null' on activity screens.
+  3. app.css used invented line-height token names, so Sinhala headings
+     rendered at 1.15 instead of the 1.6 DESIGN.md requires, and clipped.
+  4. main.focus() scrolled the heading under the sticky top bar.
+  5. .xp used display:inline-flex, which overrode its hidden attribute.
+-----------------------------------------------------------------------

@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scratch Code Builder | ICT</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fef7f7;
+    --card:#ffffff;
+    --ink:#2b1414;
+    --muted:#7c5252;
+    --line:#f0d4d4;
+    --maroon:#8b1a1a;
+    --maroon-d:#5c0e0e;
+    --maroon-l:#fce7e7;
+    --gold:#d4a017;
+    --gold-d:#a07500;
+    --gold-l:#fef3c7;
+    --green:#16a34a;
+    --green-d:#15803d;
+    --green-l:#dcfce7;
+    --red:#c0392b;
+    --red-d:#7f1d1d;
+    --red-l:#fbe5e3;
+    --blue:#3b82f6;
+    --blue-d:#1d4ed8;
+    --blue-l:#dbeafe;
+    --purple:#9966ff;
+    --purple-d:#774dcb;
+    --purple-l:#ede9fe;
+    /* Scratch palette */
+    --sc-events:#ffbf00;--sc-events-d:#cc9900;
+    --sc-control:#ffab19;--sc-control-d:#d18a00;
+    --sc-motion:#4c97ff;--sc-motion-d:#3373cc;
+    --sc-looks:#9966ff;--sc-looks-d:#774dcb;
+    --sc-variables:#ff8c1a;--sc-variables-d:#db6e00;
+    --sc-operators:#59c059;--sc-operators-d:#46a046;
+    --sc-sensing:#5cb1d6;--sc-sensing-d:#4291b5;
+    --sc-pen:#0fbd8c;--sc-pen-d:#0b8c68;
+    --sc-sound:#cf63cf;--sc-sound-d:#a13ea1;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:linear-gradient(160deg,#fef7f7 0%,#fce7e7 40%,#f5d5d5 70%,#ffffff 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Nunito',system-ui,sans-serif;
+    font-size:16px;line-height:1.6;
+    min-height:100vh;display:flex;flex-direction:column;
+    -webkit-tap-highlight-color:transparent;overflow-x:hidden;
+  }
+
+  /* HEADER */
+  header{
+    background:linear-gradient(90deg,#5c0e0e 0%,#8b1a1a 50%,#a52a2a 100%);
+    color:#fff;padding:14px 22px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;flex-wrap:wrap;
+    border-bottom:4px solid var(--maroon-d);
+    position:sticky;top:0;z-index:100;
+    box-shadow:0 4px 20px rgba(139,26,26,.4);
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-chip{
+    background:rgba(255,255,255,.22);color:#fff;font-weight:900;font-size:15px;
+    padding:7px 15px;border-radius:10px;letter-spacing:.8px;
+    border:2px solid rgba(255,255,255,.4);
+    font-family:'Fredoka',sans-serif;
+  }
+  .brand-text{font-weight:800;font-size:15px;}
+  .hud{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .chip{
+    background:rgba(255,255,255,.15);padding:7px 15px;border-radius:20px;
+    font-weight:800;font-size:14px;border:2px solid rgba(255,255,255,.25);
+  }
+  .chip.xp{color:#fef3c7;border-color:#fbbf24;background:rgba(251,191,36,.15);}
+  .chip.stars{color:#fef3c7;border-color:#fbbf24;}
+  .music-btn{
+    background:var(--gold);color:#4a2c00;border:none;font-family:inherit;
+    font-weight:900;font-size:14px;padding:8px 16px;border-radius:20px;
+    cursor:pointer;transition:.15s;box-shadow:0 3px 0 var(--gold-d);
+  }
+  .music-btn.on{background:var(--green);color:#fff;box-shadow:0 3px 0 var(--green-d);}
+
+  /* MAIN */
+  main{flex:1;width:100%;max-width:1100px;margin:0 auto;padding:22px;}
+  .screen{display:none;animation:fade .35s;}
+  .screen.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+  h1{font-size:30px;margin:0 0 8px;text-align:center;color:var(--maroon);
+    font-family:'Fredoka',sans-serif;font-weight:700;line-height:1.35;}
+  h2{font-size:20px;margin:0 0 14px;text-align:center;color:var(--red);font-weight:800;}
+  .sub{text-align:center;color:var(--muted);font-size:15px;margin:0 0 22px;
+    line-height:1.6;font-weight:600;}
+
+  .btn{
+    background:var(--maroon);color:#fff;border:none;font-family:inherit;
+    font-weight:900;font-size:16px;padding:14px 26px;border-radius:14px;
+    cursor:pointer;transition:.15s;box-shadow:0 5px 0 var(--maroon-d);
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--maroon-d);}
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--maroon-d);}
+  .btn.green{background:var(--green);box-shadow:0 5px 0 var(--green-d);}
+  .btn.green:active{box-shadow:0 2px 0 var(--green-d);}
+  .btn.gold{background:var(--gold);color:#4a2c00;box-shadow:0 5px 0 var(--gold-d);}
+  .btn.ghost{background:#fff;color:var(--maroon);border:2px solid var(--line);box-shadow:0 5px 0 var(--line);}
+  .btn.ghost:active{box-shadow:0 2px 0 var(--line);}
+  .btn.small{padding:10px 18px;font-size:14px;border-radius:10px;}
+  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px;}
+
+  /* HOME */
+  .home-hero{
+    background:linear-gradient(135deg,#ffffff 0%,#fef7f7 100%);
+    border:2px solid var(--line);border-radius:20px;
+    padding:26px 22px;text-align:center;margin-bottom:22px;
+    box-shadow:0 8px 30px rgba(139,26,26,.12);
+    position:relative;overflow:hidden;
+  }
+  .home-hero::before{
+    content:'';position:absolute;top:-60px;right:-60px;
+    width:180px;height:180px;border-radius:50%;
+    background:radial-gradient(circle,rgba(139,26,26,.14),transparent 70%);
+  }
+  .hero-face{font-size:70px;margin-bottom:6px;animation:bob 3s ease-in-out infinite;
+    display:inline-block;position:relative;z-index:1;}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-10px) rotate(3deg);}}
+  .hero-msg{font-weight:800;color:var(--maroon);font-size:17px;line-height:1.7;
+    position:relative;z-index:1;}
+
+  .lesson-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;
+  }
+  .lesson-card{
+    background:#fff;border:3px solid var(--line);border-radius:18px;
+    padding:26px 20px;cursor:pointer;text-align:center;
+    transition:.22s;position:relative;overflow:hidden;
+    box-shadow:0 4px 16px rgba(139,26,26,.08);
+  }
+  .lesson-card:hover{transform:translateY(-5px);border-color:var(--maroon);
+    box-shadow:0 12px 32px rgba(139,26,26,.22);}
+  .lesson-card.sequence:hover{border-color:#3b82f6;}
+  .lesson-card.selection:hover{border-color:#d4a017;}
+  .lesson-card.repetition:hover{border-color:#16a34a;}
+  .lesson-card .lc-icon{
+    width:80px;height:80px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:38px;
+    margin:6px auto 14px;color:#fff;
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+  }
+  .lesson-card.sequence .lc-icon{background:linear-gradient(135deg,#60a5fa,#3b82f6);}
+  .lesson-card.selection .lc-icon{background:linear-gradient(135deg,#fbbf24,#d4a017);}
+  .lesson-card.repetition .lc-icon{background:linear-gradient(135deg,#34d399,#16a34a);}
+  .lesson-card .lc-title{font-weight:900;color:var(--ink);font-size:19px;
+    line-height:1.4;margin-bottom:6px;font-family:'Fredoka',sans-serif;}
+  .lesson-card .lc-desc{font-size:13px;color:var(--muted);font-weight:700;
+    line-height:1.5;margin-bottom:12px;}
+  .lesson-card .lc-prog{font-size:13px;color:var(--muted);font-weight:700;}
+  .prog-bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:10px;}
+  .prog-fill{height:100%;width:0%;transition:width .6s;border-radius:4px;}
+  .lesson-card.sequence .prog-fill{background:linear-gradient(90deg,#3b82f6,#60a5fa);}
+  .lesson-card.selection .prog-fill{background:linear-gradient(90deg,#d4a017,#fbbf24);}
+  .lesson-card.repetition .prog-fill{background:linear-gradient(90deg,#16a34a,#34d399);}
+
+  /* ACTIVITY LIST */
+  .act-list{display:grid;gap:12px;max-width:780px;margin:0 auto;}
+  .act-item{
+    background:#fff;border:2px solid var(--line);border-radius:14px;
+    padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;
+    transition:.18s;box-shadow:0 3px 10px rgba(139,26,26,.06);
+  }
+  .act-item:hover{border-color:var(--maroon);transform:translateX(4px);
+    box-shadow:0 6px 18px rgba(139,26,26,.18);}
+  .act-item.done{border-color:var(--green);background:var(--green-l);}
+  .act-item .an{
+    width:46px;height:46px;border-radius:12px;background:var(--gold-l);
+    color:var(--gold-d);font-weight:900;font-size:18px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .act-item.done .an{background:var(--green);color:#fff;}
+  .act-item .anm{flex:1;font-weight:800;font-size:15px;}
+  .act-item .anm small{display:block;color:var(--muted);font-size:12px;
+    font-weight:700;margin-top:3px;}
+
+  /* ACTIVITY VIEW */
+  .act-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+  .score-pill{
+    background:#fff;border:2px solid var(--line);border-radius:20px;
+    padding:8px 18px;font-weight:900;color:var(--maroon);font-size:14px;
+    margin-left:auto;box-shadow:0 2px 8px rgba(139,26,26,.08);
+  }
+  .act-body{background:#fff;border:2px solid var(--line);border-radius:18px;
+    padding:24px;box-shadow:0 8px 30px rgba(139,26,26,.1);}
+
+  .puzzle-header{
+    text-align:center;margin-bottom:20px;padding:16px 22px;
+    border-radius:14px;position:relative;
+  }
+  .puzzle-header.sequence{background:linear-gradient(135deg,#dbeafe,#bfdbfe);
+    border-left:6px solid #3b82f6;}
+  .puzzle-header.selection{background:linear-gradient(135deg,#fef3c7,#fde68a);
+    border-left:6px solid #d4a017;}
+  .puzzle-header.repetition{background:linear-gradient(135deg,#dcfce7,#bbf7d0);
+    border-left:6px solid #16a34a;}
+  .puzzle-title{font-weight:900;font-size:20px;font-family:'Fredoka',sans-serif;
+    margin-bottom:8px;}
+  .puzzle-header.sequence .puzzle-title{color:#1d4ed8;}
+  .puzzle-header.selection .puzzle-title{color:#a07500;}
+  .puzzle-header.repetition .puzzle-title{color:#15803d;}
+  .puzzle-desc{font-weight:700;font-size:14px;color:#4b5563;line-height:1.6;}
+  .cs-badge{
+    display:inline-block;font-weight:900;font-size:11px;
+    padding:5px 14px;border-radius:20px;letter-spacing:1.5px;
+    margin-top:10px;text-transform:uppercase;
+  }
+  .cs-badge.sequence{background:#3b82f6;color:#fff;}
+  .cs-badge.selection{background:#d4a017;color:#fff;}
+  .cs-badge.repetition{background:#16a34a;color:#fff;}
+
+  .scratch-stats{
+    display:flex;justify-content:center;gap:14px;margin:14px 0;flex-wrap:wrap;
+  }
+  .scratch-stat{
+    background:#fff;border:2px solid var(--line);border-radius:12px;
+    padding:8px 18px;font-weight:800;font-size:13px;color:var(--muted);
+    display:flex;align-items:center;gap:6px;
+  }
+  .scratch-stat b{color:var(--maroon);font-size:16px;}
+
+  /* WORKSPACE */
+  .scratch-workspace{
+    background:linear-gradient(180deg,#f9fafb,#f3f4f6);
+    border:2px solid #e5e7eb;border-radius:16px;
+    padding:20px;position:relative;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,191,0,.06), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(76,151,255,.06), transparent 40%);
+  }
+  .scratch-stage{
+    background:#fff;border:2px solid #d1d5db;border-radius:12px;
+    padding:14px 16px;min-height:130px;margin-bottom:18px;
+    box-shadow:inset 0 2px 6px rgba(0,0,0,.03);
+  }
+  .scratch-stage-title{
+    font-size:12px;font-weight:900;color:#6b7280;letter-spacing:1.5px;
+    text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;
+    padding-bottom:10px;border-bottom:2px dashed #e5e7eb;
+  }
+  .scratch-stage-title::before{content:'🐱';font-size:16px;}
+
+  .scratch-program{
+    display:flex;flex-direction:column;gap:0;min-height:80px;position:relative;
+  }
+  .scratch-program.drop-zone{
+    border:2px dashed transparent;border-radius:10px;
+    padding:8px;transition:all .2s;
+  }
+  .scratch-program.drop-zone.active{
+    border-color:var(--sc-events);background:rgba(255,191,0,.08);
+  }
+
+  /* SCRATCH BLOCKS */
+  .scratch-block{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 18px;border-radius:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;font-size:14px;color:#fff;
+    position:relative;cursor:grab;user-select:none;
+    box-shadow:0 3px 0 rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.3);
+    transition:transform .15s, box-shadow .15s, opacity .2s;
+    margin-bottom:5px;max-width:100%;
+    touch-action:none;
+  }
+  .scratch-block:hover{transform:translateY(-2px);
+    box-shadow:0 5px 0 rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.3);}
+  .scratch-block:active{cursor:grabbing;}
+  .scratch-block::after{
+    content:'';position:absolute;bottom:-6px;left:18px;
+    width:26px;height:6px;background:inherit;border-radius:0 0 4px 4px;
+  }
+  .scratch-block.last::after{display:none;}
+  .scratch-block.events{background:var(--sc-events);
+    box-shadow:0 3px 0 var(--sc-events-d), inset 0 1px 0 rgba(255,255,255,.3);}
+  .scratch-block.control{background:var(--sc-control);
+    box-shadow:0 3px 0 var(--sc-control-d), inset 0 1px 0 rgba(255,255,255,.3);}
+  .scratch-block.motion{background:var(--sc-motion);
+    box-shadow:0 3px 0 var(--sc-motion-d), inset 0 1px 0 rgba(255,255,255,.3);}
+  .scratch-block.looks{background:var(--sc-looks);
+    box-shadow:0 3px 0 var(--sc-looks-d), inset 0 1px 0 rgba(255,255,255,.3);}
+  .scratch-block.variables{background:var(--sc-variables);
+    box-shadow:0 3px 0 var(--sc-variables-d), inset 0 1px 0 rgba(255,255,255,.3);}
+  .scratch-block.operators{background:var(--sc-operators);
+    box-shadow:0 3px 0 var(--sc-operators-d), inset 0 1px 0 rgba(255,255,255,.3);}
+  .scratch-block.sensing{background:var(--sc-sensing);
+    box-shadow:0 3px 0 var(--sc-sensing-d), inset 0 1px 0 rgba(255,255,255,.3);}
+  .scratch-block.pen{background:var(--sc-pen);
+    box-shadow:0 3px 0 var(--sc-pen-d), inset 0 1px 0 rgba(255,255,255,.3);}
+  .scratch-block.sound{background:var(--sc-sound);
+    box-shadow:0 3px 0 var(--sc-sound-d), inset 0 1px 0 rgba(255,255,255,.3);}
+
+  /* C-BLOCKS */
+  .scratch-c-block{
+    display:flex;flex-direction:column;gap:0;
+    background:var(--sc-control);border-radius:8px;
+    box-shadow:0 3px 0 var(--sc-control-d), inset 0 1px 0 rgba(255,255,255,.3);
+    margin-bottom:5px;position:relative;max-width:100%;
+    touch-action:none;
+  }
+  .scratch-c-block.else-block{background:#ffab19;}
+  .scratch-c-header{
+    display:inline-flex;align-items:center;gap:8px;padding:12px 18px;
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;font-size:14px;color:#fff;cursor:grab;
+  }
+  .scratch-c-body{
+    background:rgba(255,255,255,.18);padding:8px 8px 8px 16px;margin:0 8px;
+    border-radius:8px;min-height:44px;display:flex;flex-direction:column;gap:4px;
+  }
+  .scratch-c-footer{
+    padding:12px 18px;font-family:'JetBrains Mono',monospace;
+    font-weight:700;font-size:14px;color:#fff;cursor:grab;
+  }
+
+  .scratch-pill{
+    background:#fff;color:#1f2d3d;padding:2px 9px;border-radius:10px;
+    font-weight:800;font-size:13px;box-shadow:inset 0 1px 2px rgba(0,0,0,.15);
+    display:inline-block;
+  }
+  .scratch-pill.green{background:#5cb85c;color:#fff;}
+  .scratch-pill.purple{background:#9966ff;color:#fff;}
+  .scratch-pill.blue{background:#4c97ff;color:#fff;}
+  .scratch-pill.orange{background:#ff8c1a;color:#fff;}
+  .scratch-pill.red{background:#e11d48;color:#fff;}
+
+  /* TRAY */
+  .scratch-tray{
+    background:linear-gradient(180deg,#fef3c7,#fde68a);
+    border:2px dashed var(--sc-events-d);
+    border-radius:12px;padding:24px 14px 14px;margin-top:18px;
+    display:flex;flex-wrap:wrap;gap:10px;min-height:80px;position:relative;
+  }
+  .scratch-tray::before{
+    content:'📦 Blocks Tray — Drag blocks to the Script Area above';
+    position:absolute;top:-12px;left:14px;
+    background:var(--sc-events);color:#fff;
+    font-size:11px;font-weight:900;
+    padding:4px 12px;border-radius:8px;letter-spacing:.5px;
+  }
+  .scratch-tray .scratch-block{margin-bottom:0;}
+  .scratch-tray .scratch-block::after{display:none;}
+  .scratch-tray .scratch-c-block::after{display:none;}
+
+  .scratch-block.dragging{opacity:.35;}
+  .scratch-block.wrong-shake{animation:wrongShake .5s;}
+  .scratch-c-block.wrong-shake{animation:wrongShake .5s;}
+  @keyframes wrongShake{
+    0%,100%{transform:translateX(0);}
+    20%{transform:translateX(-10px);}
+    40%{transform:translateX(10px);}
+    60%{transform:translateX(-6px);}
+    80%{transform:translateX(6px);}
+  }
+
+  .feedback{margin-top:18px;font-weight:900;font-size:17px;
+    min-height:26px;text-align:center;line-height:1.5;}
+
+  .hint-box{
+    background:#fef3c7;border-left:5px solid #fbbf24;
+    border-radius:10px;padding:12px 18px;margin-bottom:16px;
+    font-weight:700;font-size:14px;color:#78350f;line-height:1.6;
+  }
+  .hint-box::before{content:'💡 ';font-weight:900;}
+
+  /* RESULT */
+  .result{
+    background:linear-gradient(135deg,#ffffff,#fef7f7);
+    border:2px solid var(--line);border-radius:20px;
+    padding:36px 24px;text-align:center;
+    box-shadow:0 10px 40px rgba(139,26,26,.15);
+  }
+  .result .emoji{font-size:84px;line-height:1;margin-bottom:12px;
+    animation:pop .6s;display:inline-block;}
+  @keyframes pop{0%{transform:scale(0) rotate(-30deg);}
+    70%{transform:scale(1.2) rotate(10deg);}100%{transform:scale(1) rotate(0);}}
+  .result h2{font-size:26px;color:var(--maroon);
+    font-family:'Fredoka',sans-serif;margin:8px 0;}
+  .result .score{font-size:38px;font-weight:900;color:var(--maroon-d);
+    margin:14px 0;font-family:'Fredoka',sans-serif;}
+  .stars{font-size:48px;letter-spacing:8px;margin:12px 0;}
+  .star-on{color:var(--gold);text-shadow:0 0 20px rgba(212,160,23,.8);
+    display:inline-block;animation:starPop .5s backwards;}
+  .star-off{color:#e5d4d4;}
+  @keyframes starPop{from{transform:scale(0) rotate(-180deg);}
+    to{transform:scale(1) rotate(0);}}
+
+  /* FLOAT SCORE & CONFETTI */
+  .float-score{
+    position:fixed;font-weight:900;font-size:26px;pointer-events:none;
+    animation:floatUp 1s ease-out forwards;z-index:9999;
+    text-shadow:0 2px 8px rgba(0,0,0,.25);
+    font-family:'Fredoka',sans-serif;
+  }
+  @keyframes floatUp{
+    0%{opacity:1;transform:translateY(0) scale(.6);}
+    40%{transform:translateY(-40px) scale(1.2);}
+    100%{opacity:0;transform:translateY(-90px) scale(1);}
+  }
+  .confetti{
+    position:fixed;top:-20px;width:12px;height:12px;
+    animation:fall linear forwards;z-index:9998;pointer-events:none;border-radius:3px;
+  }
+  @keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.15;}}
+
+  /* FOOTER */
+  footer{
+    padding:36px 16px 46px;text-align:center;position:relative;z-index:1;
+    background:linear-gradient(180deg,transparent,#fce7e7);
+  }
+  .footer-badge{
+    display:inline-flex;flex-direction:column;align-items:center;gap:6px;
+    padding:30px 60px;border-radius:38px;position:relative;
+    background:linear-gradient(135deg,#8b1a1a 0%,#a52a2a 25%,#c0392b 50%,#d4a017 75%,#8b1a1a 100%);
+    background-size:280% 280%;
+    animation:gradientShift 8s ease infinite, badgePulse 3s ease-in-out infinite;
+    box-shadow:
+      0 0 0 6px rgba(255,255,255,.9),
+      0 0 0 12px rgba(139,26,26,.4),
+      0 24px 70px rgba(139,26,26,.5),
+      0 0 80px rgba(212,160,23,.4);
+    transform:rotate(-1deg);
+  }
+  @keyframes gradientShift{
+    0%,100%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+  }
+  @keyframes badgePulse{
+    0%,100%{transform:rotate(-1deg) scale(1);}
+    50%{transform:rotate(1deg) scale(1.04);}
+  }
+  .badge-stars{font-size:22px;letter-spacing:8px;
+    animation:twinkle 1.8s ease-in-out infinite alternate;}
+  @keyframes twinkle{from{opacity:.7;transform:scale(.95);}
+    to{opacity:1;transform:scale(1.15);}}
+  .badge-years{font-size:22px;font-weight:900;letter-spacing:4px;
+    color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.4);
+    font-family:'Fredoka',sans-serif;}
+  .badge-name{font-size:36px;font-weight:900;letter-spacing:2px;
+    color:#fff;line-height:1.05;
+    text-shadow:0 4px 16px rgba(0,0,0,.5), 0 0 30px rgba(255,255,255,.4);
+    font-family:'Fredoka',sans-serif;}
+  .badge-sub{font-size:12px;font-weight:900;letter-spacing:4px;
+    color:rgba(255,255,255,.95);text-transform:uppercase;margin-top:2px;}
+  .badge-emoji{position:absolute;font-size:30px;
+    animation:floatAround 5s ease-in-out infinite;}
+  @keyframes floatAround{
+    0%,100%{transform:translate(0,0) rotate(-8deg) scale(1);}
+    50%{transform:translate(-25px,-20px) rotate(10deg) scale(1.05);}
+  }
+  .badge-emoji.e1{top:-18px;left:-14px;animation-delay:.2s;}
+  .badge-emoji.e2{top:-18px;right:-14px;animation-delay:.8s;}
+  .badge-emoji.e3{bottom:-16px;left:15%;animation-delay:1.4s;}
+  .badge-emoji.e4{bottom:-16px;right:15%;animation-delay:.5s;}
+
+  @media (max-width:640px){
+    h1{font-size:22px;}
+    h2{font-size:17px;}
+    .brand-text{display:none;}
+    .footer-badge{padding:22px 30px;}
+    .badge-name{font-size:24px;}
+    .badge-years{font-size:16px;}
+    .act-body{padding:16px;}
+    .scratch-block{font-size:12px;padding:9px 13px;}
+    .scratch-c-header,.scratch-c-footer{font-size:12px;padding:9px 13px;}
+    .scratch-pill{font-size:11px;padding:2px 7px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="brand-chip">ICT</span>
+    <span class="brand-text">Scratch Code Builder • </span>
+  </div>
+  <div class="hud">
+    <div class="chip xp">⚡ XP: <span id="xpVal">0</span></div>
+    <div class="chip stars">⭐ Stars: <span id="starsVal">0</span></div>
+    <button id="musicBtn" class="music-btn">🔇 Music</button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="footer-badge">
+    <div class="badge-emoji e1">💻</div>
+    <div class="badge-emoji e2">🎮</div>
+    <div class="badge-emoji e3">⭐</div>
+    <div class="badge-emoji e4">🏆</div>
+    <div class="badge-stars">⭐ ✦ ⭐</div>
+    <div class="badge-years">2022 – 2024</div>
+    <div class="badge-name">Ruwanpura NCoE</div>
+    <div class="badge-sub">✦ Batch ✦</div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   AUDIO
+   ============================================================ */
+let actx=null,musicOn=false,musicTimer=null,musicGain=null;
+const MELODY={
+  notes:[[523,1],[587,1],[659,1],[784,1],[880,1],[784,1],[659,2],
+         [523,1],[587,1],[659,1],[784,1],[880,1],[784,1],[659,2]],
+  wave:'square',tempo:.16,bass:[131,147,131,165,131,147,131,196]
+};
+function ensureAudio(){
+  if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)();
+    musicGain=actx.createGain();musicGain.gain.value=.04;musicGain.connect(actx.destination);}
+    catch(e){return;}}
+  if(actx.state==='suspended')actx.resume();
+}
+function playMelody(){
+  if(!musicOn||!actx)return;
+  const beat=MELODY.tempo;let t=actx.currentTime+.05;
+  MELODY.notes.forEach(([f,d])=>{
+    if(f>0){
+      const o=actx.createOscillator(),g=actx.createGain();
+      o.type=MELODY.wave;o.frequency.value=f;
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.exponentialRampToValueAtTime(1,t+.02);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+d*beat*.9);
+      o.connect(g);g.connect(musicGain);o.start(t);o.stop(t+d*beat);
+    }
+    t+=d*beat;
+  });
+  const total=MELODY.notes.reduce((a,n)=>a+n[1],0)*beat;
+  MELODY.bass.forEach((bf,i)=>{
+    const bt=actx.currentTime+.05+(total/MELODY.bass.length)*i;
+    const bo=actx.createOscillator(),bg=actx.createGain();
+    bo.type='sine';bo.frequency.value=bf;
+    bg.gain.setValueAtTime(0.0001,bt);
+    bg.gain.exponentialRampToValueAtTime(.45,bt+.03);
+    bg.gain.exponentialRampToValueAtTime(0.0001,bt+beat*2);
+    bo.connect(bg);bg.connect(musicGain);bo.start(bt);bo.stop(bt+beat*2+.05);
+  });
+  musicTimer=setTimeout(playMelody,total*1000+400);
+}
+function toggleMusic(){
+  ensureAudio();musicOn=!musicOn;
+  const b=document.getElementById('musicBtn');
+  if(musicOn){b.textContent='🔊 Music';b.classList.add('on');playMelody();}
+  else{b.textContent='🔇 Music';b.classList.remove('on');clearTimeout(musicTimer);}
+}
+document.getElementById('musicBtn').onclick=toggleMusic;
+
+function blip(f,d=.08,t='sine',v=.13,delay=0){
+  if(!actx)return;const tt=actx.currentTime+delay;
+  const o=actx.createOscillator(),g=actx.createGain();
+  o.type=t;o.frequency.value=f;
+  g.gain.setValueAtTime(0.0001,tt);
+  g.gain.exponentialRampToValueAtTime(v,tt+.01);
+  g.gain.exponentialRampToValueAtTime(0.0001,tt+d);
+  o.connect(g);g.connect(actx.destination);o.start(tt);o.stop(tt+d+.03);
+}
+const sfx={
+  correct(){ensureAudio();[659,784,988,1319].forEach((f,i)=>blip(f,.15,'sine',.18,i*.05));},
+  wrong(){ensureAudio();blip(220,.15,'sawtooth',.1,0);blip(160,.2,'sawtooth',.1,.1);},
+  click(){ensureAudio();blip(1000,.04,'square',.04);},
+  snap(){ensureAudio();blip(700,.06,'square',.15,0);blip(1000,.06,'square',.15,.05);},
+  win(){ensureAudio();[523,659,784,1047,1319,1568].forEach((f,i)=>blip(f,.22,'triangle',.15,i*.1));}
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const state={screen:'home',puzzle:null,completed:{},xp:0,stars:0};
+
+function addXP(n){state.xp+=n;document.getElementById('xpVal').textContent=state.xp;}
+function addStars(n){state.stars+=n;document.getElementById('starsVal').textContent=state.stars;}
+
+function floatScore(text,color){
+  const d=document.createElement('div');
+  d.className='float-score';d.textContent=text;d.style.color=color;
+  d.style.left=(window.innerWidth/2-50)+'px';d.style.top=(window.innerHeight/2)+'px';
+  document.body.appendChild(d);setTimeout(()=>d.remove(),1000);
+}
+function confetti(n){
+  const colors=['#8b1a1a','#c0392b','#d4a017','#16a34a','#3b82f6','#9966ff'];
+  for(let i=0;i<n;i++){
+    const c=document.createElement('div');c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.animationDuration=(1.8+Math.random()*1.6)+'s';
+    c.style.animationDelay=(Math.random()*.4)+'s';
+    if(Math.random()>.6)c.style.borderRadius='50%';
+    document.body.appendChild(c);setTimeout(()=>c.remove(),4200);
+  }
+}
+
+/* ============================================================
+   PUZZLES DATA — Grouped by control structure
+   ============================================================ */
+const STRUCTURES=[
+  {
+    id:'sequence', title:'Sequence', icon:'➡️', color:'sequence',
+    desc:'Steps executed one after another, in order',
+    puzzles:[
+      {
+        id:'seq1', name:'Add Two Numbers',
+        description:'Ask for two numbers, add them, and show the result.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'a1',isHat:true},
+          {type:'sensing',text:'ask <span class="scratch-pill">Enter first number</span> and wait',id:'a2'},
+          {type:'variables',text:'set <b>Num1</b> to <span class="scratch-pill purple">answer</span>',id:'a3'},
+          {type:'sensing',text:'ask <span class="scratch-pill">Enter second number</span> and wait',id:'a4'},
+          {type:'variables',text:'set <b>Num2</b> to <span class="scratch-pill purple">answer</span>',id:'a5'},
+          {type:'variables',text:'set <b>Sum</b> to <span class="scratch-pill blue">Num1 + Num2</span>',id:'a6'},
+          {type:'looks',text:'say (join <span class="scratch-pill">Sum = </span> <b>Sum</b>) for <span class="scratch-pill">2</span> secs',id:'a7'}
+        ]
+      },
+      {
+        id:'seq2', name:'Draw a Square with Pen',
+        description:'Draw a square using pen blocks. Each side is 100 steps.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'b1',isHat:true},
+          {type:'pen',text:'clear',id:'b2'},
+          {type:'pen',text:'pen down',id:'b3'},
+          {type:'motion',text:'move <span class="scratch-pill">100</span> steps',id:'b4'},
+          {type:'motion',text:'turn ↻ <span class="scratch-pill">90</span> degrees',id:'b5'},
+          {type:'motion',text:'move <span class="scratch-pill">100</span> steps',id:'b6'},
+          {type:'motion',text:'turn ↻ <span class="scratch-pill">90</span> degrees',id:'b7'},
+          {type:'motion',text:'move <span class="scratch-pill">100</span> steps',id:'b8'},
+          {type:'motion',text:'turn ↻ <span class="scratch-pill">90</span> degrees',id:'b9'},
+          {type:'motion',text:'move <span class="scratch-pill">100</span> steps',id:'b10'},
+          {type:'motion',text:'turn ↻ <span class="scratch-pill">90</span> degrees',id:'b11'},
+          {type:'pen',text:'pen up',id:'b12'}
+        ]
+      },
+      {
+        id:'seq3', name:'Ask Name and Greet',
+        description:'Ask the user\'s name and say hello using it.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'c1',isHat:true},
+          {type:'sensing',text:'ask <span class="scratch-pill">What\'s your name?</span> and wait',id:'c2'},
+          {type:'variables',text:'set <b>Name</b> to <span class="scratch-pill purple">answer</span>',id:'c3'},
+          {type:'looks',text:'say (join <span class="scratch-pill">Hello, </span> <b>Name</b>) for <span class="scratch-pill">2</span> secs',id:'c4'}
+        ]
+      },
+      {
+        id:'seq4', name:'Calculate Rectangle Area',
+        description:'Ask for length and width, then calculate and show the area.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'d1',isHat:true},
+          {type:'sensing',text:'ask <span class="scratch-pill">Enter length</span> and wait',id:'d2'},
+          {type:'variables',text:'set <b>Length</b> to <span class="scratch-pill purple">answer</span>',id:'d3'},
+          {type:'sensing',text:'ask <span class="scratch-pill">Enter width</span> and wait',id:'d4'},
+          {type:'variables',text:'set <b>Width</b> to <span class="scratch-pill purple">answer</span>',id:'d5'},
+          {type:'variables',text:'set <b>Area</b> to <span class="scratch-pill blue">Length * Width</span>',id:'d6'},
+          {type:'looks',text:'say (join <span class="scratch-pill">Area = </span> <b>Area</b>) for <span class="scratch-pill">2</span> secs',id:'d7'}
+        ]
+      }
+    ]
+  },
+  {
+    id:'selection', title:'Selection', icon:'❓', color:'selection',
+    desc:'Choose between options based on a condition',
+    puzzles:[
+      {
+        id:'sel1', name:'Even or Odd Checker',
+        description:'Ask for a number and check if it is even or odd using if...else.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'e1',isHat:true},
+          {type:'sensing',text:'ask <span class="scratch-pill">Enter a number</span> and wait',id:'e2'},
+          {type:'variables',text:'set <b>Num</b> to <span class="scratch-pill purple">answer</span>',id:'e3'},
+          {type:'control',text:'if <span class="scratch-pill green">(Num mod 2) = 0</span> then',id:'e4',isC:true,body:[
+            {type:'looks',text:'say <span class="scratch-pill">Even number</span> for <span class="scratch-pill">2</span> secs',id:'e5'}
+          ]},
+          {type:'control',text:'else',id:'e6',isElse:true},
+          {type:'looks',text:'say <span class="scratch-pill">Odd number</span> for <span class="scratch-pill">2</span> secs',id:'e7'}
+        ]
+      },
+      {
+        id:'sel2', name:'Pass or Fail',
+        description:'Check if a student passed (marks ≥ 50) or failed.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'f1',isHat:true},
+          {type:'sensing',text:'ask <span class="scratch-pill">Enter marks</span> and wait',id:'f2'},
+          {type:'variables',text:'set <b>Marks</b> to <span class="scratch-pill purple">answer</span>',id:'f3'},
+          {type:'control',text:'if <span class="scratch-pill green">Marks ≥ 50</span> then',id:'f4',isC:true,body:[
+            {type:'looks',text:'say <span class="scratch-pill">You passed!</span> for <span class="scratch-pill">2</span> secs',id:'f5'}
+          ]},
+          {type:'control',text:'else',id:'f6',isElse:true},
+          {type:'looks',text:'say <span class="scratch-pill">You failed</span> for <span class="scratch-pill">2</span> secs',id:'f7'}
+        ]
+      },
+      {
+        id:'sel3', name:'Withdraw Money Safely',
+        description:'Check balance before withdrawing money from an account with 5000.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'g1',isHat:true},
+          {type:'variables',text:'set <b>Balance</b> to <span class="scratch-pill">5000</span>',id:'g2'},
+          {type:'sensing',text:'ask <span class="scratch-pill">Enter amount</span> and wait',id:'g3'},
+          {type:'variables',text:'set <b>Amount</b> to <span class="scratch-pill purple">answer</span>',id:'g4'},
+          {type:'control',text:'if <span class="scratch-pill green">Balance ≥ Amount</span> then',id:'g5',isC:true,body:[
+            {type:'variables',text:'change <b>Balance</b> by <span class="scratch-pill blue">(0 - Amount)</span>',id:'g6'},
+            {type:'looks',text:'say (join <span class="scratch-pill">New Balance: </span> <b>Balance</b>) for <span class="scratch-pill">2</span> secs',id:'g7'}
+          ]},
+          {type:'control',text:'else',id:'g8',isElse:true},
+          {type:'looks',text:'say <span class="scratch-pill">Insufficient balance</span> for <span class="scratch-pill">2</span> secs',id:'g9'}
+        ]
+      },
+      {
+        id:'sel4', name:'Greater of Two Numbers',
+        description:'Ask for two numbers and show which one is greater.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'h1',isHat:true},
+          {type:'sensing',text:'ask <span class="scratch-pill">Enter first number</span> and wait',id:'h2'},
+          {type:'variables',text:'set <b>A</b> to <span class="scratch-pill purple">answer</span>',id:'h3'},
+          {type:'sensing',text:'ask <span class="scratch-pill">Enter second number</span> and wait',id:'h4'},
+          {type:'variables',text:'set <b>B</b> to <span class="scratch-pill purple">answer</span>',id:'h5'},
+          {type:'control',text:'if <span class="scratch-pill green">A > B</span> then',id:'h6',isC:true,body:[
+            {type:'looks',text:'say <span class="scratch-pill">A is greater</span> for <span class="scratch-pill">2</span> secs',id:'h7'}
+          ]},
+          {type:'control',text:'else',id:'h8',isElse:true},
+          {type:'looks',text:'say <span class="scratch-pill">B is greater</span> for <span class="scratch-pill">2</span> secs',id:'h9'}
+        ]
+      }
+    ]
+  },
+  {
+    id:'repetition', title:'Repetition', icon:'🔁', color:'repetition',
+    desc:'Repeat steps until a condition is met',
+    puzzles:[
+      {
+        id:'rep1', name:'Show Numbers 1 to 5',
+        description:'Display numbers 1 to 5 using a repeat-until loop.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'i1',isHat:true},
+          {type:'variables',text:'set <b>Count</b> to <span class="scratch-pill">1</span>',id:'i2'},
+          {type:'control',text:'repeat until <span class="scratch-pill green">Count > 5</span>',id:'i3',isC:true,body:[
+            {type:'looks',text:'say <b>Count</b> for <span class="scratch-pill">1</span> secs',id:'i4'},
+            {type:'variables',text:'change <b>Count</b> by <span class="scratch-pill">1</span>',id:'i5'}
+          ]}
+        ]
+      },
+      {
+        id:'rep2', name:'Show Numbers 1 to 10',
+        description:'Display numbers 1 to 10 using a repeat 10 loop.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'j1',isHat:true},
+          {type:'variables',text:'set <b>Count</b> to <span class="scratch-pill">1</span>',id:'j2'},
+          {type:'control',text:'repeat <span class="scratch-pill">10</span>',id:'j3',isC:true,body:[
+            {type:'looks',text:'say <b>Count</b> for <span class="scratch-pill">1</span> secs',id:'j4'},
+            {type:'variables',text:'change <b>Count</b> by <span class="scratch-pill">1</span>',id:'j5'}
+          ]}
+        ]
+      },
+      {
+        id:'rep3', name:'Multiplication Table of 3',
+        description:'Show the multiplication table of 3 using a repeat loop.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'k1',isHat:true},
+          {type:'variables',text:'set <b>i</b> to <span class="scratch-pill">1</span>',id:'k2'},
+          {type:'control',text:'repeat <span class="scratch-pill">10</span>',id:'k3',isC:true,body:[
+            {type:'variables',text:'set <b>Result</b> to <span class="scratch-pill blue">3 * i</span>',id:'k4'},
+            {type:'looks',text:'say <b>Result</b> for <span class="scratch-pill">1</span> secs',id:'k5'},
+            {type:'variables',text:'change <b>i</b> by <span class="scratch-pill">1</span>',id:'k6'}
+          ]}
+        ]
+      },
+      {
+        id:'rep4', name:'Sum of 1 to 10',
+        description:'Calculate the total of numbers from 1 to 10 using repetition.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'l1',isHat:true},
+          {type:'variables',text:'set <b>Total</b> to <span class="scratch-pill">0</span>',id:'l2'},
+          {type:'variables',text:'set <b>i</b> to <span class="scratch-pill">1</span>',id:'l3'},
+          {type:'control',text:'repeat <span class="scratch-pill">10</span>',id:'l4',isC:true,body:[
+            {type:'variables',text:'change <b>Total</b> by <span class="scratch-pill blue">i</span>',id:'l5'},
+            {type:'variables',text:'change <b>i</b> by <span class="scratch-pill">1</span>',id:'l6'}
+          ]},
+          {type:'looks',text:'say (join <span class="scratch-pill">Total = </span> <b>Total</b>) for <span class="scratch-pill">2</span> secs',id:'l7'}
+        ]
+      },
+      {
+        id:'rep5', name:'Draw a Colorful Circle',
+        description:'Use a forever loop to draw a colorful rotating circle.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'m1',isHat:true},
+          {type:'pen',text:'clear',id:'m2'},
+          {type:'control',text:'forever',id:'m3',isC:true,body:[
+            {type:'motion',text:'go to x: <span class="scratch-pill">0</span> y: <span class="scratch-pill">0</span>',id:'m4'},
+            {type:'pen',text:'pen down',id:'m5'},
+            {type:'motion',text:'move <span class="scratch-pill">150</span> steps',id:'m6'},
+            {type:'pen',text:'change pen color by <span class="scratch-pill">10</span>',id:'m7'},
+            {type:'motion',text:'turn ↻ <span class="scratch-pill">1</span> degrees',id:'m8'}
+          ]}
+        ]
+      },
+      {
+        id:'rep6', name:'Count Down from 10',
+        description:'Show a countdown from 10 to 1 using repetition.',
+        order:[
+          {type:'events',text:'when 🚩 clicked',id:'n1',isHat:true},
+          {type:'variables',text:'set <b>n</b> to <span class="scratch-pill">10</span>',id:'n2'},
+          {type:'control',text:'repeat until <span class="scratch-pill green">n < 1</span>',id:'n3',isC:true,body:[
+            {type:'looks',text:'say <b>n</b> for <span class="scratch-pill">1</span> secs',id:'n4'},
+            {type:'variables',text:'change <b>n</b> by <span class="scratch-pill">-1</span>',id:'n5'}
+          ]},
+          {type:'looks',text:'say <span class="scratch-pill">Blast off!</span> for <span class="scratch-pill">2</span> secs',id:'n6'}
+        ]
+      }
+    ]
+  }
+];
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+const app=document.getElementById('app');
+function render(h){app.innerHTML=h;}
+
+/* ---------- HOME ---------- */
+function renderHome(){
+  state.screen='home';
+  let cards='';
+  STRUCTURES.forEach(s=>{
+    const total=s.puzzles.length;
+    const done=s.puzzles.filter(p=>state.completed[p.id]).length;
+    const pct=total>0?(done/total)*100:0;
+    cards+=`
+      <div class="lesson-card ${s.color}" onclick="goStructure('${s.id}')">
+        <div class="lc-icon">${s.icon}</div>
+        <div class="lc-title">${s.title} Programs</div>
+        <div class="lc-desc">${s.desc}</div>
+        <div class="lc-prog">${done} / ${total} programs built</div>
+        <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
+      </div>`;
+  });
+  render(`
+    <section class="screen active">
+      <div class="home-hero">
+        <div class="hero-face">🐱</div>
+        <div class="hero-msg">
+          <b>Scratch Code Builder</b> — Grade 9 ICT<br>
+          Arrange Scratch blocks in the correct order to build real programs for each control structure!
+        </div>
+      </div>
+      <h1>Scratch Program Builder</h1>
+      <p class="sub">
+        Pick a control structure below. Each one contains multiple puzzles where you
+        drag and arrange blocks to build complete, working programs.
+      </p>
+      <div class="lesson-grid">${cards}</div>
+    </section>
+  `);
+  document.getElementById('xpVal').textContent=state.xp;
+  document.getElementById('starsVal').textContent=state.stars;
+}
+
+/* ---------- STRUCTURE VIEW ---------- */
+function goStructure(id){
+  sfx.click();
+  const s=STRUCTURES.find(x=>x.id===id);
+  if(!s)return renderHome();
+
+  let items='';
+  s.puzzles.forEach((p,i)=>{
+    const done=state.completed[p.id];
+    items+=`
+      <div class="act-item ${done?'done':''}" onclick="goPuzzle('${p.id}')">
+        <div class="an">${done?'✓':i+1}</div>
+        <div class="anm">
+          ${p.name}
+          <small>${p.description}</small>
+        </div>
+      </div>`;
+  });
+
+  render(`
+    <section class="screen active">
+      <div class="act-head">
+        <button class="btn ghost small" onclick="renderHome()">← Home</button>
+      </div>
+      <h1>${s.icon} ${s.title} Programs</h1>
+      <h2>${s.desc}</h2>
+      <p class="sub">Choose a program to build 👇</p>
+      <div class="act-list">${items}</div>
+    </section>
+  `);
+}
+
+/* ---------- PUZZLE VIEW ---------- */
+let currentStructure=null;
+let currentPuzzle=null;
+let draggedEl=null;
+
+function goPuzzle(puzzleId){
+  sfx.click();
+  for(const s of STRUCTURES){
+    const p=s.puzzles.find(x=>x.id===puzzleId);
+    if(p){currentStructure=s;currentPuzzle=p;break;}
+  }
+  if(!currentPuzzle)return renderHome();
+  renderPuzzle();
+}
+
+function renderPuzzle(){
+  const s=currentStructure;
+  const p=currentPuzzle;
+
+  // Flatten expected IDs
+  const expected=[];
+  function walk(arr){
+    arr.forEach(b=>{
+      expected.push(b.id);
+      if(b.body)walk(b.body);
+    });
+  }
+  walk(p.order);
+
+  // Flatten all blocks for tray
+  const flat=[];
+  function flatten(arr){
+    arr.forEach(b=>{
+      flat.push({...b,body:null});
+      if(b.body)flatten(b.body);
+    });
+  }
+  flatten(p.order);
+  const shuffled=shuffle(flat.slice());
+
+  render(`
+    <section class="screen active">
+      <div class="act-head">
+        <button class="btn ghost small" onclick="goStructure('${s.id}')">← Back</button>
+        <div class="score-pill" id="progressPill">Placed: 0 / ${expected.length}</div>
+      </div>
+
+      <div class="puzzle-header ${s.color}">
+        <div class="puzzle-title">${p.name}</div>
+        <div class="puzzle-desc">${p.description}</div>
+        <div class="cs-badge ${s.color}">${s.title.toUpperCase()}</div>
+      </div>
+
+      <div class="act-body">
+        <div class="hint-box">
+          Drag each Scratch block from the tray below into the Script Area and arrange them
+          in the correct order to make the program work.
+        </div>
+
+        <div class="scratch-stats">
+          <div class="scratch-stat">🎯 Blocks: <b>${expected.length}</b></div>
+          <div class="scratch-stat">📦 In Tray: <b id="trayCount">${shuffled.length}</b></div>
+        </div>
+
+        <div class="scratch-workspace">
+          <div class="scratch-stage">
+            <div class="scratch-stage-title">Script Area — Build Your Program Here</div>
+            <div class="scratch-program drop-zone" id="dropZone">
+              <div style="color:#9ca3af;font-size:13px;font-weight:700;padding:20px;text-align:center;">
+                ⬇ Drag blocks here in order
+              </div>
+            </div>
+          </div>
+
+          <div class="scratch-tray" id="tray"></div>
+        </div>
+
+        <div class="btn-row" style="margin-top:20px;">
+          <button class="btn green" id="checkBtn">✔ Check Program</button>
+          <button class="btn ghost" id="resetBtn">↺ Reset</button>
+        </div>
+
+        <div class="feedback" id="fb"></div>
+      </div>
+    </section>
+  `);
+
+  // Render tray
+  const tray=document.getElementById('tray');
+  shuffled.forEach(b=>{
+    const wrapper=document.createElement('div');
+    wrapper.innerHTML=buildBlockHTML(b,true);
+    const el=wrapper.firstElementChild;
+    tray.appendChild(el);
+  });
+
+  // Setup drag on all blocks
+  document.querySelectorAll('.scratch-block, .scratch-c-block').forEach(attachDrag);
+
+  // Drop zone
+  const dropZone=document.getElementById('dropZone');
+  dropZone.addEventListener('dragover',e=>{
+    e.preventDefault();
+    dropZone.classList.add('active');
+  });
+  dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('active'));
+  dropZone.addEventListener('drop',e=>{
+    e.preventDefault();
+    dropZone.classList.remove('active');
+    if(draggedEl && !draggedEl.parentElement.closest('#dropZone')){
+      const newEl=draggedEl.cloneNode(true);
+      newEl.classList.remove('dragging');
+      dropZone.appendChild(newEl);
+      draggedEl.remove();
+      sfx.snap();
+      updateCount();
+      attachDrag(newEl);
+    }
+  });
+
+  document.getElementById('checkBtn').onclick=checkProgram;
+  document.getElementById('resetBtn').onclick=()=>{
+    sfx.click();
+    renderPuzzle();
+  };
+
+  function updateCount(){
+    document.getElementById('trayCount').textContent=tray.children.length;
+    const placed=dropZone.querySelectorAll('[data-correct-id]').length;
+    document.getElementById('progressPill').textContent=`Placed: ${placed} / ${expected.length}`;
+  }
+  updateCount();
+}
+
+/* ---------- BUILD BLOCK HTML ---------- */
+function buildBlockHTML(b, isLast){
+  if(b.isC){
+    const bodyHTML = (b.body||[]).map((child,i)=>
+      buildBlockHTML(child, i === (b.body.length-1))
+    ).join('');
+    return `
+      <div class="scratch-c-block" draggable="true" data-correct-id="${b.id}">
+        <div class="scratch-c-header">${b.text}</div>
+        <div class="scratch-c-body">${bodyHTML}</div>
+        <div class="scratch-c-footer">↺ end</div>
+      </div>`;
+  }
+  if(b.isElse){
+    return `<div class="scratch-c-block else-block" draggable="true" data-correct-id="${b.id}">
+      <div class="scratch-c-header">else</div>
+    </div>`;
+  }
+  const cls = `scratch-block ${b.type} ${b.isHat?'has-notch':''} ${isLast?'last':''}`;
+  return `<div class="${cls}" draggable="true" data-correct-id="${b.id}">${b.text}</div>`;
+}
+
+/* ---------- DRAG & DROP ---------- */
+function attachDrag(el){
+  el.setAttribute('draggable','true');
+  el.addEventListener('dragstart',e=>{
+    draggedEl=el;
+    el.classList.add('dragging');
+    e.dataTransfer.effectAllowed='move';
+  });
+  el.addEventListener('dragend',()=>{
+    el.classList.remove('dragging');
+    draggedEl=null;
+  });
+  el.addEventListener('pointerdown',handlePointerDrag);
+}
+
+function handlePointerDrag(e){
+  if(e.pointerType==='mouse')return; // mouse uses HTML5 dnd
+  if(e.target.closest('button'))return;
+  e.preventDefault();
+
+  const el=e.currentTarget;
+  const rect=el.getBoundingClientRect();
+  const offsetX=e.clientX-rect.left;
+  const offsetY=e.clientY-rect.top;
+
+  const ghost=el.cloneNode(true);
+  ghost.style.position='fixed';
+  ghost.style.left=(e.clientX-offsetX)+'px';
+  ghost.style.top=(e.clientY-offsetY)+'px';
+  ghost.style.pointerEvents='none';
+  ghost.style.zIndex='9999';
+  ghost.style.opacity='.9';
+  ghost.style.transform='scale(1.04)';
+  ghost.style.boxShadow='0 10px 30px rgba(0,0,0,.3)';
+  document.body.appendChild(ghost);
+  el.style.opacity='.35';
+
+  function onMove(ev){
+    ghost.style.left=(ev.clientX-offsetX)+'px';
+    ghost.style.top=(ev.clientY-offsetY)+'px';
+    const t=document.elementFromPoint(ev.clientX,ev.clientY);
+    const dz=document.getElementById('dropZone');
+    if(dz)dz.classList.toggle('active',dz.contains(t)||t===dz);
+  }
+  function onUp(ev){
+    window.removeEventListener('pointermove',onMove);
+    window.removeEventListener('pointerup',onUp);
+    ghost.remove();
+    el.style.opacity='';
+    const dz=document.getElementById('dropZone');
+    if(dz){
+      dz.classList.remove('active');
+      const t=document.elementFromPoint(ev.clientX,ev.clientY);
+      if(dz.contains(t)||t===dz){
+        // Only allow if the element isn't already in the drop zone
+        if(!el.parentElement.closest('#dropZone')){
+          const newEl=el.cloneNode(true);
+          newEl.style.opacity='';
+          dz.appendChild(newEl);
+          el.remove();
+          sfx.snap();
+          const tray=document.getElementById('tray');
+          document.getElementById('trayCount').textContent=tray.children.length;
+          attachDrag(newEl);
+          // update progress
+          const placed=dz.querySelectorAll('[data-correct-id]').length;
+          const total=currentPuzzle.order.length;
+          const flat=[];function flatWalk(arr){arr.forEach(b=>{flat.push(b.id);if(b.body)flatWalk(b.body);});}
+          flatWalk(currentPuzzle.order);
+          document.getElementById('progressPill').textContent=`Placed: ${placed} / ${flat.length}`;
+        }
+      }
+    }
+  }
+  window.addEventListener('pointermove',onMove);
+  window.addEventListener('pointerup',onUp);
+}
+
+/* ---------- CHECK PROGRAM ---------- */
+function checkProgram(){
+  const p=currentPuzzle;
+  const dropZone=document.getElementById('dropZone');
+
+  // Get expected flattened order
+  const expected=[];
+  function walk(arr){
+    arr.forEach(b=>{
+      expected.push(b.id);
+      if(b.body)walk(b.body);
+    });
+  }
+  walk(p.order);
+
+  // Get placed block IDs by DOM order
+  const placed=[...dropZone.querySelectorAll('[data-correct-id]')].map(el=>el.dataset.correctId);
+
+  const fb=document.getElementById('fb');
+  const tray=document.getElementById('tray');
+
+  if(tray.children.length>0){
+    sfx.wrong();
+    fb.innerHTML='<span style="color:var(--red-d)">✘ You still have blocks in the tray. Place all of them first!</span>';
+    return;
+  }
+
+  if(JSON.stringify(placed)===JSON.stringify(expected)){
+    sfx.correct();confetti(80);
+    floatScore('+'+(30+state.combo*5)+' XP','#16a34a');
+    addXP(30+state.combo*5);
+    addStars(3);
+    state.completed[p.id]=true;
+    fb.innerHTML='<span style="color:var(--green-d)">✔ Perfect program! 🎉</span>';
+    setTimeout(()=>{
+      sfx.win();
+      render(`
+        <section class="screen active">
+          <div class="result">
+            <div class="emoji">🏆</div>
+            <h2>Excellent Coding!</h2>
+            <div class="stars">
+              <span class="star-on">⭐</span><span class="star-on" style="animation-delay:.2s">⭐</span><span class="star-on" style="animation-delay:.4s">⭐</span>
+            </div>
+            <p style="color:var(--muted);font-weight:700;">
+              You built the "${p.name}" program correctly!
+            </p>
+            <p style="color:var(--muted);font-weight:700;font-size:14px;">
+              Control structure: <b>${currentStructure.title}</b>
+            </p>
+            <div class="btn-row">
+              <button class="btn" onclick="goStructure('${currentStructure.id}')">← ${currentStructure.title} Menu</button>
+              <button class="btn ghost" onclick="renderHome()">🏠 Home</button>
+            </div>
+          </div>
+        </section>
+      `);
+    },1400);
+  }else{
+    sfx.wrong();
+    fb.innerHTML='<span style="color:var(--red-d)">✘ Incorrect order. Blocks shaking below are in the wrong spot.</span>';
+    // Mark wrong blocks
+    document.querySelectorAll('.wrong-shake').forEach(el=>el.classList.remove('wrong-shake'));
+    dropZone.querySelectorAll('[data-correct-id]').forEach((el,i)=>{
+      if(el.dataset.correctId!==expected[i])el.classList.add('wrong-shake');
+    });
+    setTimeout(()=>{
+      document.querySelectorAll('.wrong-shake').forEach(el=>el.classList.remove('wrong-shake'));
+    },1200);
+  }
+}
+
+/* ---------- UTIL ---------- */
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+/* ---------- INIT ---------- */
+document.addEventListener('pointerdown',ensureAudio,{once:true});
+renderHome();
+</script>
+</body>
+</html>

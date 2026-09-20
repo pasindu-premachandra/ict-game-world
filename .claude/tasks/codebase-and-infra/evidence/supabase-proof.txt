@@ -1,0 +1,50 @@
+Supabase leaderboard - proof run
+project: vjyypzmnbyfjbudusava (Mumbai ap-south-1)   date: 2026-09-20
+-----------------------------------------------------------------------
+
+Schema applied: supabase/migrations/0001_init.sql -> migration 'init_leaderboard'
+  players, scores, both with RLS enabled
+  submit_score() SECURITY DEFINER, search_path pinned
+  leaderboard_grade / leaderboard_class, security_invoker views
+
+Security, tested as the real anon role over the REST API with the publishable key:
+
+Attempt                                   Result
+valid submit_score                        HTTP 204
+submit_score with 500 points              HTTP 400  points must be between 0 and 100
+submit_score with a 40-char nickname      refused   nickname must be 1 to 20 characters
+submit_score with grade 12                refused   grade must be between 6 and 9
+submit_score with a bogus avatar          refused   unknown avatar
+submit_score with an injected activity id refused   activity id must look like 1.2
+direct INSERT into players                HTTP 401  RLS violation
+direct UPDATE of scores                   0 rows changed (RLS matched nothing)
+direct DELETE of scores                   HTTP 204 but 0 rows deleted, data intact
+
+Note: a direct DELETE returns 204 and deletes nothing. That is correct Postgres
+RLS behaviour, not a hole - it was verified by re-reading the row afterwards.
+
+Behaviour:
+  best-score-only   80 -> replayed 30 (ignored) -> replayed 95 (accepted) = 95
+  class code        entered '6c', stored '6C'
+  cascade           deleting a player removes their scores
+
+App end to end, against the live project:
+  name entry -> player saved (nickname, avatar, class 6C)
+  played 1.3 online   -> 100 points, sync queue empty, row present in Postgres
+  played 1.1 offline  -> 100 points, saved on device, 1 item queued
+  reconnected         -> queue flushed to 0, both rows present in Postgres
+  leaderboard screen  -> My class / Everyone tabs, 'You' row, 0 overflow at 375
+
+Offline after the Supabase work (server process killed):
+  server reachable ......... false
+  activity rendered ........ yes, 12 match cards
+  new modules from cache ... player.js, leaderboard.js, screens.js, config.js
+  fonts loaded ............. 4
+  cache .................... igw-v2, 38 files
+
+Advisor: 2 warnings, both SECURITY DEFINER functions callable by anon.
+  submit_score      - intentional, it is the only write path.
+  rls_auto_enable   - pre-existing, NOT ours. It is an event trigger function that
+                      auto-enables RLS on new public tables. Verified uncallable:
+                      'trigger functions can only be called as triggers' (0A000).
+-----------------------------------------------------------------------

@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 6 ICT Game | Ruwanpura NCoE</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef7f4;
+    --ink:#1f2d3d;
+    --muted:#5b6b7c;
+    --line:#d9e6e2;
+    --teal:#14b8a6;--teal-d:#0f766e;--teal-l:#ccfbf1;
+    --amber:#fbbf24;--amber-d:#d97706;--amber-l:#fef3c7;
+    --coral:#fb7185;--coral-d:#e11d48;--coral-l:#ffe4e6;
+    --indigo:#818cf8;--indigo-d:#4338ca;--indigo-l:#e0e7ff;
+    --green:#22c55e;--green-d:#15803d;--green-l:#dcfce7;
+    --pink:#f472b6;--pink-d:#be185d;--pink-l:#fce7f3;
+    --blue:#60a5fa;--blue-d:#1d4ed8;--blue-l:#dbeafe;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Nunito','Fredoka',system-ui,sans-serif;
+    min-height:100vh;display:flex;flex-direction:column;
+    -webkit-tap-highlight-color:transparent;overflow-x:hidden;
+  }
+
+  /* Floating decorations */
+  .floaters{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .floater{
+    position:absolute;font-size:30px;opacity:.3;
+    animation:floatAround 14s ease-in-out infinite;
+  }
+  @keyframes floatAround{
+    0%,100%{transform:translate(0,0) rotate(-8deg) scale(1);}
+    25%{transform:translate(20px,-30px) rotate(6deg) scale(1.08);}
+    50%{transform:translate(-15px,-15px) rotate(-4deg) scale(.96);}
+    75%{transform:translate(15px,20px) rotate(10deg) scale(1.05);}
+  }
+
+  /* Header */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:12px 16px;background:#fff;border-bottom:4px solid var(--teal);
+    flex-wrap:wrap;position:sticky;top:0;z-index:100;
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-chip{
+    background:linear-gradient(135deg,var(--teal),var(--indigo-d));
+    color:#fff;font-weight:900;font-size:14px;padding:7px 14px;border-radius:12px;
+    letter-spacing:.5px;box-shadow:0 3px 8px rgba(20,184,166,.35);
+  }
+  .brand-text{font-weight:800;font-size:14.5px;color:var(--teal-d);}
+  .music-btn{
+    border:none;background:var(--amber);color:#5a3b00;font-family:inherit;
+    font-weight:800;font-size:13.5px;padding:10px 18px;border-radius:999px;
+    cursor:pointer;box-shadow:0 3px 0 var(--amber-d);transition:all .15s;
+  }
+  .music-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--amber-d);}
+  .music-btn.on{background:var(--teal);color:#fff;box-shadow:0 3px 0 var(--teal-d);}
+
+  main{flex:1;width:100%;max-width:1000px;margin:0 auto;padding:16px;position:relative;z-index:1;}
+  .screen{display:none;animation:fade .35s;}
+  .screen.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+  h1{font-size:23px;margin:0 0 6px;text-align:center;color:var(--teal-d);line-height:1.4;font-family:'Fredoka',sans-serif;}
+  h2{font-size:19px;margin:0 0 14px;text-align:center;color:var(--indigo-d);}
+  .sub{text-align:center;color:var(--muted);font-size:14.5px;margin:0 0 18px;line-height:1.6;}
+
+  /* Buttons */
+  .btn{
+    border:none;font-family:inherit;font-weight:800;font-size:15px;
+    padding:13px 24px;border-radius:15px;cursor:pointer;color:#fff;
+    background:var(--teal);box-shadow:0 5px 0 var(--teal-d);
+    transition:all .12s;display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--teal-d);}
+  .btn.amber{background:var(--amber);color:#5a3b00;box-shadow:0 5px 0 var(--amber-d);}
+  .btn.amber:active{box-shadow:0 2px 0 var(--amber-d);}
+  .btn.indigo{background:var(--indigo);box-shadow:0 5px 0 var(--indigo-d);}
+  .btn.indigo:active{box-shadow:0 2px 0 var(--indigo-d);}
+  .btn.coral{background:var(--coral);box-shadow:0 5px 0 var(--coral-d);}
+  .btn.coral:active{box-shadow:0 2px 0 var(--coral-d);}
+  .btn.ghost{background:#fff;color:var(--teal-d);box-shadow:0 5px 0 var(--line);}
+  .btn.ghost:active{box-shadow:0 2px 0 var(--line);}
+  .btn.small{padding:9px 16px;font-size:13px;border-radius:11px;}
+  .btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+
+  /* Home */
+  .hero{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:10px;}
+  .hero-svg{width:150px;height:150px;animation:bob 2.8s ease-in-out infinite;filter:drop-shadow(0 8px 16px rgba(20,184,166,.3));}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-12px) rotate(2deg);}}
+  .hero-bubble{
+    background:#fff;border:3px dashed var(--teal);border-radius:18px;
+    padding:10px 20px;font-weight:700;font-size:14.5px;color:var(--teal-d);
+    text-align:center;max-width:560px;line-height:1.6;
+  }
+
+  /* Lesson grid */
+  .lesson-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:14px;margin-top:18px;
+  }
+  .lesson-card{
+    background:#fff;border-radius:22px;padding:20px 14px 16px;cursor:pointer;
+    border:3px solid var(--line);box-shadow:0 6px 0 var(--line);
+    transition:transform .14s, box-shadow .14s, border-color .2s;
+    display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .lesson-card::before{
+    content:'';position:absolute;top:-30px;right:-30px;width:90px;height:90px;
+    border-radius:50%;opacity:.35;
+  }
+  .lesson-card.l1::before{background:var(--teal-l);}
+  .lesson-card.l2::before{background:var(--coral-l);}
+  .lesson-card.l3::before{background:var(--amber-l);}
+  .lesson-card.l4::before{background:var(--indigo-l);}
+  .lesson-card.l5::before{background:var(--green-l);}
+  .lesson-card.l6::before{background:var(--pink-l);}
+  .lesson-card:active{transform:translateY(4px);box-shadow:0 2px 0 var(--line);}
+  .lesson-card:hover{border-color:var(--teal);}
+  .lesson-icon{
+    width:72px;height:72px;border-radius:22px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:38px;background:var(--teal-l);position:relative;z-index:1;
+    box-shadow:inset 0 -4px 0 rgba(0,0,0,.06);
+  }
+  .lesson-card.l1 .lesson-icon{background:var(--teal-l);}
+  .lesson-card.l2 .lesson-icon{background:var(--coral-l);}
+  .lesson-card.l3 .lesson-icon{background:var(--amber-l);}
+  .lesson-card.l4 .lesson-icon{background:var(--indigo-l);}
+  .lesson-card.l5 .lesson-icon{background:var(--green-l);}
+  .lesson-card.l6 .lesson-icon{background:var(--pink-l);}
+  .lesson-num{
+    position:absolute;top:12px;left:14px;font-size:11.5px;font-weight:900;
+    color:var(--teal-d);background:var(--teal-l);padding:4px 12px;border-radius:999px;
+    z-index:1;
+  }
+  .lesson-title{font-weight:800;font-size:15px;line-height:1.5;position:relative;z-index:1;}
+  .lesson-progress{
+    font-size:12px;font-weight:800;color:var(--muted);
+    background:var(--bg);padding:4px 12px;border-radius:999px;position:relative;z-index:1;
+  }
+
+  /* Activity list */
+  .act-list{display:grid;gap:12px;max-width:660px;margin:0 auto;}
+  .act-item{
+    background:#fff;border:3px solid var(--line);border-radius:18px;
+    padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:14px;
+    box-shadow:0 5px 0 var(--line);transition:all .14s;
+  }
+  .act-item:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line);}
+  .act-item.done{border-color:var(--green);background:#f0fdf4;}
+  .act-item.done .act-num{background:var(--green);color:#fff;}
+  .act-num{
+    width:42px;height:42px;border-radius:13px;background:var(--amber-l);
+    color:var(--amber-d);display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:17px;flex-shrink:0;
+  }
+  .act-name{flex:1;font-weight:800;font-size:14.5px;line-height:1.5;}
+  .act-type{
+    font-size:11.5px;color:var(--muted);font-weight:800;
+    background:var(--bg);padding:4px 11px;border-radius:999px;flex-shrink:0;
+  }
+
+  /* Activity view */
+  .act-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+  .score-pill{
+    background:#fff;border:2px solid var(--line);border-radius:999px;
+    padding:7px 18px;font-weight:900;font-size:14px;color:var(--teal-d);
+    margin-left:auto;
+  }
+  .act-body{background:#fff;border-radius:22px;padding:20px;border:3px solid var(--line);}
+  .act-instruction{
+    background:var(--teal-l);color:var(--teal-d);border-radius:16px;
+    padding:13px 18px;font-weight:800;font-size:14.5px;line-height:1.7;
+    margin-bottom:18px;display:flex;gap:10px;align-items:flex-start;
+  }
+  .act-instruction::before{content:'💡';font-size:20px;flex-shrink:0;}
+
+  /* MCQ */
+  .q-text{font-size:16.5px;font-weight:800;line-height:1.65;margin:6px 0 16px;}
+  .options{display:grid;gap:11px;}
+  .opt{
+    border:3px solid var(--line);background:#fff;border-radius:15px;
+    padding:14px 16px;font-family:inherit;font-size:14.5px;font-weight:700;
+    cursor:pointer;color:var(--ink);text-align:left;transition:all .13s;
+    box-shadow:0 4px 0 var(--line);
+  }
+  .opt:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .opt.correct{background:var(--green-l);border-color:var(--green);color:var(--green-d);}
+  .opt.wrong{background:var(--coral-l);border-color:var(--coral);color:var(--coral-d);}
+  .opt:disabled{cursor:default;}
+  .feedback{margin-top:14px;font-weight:800;font-size:15px;min-height:24px;text-align:center;}
+
+  /* Match */
+  .match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .match-col{display:grid;gap:10px;align-content:start;}
+  .match-item{
+    background:#fff;border:3px solid var(--line);border-radius:15px;
+    padding:13px 14px;font-weight:700;font-size:14px;line-height:1.5;
+    cursor:pointer;transition:all .13s;text-align:center;
+    box-shadow:0 4px 0 var(--line);
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    min-height:60px;
+  }
+  .match-item:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .match-item.selected{border-color:var(--indigo);background:var(--indigo-l);color:var(--indigo-d);}
+  .match-item.matched{
+    border-color:var(--green);background:var(--green-l);color:var(--green-d);
+    pointer-events:none;opacity:.9;
+  }
+  .match-item.shake{animation:shake .4s;}
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-8px);}
+    75%{transform:translateX(8px);}
+  }
+  .match-icon{font-size:26px;flex-shrink:0;}
+
+  /* Symbol match special */
+  .sym-match-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  .sym-card{
+    background:#fff;border:3px solid var(--line);border-radius:15px;
+    padding:12px 8px;font-weight:700;font-size:13px;line-height:1.4;
+    cursor:pointer;transition:all .13s;text-align:center;
+    box-shadow:0 4px 0 var(--line);
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    min-height:120px;justify-content:center;
+  }
+  .sym-card:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .sym-card.selected{border-color:var(--indigo);background:var(--indigo-l);color:var(--indigo-d);}
+  .sym-card.matched{
+    border-color:var(--green);background:var(--green-l);color:var(--green-d);
+    pointer-events:none;opacity:.9;
+  }
+  .sym-card.shake{animation:shake .4s;}
+  .sym-card svg{width:70px;height:44px;}
+
+  /* Order */
+  .order-list{display:grid;gap:10px;}
+  .order-item{
+    background:#fff;border:3px solid var(--line);border-radius:15px;
+    padding:12px 14px;font-weight:700;font-size:14px;line-height:1.55;
+    display:flex;align-items:center;gap:12px;
+    box-shadow:0 4px 0 var(--line);
+  }
+  .order-item .num{
+    width:32px;height:32px;border-radius:10px;background:var(--amber-l);
+    color:var(--amber-d);display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:14px;flex-shrink:0;
+  }
+  .order-item .txt{flex:1;display:flex;align-items:center;gap:8px;}
+  .order-item .movers{display:flex;gap:5px;flex-direction:column;}
+  .mover{
+    border:none;background:var(--teal-l);color:var(--teal-d);
+    width:34px;height:26px;border-radius:8px;font-weight:900;
+    cursor:pointer;font-size:13px;line-height:1;
+  }
+  .mover:disabled{opacity:.35;cursor:default;}
+  .order-item.correct{border-color:var(--green);background:var(--green-l);}
+  .order-item.correct .num{background:var(--green);color:#fff;}
+
+  /* Bucket */
+  .bucket-items{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px;min-height:60px;}
+  .b-item{
+    background:#fff;border:3px solid var(--line);border-radius:13px;
+    padding:10px 15px;font-weight:800;font-size:13.5px;cursor:pointer;
+    transition:all .13s;box-shadow:0 4px 0 var(--line);
+    display:flex;align-items:center;gap:6px;
+  }
+  .b-item:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .b-item.selected{border-color:var(--indigo);background:var(--indigo-l);color:var(--indigo-d);}
+  .b-item.placed{opacity:.25;pointer-events:none;}
+  .buckets{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .bucket{
+    background:var(--bg);border:3px dashed var(--line);border-radius:18px;
+    padding:12px;min-height:140px;cursor:pointer;transition:all .15s;
+  }
+  .bucket:hover{border-color:var(--teal);}
+  .bucket.active{background:var(--teal-l);border-color:var(--teal);border-style:solid;}
+  .bucket-title{
+    font-weight:900;font-size:14px;color:var(--teal-d);
+    text-align:center;margin-bottom:10px;padding-bottom:9px;
+    border-bottom:2px solid var(--line);
+  }
+  .bucket-contents{display:flex;flex-wrap:wrap;gap:6px;}
+  .b-chip{
+    background:var(--green-l);color:var(--green-d);font-weight:800;
+    font-size:12.5px;padding:6px 12px;border-radius:10px;
+  }
+
+  /* Pick */
+  .pick-list{display:grid;gap:10px;}
+  .pick-item{
+    background:#fff;border:3px solid var(--line);border-radius:15px;
+    padding:13px 15px;font-weight:700;font-size:14px;line-height:1.55;
+    cursor:pointer;transition:all .13s;display:flex;align-items:center;gap:12px;
+    box-shadow:0 4px 0 var(--line);
+  }
+  .pick-item:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .pick-box{
+    width:26px;height:26px;border-radius:8px;border:3px solid var(--line);
+    flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:900;
+  }
+  .pick-item.picked{border-color:var(--indigo);background:var(--indigo-l);}
+  .pick-item.picked .pick-box{border-color:var(--indigo);background:var(--indigo);color:#fff;}
+  .pick-item.correct{border-color:var(--green);background:var(--green-l);}
+  .pick-item.correct .pick-box{border-color:var(--green);background:var(--green);color:#fff;}
+  .pick-item.wrong{border-color:var(--coral);background:var(--coral-l);}
+  .pick-item.wrong .pick-box{border-color:var(--coral);background:var(--coral);color:#fff;}
+  .pick-icon{font-size:22px;flex-shrink:0;}
+
+  /* Result */
+  .result-box{
+    background:#fff;border-radius:24px;padding:30px 20px;text-align:center;
+    border:3px solid var(--line);
+  }
+  .result-emoji{font-size:64px;line-height:1;margin-bottom:8px;animation:pop .5s;}
+  @keyframes pop{0%{transform:scale(0);}70%{transform:scale(1.15);}100%{transform:scale(1);}}
+  .stars{font-size:46px;letter-spacing:6px;margin:14px 0;}
+  .result-msg{font-size:16px;font-weight:700;color:var(--muted);line-height:1.7;}
+
+  /* Footer */
+  .footer{
+    padding:34px 16px 44px;text-align:center;position:relative;z-index:1;
+  }
+  .footer-badge{
+    display:inline-flex;flex-direction:column;align-items:center;gap:6px;
+    padding:28px 56px;border-radius:36px;position:relative;
+    background:linear-gradient(135deg,#0f766e 0%,#14b8a6 25%,#6366f1 55%,#fb7185 80%,#fbbf24 100%);
+    background-size:280% 280%;
+    animation:gradientShift 8s ease infinite, badgePulse 3s ease-in-out infinite;
+    box-shadow:
+      0 0 0 6px rgba(255,255,255,.95),
+      0 0 0 12px rgba(20,184,166,.35),
+      0 22px 60px rgba(99,102,241,.45),
+      0 10px 30px rgba(251,113,133,.35);
+    transform:rotate(-1deg);
+  }
+  @keyframes gradientShift{
+    0%,100%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+  }
+  @keyframes badgePulse{
+    0%,100%{transform:rotate(-1deg) scale(1);}
+    50%{transform:rotate(1deg) scale(1.035);}
+  }
+  .badge-stars{
+    font-size:22px;letter-spacing:8px;
+    animation:twinkle 1.8s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle{from{opacity:.7;transform:scale(.95);}to{opacity:1;transform:scale(1.1);}}
+  .badge-years{
+    font-size:24px;font-weight:900;letter-spacing:4px;
+    color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3);
+    font-family:'Fredoka',sans-serif;
+  }
+  .badge-name{
+    font-size:38px;font-weight:900;letter-spacing:1.5px;
+    color:#fff;line-height:1.1;
+    text-shadow:0 3px 12px rgba(0,0,0,.35), 0 0 20px rgba(255,255,255,.3);
+    font-family:'Fredoka',sans-serif;
+  }
+  .badge-sub{
+    font-size:13px;font-weight:800;letter-spacing:4px;
+    color:rgba(255,255,255,.9);text-transform:uppercase;margin-top:2px;
+  }
+  .badge-emoji{
+    position:absolute;font-size:30px;animation:floatAround 5s ease-in-out infinite;
+  }
+  .badge-emoji.e1{top:-18px;left:-14px;animation-delay:.2s;}
+  .badge-emoji.e2{top:-18px;right:-14px;animation-delay:.8s;}
+  .badge-emoji.e3{bottom:-16px;left:15%;animation-delay:1.4s;}
+  .badge-emoji.e4{bottom:-16px;right:15%;animation-delay:.5s;}
+
+  /* Confetti */
+  .confetti{
+    position:fixed;top:-20px;width:12px;height:12px;border-radius:3px;
+    animation:fall linear forwards;z-index:9998;pointer-events:none;
+  }
+  @keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.15;}}
+
+  @media (max-width:640px){
+    h1{font-size:19px;}
+    .hero-svg{width:120px;height:120px;}
+    .match-wrap{grid-template-columns:1fr;}
+    .sym-match-wrap{grid-template-columns:1fr;}
+    .buckets{grid-template-columns:1fr;}
+    .footer-badge{padding:22px 30px;}
+    .badge-name{font-size:26px;}
+    .badge-years{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="floaters" id="floaters"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-chip">ICT</span>
+    <span class="brand-text">Grade 6 • Information &amp; Communication Technology</span>
+  </div>
+  <button id="musicBtn" class="music-btn">🔇 Music</button>
+</header>
+
+<main id="app"></main>
+
+<footer class="footer">
+  <div class="footer-badge">
+    <div class="badge-emoji e1">💻</div>
+    <div class="badge-emoji e2">🖱️</div>
+    <div class="badge-emoji e3">⭐</div>
+    <div class="badge-emoji e4">🎓</div>
+    <div class="badge-stars">⭐ ✦ ⭐</div>
+    <div class="badge-years">2022 – 2024</div>
+    <div class="badge-name">Ruwanpura NCoE</div>
+    <div class="badge-sub">✦ Batch ✦</div>
+  </div>
+</footer>
+
+<script>
+/* ================================================================
+   AUDIO ENGINE — Different melody per activity
+   ================================================================ */
+let actx=null,musicOn=false,musicTimer=null,musicGain=null,currentMelody='home';
+
+const MELODIES={
+  home:{
+    notes:[[329.63,1],[392,1],[440,1],[392,1],[329.63,1],[293.66,2],
+           [329.63,1],[392,1],[440,1],[493.88,1],[440,1],[392,2]],
+    wave:'triangle',tempo:.30,bass:[164.81,220,164.81,196]
+  },
+  mcq:{
+    notes:[[523.25,1],[659.25,1],[783.99,1],[1046.5,1],[987.77,1],[783.99,1],[659.25,1],[523.25,1],
+           [587.33,1],[698.46,1],[880,1],[1174.66,1],[1046.5,1],[880,1],[698.46,1],[587.33,1]],
+    wave:'square',tempo:.16,bass:[130.81,146.83,130.81,146.83]
+  },
+  match:{
+    notes:[[392,1],[493.88,1],[587.33,1],[783.99,1],[698.46,1],[587.33,1],[493.88,1],[392,1],
+           [440,1],[523.25,1],[659.25,1],[880,1],[783.99,1],[659.25,1],[523.25,1],[440,1]],
+    wave:'sine',tempo:.21,bass:[196,220,196,220]
+  },
+  order:{
+    notes:[[523.25,1],[523.25,1],[392,1],[392,1],[440,1],[440,1],[392,2],
+           [349.23,1],[349.23,1],[329.63,1],[329.63,1],[293.66,1],[293.66,1],[261.63,2]],
+    wave:'triangle',tempo:.26,bass:[130.81,130.81,146.83,130.81]
+  },
+  bucket:{
+    notes:[[659.25,1],[783.99,1],[659.25,1],[783.99,1],[880,1],[783.99,1],[659.25,1],[587.33,1],
+           [523.25,1],[659.25,1],[523.25,1],[659.25,1],[783.99,1],[659.25,1],[523.25,2]],
+    wave:'sine',tempo:.18,bass:[164.81,196,164.81,196]
+  },
+  pick:{
+    notes:[[783.99,1],[659.25,1],[523.25,1],[659.25,1],[783.99,1],[1046.5,1],[783.99,1],[659.25,1],
+           [880,1],[698.46,1],[587.33,1],[698.46,1],[880,1],[1174.66,1],[880,1],[698.46,1]],
+    wave:'square',tempo:.15,bass:[196,164.81,196,220]
+  }
+};
+
+function ensureAudio(){
+  if(!actx){
+    try{
+      actx=new (window.AudioContext||window.webkitAudioContext)();
+      musicGain=actx.createGain();musicGain.gain.value=.045;
+      musicGain.connect(actx.destination);
+    }catch(e){return;}
+  }
+  if(actx.state==='suspended')actx.resume();
+}
+
+function playMelody(){
+  if(!musicOn||!actx)return;
+  const m=MELODIES[currentMelody]||MELODIES.home;
+  const beat=m.tempo;let t=actx.currentTime+.05;
+
+  m.notes.forEach(([f,d])=>{
+    if(f>0){
+      const o=actx.createOscillator(),g=actx.createGain();
+      o.type=m.wave;o.frequency.value=f;
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.exponentialRampToValueAtTime(1,t+.025);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+d*beat*.9);
+      o.connect(g);g.connect(musicGain);o.start(t);o.stop(t+d*beat);
+    }
+    t+=d*beat;
+  });
+
+  const totalMelodyTime=m.notes.reduce((a,n)=>a+n[1],0)*beat;
+  const bassNotes=m.bass||[];
+  bassNotes.forEach((bf,i)=>{
+    const bt=actx.currentTime+.05+(totalMelodyTime/bassNotes.length)*i;
+    const bo=actx.createOscillator(),bg=actx.createGain();
+    bo.type='sine';bo.frequency.value=bf;
+    bg.gain.setValueAtTime(0.0001,bt);
+    bg.gain.exponentialRampToValueAtTime(.55,bt+.04);
+    bg.gain.exponentialRampToValueAtTime(0.0001,bt+beat*2);
+    bo.connect(bg);bg.connect(musicGain);bo.start(bt);bo.stop(bt+beat*2+.05);
+  });
+
+  musicTimer=setTimeout(playMelody,totalMelodyTime*1000+400);
+}
+
+function switchMusic(key){
+  currentMelody=key;
+  if(!musicOn)return;
+  clearTimeout(musicTimer);
+  playMelody();
+}
+
+function toggleMusic(){
+  ensureAudio();musicOn=!musicOn;
+  const b=document.getElementById('musicBtn');
+  if(musicOn){
+    b.textContent='🔊 Music';b.classList.add('on');playMelody();
+  }else{
+    b.textContent='🔇 Music';b.classList.remove('on');clearTimeout(musicTimer);
+  }
+}
+document.getElementById('musicBtn').onclick=toggleMusic;
+
+function blip(f,d=.1,type='sine',v=.13,delay=0){
+  if(!actx)return;const t=actx.currentTime+delay;
+  const o=actx.createOscillator(),g=actx.createGain();
+  o.type=type;o.frequency.value=f;
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(v,t+.012);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+d);
+  o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+d+.03);
+}
+const sfx={
+  correct(){ensureAudio();[659.25,783.99,987.77,1318.51].forEach((f,i)=>blip(f,.18,'sine',.17,i*.07));},
+  wrong(){ensureAudio();blip(196,.22,'sawtooth',.1,0);blip(146.83,.28,'sawtooth',.1,.13);},
+  click(){ensureAudio();blip(880,.05,'square',.05);},
+  win(){ensureAudio();[523.25,659.25,783.99,1046.5,1318.51,1567.98].forEach((f,i)=>blip(f,.3,'triangle',.16,i*.12));}
+};
+
+/* ================================================================
+   FLOW CHART SVG SYMBOLS (Visual icons!)
+   ================================================================ */
+const SYMBOLS={
+  oval:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="5" width="90" height="40" rx="20" ry="20" fill="#a7f3d0" stroke="#0f766e" stroke-width="3"/>
+  </svg>`,
+  parallelogram:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="20,5 95,5 80,45 5,45" fill="#fde68a" stroke="#d97706" stroke-width="3"/>
+  </svg>`,
+  rectangle:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="5" width="90" height="40" fill="#fed7aa" stroke="#d97706" stroke-width="3"/>
+  </svg>`,
+  diamond:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="50,3 97,25 50,47 3,25" fill="#c7d2fe" stroke="#4338ca" stroke-width="3"/>
+  </svg>`,
+  arrow:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+    <line x1="10" y1="25" x2="80" y2="25" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+    <polygon points="75,15 95,25 75,35" fill="#0f766e"/>
+  </svg>`
+};
+
+/* ================================================================
+   LESSONS DATA (English Medium)
+   ================================================================ */
+const LESSONS=[
+/* ------------------- LESSON 1 ------------------- */
+{
+  id:1,title:'Importance of Computers',icon:'💻',cls:'l1',
+  activities:[
+    {
+      id:'1.1',type:'order',name:'Order the Basic Functions of a Computer',
+      instruction:'Drag the steps to arrange the basic functions of a computer in the correct order.',
+      correctOrder:[
+        {text:'Input',icon:'⌨️'},
+        {text:'Process',icon:'⚙️'},
+        {text:'Output',icon:'🖥️'}
+      ]
+    },
+    {
+      id:'1.2',type:'match',name:'Match the Features of a Computer',
+      instruction:'Match each feature of a computer with its correct description.',
+      pairs:[
+        {l:'⚡ Speed & Efficiency',r:'Can perform billions of tasks in a second',li:'⚡',ri:'⏱️'},
+        {l:'🎯 Accuracy',r:'Gives correct information when correct data is given',li:'🎯',ri:'✅'},
+        {l:'🛡️ Reliability',r:'You can trust the process and the output',li:'🛡️',ri:'🔒'},
+        {l:'🔁 Consistency',r:'Produces the same output for the same input',li:'🔁',ri:'♻️'},
+        {l:'💾 Storage Capacity',r:'Can store a huge amount of data',li:'💾',ri:'📦'},
+        {l:'🧠 Intelligence',r:'Follows given instructions but cannot decide alone like a human',li:'🧠',ri:'🤖'}
+      ]
+    },
+    {
+      id:'1.3',type:'pick',name:'Pick the Embedded Computer Devices',
+      instruction:'Select ONLY the devices that contain embedded computer systems.',
+      items:[
+        {text:'Smartphones',icon:'📱',correct:true},
+        {text:'Ordinary book shelf',icon:'📚',correct:false},
+        {text:'Modern Televisions',icon:'📺',correct:true},
+        {text:'Washing Machines',icon:'🧺',correct:true},
+        {text:'Wooden pencil',icon:'✏️',correct:false},
+        {text:'Modern Cars',icon:'🚗',correct:true},
+        {text:'Ceramic plate',icon:'🍽️',correct:false}
+      ]
+    },
+    {
+      id:'1.4',type:'bucket',name:'Sort the Computer Components',
+      instruction:'Click an item first, then click the correct bucket to sort it.',
+      buckets:[
+        {name:'⌨️ Input Devices',items:['Keyboard','Mouse','Microphone','Web Camera','Scanner']},
+        {name:'🖥️ Output Devices',items:['Monitor','Printer','Speaker','Multimedia Projector']},
+        {name:'💾 Storage Devices',items:['Internal Hard Disk','CD','DVD','Pen Drive']}
+      ]
+    }
+  ]
+},
+/* ------------------- LESSON 2 ------------------- */
+{
+  id:2,title:'Use the Computer Laboratory Safely',icon:'🧑‍🏫',cls:'l2',
+  activities:[
+    {
+      id:'2.1',type:'pick',name:'Pick Correct Behaviour in the Computer Lab',
+      instruction:'Select ONLY the correct behaviours in the computer laboratory.',
+      items:[
+        {text:'Remove footwear before entering the lab',icon:'👟',correct:true},
+        {text:'Run and play inside the laboratory',icon:'🏃',correct:false},
+        {text:'Follow the teacher\'s instructions',icon:'👩‍🏫',correct:true},
+        {text:'Pull electrical wires and sockets',icon:'⚡',correct:false},
+        {text:'Switch off equipment properly after use',icon:'🔌',correct:true},
+        {text:'Take food and liquids into the lab',icon:'🍔',correct:false},
+        {text:'Keep the laboratory clean and dust-free',icon:'🧹',correct:true}
+      ]
+    },
+    {
+      id:'2.2',type:'order',name:'Order the Steps to Turn On a Computer',
+      instruction:'Drag the steps to arrange the correct order of turning on a computer.',
+      correctOrder:[
+        {text:'Supply electricity (switch on the wall switch)',icon:'🔌'},
+        {text:'Turn on the UPS (Uninterruptible Power Supply)',icon:'🔋'},
+        {text:'Turn on the System Unit',icon:'🖥️'},
+        {text:'Turn on the Monitor',icon:'📺'}
+      ]
+    },
+    {
+      id:'2.3',type:'match',name:'Match Correct Postures with Problems Avoided',
+      instruction:'Match each correct posture with the health problem it helps avoid.',
+      pairs:[
+        {l:'👁️ Keep the screen at eye level',r:'Avoids eye pain and headaches',li:'👁️',ri:'🤕'},
+        {l:'📏 Keep 18–28 inches from the screen',r:'Avoids eyesight problems',li:'📏',ri:'👓'},
+        {l:'🪑 Sit straight, lean on the chair back',r:'Avoids back pain',li:'🪑',ri:'🦴'},
+        {l:'🦶 Keep feet flat on the ground',r:'Avoids foot strain',li:'🦶',ri:'🦵'},
+        {l:'💪 Keep keyboard at elbow level',r:'Avoids finger and elbow pain',li:'💪',ri:'✋'}
+      ]
+    },
+    {
+      id:'2.4',type:'match',name:'Match the 3R Method',
+      instruction:'Match each R with its correct meaning.',
+      pairs:[
+        {l:'🔻 Reduce',r:'Maintain equipment to use longer, buy fewer new items',li:'🔻',ri:'📉'},
+        {l:'🔁 Reuse',r:'Donate or repurpose old equipment for other uses',li:'🔁',ri:'🎁'},
+        {l:'♻️ Recycle',r:'Send e-waste to a recycling company',li:'♻️',ri:'🏭'}
+      ]
+    }
+  ]
+},
+/* ------------------- LESSON 3 ------------------- */
+{
+  id:3,title:'Operating System and File Management',icon:'🪟',cls:'l3',
+  activities:[
+    {
+      id:'3.1',type:'match',name:'Match Window Buttons with Their Actions',
+      instruction:'Match each window button with its correct action.',
+      pairs:[
+        {l:'➖ Minimize',r:'Hides the window to the task bar',li:'➖',ri:'📥'},
+        {l:'⬜ Maximize',r:'Enlarges the window to fill the entire screen',li:'⬜',ri:'🔍'},
+        {l:'❌ Close',r:'Completely closes the window',li:'❌',ri:'🚪'},
+        {l:'🔲 Resize',r:'Changes the size by dragging the edges',li:'🔲',ri:'↔️'}
+      ]
+    },
+    {
+      id:'3.2',type:'match',name:'Match File Extensions with Content',
+      instruction:'Match each file extension with its correct content type.',
+      pairs:[
+        {l:'.txt',r:'A file with text',li:'📄',ri:'📝'},
+        {l:'.mp3',r:'A file with voice / sound',li:'🎵',ri:'🔊'},
+        {l:'.jpg',r:'A file with images',li:'🖼️',ri:'📷'},
+        {l:'.avi',r:'A file with video',li:'🎬',ri:'📹'},
+        {l:'.docx',r:'A word processing document',li:'📘',ri:'✍️'}
+      ]
+    },
+    {
+      id:'3.3',type:'pick',name:'Pick File Operations',
+      instruction:'Select ONLY the operations that can be done with files.',
+      items:[
+        {text:'Create a new file',icon:'🆕',correct:true},
+        {text:'Open a file',icon:'📂',correct:true},
+        {text:'Edit a file',icon:'✏️',correct:true},
+        {text:'Close a file',icon:'❌',correct:true},
+        {text:'Wash a file',icon:'🧼',correct:false},
+        {text:'Save a file',icon:'💾',correct:true},
+        {text:'Cook a file',icon:'🍳',correct:false}
+      ]
+    }
+  ]
+},
+/* ------------------- LESSON 4 ------------------- */
+{
+  id:4,title:'Using Mouse and Keyboard',icon:'🖱️',cls:'l4',
+  activities:[
+    {
+      id:'4.1',type:'match',name:'Match Mouse Parts with Their Functions',
+      instruction:'Match each part of the mouse with its correct function.',
+      pairs:[
+        {l:'🟢 Left Button',r:'Select items and open them (single/double click)',li:'🟢',ri:'👆'},
+        {l:'🔴 Right Button',r:'Opens the context menu',li:'🔴',ri:'📋'},
+        {l:'⚫ Scroll Wheel',r:'Moves the page up and down',li:'⚫',ri:'↕️'}
+      ]
+    },
+    {
+      id:'4.2',type:'match',name:'Match Keyboard Keys with Their Functions',
+      instruction:'Match each keyboard key with its correct function.',
+      pairs:[
+        {l:'⎵ Space Bar',r:'Inserts space between words',li:'⎵',ri:'↔️'},
+        {l:'⇥ Tab',r:'Inserts a large space between words',li:'⇥',ri:'➡️'},
+        {l:'↵ Enter',r:'Moves cursor one line below',li:'↵',ri:'⬇️'},
+        {l:'← Backspace',r:'Deletes one character to the left',li:'←',ri:'🗑️'},
+        {l:'⇧ Shift',r:'Types capital letters and symbols',li:'⇧',ri:'🔠'},
+        {l:'🔒 Caps Lock',r:'Types all letters in capital',li:'🔒',ri:'🅰️'}
+      ]
+    },
+    {
+      id:'4.3',type:'pick',name:'Pick Correct Mouse Usage',
+      instruction:'Select ONLY the ways you should use the mouse.',
+      items:[
+        {text:'Hold the mouse gently and correctly',icon:'✅',correct:true},
+        {text:'Squeeze the mouse tightly',icon:'💪',correct:false},
+        {text:'Keep fingers on the buttons comfortably',icon:'🖐️',correct:true},
+        {text:'Smash the mouse buttons hard',icon:'👊',correct:false},
+        {text:'Use a smooth, relaxed movement',icon:'🌊',correct:true}
+      ]
+    }
+  ]
+},
+/* ------------------- LESSON 5 (FLOW CHARTS - SPECIAL) ------------------- */
+{
+  id:5,title:'Algorithm & Flow Charts',icon:'🧩',cls:'l5',
+  activities:[
+    {
+      id:'5.1',type:'order',name:'Order the Fruit Salad Algorithm',
+      instruction:'Drag the steps to arrange the fruit salad algorithm correctly.',
+      correctOrder:[
+        {text:'Start',icon:'🚦'},
+        {text:'Find various kinds of fruits',icon:'🍎'},
+        {text:'Wash all the fruits well',icon:'🚿'},
+        {text:'Cut fruits into small pieces',icon:'🔪'},
+        {text:'Put the fruit pieces into a bowl',icon:'🥣'},
+        {text:'Add sugar and mix',icon:'🥄'},
+        {text:'Serve the prepared fruit salad',icon:'🍽️'},
+        {text:'End',icon:'🏁'}
+      ]
+    },
+    {
+      id:'5.2',type:'symmatch',name:'Match Flow Chart Symbols',
+      instruction:'Match each SYMBOL with its NAME and its MEANING. Click symbol → then click its name → then click its meaning.',
+      triples:[
+        {symbol:'oval',name:'Oval / Rounded Rectangle',meaning:'Start and End',color:'#a7f3d0'},
+        {symbol:'parallelogram',name:'Parallelogram',meaning:'Input and Output',color:'#fde68a'},
+        {symbol:'rectangle',name:'Rectangle',meaning:'Process / Action',color:'#fed7aa'},
+        {symbol:'diamond',name:'Diamond',meaning:'Decision Making',color:'#c7d2fe'},
+        {symbol:'arrow',name:'Arrow',meaning:'Direction of Data Flow',color:'#bae6fd'}
+      ]
+    },
+    {
+      id:'5.3',type:'order',name:'Order the Rectangle Area Algorithm',
+      instruction:'Drag the steps to arrange the rectangle area algorithm correctly.',
+      correctOrder:[
+        {text:'Start',icon:'🚦'},
+        {text:'Get the length of the rectangle',icon:'📏'},
+        {text:'Get the width of the rectangle',icon:'📐'},
+        {text:'Area = Length × Width',icon:'✖️'},
+        {text:'Get the area of the rectangle',icon:'📊'},
+        {text:'End',icon:'🏁'}
+      ]
+    },
+    {
+      id:'5.4',type:'bucket',name:'Sort Input, Process, Output',
+      instruction:'Sort these items into Input, Process, or Output. (Click item, then click bucket.)',
+      buckets:[
+        {name:'📥 Input',items:['Fruits','Length and width','Student marks']},
+        {name:'⚙️ Process',items:['Washing fruits','Length × Width','Adding sugar']},
+        {name:'📤 Output',items:['Fruit salad','Area of rectangle','Total marks']}
+      ]
+    }
+  ]
+},
+/* ------------------- LESSON 6 ------------------- */
+{
+  id:6,title:'Using the Internet',icon:'🌐',cls:'l6',
+  activities:[
+    {
+      id:'6.1',type:'bucket',name:'Sort Web Browsers and Search Engines',
+      instruction:'Sort each item into the correct category. (Click item, then click bucket.)',
+      buckets:[
+        {name:'🌐 Web Browsers',items:['Google Chrome','Mozilla Firefox','Internet Explorer']},
+        {name:'🔍 Search Engines',items:['Google','Yahoo','Bing']}
+      ]
+    },
+    {
+      id:'6.2',type:'pick',name:'Pick Safe Internet Practices',
+      instruction:'Select ONLY the safe practices for using the internet.',
+      items:[
+        {text:'Use strong passwords with letters, numbers & symbols',icon:'🔐',correct:true},
+        {text:'Open e-mails from unknown senders',icon:'📧',correct:false},
+        {text:'Always log out after using a website',icon:'🚪',correct:true},
+        {text:'Share your password with friends',icon:'🗣️',correct:false},
+        {text:'Get help from teachers or parents when browsing',icon:'👨‍👩‍👧',correct:true},
+        {text:'Click any link that looks interesting',icon:'🖱️',correct:false}
+      ]
+    },
+    {
+      id:'6.3',type:'match',name:'Match Internet Terms with Meanings',
+      instruction:'Match each internet term with its correct meaning.',
+      pairs:[
+        {l:'🌐 Internet',r:'A large collection of computer networks',li:'🌐',ri:'🕸️'},
+        {l:'🧭 Web Browser',r:'Software used to view web pages',li:'🧭',ri:'📄'},
+        {l:'🔍 Search Engine',r:'Software that finds information online',li:'🔍',ri:'🔎'},
+        {l:'🔐 Password',r:'A secret word to protect your account',li:'🔐',ri:'🗝️'},
+        {l:'📧 E-mail',r:'Service used to send messages online',li:'📧',ri:'✉️'}
+      ]
+    },
+    {
+      id:'6.4',type:'match',name:'Web Browser vs Search Engine',
+      instruction:'Match each fact with the correct category.',
+      pairs:[
+        {l:'Used to access websites and view web pages',r:'🌐 Web Browser',li:'📄',ri:'🌐'},
+        {l:'Finds information from a vast collection',r:'🔍 Search Engine',li:'🔎',ri:'🔍'},
+        {l:'Opens the website using a web address',r:'🌐 Web Browser',li:'🔗',ri:'🌐'},
+        {l:'Provides a list of relevant websites',r:'🔍 Search Engine',li:'📋',ri:'🔍'}
+      ]
+    }
+  ]
+}
+];
+
+/* ================================================================
+   FLOATING DECORATIONS
+   ================================================================ */
+const FLOAT_EMOJIS=['💻','🖱️','⌨️','📀','🖥️','📱','⭐','🎮','📁','🔍','🌐','💾','🖨️','📸','🎵','✏️'];
+function buildFloaters(){
+  const c=document.getElementById('floaters');
+  const positions=[
+    {top:'8%',left:'3%'},{top:'16%',right:'5%'},{top:'32%',left:'2%'},
+    {top:'48%',right:'3%'},{top:'62%',left:'4%'},{top:'78%',right:'4%'},
+    {top:'88%',left:'8%'},{top:'12%',right:'12%'},{top:'55%',left:'8%'},
+    {top:'72%',right:'10%'}
+  ];
+  positions.forEach((p,i)=>{
+    const d=document.createElement('div');
+    d.className='floater';
+    d.textContent=FLOAT_EMOJIS[i%FLOAT_EMOJIS.length];
+    Object.assign(d.style,p);
+    d.style.animationDelay=(i*.7)+'s';
+    d.style.animationDuration=(11+Math.random()*8)+'s';
+    c.appendChild(d);
+  });
+}
+
+/* ================================================================
+   STATE + ROUTER
+   ================================================================ */
+const state={currentLesson:null,currentActivity:null,completed:{}};
+function render(html){document.getElementById('app').innerHTML=html;}
+function goHome(){sfx.click();state.currentLesson=null;state.currentActivity=null;switchMusic('home');renderHome();}
+function goLesson(id){sfx.click();state.currentLesson=LESSONS.find(l=>l.id===id);renderLesson();}
+function goActivity(lid,aid){
+  sfx.click();
+  state.currentLesson=LESSONS.find(l=>l.id===lid);
+  state.currentActivity=state.currentLesson.activities.find(a=>a.id===aid);
+  switchMusic(state.currentActivity.type);
+  renderActivity();
+}
+
+/* ================================================================
+   HOME
+   ================================================================ */
+function renderHome(){
+  let cards='';
+  LESSONS.forEach(l=>{
+    const done=l.activities.filter(a=>state.completed[l.id+'-'+a.id]).length;
+    cards+=`
+      <div class="lesson-card ${l.cls}" onclick="goLesson(${l.id})">
+        <div class="lesson-num">Lesson ${l.id}</div>
+        <div class="lesson-icon">${l.icon}</div>
+        <div class="lesson-title">${l.title}</div>
+        <div class="lesson-progress">${done}/${l.activities.length} completed</div>
+      </div>`;
+  });
+  render(`
+    <section class="screen active">
+      <div class="hero">
+        <svg class="hero-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#0f766e" stroke-width="7" stroke-linecap="round">
+            <line x1="70" y1="22" x2="70" y2="44"/><line x1="95" y1="22" x2="95" y2="44"/>
+            <line x1="120" y1="22" x2="120" y2="44"/><line x1="145" y1="22" x2="145" y2="44"/>
+            <line x1="70" y1="156" x2="70" y2="178"/><line x1="95" y1="156" x2="95" y2="178"/>
+            <line x1="120" y1="156" x2="120" y2="178"/><line x1="145" y1="156" x2="145" y2="178"/>
+            <line x1="22" y1="70" x2="44" y2="70"/><line x1="22" y1="95" x2="44" y2="95"/>
+            <line x1="22" y1="120" x2="44" y2="120"/><line x1="22" y1="145" x2="44" y2="145"/>
+            <line x1="156" y1="70" x2="178" y2="70"/><line x1="156" y1="95" x2="178" y2="95"/>
+            <line x1="156" y1="120" x2="178" y2="120"/><line x1="156" y1="145" x2="178" y2="145"/>
+          </g>
+          <rect x="44" y="44" width="112" height="112" rx="26" fill="#14b8a6"/>
+          <rect x="56" y="56" width="88" height="88" rx="18" fill="#5eead4"/>
+          <circle cx="82" cy="90" r="12" fill="#fff"/>
+          <circle cx="118" cy="90" r="12" fill="#fff"/>
+          <circle cx="84" cy="92" r="6" fill="#1f2d3d"/>
+          <circle cx="120" cy="92" r="6" fill="#1f2d3d"/>
+          <circle cx="86" cy="89" r="2" fill="#fff"/>
+          <circle cx="122" cy="89" r="2" fill="#fff"/>
+          <circle cx="66" cy="110" r="7" fill="#fb7185" opacity=".55"/>
+          <circle cx="134" cy="110" r="7" fill="#fb7185" opacity=".55"/>
+          <path d="M86 116 Q100 132 114 116" stroke="#1f2d3d" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="30" cy="140" r="13" fill="#fbbf24"/>
+          <circle cx="170" cy="140" r="13" fill="#fbbf24"/>
+          <line x1="60" y1="44" x2="48" y2="22" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="47" cy="20" r="7" fill="#fb7185"/>
+          <line x1="140" y1="44" x2="152" y2="22" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="153" cy="20" r="7" fill="#fb7185"/>
+        </svg>
+        <div class="hero-bubble">Hi! I'm your ICT friend 🤖 Let's learn Grade 6 ICT with fun games! 🎓✨</div>
+      </div>
+      <h1>Grade 6 ICT Game World 🎮</h1>
+      <p class="sub">Pick a lesson. Each lesson has 3–4 activities. Complete them all to earn stars! ⭐</p>
+      <div class="lesson-grid">${cards}</div>
+    </section>
+  `);
+}
+
+/* ================================================================
+   LESSON VIEW
+   ================================================================ */
+function renderLesson(){
+  const l=state.currentLesson;if(!l)return goHome();
+  let items='';
+  l.activities.forEach((a,i)=>{
+    const done=state.completed[l.id+'-'+a.id];
+    items+=`
+      <div class="act-item ${done?'done':''}" onclick="goActivity(${l.id},'${a.id}')">
+        <div class="act-num">${done?'✓':i+1}</div>
+        <div class="act-name">${a.name}</div>
+        <div class="act-type">${typeLabel(a.type)}</div>
+      </div>`;
+  });
+  render(`
+    <section class="screen active">
+      <div class="act-header"><button class="btn ghost small" onclick="goHome()">← Home</button></div>
+      <h1>${l.icon} Lesson ${l.id}</h1>
+      <h2 style="color:var(--teal-d);font-size:16px;">${l.title}</h2>
+      <p class="sub">Choose an activity 👇</p>
+      <div class="act-list">${items}</div>
+    </section>
+  `);
+}
+function typeLabel(t){
+  return {mcq:'Quiz',match:'Matching',order:'Ordering',bucket:'Sorting',pick:'Selecting',symmatch:'Symbol Match'}[t]||'';
+}
+
+/* ================================================================
+   ACTIVITY DISPATCH
+   ================================================================ */
+function renderActivity(){
+  const a=state.currentActivity,l=state.currentLesson;
+  if(!a||!l)return goHome();
+  render(`
+    <section class="screen active">
+      <div class="act-header">
+        <button class="btn ghost small" onclick="goLesson(${l.id})">← Lesson</button>
+        <div class="score-pill" id="scorePill">Score: 0</div>
+      </div>
+      <h1 style="font-size:19px;">${a.name}</h1>
+      <div class="act-body" id="actBody"></div>
+    </section>
+  `);
+  const c=document.getElementById('actBody');
+  const fns={mcq:renderMCQ,match:renderMatch,order:renderOrder,bucket:renderBucket,pick:renderPick,symmatch:renderSymMatch};
+  (fns[a.type]||renderMCQ)(c,a);
+}
+
+/* ================================================================
+   MCQ
+   ================================================================ */
+function renderMCQ(c,a){
+  let idx=0,score=0;const total=a.questions.length;
+  function draw(){
+    if(idx>=total)return finish();
+    const q=a.questions[idx];
+    c.innerHTML=`
+      <div class="act-instruction">${a.instruction}</div>
+      <div style="font-size:12.5px;color:var(--muted);font-weight:900;margin-bottom:6px;">
+        Question ${idx+1} / ${total}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts"></div>
+      <div class="feedback" id="fb"></div>`;
+    const o=document.getElementById('opts');
+    q.opts.forEach((t,i)=>{
+      const b=document.createElement('button');
+      b.className='opt';b.textContent=t;
+      b.onclick=()=>pick(i,b);o.appendChild(b);
+    });
+    document.getElementById('scorePill').textContent=`Score: ${score} / ${total}`;
+  }
+  function pick(i,btn){
+    const q=a.questions[idx];const all=document.querySelectorAll('.opt');
+    all.forEach(x=>x.disabled=true);
+    if(i===q.ans){btn.classList.add('correct');score++;sfx.correct();
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Correct! 🎉</span>';}
+    else{btn.classList.add('wrong');all[q.ans].classList.add('correct');sfx.wrong();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Wrong. Green shows the correct answer.</span>';}
+    document.getElementById('scorePill').textContent=`Score: ${score} / ${total}`;
+    setTimeout(()=>{idx++;draw();},1600);
+  }
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;sfx.win();
+    const stars=score===total?3:score>=total*.6?2:1;
+    c.innerHTML=`
+      <div class="result-box">
+        <div class="result-emoji">${stars===3?'🏆':stars===2?'👏':'💪'}</div>
+        <h2 style="color:var(--teal-d);">Complete!</h2>
+        <div class="stars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+        <p class="result-msg">You scored <b>${score} / ${total}</b></p>
+        <div class="btn-row">
+          <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Lesson</button>
+          <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+        </div>
+      </div>`;
+  }
+  draw();
+}
+
+/* ================================================================
+   MATCH (with icons)
+   ================================================================ */
+function renderMatch(c,a){
+  const pairs=a.pairs;
+  const left=pairs.map((p,i)=>({text:p.l,key:i,icon:p.li}));
+  const right=shuffle(pairs.map((p,i)=>({text:p.r,key:i,icon:p.ri})));
+  let sel=null,matched=0,wrongAttempts=0;const total=pairs.length;
+  function updatePill(){document.getElementById('scorePill').textContent=`Matched: ${matched} / ${total}`;}
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="match-wrap"><div class="match-col" id="lc"></div><div class="match-col" id="rc"></div></div>
+    <div class="feedback" id="fb"></div>`;
+  const lc=document.getElementById('lc'),rc=document.getElementById('rc');
+  left.forEach(it=>{
+    const d=document.createElement('div');d.className='match-item';
+    d.innerHTML=`<span class="match-icon">${it.icon||''}</span><span>${it.text}</span>`;
+    d.dataset.key=it.key;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#lc .match-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');sel={el:d,it};};
+    lc.appendChild(d);
+  });
+  right.forEach(it=>{
+    const d=document.createElement('div');d.className='match-item';
+    d.innerHTML=`<span class="match-icon">${it.icon||''}</span><span>${it.text}</span>`;
+    d.dataset.key=it.key;
+    d.onclick=()=>{
+      if(d.classList.contains('matched'))return;
+      if(!sel){document.getElementById('fb').textContent='Select an item from the left first.';return;}
+      if(sel.it.key===it.key){
+        sel.el.classList.remove('selected');sel.el.classList.add('matched');d.classList.add('matched');
+        matched++;sfx.correct();updatePill();
+        document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Correct match! 👏</span>';
+        sel=null;if(matched===total)finish();
+      }else{
+        d.classList.add('shake');const sl=sel.el;sl.classList.add('shake');
+        setTimeout(()=>{d.classList.remove('shake');sl.classList.remove('shake');},450);
+        sfx.wrong();wrongAttempts++;
+        document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Not a match. Try again.</span>';
+        sl.classList.remove('selected');sel=null;
+      }
+    };
+    rc.appendChild(d);
+  });
+  updatePill();
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;
+    setTimeout(()=>{
+      sfx.win();
+      const stars=wrongAttempts===0?3:wrongAttempts<=2?2:1;
+      c.innerHTML=`
+        <div class="result-box">
+          <div class="result-emoji">${stars===3?'🌟':stars===2?'👏':'💪'}</div>
+          <h2 style="color:var(--teal-d);">All matched!</h2>
+          <div class="stars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+          <p class="result-msg">Wrong attempts: <b>${wrongAttempts}</b></p>
+          <div class="btn-row">
+            <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Lesson</button>
+            <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+          </div>
+        </div>`;
+    },900);
+  }
+}
+
+/* ================================================================
+   SYMBOL MATCH (Special for flow charts!)
+   ================================================================ */
+function renderSymMatch(c,a){
+  const triples=a.triples;
+  // Build a shuffled symbol column, name column, and meaning column
+  const symbolOrder=shuffle(triples.map((t,i)=>({...t,key:i})));
+  const nameOrder=shuffle(triples.map((t,i)=>({...t,key:i})));
+  const meaningOrder=shuffle(triples.map((t,i)=>({...t,key:i})));
+
+  let selSym=null,selName=null,selMean=null;
+  let matchedCount=0;
+  const total=triples.length;
+  const wrongAttempts=0;
+
+  function updatePill(){
+    document.getElementById('scorePill').textContent=`Matched: ${matchedCount} / ${total}`;
+  }
+
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-weight:900;font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px;">
+      <div>SYMBOL</div><div>NAME</div><div>MEANING</div>
+    </div>
+    <div class="sym-match-wrap">
+      <div id="symCol" style="display:grid;gap:10px;"></div>
+      <div id="nameCol" style="display:grid;gap:10px;"></div>
+      <div id="meanCol" style="display:grid;gap:10px;"></div>
+    </div>
+    <div class="feedback" id="fb"></div>
+  `;
+
+  const symCol=document.getElementById('symCol');
+  const nameCol=document.getElementById('nameCol');
+  const meanCol=document.getElementById('meanCol');
+
+  symbolOrder.forEach(t=>{
+    const d=document.createElement('div');d.className='sym-card';d.dataset.key=t.key;
+    d.innerHTML=`<div style="display:flex;justify-content:center;">${SYMBOLS[t.symbol]}</div>`;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#symCol .sym-card').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selSym={el:d,key:t.key};checkTriple();};
+    symCol.appendChild(d);
+  });
+
+  nameOrder.forEach(t=>{
+    const d=document.createElement('div');d.className='sym-card';d.dataset.key=t.key;
+    d.innerHTML=`<span style="font-size:13px;">${t.name}</span>`;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#nameCol .sym-card').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selName={el:d,key:t.key};checkTriple();};
+    nameCol.appendChild(d);
+  });
+
+  meaningOrder.forEach(t=>{
+    const d=document.createElement('div');d.className='sym-card';d.dataset.key=t.key;
+    d.innerHTML=`<span style="font-size:13px;">${t.meaning}</span>`;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#meanCol .sym-card').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selMean={el:d,key:t.key};checkTriple();};
+    meanCol.appendChild(d);
+  });
+
+  updatePill();
+
+  function checkTriple(){
+    if(selSym&&selName&&selMean){
+      const k1=selSym.key,k2=selName.key,k3=selMean.key;
+      if(k1===k2 && k2===k3){
+        // Correct triple!
+        [selSym.el,selName.el,selMean.el].forEach(el=>{
+          el.classList.remove('selected');el.classList.add('matched');
+        });
+        matchedCount++;sfx.correct();
+        document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Correct triple! 🎉</span>';
+        selSym=selName=selMean=null;
+        updatePill();
+        if(matchedCount===total)finish();
+      }else{
+        // Wrong
+        [selSym.el,selName.el,selMean.el].forEach(el=>{
+          el.classList.add('shake');
+          setTimeout(()=>el.classList.remove('shake'),450);
+        });
+        sfx.wrong();
+        document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Not a correct triple. Try again.</span>';
+        setTimeout(()=>{
+          [selSym.el,selName.el,selMean.el].forEach(el=>el.classList.remove('selected'));
+          selSym=selName=selMean=null;
+        },500);
+      }
+    }
+  }
+
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;
+    setTimeout(()=>{
+      sfx.win();
+      c.innerHTML=`
+        <div class="result-box">
+          <div class="result-emoji">🏆</div>
+          <h2 style="color:var(--teal-d);">All Flow Chart Symbols Matched!</h2>
+          <div class="stars">⭐⭐⭐</div>
+          <p class="result-msg">Great work! You know your flow chart symbols well.</p>
+          <div class="btn-row">
+            <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Lesson</button>
+            <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+          </div>
+        </div>`;
+    },900);
+  }
+}
+
+/* ================================================================
+   ORDER
+   ================================================================ */
+function renderOrder(c,a){
+  const correct=a.correctOrder.map(x=>typeof x==='string'?x:x.text);
+  const icons=a.correctOrder.map(x=>typeof x==='string'?null:x.icon);
+  let current=shuffle(a.correctOrder.map((x,i)=>({text:typeof x==='string'?x:x.text,icon:typeof x==='string'?null:x.icon,orig:i})));
+
+  function draw(){
+    c.innerHTML=`
+      <div class="act-instruction">${a.instruction}</div>
+      <div class="order-list" id="ol"></div>
+      <div class="btn-row" style="margin-top:16px;">
+        <button class="btn indigo" id="ck">✔ Check</button>
+      </div>
+      <div class="feedback" id="fb"></div>`;
+    const list=document.getElementById('ol');
+    current.forEach((it,i)=>{
+      const d=document.createElement('div');d.className='order-item';
+      d.innerHTML=`
+        <div class="num">${i+1}</div>
+        <div class="txt">${it.icon?`<span style="font-size:20px;">${it.icon}</span>`:''}<span>${it.text}</span></div>
+        <div class="movers">
+          <button class="mover" ${i===0?'disabled':''} data-dir="up">▲</button>
+          <button class="mover" ${i===current.length-1?'disabled':''} data-dir="down">▼</button>
+        </div>`;
+      list.appendChild(d);
+      d.querySelector('[data-dir="up"]').onclick=()=>swap(i,i-1);
+      d.querySelector('[data-dir="down"]').onclick=()=>swap(i,i+1);
+    });
+    document.getElementById('ck').onclick=check;
+  }
+  function swap(i,j){
+    if(j<0||j>=current.length)return;sfx.click();
+    [current[i],current[j]]=[current[j],current[i]];draw();
+  }
+  function check(){
+    let allCorrect=true;
+    document.querySelectorAll('.order-item').forEach((el,i)=>{
+      if(current[i].text===correct[i])el.classList.add('correct');
+      else allCorrect=false;
+    });
+    if(allCorrect){
+      sfx.correct();
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Correct order! 🎉</span>';
+      state.completed[state.currentLesson.id+'-'+a.id]=true;
+      setTimeout(()=>{
+        sfx.win();
+        c.innerHTML=`
+          <div class="result-box">
+            <div class="result-emoji">✅</div>
+            <h2 style="color:var(--teal-d);">Well done!</h2>
+            <div class="stars">⭐⭐⭐</div>
+            <div class="btn-row">
+              <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Lesson</button>
+              <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+            </div>
+          </div>`;
+      },1400);
+    }else{
+      sfx.wrong();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Some steps are wrong. Try again.</span>';
+      setTimeout(()=>{document.querySelectorAll('.order-item.correct').forEach(el=>el.classList.remove('correct'));},1400);
+    }
+  }
+  draw();
+}
+
+/* ================================================================
+   BUCKET
+   ================================================================ */
+function renderBucket(c,a){
+  const allItems=[];a.buckets.forEach((b,bi)=>b.items.forEach(t=>allItems.push({text:t,bucket:bi})));
+  const pool=shuffle(allItems.slice());let selected=null,placed=0;const total=allItems.length;
+  function updatePill(){document.getElementById('scorePill').textContent=`Score: ${placed} / ${total}`;}
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="bucket-items" id="pool"></div>
+    <div class="buckets" id="bks"></div>
+    <div class="feedback" id="fb"></div>`;
+  const poolEl=document.getElementById('pool');
+  pool.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='b-item';d.textContent=it.text;
+    d.onclick=()=>{
+      if(d.classList.contains('placed'))return;sfx.click();
+      document.querySelectorAll('.b-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selected={el:d,item:it};
+    };
+    poolEl.appendChild(d);
+  });
+  const bksEl=document.getElementById('bks');
+  a.buckets.forEach((b,bi)=>{
+    const d=document.createElement('div');d.className='bucket';d.dataset.bi=bi;
+    d.innerHTML=`<div class="bucket-title">${b.name}</div><div class="bucket-contents"></div>`;
+    d.onclick=()=>drop(bi,d);bksEl.appendChild(d);
+  });
+  updatePill();
+  function drop(bi,el){
+    if(!selected)return;const it=selected.item;
+    if(it.bucket===bi){
+      el.classList.add('active');setTimeout(()=>el.classList.remove('active'),500);
+      const chip=document.createElement('div');chip.className='b-chip';chip.textContent=it.text;
+      el.querySelector('.bucket-contents').appendChild(chip);
+      selected.el.classList.remove('selected');selected.el.classList.add('placed');
+      selected=null;placed++;sfx.correct();
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Correct bucket!</span>';
+      updatePill();
+      if(placed===total)finish();
+    }else{
+      el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),450);sfx.wrong();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Wrong bucket. Try again.</span>';
+    }
+  }
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;
+    setTimeout(()=>{
+      sfx.win();
+      c.innerHTML=`
+        <div class="result-box">
+          <div class="result-emoji">🗂️</div>
+          <h2 style="color:var(--teal-d);">All sorted!</h2>
+          <div class="stars">⭐⭐⭐</div>
+          <div class="btn-row">
+            <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Lesson</button>
+            <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+          </div>
+        </div>`;
+    },900);
+  }
+}
+
+/* ================================================================
+   PICK
+   ================================================================ */
+function renderPick(c,a){
+  const items=shuffle(a.items.slice());const picked=new Set();
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="pick-list" id="pl"></div>
+    <div class="btn-row" style="margin-top:16px;">
+      <button class="btn indigo" id="ck">✔ Check</button>
+    </div>
+    <div class="feedback" id="fb"></div>`;
+  const list=document.getElementById('pl');
+  items.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='pick-item';
+    d.innerHTML=`<div class="pick-box"></div>${it.icon?`<span class="pick-icon">${it.icon}</span>`:''}<div style="flex:1;">${it.text}</div>`;
+    d.onclick=()=>{
+      sfx.click();
+      if(picked.has(i)){picked.delete(i);d.classList.remove('picked');d.querySelector('.pick-box').textContent='';}
+      else{picked.add(i);d.classList.add('picked');d.querySelector('.pick-box').textContent='✓';}
+    };
+    list.appendChild(d);
+  });
+  document.getElementById('ck').onclick=()=>{
+    let correct=true;
+    document.querySelectorAll('.pick-item').forEach((el,i)=>{
+      const it=items[i];const wasPicked=picked.has(i);
+      if(it.correct&&wasPicked){el.classList.remove('picked');el.classList.add('correct');el.querySelector('.pick-box').textContent='✓';}
+      else if(it.correct&&!wasPicked){el.classList.add('correct');el.querySelector('.pick-box').textContent='✓';correct=false;}
+      else if(!it.correct&&wasPicked){el.classList.remove('picked');el.classList.add('wrong');el.querySelector('.pick-box').textContent='✘';correct=false;}
+    });
+    if(correct){
+      sfx.correct();
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Perfect! All correct! 🎉</span>';
+      state.completed[state.currentLesson.id+'-'+a.id]=true;
+      setTimeout(()=>{
+        sfx.win();
+        c.innerHTML=`
+          <div class="result-box">
+            <div class="result-emoji">🌟</div>
+            <h2 style="color:var(--teal-d);">Excellent!</h2>
+            <div class="stars">⭐⭐⭐</div>
+            <div class="btn-row">
+              <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Lesson</button>
+              <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+            </div>
+          </div>`;
+      },1500);
+    }else{
+      sfx.wrong();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Some are wrong. Look at the red/green marks.</span>';
+    }
+  };
+}
+
+/* ================================================================
+   UTIL + INIT
+   ================================================================ */
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+document.addEventListener('pointerdown',ensureAudio,{once:true});
+buildFloaters();
+renderHome();
+</script>
+</body>
+</html>

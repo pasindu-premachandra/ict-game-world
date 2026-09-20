@@ -1,0 +1,403 @@
+    Information and
+Communication Technology
+
+            Syllabus
+
+                Grade 7
+
+                                   To be implemented from 2018
+
+                                      Department of Information Technology
+                                         Faculty of Science and Technology
+                                            National Institute of Education
+                                                       Maharagama
+                                                         Sri Lanka
+                                                        www.nie.lk
+
+                                                                   1
+Information and Communication Technology (ICT)
+Grade 07 ­Syllabus
+
+©National Institute of Education (NIE)
+First Print 2018
+
+ISBN:
+
+Department of Information Technology
+Faculty of Science and Technology
+National Institute of Education
+Maharagama
+www.nie.lk
+
+Printed by
+                                                                                        i
+CONTENTS                                                       Page No
+
+1.0 Introduction                                               ii
+
+2.0 Common National Goals                                      iii
+
+3.0 Basic Competencies                                         iv-v
+
+4.0 Aims of the Information and Communication Technology Curriculum vi
+
+5.0 How the national goals are addressed in the curriculum     vii
+
+6.0 Syllabus                                                   1-4
+
+                                                            i
+                                                                 1. Introduction
+
+         The Information and Communication Technology sector is acknowledged worldwide as a tool that could be used to increase the
+productivity, efficiency and effectiveness of work. However, in Sri Lanka, the level of ICT skills of the majority of the students is not adequate
+to meet the current requirements of business and industry. This is mainly due to lack of opportunities for students to study ICT related subjects in
+the school curriculum.. The student should learn at school a wide variety of competencies for different needs of life in the changing world. They
+should have various views and different ways to continue studies and proceed to employment.
+
+         At present ICT is taught as a subject at G.C.E. (O/L) in a limited number of schools and at G.C.E. (A/L) in even less number of schools
+in Sri Lanka. In this situation students officially start to learn ICT at Grade 10 and as a result a heavy load of subject matter has to be included in
+ICT at G.C.E. (O/L). Distribution of ICT subject matter over lower Grades will definitely reduce this load and provide students with opportunity
+to learn ICT at early stages of school life. Therefore it has been decided to implement ICT as a subject from Grade 6 onward.
+
+         The time allocated for ICT at Grade 7 is limited to 30 Periods (40 minutes per Period) per year only. During this period, learning is more
+focused on practical aspects of the subject with limited amount of theoretical content. This is a continuation of the Grade 6 ICT curriculum.
+More emphasis is placed on programming concept and inclusion of simple programming of hardware devices is also introduced at Grade 7.
+Students are expected to build ICT concepts through interaction with hardware and software of ICT.
+
+                                                                                               ii
+                                                          2. National Goals
+
+1. Based on the concept of respecting human values and understanding the differences between the Sri Lankan multi-cultural society,
+       building up the nation and confirming the identity of Sri Lanka by promoting national integrity, national unity, national coherence
+       and peace
+
+2. While responding to the challenges of the dynamic world, identifying and conserving the National heritage.
+3. Creating an environment which comprises of the conventions of social justice and the democratic life to promote the characteristics
+
+       of respecting the human rights, being aware of the responsibilities, concerning each other with affectionate relationships.
+4. Promoting a sustainable life style based on the people's mental and physical well-being and the concept of human values
+5. Promoting the positive feelings needed for balanced personality with the qualities of creative skills, initiative, critical thinking and
+
+       being responsible
+6. Through education, developing the human resources, needed for the progress of the well-being of an individual, the nation as well
+
+       as the economic growth of Sri Lanka.
+7. Preparing the people for the changes that occur in a rapidly changing world by adapting to it and controlling them; developing
+
+       abilities and potentialities of people to face the complex and unexpected occasions.
+8. Sustaining the skills and attitudes based on justice, equality, mutual respect which is essential to achieve a respectable place in the
+
+       international community.
+                                                                                                               National Education Commission Report (2003)
+
+                                                                                      iii
+                                                  3. Basic Competencies
+
+The competencies promoted though the education mentioned below might help to achieve the above mentioned National Goals.
+ (i.) Competencies in Communication
+         This set of competencies is made up of four subsets - Literacy, Numeracy, Graphics and Information & Communication Technology
+         skills:
+                  Literacy : Carefully listening, speaking clearly, reading for comprehension, writing clearly and accurately.
+                  Numeracy : Using numbers to count, calculate, code and to measure, matter, space and time.
+                  Graphics : Making sense of line and form, expressing and recording essential data, instructions and ideas with line, form,
+                                    color, two and three-dimensional configurations, graphic symbols and icons
+                  ICT Competencies: Knowledge on computers, and the ability to use the ICT skills at learning or work as well as in the private
+                                    life
+
+(ii.) Competencies relating to the Personality Development
+                - Generic skills such as creativity, divergent thinking, initiative, decision making, problem-solving, critical and analytical
+                    thinking, team work, inter-personal relationships, discovering and exploring
+                - Values such as integrity, tolerance and respect for human dignity.
+                - Cognition
+
+(iii.) Competencies relating to the Environment.
+
+This set of competencies relates to the Social, Biological and Physical Environments.
+
+Social Environment:  Awareness, sensitivity and skills linked to being a member of society, social relationship, personal
+
+                     conduct, general and legal conventions, rights, responsibilities, duties and obligations.
+
+Biological Environment: Awareness, sensitivity and skills linked to the living world, man and the ecosystem, the trees,
+
+                     forests, seas, water, air and life - plant, animal and human life.
+
+                                                  iv
+Physical Environment:  Awareness, sensitivity and skills relating to space, energy, fuels, matter, materials and their links
+                       with human living, food, clothing, shelter, health, comfort, respiration, sleep, relaxation, rest,
+                       wastes and excretion, media of communication and transport.
+                       Included here are the skills in using tools to shape and for materials for living and learning.
+
+(iv.) Competencies relating to preparation for the world of work
+                Employment related skills to maximize their potential and to enhance their capacity to contribute to economic development; to
+                discover their vocational interests and aptitudes; to choose a job that suits their abilities and; to engage in a rewarding and
+                sustainable livelihood
+
+(v.) Competencies relating to religion and ethics
+                This set of competencies deals with values and attitudes. It is essential for individuals to assimilate values, so that they may
+                function in a manner consistent with the ethical, moral and religious modes of conduct, rituals, practices in everyday living,
+                selecting the most appropriate.
+
+(vi.) Competencies in play and use of leisure
+                Competencies that link up with pleasure, joy, emotions and such human motivations. These find expression in play, sports,
+                athletics and leisure pursuit of many types. These also link up with such values as cooperation, team work, healthy competition in
+                life and work. Here are included such activities as are involved in aesthetics, arts, drama, literature, exploratory research and other
+                creative modes in human living
+
+(vii.) Competencies relating to `Learning to Learn'.
+                These competencies flow directly from the nature of a rapidly changing, complex and interdependent and crowded world.
+                Whatever one learns, that learning will need updating and review. This requires that one should be aware of, sensitive and skilful
+                in sustained attention, and be willing to persevere and attend to details that matter in a given situation.
+
+                       v
+                        4. Aims of the Information and Communication Technology (ICT) Curriculum
+
+         Such a surge in the growth, development and the application of Information Communication Technology as today has never been
+experienced before. The importance and relevance of ICT to almost all walks of life today has made it all the more important that knowledge and
+expertise, both practical and theoretical, of its application, should begin at the very grassroots level of education.
+Aims to be achieved by the course are as follows:
+
+     Develop basic skills useful to access ICT resources.
+     Develop basic concepts in programming.
+     Inculcate basic good practices in the use of ICT resources
+     Inculcate basic computer literacy and develop a base for further pursuit of Information Technology and Communication Technology
+
+         studies.
+
+                                                                                              vi
+5. How the national goals are addressed in this curriculum
+
+National Goals                              Curriculum Aims                         Curriculum Objectives (competencies)
+                                            Develop basic concepts in               Develops simple programs (5)
+Promoting the positive feelings needed      programming.
+ for balanced personality with the                                                  Identifies the organization of the
+ qualities of creative skills, initiative,       Develop basic skills useful to     Computer (1)
+ critical thinking and being responsible             access ICT resources.          Explores the functions of Operating
+Through education, developing the                                                   System (2)
+ human resources, needed for the                 Inculcate basic good practices in  Use of word-processing software in day
+ progress of the wellbeing of an                     the use of ICT resources       today activities. (4)
+ individual, the nation as well as the                                              Uses software package for physical
+ economic growth of Sri Lanka.                                                      computing to implement programming
+                                                                                    logic(6)
+                                                                                    Uses Internet for Information
+                                                                                    And Communication (7)
+
+Preparing the people for the changes        Inculcate basic computer literacy and   Uses various Safety precautions in a
+that occur in a rapidly changing world                                              computer lab. (3)
+by adapting to it and controlling them;     develop a base for further pursuit of
+developing abilities and potentialities
+of people to face the complex and           Information  Technology            and
+unexpected occasions.
+                                            Communication Technology studies.
+
+                                                            vii
+                                                        Grade 7 Syllabus
+                                      Information and Communication Technology
+
+Competency        Competency level            Content                                  Learning outcomes                 Duration/
+                                               Different types of CPU                                                    Periods
+1. Identifies the 1.1 Identifies the                                                   i. Explains functions of          01
+                                               Brief history of Processor Element         Arithmetic and Logical Unit
+organization of   components of a                  (Vacuum Tube, Transistor, IC etc.)     (ALU) and Control Unit         01
+                                                   : Clock Speed, Size, Heat, Power       (CU)
+the Computer      CPU                              Consumption, Cost etc.                                                01
+                                                                                       i. Lists land marks of CPU
+                  1.2 Describes the            Windows, Mac OS, Linux,                    development                    01
+                       evolution of                Android, mobile OSs
+                       computers                                                       ii. Identifies the change of
+                                               Hard drive, Flash Drive, CD, DVD           processor speed and other
+2. Explores the   2.1 Describes different                                                 features
+    functions of       types of operating
+    Operating          systems                                                         i. Lists various operating
+    system                                                                                systems
+                  2.2 Identifies computer
+                       storage as a                                                    ii. Identifies operating systems
+                       collection of digital                                              in various devices
+                       data on different
+                       media                                                           i. Describes the usage of Hard
+                                                                                          drive, Flash Drive, CD,
+                  2.3 Creates folders                                                     DVD
+                       Save/open/edit/
+                       delete/ re-name/        Manipulation of Folders and Files i. Saves and opens files in             02
+                       copy/move/ files
+                                              o Copy, and move files from one folders
+                  2.4 Explores file
+                       properties             storage unit to another                  ii. Organizes files as per
+
+                                                                                       purposes
+
+                                               Identification of size, type,           i. Explains properties of files 01
+
+                                              modified date
+
+                                              8
+3. Uses various       3.1 Uses various           Surge protection and protection      i. Identifies hardware security 01
+    Safety                 precautionary            against voltage drops (Fuses and     issues.
+    precautions in         methods to protect       UPS)
+    a computer lab         physical components                                        ii. Take precautions to
+                           of a computer         Protection against physical damages     minimize risk to hardware
+                                                    (dust, humidity, insects etc.)       components
+
+                                                 Protection against overheating
+
+                                                  inside the computer
+
+                      3.2 Uses various           Use of Anti-virus and other          i. Identifies software security 01
+
+                      precautionary               measures against malware.           issues
+
+                      methods to protect          Access Controls (physical locks     ii. Take precautions to
+                      software components         and passwords )
+                      of a computer.                                                  minimize damages to
+
+                                                                                      software
+
+4. Uses text          4.1.Uses computers         Use of proper techniques in typing   i. Demonstrates skills in       01
+    editing               efficiently by            (Touch Typing )
+    software to           developing typing                                           English keyboard
+    type effectively      skills                 Use of typing practice software to
+                                                    develop typing skill              ii. Demonstrates skills in
+
+                                                                                      Sinhala/Tamil keyboard
+
+5. Uses               5.1 Analyzes simple        Use of flow charts.                  i. Demonstrates critical and 02
+    programming
+    language to       problems by                 o Sequence                          analytical thinking
+    develop simple
+    programs          decomposing and             o Selection (Concept of             techniques
+    (Using
+    Scratch)          connecting them             Selection)                          ii. Describes sequence in
+
+                      logically                   o Iteration (Concept of Iteration) flowcharts
+
+                                                                                      iii. Demonstrates the use of
+
+                      .                                                               sequence in flowcharts
+
+                                                                                      appropriately
+
+                      5.2 Develops simple        Introduction to Interactive          i. Uses Scratch programming 03
+
+                      programs using visual       Development Environment ­           IDE
+
+                      development                 Interface (IDE) to develop          ii. Applies basic instructions
+
+                      environment (Using          computer programs                   sequentially to develop
+
+                      Scratch)                   Developing simple                    simple programs
+
+                                                  programs(sequence type) using
+
+                                                  visual supports of programming
+
+                                                  language (using an Interface)
+
+                                                  Specially designed to teach
+
+                                                  programming to children
+
+                                                  9
+                  5.3 Describe the concept  Definition of variable              i. Describes the use of         02
+
+                  of variables in      Use of variables in programs                variables in a program
+                  programs                                                      ii. Writes programs with
+
+                                                                                variables appropriately
+
+                  5.4 Identifies the concept  Introduction of an error to an error- i. Describes the effect of  01
+
+                  of errors in a      free programs and observation of          errors in a program and
+
+                  program as bugs     the output                                takes precautions to avoid
+
+                                                                                errors
+
+6. Uses           6.1 Uses basic functions  Create, open, save and close a      i. Create presentation using 05
+    Presentation
+    software to   of Presentation     Presentation                              Presentation software
+    create
+    presentation  software in creating a  Add Slide
+
+                  presentation.        Inserting files/objects (text, picture,
+
+                                      shapes, clip art, word art etc.)
+
+                                       Formatting of Text
+
+                                       Add Multimedia and charts to a
+
+                                      slide
+
+                                       Slide Designs
+
+                                       Move, duplicate, Hide and Delete
+
+                                      Slides
+
+                                       Slide transitions
+
+7. Uses the       7.1 Uses resources   WWW, URL                                 i. Uses Internet for            01
+
+services of the   available in the     Download images, audio, video etc. information gathering
+Internet and      Internet (text,
+develops web      images, audios,      Accessing earth maps                     ii. Identifies trusted and
+pages             videos etc.)
+                                       Trusted and untrusted websites           untrusted websites
+
+                                       Authentic and reliable information iii. Identifies authentic and
+
+                                                                                reliable information
+
+                  7.2 Uses offline (E-mail)  Web based free E-mail              i. Communicates via e-mails 02
+
+                  and online (Chat)    Creation of accounts.                    ii. Communicates via online
+                  Communication
+                                      o Use of e-mail: Subject, To, Bcc, conferencing
+
+                                      Cc, Attachments, Forward,
+
+                                      Inbox, Outbox. Draft, Trash,
+
+                                      Spam, Reply
+
+                                       Online conferencing
+
+                                              10
+7.3 Develops web pages  Creation of a web page using text, i. Designs a simple website
+
+using HTML             images                              ii. Creates a simple website 02
+
+                       o Text formatting
+
+                       o Colors
+
+                       o Lists
+
+7.4 Uses the Internet   Protection against unauthorized    i. Uses the Internet safely       02
+
+safely, securely and   access and malware                  ii. Uses the Internet securely
+
+ethically              o Hacking                           iii. Uses the Internet ethically
+
+                       o Virus attacks
+
+                       o Software piracy
+
+                        Protection in using the Internet
+
+                       against crime
+
+                       o Cyber bullying
+
+                       o Stealing others data
+
+                        Online safety precautions against
+
+                       unknown parties (Email, social
+
+                       media etc.)
+
+                                                           Total                             30
+
+                       11
+

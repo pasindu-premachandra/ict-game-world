@@ -1,0 +1,19 @@
+check-data.mjs - parity gate against original/
+run: 2026-09-20 02:22 UTC
+---------------------------------------------------------------
+ok    grade 6  6 lessons, 22 activities, en + si rebuild matches original exactly
+ok    grade 7  7 lessons, 29 activities, en + si rebuild matches original exactly
+ok    grade 8  6 lessons, 17 activities, en + si rebuild matches original exactly
+ok    grade 9  6 lessons, 19 activities, en rebuild matches original exactly
+ok    adventure  6 lessons, 18 mini games, rebuild matches original exactly
+
+Translation notes (not failures):
+  - grade 6: 6 strings read the same in both languages (may be untranslated, may just be a term like "CPU")
+  - grade 7: 29 strings read the same in both languages (may be untranslated, may just be a term like "CPU")
+  - grade 8: 4 strings read the same in both languages (may be untranslated, may just be a term like "CPU")
+  - grade 9: 306 strings have no Sinhala yet
+  - adventure: 348 strings have no Sinhala yet
+
+All grades match their originals.
+---------------------------------------------------------------
+exit=0

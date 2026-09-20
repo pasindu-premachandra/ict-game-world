@@ -1,0 +1,1439 @@
+{
+  "grade": 8,
+  "languages": [
+    "en",
+    "si"
+  ],
+  "source": {
+    "en": "original/grade-8/english.html",
+    "si": "original/grade-8/sinhala.html"
+  },
+  "replaced": [
+    {
+      "id": 5,
+      "was": "Logic Gates",
+      "now": "Physical Computing",
+      "reason": "NIE grade 8 competency 5.1 is physical computing, not logic gates. Truth tables are O/L grade 10.",
+      "droppedActivities": 3
+    }
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "title": {
+        "en": "Number Systems",
+        "si": "සංඛ්‍යා පද්ධති"
+      },
+      "icon": "🔢",
+      "cls": "l1",
+      "activities": [
+        {
+          "id": "1.1",
+          "type": "bits",
+          "name": {
+            "en": "Build the Binary Number",
+            "si": "ද්විමය සංඛ්‍යාව සාදන්න"
+          },
+          "instruction": {
+            "en": "Toggle the bits ON or OFF to match the target decimal number. Place values: 128, 64, 32, 16, 8, 4, 2, 1.",
+            "si": "ලක්ෂ්‍ය දශම සංඛ්‍යාවට ගැලපෙන පරිදි බිටු ON/OFF කරන්න. ස්ථාන අගය: 128, 64, 32, 16, 8, 4, 2, 1."
+          },
+          "targets": [
+            13,
+            21,
+            45,
+            87,
+            100,
+            156,
+            201,
+            255
+          ]
+        },
+        {
+          "id": "1.2",
+          "type": "input",
+          "name": {
+            "en": "Convert Decimal to Binary",
+            "si": "දශමය සිට ද්විමය බවට"
+          },
+          "instruction": {
+            "en": "Type the binary equivalent of each decimal number. Use only 0 and 1.",
+            "si": "එක් එක් දශමය සංඛ්‍යාවට අදාළ ද්විමය අගය ටයිප් කරන්න. භාවිත කරන්නේ 0 සහ 1 පමණි."
+          },
+          "questions": [
+            {
+              "q": {
+                "en": "Convert 10 to binary:",
+                "si": "10 ද්විමය බවට හරවන්න:"
+              },
+              "ans": "1010",
+              "hint": "10 = 8 + 2"
+            },
+            {
+              "q": {
+                "en": "Convert 23 to binary:",
+                "si": "23 ද්විමය බවට හරවන්න:"
+              },
+              "ans": "10111",
+              "hint": "23 = 16 + 4 + 2 + 1"
+            },
+            {
+              "q": {
+                "en": "Convert 34 to binary:",
+                "si": "34 ද්විමය බවට හරවන්න:"
+              },
+              "ans": "100010",
+              "hint": "34 = 32 + 2"
+            },
+            {
+              "q": {
+                "en": "Convert 49 to binary:",
+                "si": "49 ද්විමය බවට හරවන්න:"
+              },
+              "ans": "110001",
+              "hint": "49 = 32 + 16 + 1"
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "type": "tf",
+          "name": {
+            "en": "Number System Facts",
+            "si": "සංඛ්‍යා පද්ධති ගැන කරුණු"
+          },
+          "instruction": {
+            "en": "Decide whether each statement about number systems is True or False.",
+            "si": "සංඛ්‍යා පද්ධති ගැන සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "The binary number system uses symbols 0 and 1.",
+                "si": "ද්විමය සංඛ්‍යා පද්ධතිය 0 සහ 1 සංකේත භාවිත කරයි."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "The base of the decimal number system is 2.",
+                "si": "දශමය සංඛ්‍යා පද්ධතියේ පාදය 2 වේ."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "A binary digit is called a bit.",
+                "si": "ද්විමය අංකයක් බිට් (bit) ලෙස හැඳින්වේ."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "The computer understands human language directly.",
+                "si": "පරිගණකය මිනිස් භාෂාව සෘජුවම තේරුම් ගනී."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "101₂ is equal to 5 in decimal.",
+                "si": "101₂ යනු දශමයෙන් 5 ට සමාන වේ."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "The base of the binary system is 10.",
+                "si": "ද්විමය පද්ධතියේ පාදය 10 වේ."
+              },
+              "a": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": {
+        "en": "Configuring & Formatting",
+        "si": "පරිගණකය වින්‍යාස හා සිටුවම් කිරීම"
+      },
+      "icon": "⚙️",
+      "cls": "l2",
+      "activities": [
+        {
+          "id": "2.1",
+          "type": "hotspot",
+          "name": {
+            "en": "Identify the Ports",
+            "si": "කොවෙනි හඳුනා ගන්න"
+          },
+          "instruction": {
+            "en": "Read each description and click the matching port.",
+            "si": "එක් එක් විස්තරය කියවා ගැලපෙන කොවෙනිය ක්ලික් කරන්න."
+          },
+          "rounds": [
+            {
+              "q": {
+                "en": "Which port is used to connect a monitor with a VGA cable?",
+                "si": "VGA රැහැනක් සහිත සංදර්ශකයක් සම්බන්ධ කිරීමට යොදන කොවෙනිය?"
+              },
+              "ans": "vga"
+            },
+            {
+              "q": {
+                "en": "Which port is used for networking with an RJ45 connector?",
+                "si": "RJ45 සම්බන්ධකය සහිත ජාල රැහැන සඳහා යොදන කොවෙනිය?"
+              },
+              "ans": "rj45"
+            },
+            {
+              "q": {
+                "en": "Which port is used to connect all USB-type devices?",
+                "si": "USB වර්ගයේ සියලු උපාංග සම්බන්ධ කිරීමට යොදන කොවෙනිය?"
+              },
+              "ans": "usb"
+            },
+            {
+              "q": {
+                "en": "Which port carries BOTH audio and video for a TV?",
+                "si": "රූපවාහිනියක් සම්බන්ධ කිරීමට ශ්‍රව්‍ය හා දෘශ්‍ය දෙකම ගෙන යන කොවෙනිය?"
+              },
+              "ans": "hdmi"
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "type": "tf",
+          "name": {
+            "en": "Troubleshooting Facts",
+            "si": "දෝෂාවේක්ෂණ කරුණු"
+          },
+          "instruction": {
+            "en": "Decide whether each statement is True or False.",
+            "si": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "Before checking power supply, you should first disconnect the main power.",
+                "si": "විදුලි සැපයුම පරීක්ෂා කිරීමට පෙර ප්‍රධාන විදුලි සැපයුම විසන්ධි කළ යුතුය."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "The RJ45 port is used to connect a keyboard.",
+                "si": "RJ45 කොවෙනිය යතුරු පුවරුවක් සම්බන්ධ කිරීමට යොදා ගනී."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "When the screen is blank, the desktop icons may be hidden.",
+                "si": "තිරය හිස්ව ඇති විට, ඩෙස්ක්ටොප් අයිකන සැඟවී තිබිය හැක."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "A read-only file can be modified by anyone.",
+                "si": "පමණක් කියවන ගොනුවක් ඕනෑම කෙනෙකුට වෙනස් කළ හැක."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "Checking cable connections is the first step to fix hardware problems.",
+                "si": "රැහැන් සම්බන්ධතා පරීක්ෂා කිරීම දෘඩාංග දෝෂ විසඳීමේ පළමු පියවරයි."
+              },
+              "a": true
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "type": "input",
+          "name": {
+            "en": "Time & Configuration",
+            "si": "වේලාව හා වින්‍යාසය"
+          },
+          "instruction": {
+            "en": "Type the correct answer for each question.",
+            "si": "එක් එක් ප්‍රශ්නයට නිවැරදි පිළිතුර ටයිප් කරන්න."
+          },
+          "questions": [
+            {
+              "q": {
+                "en": "If it is 6.00 am in Sri Lanka, what time is it in the UK? (HH.MM am/pm)",
+                "si": "ශ්‍රී ලංකාවේ පෙ.ව. 6.00 වන විට එංගලන්තයේ වේලාව කුමක්ද? (HH.MM am/pm)"
+              },
+              "ans": "1.30 am",
+              "hint": {
+                "en": "Sri Lanka is 4.5 hours ahead of UK",
+                "si": "ශ්‍රී ලංකාව එංගලන්තයට පැය 4.5ක් ඉදිරියෙන්"
+              }
+            },
+            {
+              "q": {
+                "en": "What does the file extension \".exe\" indicate?",
+                "si": "\".exe\" ගොනු දිගුවෙන් දැක්වෙන්නේ කුමන ගොනු වර්ගයද?"
+              },
+              "ans": "executable",
+              "hint": {
+                "en": "A program file that runs",
+                "si": "ක්‍රියාත්මක වන ගොනුවක්"
+              }
+            },
+            {
+              "q": {
+                "en": "What is a file called when we can see but cannot modify it?",
+                "si": "බලාගත හැකි නමුත් වෙනස් කළ නොහැකි ගොනුව කුමක්ද?"
+              },
+              "ans": "read only",
+              "hint": {
+                "en": "Two words",
+                "si": "වචන දෙකක්"
+              }
+            },
+            {
+              "q": {
+                "en": "Which Windows tool removes unnecessary files from the hard disk? (Two words)",
+                "si": "අනවශ්‍ය ගොනු ඉවත් කරන Windows මෙවලම කුමක්ද? (වචන දෙකක්)"
+              },
+              "ans": "disk cleanup",
+              "hint": {
+                "en": "Cleans up the disk",
+                "si": "තැටිය පිරිසිදු කරයි"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": {
+        "en": "Word Processing",
+        "si": "වදන් සැකසීම"
+      },
+      "icon": "📄",
+      "cls": "l3",
+      "activities": [
+        {
+          "id": "3.1",
+          "type": "hotspot",
+          "name": {
+            "en": "Choose the Right Tool",
+            "si": "නිවැරදි මෙවලම තෝරන්න"
+          },
+          "instruction": {
+            "en": "Read the task and click the correct word processing tool.",
+            "si": "කාර්යය කියවා ගැලපෙන වදන් සැකසුම් මෙවලම ක්ලික් කරන්න."
+          },
+          "rounds": [
+            {
+              "q": {
+                "en": "To make text darker and thicker:",
+                "si": "අකුරු තද පැහැ ගැන්වීමට:"
+              },
+              "ans": "bold"
+            },
+            {
+              "q": {
+                "en": "To slant the text to the right:",
+                "si": "අකුරු දකුණට ඇල කිරීමට:"
+              },
+              "ans": "italic"
+            },
+            {
+              "q": {
+                "en": "To draw a line under the text:",
+                "si": "අකුරු යටින් ඉරක් ඇඳීමට:"
+              },
+              "ans": "underline"
+            },
+            {
+              "q": {
+                "en": "To bring the text to the center of the page:",
+                "si": "පිටුවේ මැදට අකුරු ගෙන ඒමට:"
+              },
+              "ans": "center"
+            },
+            {
+              "q": {
+                "en": "To check spelling mistakes automatically:",
+                "si": "අක්ෂර වින්‍යාසය ස්වයංක්‍රීයව පරීක්ෂා කිරීමට:"
+              },
+              "ans": "spellcheck"
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "type": "tf",
+          "name": {
+            "en": "Word Processing Facts",
+            "si": "වදන් සැකසුම් කරුණු"
+          },
+          "instruction": {
+            "en": "Decide whether each statement is True or False.",
+            "si": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "Word processing can create letters, magazines and certificates.",
+                "si": "වදන් සැකසුම් මගින් ලිපි, සඟරා හා සහතික සකස් කළ හැක."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "Ctrl+Z is the shortcut for Redo.",
+                "si": "Ctrl+Z යනු Redo සඳහා කෙටි මගයි."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "Clip Art is used to insert pre-designed images.",
+                "si": "Clip Art යනු කලින් නිර්මාණය කළ පින්තූර ඇතුළත් කිරීමට යොදයි."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "The \"Print Preview\" tool shows the document before printing.",
+                "si": "Print Preview මෙවලම මුද්‍රණයට පෙර ලේඛනය පෙන්වයි."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "Superscript brings text below the normal line (like CO₂).",
+                "si": "Superscript මගින් CO₂ වැනි අකුරු පහළට ගෙන එයි."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "Bullets and numbering are alignment tools.",
+                "si": "Bullets සහ Numbering යනු එකලස් කිරීමේ මෙවලම් වේ."
+              },
+              "a": false
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "competency": "3.1",
+          "type": "hotspot",
+          "name": {
+            "en": "Build a Table",
+            "si": "වගුවක් සාදමු"
+          },
+          "instruction": {
+            "en": "Read the task and click the correct table tool.",
+            "si": "කාර්යය කියවා නිවැරදි වගු මෙවලම ක්ලික් කරන්න."
+          },
+          "options": [
+            {
+              "key": "insert",
+              "icon": "➕",
+              "name": {
+                "en": "Insert Table",
+                "si": "වගුව ඇතුළත් කිරීම"
+              },
+              "desc": {
+                "en": "Put a new table into the document",
+                "si": "ලේඛනයට නව වගුවක් යෙදීම"
+              }
+            },
+            {
+              "key": "addrow",
+              "icon": "⬇️",
+              "name": {
+                "en": "Insert Row",
+                "si": "පේළියක් ඇතුළත් කිරීම"
+              },
+              "desc": {
+                "en": "Add one more row",
+                "si": "තවත් පේළියක් එක් කිරීම"
+              }
+            },
+            {
+              "key": "addcol",
+              "icon": "➡️",
+              "name": {
+                "en": "Insert Column",
+                "si": "තීරුවක් ඇතුළත් කිරීම"
+              },
+              "desc": {
+                "en": "Add one more column",
+                "si": "තවත් තීරුවක් එක් කිරීම"
+              }
+            },
+            {
+              "key": "merge",
+              "icon": "🔗",
+              "name": {
+                "en": "Merge Cells",
+                "si": "කොටු ඒකාබද්ධ කිරීම"
+              },
+              "desc": {
+                "en": "Join two cells into one",
+                "si": "කොටු දෙකක් එකක් බවට පත් කිරීම"
+              }
+            },
+            {
+              "key": "border",
+              "icon": "🔲",
+              "name": {
+                "en": "Borders",
+                "si": "මායිම්"
+              },
+              "desc": {
+                "en": "Draw lines around the cells",
+                "si": "කොටු වටා රේඛා ඇඳීම"
+              }
+            },
+            {
+              "key": "delete",
+              "icon": "🗑️",
+              "name": {
+                "en": "Delete Row",
+                "si": "පේළිය මකා දැමීම"
+              },
+              "desc": {
+                "en": "Remove a row from the table",
+                "si": "වගුවෙන් පේළියක් ඉවත් කිරීම"
+              }
+            }
+          ],
+          "rounds": [
+            {
+              "q": {
+                "en": "To put a table of 3 columns into your document:",
+                "si": "තීරු 3ක වගුවක් ඔබගේ ලේඛනයට යෙදීමට:"
+              },
+              "ans": "insert"
+            },
+            {
+              "q": {
+                "en": "You have one student too many for the table:",
+                "si": "වගුවට සිසුන් එක් අයෙකු වැඩිපුර සිටී:"
+              },
+              "ans": "addrow"
+            },
+            {
+              "q": {
+                "en": "You forgot a \"Marks\" column:",
+                "si": "ඔබට \"ලකුණු\" තීරුව අමතක වී ඇත:"
+              },
+              "ans": "addcol"
+            },
+            {
+              "q": {
+                "en": "To make one wide heading across the top of the table:",
+                "si": "වගුවේ ඉහළින් පළල් ශීර්ෂයක් සෑදීමට:"
+              },
+              "ans": "merge"
+            },
+            {
+              "q": {
+                "en": "The table prints with no lines around the cells:",
+                "si": "වගුව කොටු වටා රේඛා නොමැතිව මුද්‍රණය වේ:"
+              },
+              "ans": "border"
+            },
+            {
+              "q": {
+                "en": "A student left the class and their row must go:",
+                "si": "සිසුවෙක් පන්තියෙන් ඉවත් වූ අතර ඔහුගේ පේළිය ඉවත් කළ යුතුය:"
+              },
+              "ans": "delete"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": {
+        "en": "Programming",
+        "si": "ක්‍රමලේඛ ගොඩනැගීම"
+      },
+      "icon": "💻",
+      "cls": "l4",
+      "activities": [
+        {
+          "id": "4.1",
+          "type": "trace",
+          "name": {
+            "en": "Trace the Program Output",
+            "si": "ක්‍රමලේඛ ප්‍රතිදානය විමසන්න"
+          },
+          "instruction": {
+            "en": "Read the pseudocode and choose the correct output.",
+            "si": "ව්‍යාජ කේතය කියවා නිවැරදි ප්‍රතිදානය තෝරන්න."
+          },
+          "questions": [
+            {
+              "code": "x = 5\ny = 3\nprint x * y + 2",
+              "opts": [
+                "15",
+                "17",
+                "20",
+                "11"
+              ],
+              "ans": 1
+            },
+            {
+              "code": {
+                "en": "a = 10\nb = 4\nif a > b then\n   print \"A is bigger\"\nelse\n   print \"B is bigger\"",
+                "si": "a = 10\nb = 4\nif a > b then\n   print \"A විශාලයි\"\nelse\n   print \"B විශාලයි\""
+              },
+              "opts": [
+                {
+                  "en": "A is bigger",
+                  "si": "A විශාලයි"
+                },
+                {
+                  "en": "B is bigger",
+                  "si": "B විශාලයි"
+                },
+                {
+                  "en": "Error",
+                  "si": "දෝෂයක්"
+                },
+                {
+                  "en": "Nothing",
+                  "si": "කිසිවක් නැත"
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "code": {
+                "en": "n = 7\nif n mod 2 = 0 then\n   print \"Even\"\nelse\n   print \"Odd\"",
+                "si": "n = 7\nif n mod 2 = 0 then\n   print \"ඉරට්ටේ\"\nelse\n   print \"ඔත්තේ\""
+              },
+              "opts": [
+                {
+                  "en": "Even",
+                  "si": "ඉරට්ටේ"
+                },
+                {
+                  "en": "Odd",
+                  "si": "ඔත්තේ"
+                },
+                "7",
+                {
+                  "en": "Error",
+                  "si": "දෝෂයක්"
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "code": {
+                "en": "marks = 45\nif marks < 50 then\n   print \"Weak\"\nelse\n   print \"Strong\"",
+                "si": "marks = 45\nif marks < 50 then\n   print \"දුර්වලයි\"\nelse\n   print \"ශක්තිමත්\""
+              },
+              "opts": [
+                {
+                  "en": "Strong",
+                  "si": "ශක්තිමත්"
+                },
+                {
+                  "en": "Weak",
+                  "si": "දුර්වලයි"
+                },
+                "45",
+                {
+                  "en": "Nothing",
+                  "si": "කිසිවක් නැත"
+                }
+              ],
+              "ans": 1
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "type": "tf",
+          "name": {
+            "en": "Programming Concepts",
+            "si": "ක්‍රමලේඛ සංකල්ප"
+          },
+          "instruction": {
+            "en": "Decide whether each statement is True or False.",
+            "si": "සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "Sequence executes instructions one after another from top to bottom.",
+                "si": "අනුක්‍රමය මගින් උපදෙස් ඉහළ සිට පහළට එකින් එක ක්‍රියාත්මක කරයි."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "Selection makes a decision based on a condition.",
+                "si": "තේරීම මගින් කොන්දේසියක් මත පදනම්ව තීරණයක් ගනී."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "\"If...then...else\" is a repetition control structure.",
+                "si": "\"If...then...else\" යනු පුනර්කරණ පාලන ව්‍යුහයකි."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "MOD operator gives the remainder of a division.",
+                "si": "MOD කාරකය බෙදීමේ ඉතිරිය ලබා දෙයි."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "In Scratch, \"and\" block outputs True if both inputs are True.",
+                "si": "Scratch හි \"and\" කාණ්ඩය ආදාන දෙකම සත්‍ය නම් සත්‍ය ලබා දෙයි."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "A \"variable\" cannot be changed once set.",
+                "si": "විචල්‍යයක් එක් වරක් සකස් කළ පසු වෙනස් කළ නොහැක."
+              },
+              "a": false
+            }
+          ]
+        },
+        {
+          "id": "4.3",
+          "type": "input",
+          "name": {
+            "en": "Calculate the Output",
+            "si": "ප්‍රතිදානය ගණනය කරන්න"
+          },
+          "instruction": {
+            "en": "Type the output of each expression.",
+            "si": "එක් එක් ප්‍රකාශනයේ ප්‍රතිදානය ටයිප් කරන්න."
+          },
+          "questions": [
+            {
+              "q": {
+                "en": "What is 13 MOD 5?",
+                "si": "13 MOD 5 හි අගය කුමක්ද?"
+              },
+              "ans": "3",
+              "hint": {
+                "en": "Remainder when 13 divided by 5",
+                "si": "13 න් 5 බෙදූ විට ඉතිරිය"
+              }
+            },
+            {
+              "q": {
+                "en": "If x = 8 and y = 3, what is x > y? (true/false)",
+                "si": "x = 8 සහ y = 3 නම්, x > y හි අගය? (true/false)"
+              },
+              "ans": "true",
+              "hint": {
+                "en": "8 is greater than 3",
+                "si": "8 > 3"
+              }
+            },
+            {
+              "q": {
+                "en": "If a = 5 and b = 5, what does (a = b) return? (true/false)",
+                "si": "a = 5 සහ b = 5 නම්, (a = b) ආපසු දෙන අගය? (true/false)"
+              },
+              "ans": "true",
+              "hint": {
+                "en": "Both are equal",
+                "si": "දෙකම සමාන"
+              }
+            },
+            {
+              "q": {
+                "en": "If a = 5 and b = 5, what does \"not (a = b)\" return? (true/false)",
+                "si": "a = 5 සහ b = 5 නම්, \"not (a = b)\" ආපසු දෙන අගය? (true/false)"
+              },
+              "ans": "false",
+              "hint": {
+                "en": "NOT flips the value",
+                "si": "NOT මගින් අගය පෙරළයි"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": {
+        "en": "Physical Computing",
+        "si": "භෞතික ආගණනය"
+      },
+      "icon": "💡",
+      "cls": "l5",
+      "replaces": {
+        "title": "Logic Gates",
+        "reason": "NIE grade 8 competency 5.1 is physical computing, not logic gates. Truth tables are O/L grade 10."
+      },
+      "activities": [
+        {
+          "id": "5.1",
+          "competency": "5.1",
+          "type": "bits",
+          "name": {
+            "en": "Switch the LEDs On and Off",
+            "si": "LED බල්බ දල්වමු හා නිවමු"
+          },
+          "instruction": {
+            "en": "Four LED bulbs are joined to the board. ON is 1 and OFF is 0. Toggle the bulbs so the pattern matches the number the program sends. Place values: 8, 4, 2, 1.",
+            "si": "LED බල්බ හතරක් පුවරුවට සම්බන්ධ කර ඇත. දැල්වීම 1 ද, නිවීම 0 ද වේ. වැඩසටහන එවන සංඛ්‍යාවට රටාව ගැළපෙන සේ බල්බ මාරු කරන්න. ස්ථානීය අගයන්: 8, 4, 2, 1."
+          },
+          "bitCount": 4,
+          "labelStyle": "led",
+          "targets": [
+            5,
+            10,
+            3,
+            12,
+            9,
+            6,
+            15,
+            8
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "5.2",
+          "competency": "5.1",
+          "type": "order",
+          "name": {
+            "en": "Make the LED Blink",
+            "si": "LED බල්බය දැල්වෙන රටාව සකසමු"
+          },
+          "instruction": {
+            "en": "Drag the steps to build a program that makes one LED blink over and over.",
+            "si": "එක් LED බල්බයක් නැවත නැවත දැල්වෙන වැඩසටහනක් සෑදීමට පියවර අනුපිළිවෙලට සකසන්න."
+          },
+          "correctOrder": [
+            {
+              "text": {
+                "en": "Connect the LED to pin 0 on the board",
+                "si": "LED බල්බය පුවරුවේ pin 0 ට සම්බන්ධ කරන්න"
+              },
+              "icon": "🔌"
+            },
+            {
+              "text": {
+                "en": "Start a repeat block so the steps run again and again",
+                "si": "පියවර නැවත නැවත ක්‍රියාත්මක වන ලෙස පුනර්කරණ කොටසක් ආරම්භ කරන්න"
+              },
+              "icon": "🔁"
+            },
+            {
+              "text": {
+                "en": "Set pin 0 to 1 so the LED lights up",
+                "si": "LED බල්බය දැල්වෙන ලෙස pin 0 හි අගය 1 කරන්න"
+              },
+              "icon": "💡"
+            },
+            {
+              "text": {
+                "en": "Wait one second",
+                "si": "තත්පරයක් රැඳී සිටින්න"
+              },
+              "icon": "⏳"
+            },
+            {
+              "text": {
+                "en": "Set pin 0 to 0 so the LED goes out",
+                "si": "LED බල්බය නිවෙන ලෙස pin 0 හි අගය 0 කරන්න"
+              },
+              "icon": "🌑"
+            },
+            {
+              "text": {
+                "en": "Wait one second, then the repeat starts again",
+                "si": "තත්පරයක් රැඳී සිටින්න, පසුව පුනර්කරණය නැවත ආරම්භ වේ"
+              },
+              "icon": "⏳"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "5.3",
+          "competency": "5.1",
+          "type": "match",
+          "name": {
+            "en": "Match the Part to Its Job",
+            "si": "උපාංගය හා එහි කාර්යය යුගල කරමු"
+          },
+          "instruction": {
+            "en": "Match each part of a physical computing device with the job it does.",
+            "si": "භෞතික ආගණන උපාංගයක එක් එක් කොටස එහි කාර්යය සමඟ යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "💡 LED",
+                "si": "💡 LED බල්බය"
+              },
+              "r": {
+                "en": "Gives out light when current passes through it",
+                "si": "විදුලි ධාරාව ගමන් කරන විට ආලෝකය ලබා දෙයි"
+              },
+              "li": "💡",
+              "ri": "✨"
+            },
+            {
+              "l": {
+                "en": "🧠 Microcontroller",
+                "si": "🧠 ක්ෂුද්‍ර පාලකය"
+              },
+              "r": {
+                "en": "The small computer that runs your program",
+                "si": "ඔබගේ වැඩසටහන ක්‍රියාත්මක කරන කුඩා පරිගණකය"
+              },
+              "li": "🧠",
+              "ri": "📜"
+            },
+            {
+              "l": {
+                "en": "📍 Pin",
+                "si": "📍 පින්නුව"
+              },
+              "r": {
+                "en": "The point where you connect a device to the board",
+                "si": "උපාංගයක් පුවරුවට සම්බන්ධ කරන ස්ථානය"
+              },
+              "li": "📍",
+              "ri": "🔌"
+            },
+            {
+              "l": {
+                "en": "🔋 Battery",
+                "si": "🔋 බැටරිය"
+              },
+              "r": {
+                "en": "Supplies the power the circuit needs",
+                "si": "පරිපථයට අවශ්‍ය බලය සපයයි"
+              },
+              "li": "🔋",
+              "ri": "⚡"
+            },
+            {
+              "l": {
+                "en": "🧱 Resistor",
+                "si": "🧱 ප්‍රතිරෝධකය"
+              },
+              "r": {
+                "en": "Protects the LED from too much current",
+                "si": "අධික ධාරාවෙන් LED බල්බය ආරක්ෂා කරයි"
+              },
+              "li": "🧱",
+              "ri": "🛡️"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "5.4",
+          "competency": null,
+          "bonus": true,
+          "type": "gate",
+          "name": {
+            "en": "Logic Gate Lab (bonus)",
+            "si": "තර්ක ද්වාර පරීක්ෂණාගාරය (අමතර)"
+          },
+          "instruction": {
+            "en": "Bonus round, beyond the grade 8 syllabus. Look at the gate and the inputs. What is the output?",
+            "si": "8 ශ්‍රේණියේ විෂය නිර්දේශයෙන් ඔබ්බට යන අමතර වටයකි. ද්වාරය හා ආදාන බලා ප්‍රතිදානය කුමක්දැයි තෝරන්න."
+          },
+          "keptFrom": "grade 8 english.html activity 5.1, unchanged apart from the id and the bonus flag",
+          "rounds": [
+            {
+              "gate": "AND",
+              "a": 1,
+              "b": 1,
+              "correct": "1"
+            },
+            {
+              "gate": "AND",
+              "a": 1,
+              "b": 0,
+              "correct": "0"
+            },
+            {
+              "gate": "OR",
+              "a": 0,
+              "b": 1,
+              "correct": "1"
+            },
+            {
+              "gate": "OR",
+              "a": 0,
+              "b": 0,
+              "correct": "0"
+            },
+            {
+              "gate": "NOT",
+              "a": 1,
+              "b": null,
+              "correct": "0"
+            },
+            {
+              "gate": "NOT",
+              "a": 0,
+              "b": null,
+              "correct": "1"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        }
+      ],
+      "keptAsBonus": [
+        {
+          "was": "5.2",
+          "now": "5.5",
+          "name": "Truth Table Challenge"
+        },
+        {
+          "was": "5.3",
+          "now": "5.6",
+          "name": "Compute the Gate Output"
+        }
+      ],
+      "origin": "syllabus-enrichment",
+      "siDraft": true
+    },
+    {
+      "id": 6,
+      "title": {
+        "en": "Internet & Web",
+        "si": "අන්තර්ජාලය"
+      },
+      "icon": "🌐",
+      "cls": "l6",
+      "activities": [
+        {
+          "id": "6.1",
+          "type": "query",
+          "name": {
+            "en": "Build the Search Query",
+            "si": "සෙවුම් ප්‍රශ්නය ගොඩනඟන්න"
+          },
+          "instruction": {
+            "en": "Click tiles to build the best search query for each task. Then check.",
+            "si": "එක් එක් කාර්යය සඳහා හොඳම සෙවුම් ප්‍රශ්නය සෑදීමට ටයිල් ක්ලික් කරන්න."
+          },
+          "rounds": [
+            {
+              "q": {
+                "en": "Find information about Sri Lankan history",
+                "si": "ශ්‍රී ලංකා ඉතිහාසය ගැන තොරතුරු සොයන්න"
+              },
+              "correct": [
+                "sri lanka",
+                "history"
+              ],
+              "pool": [
+                "how",
+                "sri lanka",
+                "and",
+                "history",
+                "is",
+                "to"
+              ]
+            },
+            {
+              "q": {
+                "en": "Find beautiful places in Kandy",
+                "si": "මහනුවර ලස්සන ස්ථාන සොයන්න"
+              },
+              "correct": [
+                "kandy",
+                "beautiful place"
+              ],
+              "pool": [
+                "kandy",
+                "where",
+                "beautiful place",
+                "the",
+                "in"
+              ]
+            },
+            {
+              "q": {
+                "en": "Search Wimbledon without tennis results",
+                "si": "ටෙනිස් නොවන Wimbledon තොරතුරු සොයන්න"
+              },
+              "correct": [
+                "wimbledon",
+                "-tennis"
+              ],
+              "pool": [
+                "wimbledon",
+                "-tennis",
+                "+",
+                "how",
+                "and"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "6.2",
+          "type": "hotspot",
+          "name": {
+            "en": "Match HTML Tags",
+            "si": "HTML ටැග් යුගල කරන්න"
+          },
+          "instruction": {
+            "en": "Click the HTML tag that matches the description.",
+            "si": "විස්තරයට ගැලපෙන HTML ටැගය ක්ලික් කරන්න."
+          },
+          "rounds": [
+            {
+              "q": {
+                "en": "Which tag creates a line break?",
+                "si": "නව පේළියකට යාමට යොදන ටැගය?"
+              },
+              "ans": "br"
+            },
+            {
+              "q": {
+                "en": "Which tag creates a hyperlink?",
+                "si": "අධිසන්ධානයක් සෑදීමට යොදන ටැගය?"
+              },
+              "ans": "a"
+            },
+            {
+              "q": {
+                "en": "Which tag inserts an image?",
+                "si": "පින්තූරයක් ඇතුළත් කිරීමට යොදන ටැගය?"
+              },
+              "ans": "img"
+            },
+            {
+              "q": {
+                "en": "Which tag creates a bulleted list?",
+                "si": "බුලට් ලැයිස්තුවක් සෑදීමට යොදන ටැගය?"
+              },
+              "ans": "ul"
+            },
+            {
+              "q": {
+                "en": "Which tag gives the largest heading?",
+                "si": "විශාලතම ශීර්ෂය ලබා දෙන ටැගය?"
+              },
+              "ans": "h1"
+            }
+          ]
+        },
+        {
+          "id": "6.3",
+          "type": "tf",
+          "name": {
+            "en": "Internet Facts",
+            "si": "අන්තර්ජාල කරුණු"
+          },
+          "instruction": {
+            "en": "Decide whether each statement about the internet is True or False.",
+            "si": "අන්තර්ජාලය ගැන සෑම ප්‍රකාශයක් ම සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "A hyperlink is shown with an underline and different color.",
+                "si": "අධිසන්ධානයක් යටින් ඉරක් සහ වෙනස් වර්ණයක් සහිතව පෙන්වයි."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "The History shows recently visited web addresses.",
+                "si": "History මගින් මෑතකදී බැලූ වෙබ් ලිපින පෙන්වයි."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "Only one web page can be opened at a time in a browser.",
+                "si": "එක් වරකට එක් වෙබ් පිටුවක් පමණක් බ්‍රවුසරයේ විවෘත කළ හැක."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "Google, Yahoo and Bing are examples of search engines.",
+                "si": "Google, Yahoo සහ Bing යනු සෙවුම් යන්ත්‍ර සඳහා උදාහරණ වේ."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "The <title> tag content appears inside the web page body.",
+                "si": "<title> ටැගයේ අන්තර්ගතය වෙබ් පිටුවේ ශරීරය තුළ දිස්වේ."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "Bookmarks save web addresses we use often.",
+                "si": "Bookmarks මගින් නිතර භාවිත කරන වෙබ් ලිපින සුරකියි."
+              },
+              "a": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": {
+        "en": "Apps on Phones and Smart Devices",
+        "si": "ජංගම හා සුහුරු උපාංගවල ඇප්ලිකේෂන්"
+      },
+      "icon": "📱",
+      "cls": "l7",
+      "activities": [
+        {
+          "id": "7.1",
+          "competency": "4.1",
+          "type": "bucket",
+          "name": {
+            "en": "Where Does the App Run",
+            "si": "ඇප්ලිකේෂනය ක්‍රියාත්මක වන්නේ කොහේද"
+          },
+          "instruction": {
+            "en": "Click an app first, then click the device it was made for.",
+            "si": "මුලින් ඇප්ලිකේෂනයක් ක්ලික් කර, පසුව එය සාදා ඇති උපාංගය ක්ලික් කරන්න."
+          },
+          "buckets": [
+            {
+              "name": {
+                "en": "📱 Phone app",
+                "si": "📱 ජංගම දුරකථන ඇප්ලිකේෂන්"
+              },
+              "items": [
+                {
+                  "en": "A bus timetable app",
+                  "si": "බස් කාලසටහන් ඇප්ලිකේෂනයක්"
+                },
+                {
+                  "en": "A camera app",
+                  "si": "කැමරා ඇප්ලිකේෂනයක්"
+                },
+                {
+                  "en": "A messaging app",
+                  "si": "පණිවිඩ ඇප්ලිකේෂනයක්"
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "⌚ Smart device",
+                "si": "⌚ සුහුරු උපාංග"
+              },
+              "items": [
+                {
+                  "en": "A step counter on a watch",
+                  "si": "ඔරලෝසුවක පියවර ගණන් කරන්නා"
+                },
+                {
+                  "en": "A smart TV video app",
+                  "si": "සුහුරු රූපවාහිනී දෘශ්‍ය ඇප්ලිකේෂනයක්"
+                },
+                {
+                  "en": "A smart light switch",
+                  "si": "සුහුරු විදුලි පහන් ස්විචයක්"
+                }
+              ]
+            },
+            {
+              "name": {
+                "en": "💻 Computer",
+                "si": "💻 පරිගණකය"
+              },
+              "items": [
+                {
+                  "en": "A word processing package",
+                  "si": "වදන් සැකසුම් මෘදුකාංග පැකේජයක්"
+                },
+                {
+                  "en": "A spreadsheet package",
+                  "si": "පැතුරුම්පත් පැකේජයක්"
+                },
+                {
+                  "en": "A programming IDE",
+                  "si": "ක්‍රමලේඛන IDE එකක්"
+                }
+              ]
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "7.2",
+          "competency": "4.1",
+          "type": "tf",
+          "name": {
+            "en": "App Facts",
+            "si": "ඇප්ලිකේෂන් පිළිබඳ කරුණු"
+          },
+          "instruction": {
+            "en": "Decide whether each statement is True or False.",
+            "si": "එක් එක් ප්‍රකාශය සත්‍යද අසත්‍යද යන්න තීරණය කරන්න."
+          },
+          "statements": [
+            {
+              "s": {
+                "en": "An app is a program written for a phone or a smart device.",
+                "si": "ඇප්ලිකේෂනයක් යනු දුරකථනයක් හෝ සුහුරු උපාංගයක් සඳහා ලියන ලද වැඩසටහනකි."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "Apps are downloaded from an app store.",
+                "si": "ඇප්ලිකේෂන් ඇප් ගබඩාවකින් බාගත කරනු ලැබේ."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "A phone app and a computer program are built in exactly the same way.",
+                "si": "ජංගම ඇප්ලිකේෂනයක් හා පරිගණක වැඩසටහනක් හරියටම එකම ආකාරයට සාදනු ලැබේ."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "A smart watch can run a program without being joined to a computer.",
+                "si": "සුහුරු ඔරලෝසුවකට පරිගණකයකට සම්බන්ධ නොවී වැඩසටහනක් ක්‍රියාත්මක කළ හැකිය."
+              },
+              "a": true
+            },
+            {
+              "s": {
+                "en": "Every app must be paid for before you can use it.",
+                "si": "සෑම ඇප්ලිකේෂනයක්ම භාවිත කිරීමට පෙර මුදල් ගෙවිය යුතුය."
+              },
+              "a": false
+            },
+            {
+              "s": {
+                "en": "A problem is broken into input, process and output before an app is written.",
+                "si": "ඇප්ලිකේෂනයක් ලිවීමට පෙර ගැටලුව ආදාන, සැකසීම හා ප්‍රතිදාන ලෙස වෙන් කරනු ලැබේ."
+              },
+              "a": true
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        },
+        {
+          "id": "7.3",
+          "competency": "4.1",
+          "type": "match",
+          "name": {
+            "en": "Match the App to Its Job",
+            "si": "ඇප්ලිකේෂනය හා එහි කාර්යය යුගල කරමු"
+          },
+          "instruction": {
+            "en": "Match each app with the everyday problem it solves.",
+            "si": "එක් එක් ඇප්ලිකේෂනය එය විසඳන එදිනෙදා ගැටලුව සමඟ යුගල කරන්න."
+          },
+          "pairs": [
+            {
+              "l": {
+                "en": "🗺️ Map app",
+                "si": "🗺️ සිතියම් ඇප්ලිකේෂනය"
+              },
+              "r": {
+                "en": "Shows the way from here to there",
+                "si": "මෙතැන සිට එතැනට යන මග පෙන්වයි"
+              },
+              "li": "🗺️",
+              "ri": "🧭"
+            },
+            {
+              "l": {
+                "en": "🏦 Banking app",
+                "si": "🏦 බැංකු ඇප්ලිකේෂනය"
+              },
+              "r": {
+                "en": "Sends money without going to the branch",
+                "si": "ශාඛාවට නොගොස් මුදල් යවයි"
+              },
+              "li": "🏦",
+              "ri": "💸"
+            },
+            {
+              "l": {
+                "en": "🩺 Health app",
+                "si": "🩺 සෞඛ්‍ය ඇප්ලිකේෂනය"
+              },
+              "r": {
+                "en": "Counts your steps and your sleep",
+                "si": "ඔබගේ පියවර හා නින්ද ගණන් කරයි"
+              },
+              "li": "🩺",
+              "ri": "👟"
+            },
+            {
+              "l": {
+                "en": "🎓 Learning app",
+                "si": "🎓 ඉගෙනුම් ඇප්ලිකේෂනය"
+              },
+              "r": {
+                "en": "Gives you a lesson and a quiz on the phone",
+                "si": "දුරකථනයෙන් පාඩමක් හා ප්‍රශ්න මාලාවක් ලබා දෙයි"
+              },
+              "li": "🎓",
+              "ri": "📚"
+            },
+            {
+              "l": {
+                "en": "🌦️ Weather app",
+                "si": "🌦️ කාලගුණ ඇප්ලිකේෂනය"
+              },
+              "r": {
+                "en": "Tells the farmer whether rain is coming",
+                "si": "වැසි එනවාද යන්න ගොවියාට කියයි"
+              },
+              "li": "🌦️",
+              "ri": "🌾"
+            }
+          ],
+          "origin": "syllabus-enrichment",
+          "siDraft": true
+        }
+      ],
+      "origin": "syllabus-enrichment",
+      "siDraft": true
+    }
+  ]
+}

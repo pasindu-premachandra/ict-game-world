@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICT Game World - redesign plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@600;800&family=Baloo+Thambi+2:wght@600;800&family=Noto+Sans+Sinhala:wght@400;700&family=Yaldevi:wght@500;700&family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Dark take on the project's own tokens (grade 6-9 originals: teal / amber / coral / indigo / green, Fredoka + Nunito, chunky 3D shadows) */
+  :root{
+    color-scheme: dark;
+    --bg:#0b171b; --surface:#11242a; --surface-2:#173038; --surface-3:#1f3d46; --line:#29505a;
+    --ink:#e7f5f2; --muted:#9fb9b5; --faint:#6f8c88;
+    --teal:#2dd4bf; --teal-d:#0f766e; --teal-l:#123c3a;
+    --amber:#fbbf24; --amber-d:#a16207; --amber-l:#3a2e10;
+    --coral:#fb7185; --coral-d:#be123c; --coral-l:#3d1822;
+    --indigo:#a5b4fc; --indigo-d:#4338ca; --indigo-l:#23254a;
+    --green:#4ade80; --green-d:#15803d; --green-l:#133524;
+    --pink:#f9a8d4;
+    --radius:20px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  :where(.grid,.flex,[class*="grid"],[class*="row"]) > *{min-width:0}
+  :where(p,h1,h2,h3,h4,li,dd,td,th,figcaption,label){overflow-wrap:anywhere}
+  :where(img,svg){max-width:100%;height:auto}
+  html{background:var(--bg)}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Fredoka','Nunito',sans-serif;line-height:1.25;margin:0}
+  a{color:var(--teal)}
+  code,.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.88em}
+  code{background:var(--surface-3);padding:1px 6px;border-radius:6px;color:#d9f7f1}
+  :lang(si){font-family:'Noto Sans Sinhala','Nunito',sans-serif}
+  :lang(ta){font-family:'Noto Sans Tamil','Nunito',sans-serif}
+
+  .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:12px 20px;background:rgba(11,23,27,.92);backdrop-filter:blur(8px);border-bottom:3px solid var(--teal-d)}
+  .chip-brand{background:linear-gradient(135deg,var(--teal),var(--indigo-d));color:#fff;font-weight:900;font-size:13px;padding:6px 12px;border-radius:12px;letter-spacing:.5px;box-shadow:0 3px 0 #083b37}
+  .top h1{font-size:18px;font-weight:600}
+  .top .status{margin-left:auto;font-weight:800;font-size:13px;color:#3a2e10;background:var(--amber);padding:6px 14px;border-radius:999px;box-shadow:0 3px 0 var(--amber-d)}
+
+  main{max-width:1180px;margin:0 auto;padding:24px 20px 80px}
+  section{margin-top:44px;scroll-margin-top:80px}
+  .eyebrow{font-weight:900;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal)}
+  section > h2{font-size:28px;margin:4px 0 6px}
+  .lead{color:var(--muted);max-width:820px;margin:0 0 18px}
+  .card{background:var(--surface);border:2px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 5px 0 #081418}
+  .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  @media (max-width:960px){.grid-3,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:680px){.grid-2,.grid-3,.grid-4{grid-template-columns:minmax(0,1fr)} .top h1{font-size:15px}}
+
+  /* 60-second version */
+  .sixty{margin-top:8px;background:linear-gradient(160deg,#10333a 0%,#11242a 55%,#1b2146 100%);border:3px solid var(--teal);border-radius:26px;padding:26px 28px;box-shadow:0 7px 0 var(--teal-d),0 20px 60px rgba(45,212,191,.12)}
+  .sixty .tag{display:inline-block;font-weight:900;font-size:12px;letter-spacing:1.5px;color:#062b28;background:var(--teal);padding:4px 12px;border-radius:999px}
+  .sixty h2{font-size:30px;margin:12px 0 8px}
+  .sixty .one{font-size:18px;font-weight:700;color:#d5f5ef;margin:0 0 16px;max-width:960px}
+  .findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px;margin:0;padding:0;list-style:none;counter-reset:f}
+  .findings li{counter-increment:f;background:rgba(0,0,0,.25);border:2px solid rgba(45,212,191,.25);border-radius:16px;padding:12px 14px 12px 14px;font-size:14.5px;position:relative}
+  .findings li::before{content:counter(f);display:grid;place-items:center;width:26px;height:26px;border-radius:9px;background:var(--amber);color:#3a2e10;font-weight:900;font-size:13px;margin-bottom:8px}
+  .findings b{color:#fff}
+  .todo{margin-top:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
+  .todo ol{margin:0;padding-left:20px;color:#d5f5ef;font-weight:600}
+  .todo ol li{margin:2px 0}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font:800 15px 'Nunito',sans-serif;padding:12px 20px;border-radius:15px;color:#062b28;background:var(--teal);box-shadow:0 5px 0 var(--teal-d);text-decoration:none;transition:transform .12s,box-shadow .12s}
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--teal-d)}
+  .btn.amber{background:var(--amber);color:#3a2e10;box-shadow:0 5px 0 var(--amber-d)}
+  .btn.ghost{background:var(--surface-2);color:var(--ink);box-shadow:0 5px 0 #081418;border:2px solid var(--line)}
+  .btn.small{padding:8px 14px;font-size:13px;border-radius:12px}
+  .below{margin:14px 0 0;color:var(--muted);font-size:13.5px}
+
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .toc a{font-weight:800;font-size:13px;color:var(--ink);background:var(--surface-2);border:2px solid var(--line);padding:6px 12px;border-radius:999px;text-decoration:none}
+  .toc a:hover{border-color:var(--teal)}
+
+  /* tables */
+  .table-wrap{overflow-x:auto;border-radius:16px;border:2px solid var(--line)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
+  th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:var(--surface-2);font-family:'Fredoka',sans-serif;font-weight:600;color:var(--teal);font-size:13.5px}
+  tr:last-child td{border-bottom:none}
+  td .muted{color:var(--muted)}
+  .pill{display:inline-block;font-weight:800;font-size:11.5px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+  .p-teal{background:var(--teal-l);color:var(--teal)} .p-amber{background:var(--amber-l);color:var(--amber)}
+  .p-indigo{background:var(--indigo-l);color:var(--indigo)} .p-coral{background:var(--coral-l);color:var(--coral)}
+  .p-green{background:var(--green-l);color:var(--green)}
+
+  /* screenshots */
+  .shots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  @media (max-width:960px){.shots{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  figure{margin:0}
+  .shot{background:var(--surface);border:2px solid var(--line);border-radius:16px;overflow:hidden}
+  .shot .frame{height:420px;overflow:auto;background:#fff}
+  .shot .frame img{display:block;width:100%}
+  .shot figcaption{padding:10px 12px;font-size:13px;color:var(--muted)}
+  .shot figcaption b{color:var(--ink)}
+  .shot.bad{border-color:var(--coral)}
+
+  .callout{border-left:5px solid var(--amber);background:var(--amber-l);border-radius:12px;padding:12px 16px;margin:14px 0;font-size:14.5px}
+  .callout.teal{border-color:var(--teal);background:var(--teal-l)}
+  .callout.coral{border-color:var(--coral);background:var(--coral-l)}
+  .callout b{color:#fff}
+
+  /* diagrams */
+  .fig{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:14px}
+  .fig svg{display:block;width:100%;height:auto;color:var(--ink)}
+  .fig figcaption{font-size:13px;color:var(--muted);padding:8px 6px 2px}
+  svg text{font-family:'Nunito',sans-serif}
+  svg .h{font-family:'Fredoka',sans-serif;font-weight:600}
+
+  /* design direction mockups */
+  .dir{display:flex;flex-direction:column;gap:12px}
+  .dir.rec{border-color:var(--teal);box-shadow:0 5px 0 var(--teal-d)}
+  .dir h3{font-size:20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .rec-badge{font:900 11px 'Nunito';letter-spacing:1px;color:#062b28;background:var(--teal);padding:3px 10px;border-radius:999px;text-transform:uppercase}
+  .dir dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;font-size:13.5px}
+  .dir dt{font-weight:900;color:var(--muted)} .dir dd{margin:0}
+  .phone{width:min(100%,250px);margin:0 auto;border-radius:30px;padding:9px;background:#05090b;border:2px solid #2c3d42;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+  .scr{border-radius:22px;height:470px;overflow:hidden;position:relative;font-size:12px;color:#1f2d3d}
+
+  /* A - Game Lab */
+  .a{background:#effaf7;font-family:'Nunito',sans-serif}
+  .a-top{display:flex;align-items:center;gap:6px;padding:10px 10px 8px;background:#fff;border-bottom:3px solid #14b8a6}
+  .a-chip{background:linear-gradient(135deg,#14b8a6,#4338ca);color:#fff;font:900 11px 'Baloo 2';padding:3px 9px;border-radius:9px}
+  .a-xp{font-weight:900;font-size:10.5px;background:#fef3c7;color:#92400e;padding:3px 8px;border-radius:999px}
+  .a-lang{margin-left:auto;font-size:10px;font-weight:800;background:#e0e7ff;color:#4338ca;padding:3px 7px;border-radius:999px}
+  .a-hero{display:flex;align-items:center;gap:8px;padding:10px 12px 0}
+  .a-bot{width:62px;flex:none;animation:bob 2.6s ease-in-out infinite}
+  .a-bubble{background:#fff;border:2px dashed #14b8a6;border-radius:12px;padding:6px 9px;font:700 11.5px/1.5 'Yaldevi','Noto Sans Sinhala',sans-serif;color:#0f766e}
+  .a-path{padding:4px 8px 0}
+  .a-play{position:absolute;left:14px;right:14px;bottom:14px;border:none;border-radius:14px;padding:11px;font:800 13px/1.4 'Yaldevi','Noto Sans Sinhala',sans-serif;color:#fff;background:#14b8a6;box-shadow:0 5px 0 #0f766e}
+  .pulse{transform-origin:center;transform-box:fill-box;animation:pulse 1.6s ease-out infinite}
+  @keyframes pulse{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+
+  /* B - Lanka Quest */
+  .b{background:#fbf3e2;font-family:'Nunito',sans-serif}
+  .b-head{padding:10px 12px 6px;text-align:center;color:#7a1631}
+  .b-head .t{font:700 17px/1.4 'Yaldevi','Noto Sans Sinhala',sans-serif}
+  .b-head .s{font-size:10.5px;font-weight:800;color:#b45309;letter-spacing:.5px}
+  .b-card{margin:8px 12px;background:#fffaf0;border:2px solid #e8c98f;border-radius:14px;padding:8px 10px;display:flex;align-items:center;gap:8px;box-shadow:0 3px 0 #e8c98f}
+  .b-card .n{width:28px;height:28px;flex:none}
+  .b-card .l{font:700 11.5px/1.45 'Noto Sans Sinhala',sans-serif;color:#5b1225}
+  .b-play{position:absolute;left:14px;right:14px;bottom:14px;border:none;border-radius:999px;padding:11px;font:800 13px 'Nunito';color:#fff;background:#8b1e3f;box-shadow:0 5px 0 #5b1225}
+
+  /* C - Clay Pop */
+  .c{background:#efe9ff;font-family:'Nunito',sans-serif}
+  .c-head{padding:14px 14px 4px;font:800 16px 'Baloo 2';color:#5b21b6}
+  .c-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 12px}
+  .c-tile{background:#fff;border-radius:22px;padding:12px 8px;text-align:center;font-weight:800;font-size:11px;color:#4c1d95;
+    box-shadow:inset -4px -5px 10px rgba(124,58,237,.14),inset 4px 4px 8px rgba(255,255,255,.9),0 8px 16px rgba(124,58,237,.18)}
+  .c-tile .e{font-size:26px;display:block;margin-bottom:4px}
+  .c-tile:nth-child(2){background:#ffe4f1} .c-tile:nth-child(3){background:#dcfce7} .c-tile:nth-child(4){background:#fef3c7}
+  .c-play{position:absolute;left:14px;right:14px;bottom:14px;border:none;border-radius:22px;padding:12px;font:800 13px 'Nunito';color:#fff;background:#8b5cf6;
+    box-shadow:inset -3px -4px 8px rgba(0,0,0,.18),inset 3px 3px 6px rgba(255,255,255,.35),0 8px 18px rgba(139,92,246,.4)}
+
+  /* type specimen */
+  .spec{display:grid;grid-template-columns:110px minmax(0,1fr) minmax(0,220px);gap:14px;align-items:center;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .spec:last-child{border-bottom:none}
+  .spec .k{font-weight:900;color:var(--muted);font-size:12.5px}
+  .spec .d{font-size:26px;line-height:1.5;color:#fff}
+  .spec .bd{font-size:15px;line-height:1.75;color:var(--muted)}
+  .spec .f{font-size:12.5px;color:var(--faint)}
+  @media (max-width:680px){.spec{grid-template-columns:minmax(0,1fr)}}
+
+  /* motion sampler */
+  .motion{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  @media (max-width:960px){.motion{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .m-tile{background:var(--surface-2);border:2px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px}
+  .m-stage{height:118px;border-radius:14px;background:#f4fbf9;display:grid;place-items:center;position:relative;overflow:hidden;color:#1f2d3d}
+  .m-tile h4{font-size:15px}
+  .m-tile p{margin:0;font-size:12.5px;color:var(--muted)}
+  .opt{border:3px solid #d9e6e2;background:#fff;border-radius:13px;padding:9px 14px;font:800 13px 'Nunito';box-shadow:0 4px 0 #d9e6e2;position:relative}
+  .opt.ok{background:#dcfce7;border-color:#22c55e;color:#15803d;box-shadow:0 4px 0 #86efac;animation:okpop .45s cubic-bezier(.34,1.56,.64,1)}
+  .opt.no{background:#ffe4e6;border-color:#fb7185;color:#be123c;box-shadow:0 4px 0 #fda4af;animation:shake .42s}
+  @keyframes okpop{0%{transform:scale(1)}45%{transform:scale(1.12)}100%{transform:scale(1)}}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(4px)}}
+  .spark{position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:50%;opacity:0}
+  .spark.go{animation:spark .6s ease-out forwards}
+  @keyframes spark{0%{opacity:1;transform:translate(-50%,-50%) rotate(var(--r)) translateY(0) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) rotate(var(--r)) translateY(-54px) scale(.4)}}
+  .stars{display:flex;gap:6px;font-size:34px}
+  .stars span{opacity:0}
+  .stars.go span{animation:starin .5s cubic-bezier(.34,1.56,.64,1) forwards}
+  .stars.go span:nth-child(2){animation-delay:.22s} .stars.go span:nth-child(3){animation-delay:.44s}
+  @keyframes starin{0%{opacity:0;transform:translateY(24px) rotate(-40deg) scale(.3)}100%{opacity:1;transform:none}}
+  .draw path.trail{stroke-dasharray:260;stroke-dashoffset:260}
+  .draw.go path.trail{animation:draw 1.1s ease-out forwards}
+  .draw circle.node{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+  .draw.go circle.node{animation:nodepop .35s cubic-bezier(.34,1.56,.64,1) forwards}
+  .draw.go circle.n2{animation-delay:.45s} .draw.go circle.n3{animation-delay:.9s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes nodepop{to{transform:scale(1)}}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  }
+
+  /* steps */
+  .steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:12px 14px}
+  .steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--teal-l);color:var(--teal);font:700 15px 'Fredoka'}
+  .steps li.done::before{content:'✓';background:var(--green-d);color:#fff}
+  .steps li.gate::before{content:'⏸';background:var(--amber);color:#3a2e10}
+  .steps h4{font-size:15.5px;margin-bottom:2px}
+  .steps p{margin:0;font-size:13.5px;color:var(--muted)}
+
+  /* leaderboard mockups */
+  .lb{background:linear-gradient(180deg,#eef2ff 0%,#effaf7 100%)}
+  .lb-head{padding:12px 12px 6px;font:700 16px 'Fredoka';color:#312e81;display:flex;align-items:center;gap:6px}
+  .seg{display:flex;margin:4px 12px;background:#fff;border-radius:999px;padding:3px;gap:3px;box-shadow:0 2px 0 #c7d2fe}
+  .seg span{flex:1;text-align:center;font-weight:800;font-size:10.5px;padding:5px 0;border-radius:999px;color:#4338ca}
+  .seg span.on{background:#4338ca;color:#fff}
+  .podium{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;gap:6px;padding:10px 14px 0}
+  .pod{text-align:center;font-weight:800;font-size:10.5px}
+  .pod .av{font-size:24px;display:block}
+  .pod .bar{border-radius:10px 10px 0 0;color:#fff;font:700 14px 'Fredoka';padding-top:4px}
+  .pod.p1 .bar{height:66px;background:#f59e0b} .pod.p2 .bar{height:48px;background:#94a3b8} .pod.p3 .bar{height:36px;background:#c2410c}
+  .rows{padding:6px 12px;display:grid;gap:5px}
+  .rowx{display:flex;align-items:center;gap:8px;background:#fff;border-radius:11px;padding:6px 9px;font-weight:800;font-size:11px;box-shadow:0 2px 0 #e2e8f0}
+  .rowx .r{width:18px;color:#64748b} .rowx .pts{margin-left:auto;color:#0f766e}
+  .rowx.me{background:#ccfbf1;box-shadow:0 2px 0 #14b8a6;outline:2px solid #14b8a6}
+  .nm{background:#effaf7;padding:16px 14px}
+  .nm h5{font:700 17px/1.3 'Fredoka';color:#0f766e;margin:4px 0 10px}
+  .nm .in{background:#fff;border:3px solid #14b8a6;border-radius:12px;padding:9px 10px;font-weight:800;font-size:13px}
+  .nm .tip{font-size:10.5px;color:#5b6b7c;margin:6px 0 10px;font-weight:700}
+  .avs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+  .avs span{background:#fff;border:3px solid #d9e6e2;border-radius:12px;text-align:center;font-size:20px;padding:4px 0}
+  .avs span.on{border-color:#4338ca;background:#e0e7ff}
+
+  /* decisions form */
+  .decide{background:linear-gradient(180deg,#132a31,#11242a);border:3px solid var(--amber);border-radius:26px;padding:24px;box-shadow:0 7px 0 var(--amber-d)}
+  .q{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:16px 18px;margin:0 0 14px}
+  .q legend{font:600 17px 'Fredoka';color:#fff;padding:0 6px}
+  .q .id{display:inline-block;font:900 12px 'Nunito';color:#3a2e10;background:var(--amber);border-radius:8px;padding:2px 8px;margin-right:6px}
+  .ctx{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px;font-size:13.5px;color:var(--muted);margin:4px 0 12px}
+  .ctx b{color:var(--ink)}
+  @media (max-width:680px){.ctx{grid-template-columns:minmax(0,1fr)}}
+  .choice{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px;border:2px solid var(--line);border-radius:14px;margin-top:8px;cursor:pointer;background:var(--surface-2)}
+  .choice:hover{border-color:var(--teal-d)}
+  .choice:has(input:checked){border-color:var(--teal);background:var(--teal-l)}
+  .choice input{margin-top:4px;accent-color:var(--teal);width:18px;height:18px}
+  .choice .t{font-weight:800}
+  .choice .t .rec-badge{margin-left:6px}
+  .choice .x{font-size:13px;color:var(--muted)}
+  .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  @media (max-width:680px){.fields{grid-template-columns:minmax(0,1fr)}}
+  .fields label{display:flex;flex-direction:column;gap:5px;font-weight:800;font-size:13.5px}
+  input[type=text],textarea,select{font:600 14px 'Nunito';color:var(--ink);background:var(--surface-2);border:2px solid var(--line);border-radius:12px;padding:10px 12px;width:100%}
+  input[type=text]:focus,textarea:focus{outline:none;border-color:var(--teal)}
+  .qstatus{margin-top:14px;font-weight:800;font-size:14px;padding:10px 14px;border-radius:12px;background:var(--surface-2);border:2px dashed var(--line);color:var(--muted)}
+  .qstatus.queued{border-style:solid;border-color:var(--green);color:var(--green);background:var(--green-l)}
+  .qstatus.changed{border-color:var(--amber);color:var(--amber);background:var(--amber-l)}
+  .src{font-size:12.5px;color:var(--faint)}
+  .src a{color:var(--muted)}
+  ul.tight{margin:6px 0;padding-left:20px} ul.tight li{margin:3px 0}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <span class="chip-brand">ICT</span>
+  <h1>ICT Game World - redesign plan (grades 6-9, සිංහල · தமிழ் · English)</h1>
+  <span class="status">Waiting on your decisions</span>
+</header>
+
+<main>
+
+<!-- ============ 60-SECOND VERSION ============ -->
+<section id="tldr" class="sixty" style="margin-top:8px">
+  <span class="tag">THE 60-SECOND VERSION</span>
+  <h2>Her game is solid and on-syllabus. The work is unifying it, not rescuing it.</h2>
+  <p class="one">Nine separate HTML files on four different engines become one trilingual web app with a real design system from Open Design, playful motion, a nickname leaderboard on Supabase, and a Vercel deploy.</p>
+  <ol class="findings">
+    <li><b>9 files, 4 engines, 15 activity types.</b> 86 activities plus 14 Scratch puzzles (and an 18-game grade 9 variant). Grades 6-8 English and Sinhala are 1:1 - all 68 activities have the same ids, types and answer keys, so they merge cleanly.</li>
+    <li><b>Content matches the NIE syllabus</b> for grades 6-9. The 2026 junior-secondary reform (modules, ICT as a new grade 6 subject) was pushed to <b>January 2027</b>, so this syllabus is still what classes teach.</li>
+    <li><b>Mobile is mostly fine already.</b> No page scrolls sideways at 375px. One activity breaks: the flowchart symbol match stacks 15 cards under 3-column headers.</li>
+    <li><b>Languages:</b> Tamil is ~1,000 content strings + ~80 UI labels, and grade 9 has no Sinhala twin. The Sinhala text also has ~44 likely font-conversion typos (මාදුකාංග x19).</li>
+    <li><b>Leaderboard is doable on Supabase free</b> with no server code: nickname + class code, locked-down writes. Two catches: free projects pause after <b>1 week</b> of low activity, and every student is a <b>"child" (under 16)</b> under Sri Lanka's PDPA.</li>
+  </ol>
+  <div class="todo">
+    <ol>
+      <li>Answer the 10 decisions at the bottom (my picks are pre-selected) and queue them.</li>
+      <li>For the leaderboard: create a new free Supabase project and connect its MCP (steps in section 7).</li>
+      <li>I build the design system in Open Design and pause for your look, then build, prove with Playwright, and hand over.</li>
+    </ol>
+    <a class="btn amber" href="#decide">Go to decisions ↓</a>
+  </div>
+  <p class="below">Everything below is the evidence behind these five points.</p>
+</section>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#today">1 · What exists</a><a href="#syllabus">2 · Syllabus</a><a href="#arch">3 · Architecture</a><a href="#design">4 · Design + motion</a>
+  <a href="#lang">5 · Languages</a><a href="#lb">6 · Leaderboard</a><a href="#supa">7 · Supabase + MCP</a><a href="#flow">8 · Workflow</a><a href="#proof">9 · Proof + risks</a><a href="#decide">10 · Decide</a>
+</nav>
+
+<!-- ============ 1. TODAY ============ -->
+<section id="today">
+  <div class="eyebrow">1 · What exists today</div>
+  <h2>Nine files, four engines</h2>
+  <p class="lead">Read from <code>Downloads\project zip</code> and loaded into Open Design as the project <b>"ICT Game World - originals"</b> (9 artifacts). Counts come from each file's own <code>LESSONS</code> data, read in a browser.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Grade</th><th>Files</th><th>Engine</th><th>Lessons</th><th>Activities</th><th>Activity types</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><b>6</b></td><td>english.html, sinhala.html</td><td><span class="pill p-teal">1</span></td><td>6</td><td>22</td><td class="muted">match 9 · pick 5 · order 4 · bucket 3 · symbol-match 1</td><td>en = si (ids, types, answers). One wrong option differs: "Ceramic plate" vs කෑදර පුටුව (cane chair)</td></tr>
+        <tr><td><b>7</b></td><td>english.html, sinhala.html</td><td><span class="pill p-teal">1</span></td><td>7</td><td>29</td><td class="muted">match 13 · pick 7 · bucket 4 · order 4 · symbol-match 1</td><td>en = si</td></tr>
+        <tr><td><b>8</b></td><td>english.html, sinhala.html</td><td><span class="pill p-amber">2</span></td><td>6</td><td>17</td><td class="muted">true/false 6 · type-answer 4 · hotspot 3 · binary bits · trace · logic gate · search query</td><td>en = si. Lesson 5 is "Logic Gates" in English but හොතික ආගණනය (physical computing) in Sinhala; same activities</td></tr>
+        <tr><td><b>9</b></td><td>english medium.html</td><td><span class="pill p-indigo">3</span></td><td>6</td><td>18 + 14 Scratch</td><td class="muted">match 5 · t/f 4 · hotspot 3 · bucket 2 · type-answer 2 · pick 2 · Scratch block builder</td><td><b>No Sinhala twin</b></td></tr>
+        <tr><td><b>9</b></td><td>grade 9.html ("ICT Adventure")</td><td><span class="pill p-coral">4</span></td><td>6</td><td>18 games</td><td class="muted">quiz · sort · memory</td><td>English UI with Sinhala sub-titles; a different game and a different look</td></tr>
+        <tr><td><b>9</b></td><td>scratch.html</td><td><span class="pill p-indigo">3</span></td><td>-</td><td>14 puzzles</td><td class="muted">Scratch block builder</td><td>Standalone copy of the hub inside english medium (same 14 puzzles, one renamed)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:26px 0 10px;font-size:19px">How it looks now (Playwright, before any change)</h3>
+  <div class="shots">
+    <figure class="shot"><div class="frame"><img src="g6-si-home-375.png" alt="Grade 6 Sinhala home at 375px"></div><figcaption><b>Grade 6 Sinhala home, phone.</b> Works: cards stack, Noto Sans Sinhala loads, header wraps cleanly.</figcaption></figure>
+    <figure class="shot bad"><div class="frame"><img src="g6-en-symmatch-375.png" alt="Grade 6 flowchart symbol match on a phone"></div><figcaption><b>Symbol match, phone - broken.</b> 15 cards in one column under 3-column headers; pairing needs long scrolls. Cause: <code>grade 6 english.html:394</code> sets <code>.sym-match-wrap</code> to 1 column under 640px.</figcaption></figure>
+    <figure class="shot"><div class="frame"><img src="g9-en-scratch-375.png" alt="Grade 9 Scratch puzzle on a phone"></div><figcaption><b>Grade 9 Scratch puzzle, phone.</b> Fits; touch drag runs through pointer events. Keep the mechanic, restyle it.</figcaption></figure>
+    <figure class="shot"><div class="frame" style="height:auto;max-height:420px"><img src="g9-adventure-home-1366.png" alt="Grade 9 ICT Adventure at desktop width"></div><figcaption><b>Grade 9 "ICT Adventure", desktop.</b> A separate visual language (purple, Segoe/Comic Sans) - one reason for a shared design system.</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ 2. SYLLABUS ============ -->
+<section id="syllabus">
+  <div class="eyebrow">2 · Syllabus check</div>
+  <h2>Her lessons line up with the NIE syllabus</h2>
+  <p class="lead">Compared against the NIE ICT syllabus PDFs and teachers' guides. I am not proposing any content changes. The "not covered" column just lists what the game doesn't include.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Grade</th><th>NIE competencies (short)</th><th>Her lessons</th><th>Fit</th><th>Not covered by the game</th></tr></thead>
+      <tbody>
+        <tr><td><b>6</b></td><td>Importance of computers · safe use · OS + files · mouse/keyboard, audio/video apps · algorithms + flowcharts · Internet + search + safety</td><td>Importance of Computers · Lab Safety · OS & Files · Mouse & Keyboard · Algorithms & Flow Charts · Using the Internet</td><td><span class="pill p-green">✓ close</span></td><td class="muted">audio/video software</td></tr>
+        <tr><td><b>7</b></td><td>CPU organisation · OS · security · word processing · Scratch programming · presentations · Internet, e-mail, HTML, safety</td><td>CPU · OS · Security · Word Processing · Programme Development · Presentation Software · Using Internet</td><td><span class="pill p-green">✓ close</span></td><td class="muted">-</td></tr>
+        <tr><td><b>8</b></td><td>Number systems · OS settings + troubleshooting · word processing · flowcharts + control structures · physical computing · search + websites (HTML)</td><td>Number Systems · Configuring & Formatting · Word Processing · Programming · Logic Gates / Physical computing · Internet & Web</td><td><span class="pill p-green">✓ close</span></td><td class="muted">lesson 5 title differs by language</td></tr>
+        <tr><td><b>9</b></td><td>Computer specs · spreadsheets · Scratch (nested loops, arrays) · microcontrollers · networks · ICT & society + careers</td><td>Specifications · Spreadsheets · Programming + Scratch builder · Microcontrollers · Networks · ICT and Society</td><td><span class="pill p-green">✓ close</span></td><td class="muted">array variables</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout teal"><b>Reform status:</b> the new module-based curriculum for grades 6-9 (with ICT listed as a new grade 6 subject) was postponed by Cabinet from 2026 to <b>January 2027</b>, and teachers are "continuing lessons under the existing syllabus". Worth revisiting in 2027, when grade 6 module content lands.</div>
+  <p class="src">Sources: <a href="https://www.nie.lk/pdffiles/tg/eGr06Syl%20ICT.pdf">NIE Gr 6 syllabus</a> · <a href="https://www.nie.lk/pdffiles/tg/eGr07Syl%20ICT.pdf">Gr 7</a> · <a href="https://www.nie.lk/pdffiles/tg/eGr08Syl%20ICT.pdf">Gr 8</a> · <a href="https://nie.lk/pdffiles/lostrec/eLearningLostRecovers%20ICT%20Gr%209.pdf">Gr 9 essential contents</a> · <a href="https://www.eduwire.lk/education-reforms-for-grade-6-pushed-to-2027-cabinet/">eduwire.lk 2026-08-22</a> · <a href="https://www.lankaleader.lk/news/19500-grade-6-education-reforms-to-roll-out-in-january-2027-pm">lankaleader.lk 2026-05-06</a> · <a href="https://1teachmore.lk/major-curriculum-reforms-for-grades-1-and-6/">teachmore.lk (reform structure)</a></p>
+</section>
+
+<!-- ============ 3. ARCHITECTURE ============ -->
+<section id="arch">
+  <div class="eyebrow">3 · Architecture</div>
+  <h2>From nine copies to one app</h2>
+  <p class="lead">The key question: where does each language live? Today each language is a copy of the whole game. In the proposal, each piece of text holds all three languages, and one engine runs every grade.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 960 400" role="img" aria-labelledby="archT">
+      <title id="archT">Nine files on four engines become one trilingual app deployed to Vercel, with Supabase only for the leaderboard</title>
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--muted)"/></marker></defs>
+      <text x="20" y="28" class="h" font-size="15" fill="var(--muted)">TODAY - 9 files</text>
+      <g id="e1"><title>Engine 1: grades 6 and 7</title>
+        <rect x="20" y="42" width="250" height="118" rx="14" fill="var(--teal-l)" stroke="var(--teal)" stroke-opacity=".6"/>
+        <text x="34" y="64" class="h" font-size="13" fill="var(--teal)">Engine 1</text>
+        <text x="34" y="86" font-size="12.5" fill="currentColor">grade 6 english · grade 6 sinhala</text>
+        <text x="34" y="106" font-size="12.5" fill="currentColor">grade 7 english · grade 7 sinhala</text>
+        <text x="34" y="130" font-size="11.5" fill="var(--muted)">match · order · bucket · pick</text>
+        <text x="34" y="147" font-size="11.5" fill="var(--muted)">symbol-match · quiz</text></g>
+      <g id="e2"><title>Engine 2: grade 8</title>
+        <rect x="20" y="170" width="250" height="70" rx="14" fill="var(--amber-l)" stroke="var(--amber)" stroke-opacity=".6"/>
+        <text x="34" y="192" class="h" font-size="13" fill="var(--amber)">Engine 2</text>
+        <text x="34" y="212" font-size="12.5" fill="currentColor">grade 8 english · grade 8 sinhala</text>
+        <text x="34" y="229" font-size="11.5" fill="var(--muted)">bits · t/f · input · trace · gate · hotspot · query</text></g>
+      <g id="e3"><title>Engine 3: grade 9 english medium and scratch.html</title>
+        <rect x="20" y="250" width="250" height="70" rx="14" fill="var(--indigo-l)" stroke="var(--indigo)" stroke-opacity=".6"/>
+        <text x="34" y="272" class="h" font-size="13" fill="var(--indigo)">Engine 3</text>
+        <text x="34" y="292" font-size="12.5" fill="currentColor">grade 9 english medium · scratch</text>
+        <text x="34" y="309" font-size="11.5" fill="var(--muted)">+ Scratch block builder</text></g>
+      <g id="e4"><title>Engine 4: grade 9 ICT Adventure</title>
+        <rect x="20" y="330" width="250" height="56" rx="14" fill="var(--coral-l)" stroke="var(--coral)" stroke-opacity=".6"/>
+        <text x="34" y="352" class="h" font-size="13" fill="var(--coral)">Engine 4</text>
+        <text x="34" y="372" font-size="12.5" fill="currentColor">grade 9 "ICT Adventure" · quiz/sort/memory</text></g>
+      <path d="M272 100 C 310 100, 310 150, 340 160" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M272 205 C 305 205, 310 200, 340 200" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M272 285 C 310 285, 310 245, 340 240" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M272 358 C 315 358, 315 262, 340 262" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#ah)"><title>Folded in per decision D3</title></path>
+      <text x="360" y="28" class="h" font-size="15" fill="var(--muted)">PROPOSED - one app</text>
+      <g id="app"><title>One static app: data, engine, design tokens</title>
+        <rect x="345" y="42" width="300" height="344" rx="18" fill="var(--surface-3)" stroke="var(--teal)" stroke-width="2"/>
+        <rect x="362" y="60" width="266" height="72" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+        <text x="376" y="82" class="h" font-size="13" fill="var(--teal)">data/grade-6 ... grade-9.js</text>
+        <text x="376" y="102" font-size="12" fill="currentColor">every string = { en, si, ta }</text>
+        <text x="376" y="120" font-size="11.5" fill="var(--muted)">same ids + answers as her originals</text>
+        <rect x="362" y="142" width="266" height="98" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+        <text x="376" y="164" class="h" font-size="13" fill="var(--teal)">One engine, 15 activity types</text>
+        <text x="376" y="184" font-size="12" fill="currentColor">js/activities/match.js, order.js ...</text>
+        <text x="376" y="202" font-size="12" fill="currentColor">router · player · leaderboard · audio</text>
+        <text x="376" y="222" font-size="11.5" fill="var(--muted)">hash routes: #/g7/lesson/3/act/3.2</text>
+        <rect x="362" y="250" width="266" height="64" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+        <text x="376" y="272" class="h" font-size="13" fill="var(--amber)">tokens.css + DESIGN.md</text>
+        <text x="376" y="292" font-size="12" fill="currentColor">generated in Open Design</text>
+        <rect x="362" y="324" width="266" height="48" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+        <text x="376" y="346" class="h" font-size="13" fill="var(--indigo)">check-data script</text>
+        <text x="376" y="363" font-size="11.5" fill="var(--muted)">parity vs originals + all 3 languages</text></g>
+      <path d="M647 150 L 712 110" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M647 250 L 712 290" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#ah)"/>
+      <g id="vercel"><title>Vercel static hosting</title>
+        <rect x="715" y="62" width="225" height="92" rx="14" fill="var(--surface-2)" stroke="var(--ink)" stroke-opacity=".45"/>
+        <text x="731" y="86" class="h" font-size="14" fill="currentColor">Vercel (static)</text>
+        <text x="731" y="106" font-size="12" fill="var(--muted)">no build step, free Hobby plan</text>
+        <text x="731" y="124" font-size="12" fill="var(--muted)">deploy on your go, via its MCP</text>
+        <text x="731" y="142" font-size="12" fill="var(--muted)">+ optional daily keep-alive cron</text></g>
+      <g id="supabase"><title>Supabase, leaderboard only</title>
+        <rect x="715" y="246" width="225" height="92" rx="14" fill="var(--green-l)" stroke="var(--green)" stroke-opacity=".6"/>
+        <text x="731" y="270" class="h" font-size="14" fill="var(--green)">Supabase (leaderboard only)</text>
+        <text x="731" y="290" font-size="12" fill="var(--muted)">nicknames + points, nothing else</text>
+        <text x="731" y="308" font-size="12" fill="var(--muted)">game still works if it is down</text>
+        <text x="731" y="326" font-size="12" fill="var(--muted)">decisions D6 + D7</text></g>
+    </svg>
+    <figcaption>Solid arrows are the plan. Dashed ones depend on your answers (D3 for ICT Adventure, D6/D7 for Supabase).</figcaption>
+  </figure>
+  <div class="grid-2" style="margin-top:16px">
+    <div class="card">
+      <h3 style="font-size:17px;margin-bottom:8px">Proposed folder: <code>freelance-projects\ict-game-world\</code></h3>
+<pre class="mono" style="margin:0;white-space:pre-wrap;color:#cfe9e4;font-size:12.5px;line-height:1.7">index.html            one page, hash routes
+css/tokens.css        from Open Design
+css/app.css           components + motion
+js/app.js  i18n.js  audio.js  player.js
+js/leaderboard.js     Supabase + local board
+js/activities/*.js    15 activity types
+data/grade-6..9.js    { en, si, ta } content
+fonts/                (if offline is chosen)
+scripts/check-data.mjs  parity test
+original/             her 9 files, untouched</pre>
+    </div>
+    <div class="card">
+      <h3 style="font-size:17px;margin-bottom:8px">Why no build step (D1)</h3>
+      <ul class="tight" style="font-size:14px">
+        <li>She can open any file and edit a question in plain JS. No <code>npm install</code>, no bundler to learn before her viva.</li>
+        <li>Plain ES modules run in every current browser, and Vercel serves the folder as-is.</li>
+        <li>What we give up: no TypeScript and no hot reload. At this size, that costs little.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. DESIGN ============ -->
+<section id="design">
+  <div class="eyebrow">4 · Design direction + motion</div>
+  <h2>Playful for 11, not babyish for 15</h2>
+  <p class="lead">Open Design will turn your pick into a full design system: DESIGN.md, tokens, a component showcase. These three phones are my quick sketches of each direction, not final screens. Pick one in D2.</p>
+  <div class="grid-3">
+    <article class="card dir rec">
+      <h3>A · Game Lab <span class="rec-badge">my pick</span></h3>
+      <div class="phone"><div class="scr a" lang="si">
+        <div class="a-top"><span class="a-chip">7</span><span class="a-xp" lang="en">⚡ 240 XP</span><span class="a-lang" lang="en">සිං · த · EN</span></div>
+        <div class="a-hero">
+          <svg class="a-bot" viewBox="0 0 200 200" aria-hidden="true"><rect x="44" y="44" width="112" height="112" rx="26" fill="#14b8a6"/><rect x="56" y="56" width="88" height="88" rx="18" fill="#5eead4"/><circle cx="82" cy="90" r="12" fill="#fff"/><circle cx="118" cy="90" r="12" fill="#fff"/><circle cx="84" cy="92" r="6" fill="#1f2d3d"/><circle cx="120" cy="92" r="6" fill="#1f2d3d"/><path d="M86 116 Q100 132 114 116" stroke="#1f2d3d" stroke-width="5" fill="none" stroke-linecap="round"/><line x1="60" y1="44" x2="48" y2="22" stroke="#0f766e" stroke-width="5" stroke-linecap="round"/><circle cx="47" cy="20" r="8" fill="#fb7185"/><line x1="140" y1="44" x2="152" y2="22" stroke="#0f766e" stroke-width="5" stroke-linecap="round"/><circle cx="153" cy="20" r="8" fill="#fb7185"/></svg>
+          <div class="a-bubble">ආයුබෝවන් නිමේෂ්! අද පාඩම 3 👋</div>
+        </div>
+        <svg class="a-path" viewBox="0 0 230 250" aria-hidden="true">
+          <path d="M60 30 C 190 30, 190 100, 115 110 S 40 190, 170 220" fill="none" stroke="#99f6e4" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 16"/>
+          <circle cx="60" cy="30" r="17" fill="#22c55e"/><text x="60" y="35" text-anchor="middle" font-size="15" fill="#fff" font-weight="900">✓</text>
+          <text x="84" y="35" font-size="11" font-weight="800" fill="#15803d" font-family="Noto Sans Sinhala">CPU</text>
+          <circle cx="158" cy="72" r="17" fill="#22c55e"/><text x="158" y="77" text-anchor="middle" font-size="15" fill="#fff" font-weight="900">✓</text>
+          <circle class="pulse" cx="115" cy="110" r="19" fill="#14b8a6" opacity=".5"/>
+          <circle cx="115" cy="110" r="19" fill="#14b8a6" stroke="#fff" stroke-width="4"/><text x="115" y="116" text-anchor="middle" font-size="15" fill="#fff" font-weight="900">3</text>
+          <text x="141" y="114" font-size="11" font-weight="800" fill="#0f766e" font-family="Noto Sans Sinhala">ආරක්ෂාව</text>
+          <circle cx="72" cy="165" r="17" fill="#e2e8f0"/><text x="72" y="170" text-anchor="middle" font-size="13">🔒</text>
+          <circle cx="170" cy="220" r="17" fill="#e2e8f0"/><text x="170" y="225" text-anchor="middle" font-size="13">🔒</text>
+        </svg>
+        <button class="a-play" type="button" tabindex="-1">▶ පටන් ගමු!</button>
+      </div></div>
+      <dl><dt>Feels like</dt><dd>Duolingo-style chunky buttons (her originals already use this), a lesson path with progress, the robot mascot reacting to answers.</dd>
+        <dt>Per grade</dt><dd>Same components, a colour world per grade: 6 teal, 7 indigo, 8 orange, 9 a darker "night lab" so grade 9 feels older.</dd>
+        <dt>Sri Lankan</dt><dd>Light touch: trilingual throughout, local examples, one subtle pattern accent.</dd>
+        <dt>Risk</dt><dd>Low. It builds on what she already made.</dd></dl>
+    </article>
+    <article class="card dir">
+      <h3>B · Lanka Quest</h3>
+      <div class="phone"><div class="scr b">
+        <svg viewBox="0 0 232 22" style="display:block" aria-hidden="true"><rect width="232" height="22" fill="#8b1e3f"/><path d="M0 11 q 7 -9 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0" fill="none" stroke="#f59e0b" stroke-width="2.5"/></svg>
+        <div class="b-head"><div class="t" lang="si">ICT චාරිකාව</div><div class="s">GRADE 7 · LEVEL MAP</div></div>
+        <div class="b-card"><svg class="n" viewBox="0 0 40 40"><g fill="#f59e0b"><ellipse cx="20" cy="10" rx="5" ry="10"/><ellipse cx="20" cy="30" rx="5" ry="10"/><ellipse cx="10" cy="20" rx="10" ry="5"/><ellipse cx="30" cy="20" rx="10" ry="5"/></g><circle cx="20" cy="20" r="6" fill="#8b1e3f"/></svg><span class="l" lang="si">1 · මධ්‍ය සැකසුම් ඒකකය ✓</span></div>
+        <div class="b-card"><svg class="n" viewBox="0 0 40 40"><g fill="#f59e0b"><ellipse cx="20" cy="10" rx="5" ry="10"/><ellipse cx="20" cy="30" rx="5" ry="10"/><ellipse cx="10" cy="20" rx="10" ry="5"/><ellipse cx="30" cy="20" rx="10" ry="5"/></g><circle cx="20" cy="20" r="6" fill="#8b1e3f"/></svg><span class="l" lang="si">2 · මෙහෙයුම් පද්ධතිය ✓</span></div>
+        <div class="b-card" style="border-color:#8b1e3f;box-shadow:0 3px 0 #8b1e3f"><svg class="n" viewBox="0 0 40 40"><g fill="#15803d"><ellipse cx="20" cy="10" rx="5" ry="10"/><ellipse cx="20" cy="30" rx="5" ry="10"/><ellipse cx="10" cy="20" rx="10" ry="5"/><ellipse cx="30" cy="20" rx="10" ry="5"/></g><circle cx="20" cy="20" r="6" fill="#f59e0b"/></svg><span class="l" lang="si">3 · පරිගණක පද්ධතියේ ආරක්ෂාව</span></div>
+        <div class="b-card" style="opacity:.5"><svg class="n" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="#e8c98f"/></svg><span class="l" lang="si">4 · වදන් සැකසීම 🔒</span></div>
+        <button class="b-play" type="button" tabindex="-1">Continue quest</button>
+      </div></div>
+      <dl><dt>Feels like</dt><dd>An adventure map with Sri Lankan craft cues: liyawela-style borders, lotus nodes, maroon + saffron.</dd>
+        <dt>Per grade</dt><dd>Each grade is a "region" on the map.</dd>
+        <dt>Sri Lankan</dt><dd>Strong and very visible.</dd>
+        <dt>Risk</dt><dd>Medium. Heritage motifs can tip into kitsch or feel like a flag. They also compete with the teaching content for attention.</dd></dl>
+    </article>
+    <article class="card dir">
+      <h3>C · Clay Pop</h3>
+      <div class="phone"><div class="scr c">
+        <div class="c-head">Grade 7 · Pick a lesson</div>
+        <div class="c-grid">
+          <div class="c-tile"><span class="e">🧠</span>CPU</div>
+          <div class="c-tile"><span class="e">💻</span>Operating System</div>
+          <div class="c-tile"><span class="e">🛡️</span>Security</div>
+          <div class="c-tile"><span class="e">📝</span>Word Processing</div>
+        </div>
+        <div class="c-grid" style="padding-top:0">
+          <div class="c-tile" style="background:#e0f2fe"><span class="e">🧩</span>Programming</div>
+          <div class="c-tile" style="background:#fce7f3"><span class="e">📊</span>Presentation</div>
+        </div>
+        <button class="c-play" type="button" tabindex="-1">Let's play!</button>
+      </div></div>
+      <dl><dt>Feels like</dt><dd>Soft, puffy, pastel 3D. Very friendly.</dd>
+        <dt>Per grade</dt><dd>Pastel tint per grade.</dd>
+        <dt>Sri Lankan</dt><dd>Neutral.</dd>
+        <dt>Risk</dt><dd>Medium. It reads young, so grade 8-9 students may find it childish. Soft shadows also cost more on the old lab PCs.</dd></dl>
+    </article>
+  </div>
+
+  <h3 style="margin:28px 0 8px;font-size:19px">Type: all three scripts, one family feel</h3>
+  <p class="lead" style="margin-bottom:8px">Her current fonts, Fredoka and Nunito, have <b>no Sinhala or Tamil glyphs</b>. I checked this through the Google Fonts CSS API (unicode ranges). The fonts below all do. Open Design finalises the pick.</p>
+  <div class="card">
+    <div class="spec"><div class="k">English</div><div><div class="d" style="font-family:'Baloo 2'">Lesson 1 · Importance of Computers</div><div class="bd">Match each feature of a computer with its correct description.</div></div><div class="f">Baloo 2 (display) · Nunito (body)</div></div>
+    <div class="spec" lang="si"><div class="k" lang="en">සිංහල</div><div><div class="d" style="font-family:'Yaldevi','Noto Sans Sinhala'">පාඩම 1 · පරිගණකයේ වැදගත්කම</div><div class="bd">පරිගණකයේ එක් එක් ලක්ෂණය නිවැරදි විස්තරය සමඟ ගළපන්න.</div></div><div class="f" lang="en">Yaldevi (display) · Noto Sans Sinhala (body)</div></div>
+    <div class="spec" lang="ta"><div class="k" lang="en">தமிழ்</div><div><div class="d" style="font-family:'Baloo Thambi 2','Noto Sans Tamil'">பாடம் 1 · கணினியின் முக்கியத்துவம்</div><div class="bd">கணினியின் ஒவ்வொரு இயல்பையும் அதன் சரியான விளக்கத்துடன் பொருத்துக.</div></div><div class="f" lang="en">Baloo Thambi 2 (display) · Noto Sans Tamil (body) - same Baloo family as English</div></div>
+    <p class="src" style="margin:10px 0 0">Rules the design system will carry: no letter-spacing and no ALL CAPS on Sinhala or Tamil, line-height at least 1.6 for them, and a slightly larger size so the vowel signs read clearly on cheap phone screens.</p>
+  </div>
+
+  <h3 style="margin:28px 0 8px;font-size:19px">Motion: tap to replay</h3>
+  <p class="lead" style="margin-bottom:10px">These are samples of the motion layer. The rules: animate only transform and opacity, so old lab PCs stay smooth. Every animation confirms something the student did. With the system's "reduce motion" setting on, it all becomes an instant state change.</p>
+  <div class="motion">
+    <div class="m-tile"><div class="m-stage" id="stOk"><button class="opt" id="optOk" type="button">RAM is volatile</button></div><h4>Correct answer</h4><p>Pop plus a spark burst; the mascot cheers.</p><button class="btn small ghost" type="button" data-play="ok">Replay</button></div>
+    <div class="m-tile"><div class="m-stage"><button class="opt" id="optNo" type="button">.mp3 = image</button></div><h4>Wrong answer</h4><p>Short shake and a coral flash, then the correct option glows. No harsh buzzer by default.</p><button class="btn small ghost" type="button" data-play="no">Replay</button></div>
+    <div class="m-tile"><div class="m-stage"><div class="stars" id="stars"><span>⭐</span><span>⭐</span><span>⭐</span></div></div><h4>Result stars</h4><p>Stars land one by one; points count up; confetti on 3 stars.</p><button class="btn small ghost" type="button" data-play="stars">Replay</button></div>
+    <div class="m-tile"><div class="m-stage"><svg class="draw" id="draw" viewBox="0 0 200 110" width="180"><path class="trail" d="M20 80 C 60 10, 100 110, 140 40 S 180 30, 185 30" fill="none" stroke="#14b8a6" stroke-width="7" stroke-linecap="round"/><circle class="node" cx="20" cy="80" r="11" fill="#22c55e"/><circle class="node n2" cx="100" cy="68" r="11" fill="#22c55e"/><circle class="node n3" cx="185" cy="30" r="11" fill="#fbbf24"/></svg></div><h4>Lesson unlocked</h4><p>The path draws to the next lesson, and the new node pops in.</p><button class="btn small ghost" type="button" data-play="draw">Replay</button></div>
+  </div>
+  <p class="src" style="margin-top:10px">Also planned: screen-to-screen transitions (View Transitions API, with a fade fallback), staggered card entrances, drag lift and snap for ordering, sorting and Scratch blocks (real drag, keeping her arrow buttons as the accessible fallback), leaderboard rank changes that slide rows into place, and the mascot idling.</p>
+</section>
+
+<!-- ============ 5. LANGUAGES ============ -->
+<section id="lang">
+  <div class="eyebrow">5 · Languages</div>
+  <h2>Sinhala, Tamil, English - what it takes</h2>
+  <div class="grid-3">
+    <div class="card"><h3 style="font-size:17px">How switching works</h3><ul class="tight" style="font-size:14px"><li>A සිං · த · EN switch in the header, remembered on the device.</li><li>Sets <code>&lt;html lang&gt;</code>, so each script gets its own font and spacing.</li><li>Scores and progress carry over when the language changes: it's the same activity, just different text.</li></ul></div>
+    <div class="card"><h3 style="font-size:17px">Volume (estimate)</h3><ul class="tight" style="font-size:14px"><li><b>Tamil:</b> ~1,000 content strings across 4 grades + ~80 UI labels.</li><li><b>Sinhala, grade 9:</b> ~485 strings (English medium has no Sinhala twin). ICT Adventure already has Sinhala for ~60 of its own questions.</li><li>Grades 6-8 Sinhala: already done by her.</li></ul></div>
+    <div class="card"><h3 style="font-size:17px">Quality plan for Tamil (D4)</h3><ul class="tight" style="font-size:14px"><li>AI-drafted, then technical terms checked against NIE's Tamil-medium ICT books. Sri Lankan Tamil terms, not Indian ones.</li><li>Marked "beta" in the app until a Tamil-medium teacher signs off.</li><li>The review list goes to <code>evidence/</code> as a side-by-side table.</li></ul></div>
+  </div>
+  <h3 style="margin:24px 0 10px;font-size:18px">Likely Sinhala typos (from legacy-font conversion) - D5</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Now</th><th>Proposed</th><th>Meaning</th><th>Count</th><th>Confidence</th></tr></thead>
+      <tbody lang="si">
+        <tr><td>මාදුකාංග</td><td>මෘදුකාංග</td><td lang="en">software</td><td>19</td><td lang="en"><span class="pill p-green">high</span></td></tr>
+        <tr><td>කොවෙනි</td><td>කෙවෙනි</td><td lang="en">ports</td><td>10</td><td lang="en"><span class="pill p-amber">likely</span></td></tr>
+        <tr><td>මුසිකය</td><td>මූසිකය</td><td lang="en">mouse</td><td>10</td><td lang="en"><span class="pill p-amber">likely</span></td></tr>
+        <tr><td>හාවිතය</td><td>භාවිතය</td><td lang="en">use</td><td>4</td><td lang="en"><span class="pill p-green">high</span></td></tr>
+        <tr><td>හොතික</td><td>භෞතික</td><td lang="en">physical</td><td>1</td><td lang="en"><span class="pill p-green">high</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="src" style="margin-top:8px">The pattern (ha for bha, a dropped ru-kaaraya, a short vowel for a long one) is typical of converting text from old FM-font Sinhala to Unicode. Nothing changes without her OK. She gets the full list with every location.</p>
+</section>
+
+<!-- ============ 6. LEADERBOARD ============ -->
+<section id="lb">
+  <div class="eyebrow">6 · Leaderboard (new ask)</div>
+  <h2>Name first, then a class leaderboard</h2>
+  <p class="lead">Yes, Supabase can do this with <b>no server code</b>. The browser talks to Supabase directly, and database rules decide what it may read and write. The design below keeps it fair enough for a classroom and safe for under-16s.</p>
+  <div class="grid-3">
+    <div>
+      <div class="phone"><div class="scr nm">
+        <div style="font-size:30px">🤖</div>
+        <h5>What should we call you?</h5>
+        <div class="in">Nimesh_7B</div>
+        <div class="tip">💡 Use a nickname, not your full name.</div>
+        <div style="font-weight:900;font-size:11px;color:#0f766e;margin-bottom:6px">Pick your robot</div>
+        <div class="avs"><span class="on">🤖</span><span>👾</span><span>🦾</span><span>🛸</span><span>🐯</span><span>🐘</span><span>🦚</span><span>🐢</span></div>
+        <div style="font-weight:900;font-size:11px;color:#0f766e;margin-bottom:6px">Class code (from your teacher, optional)</div>
+        <div class="in" style="border-color:#c7d2fe">7B-2026</div>
+        <button class="a-play" type="button" tabindex="-1" style="font-family:'Nunito'">Start playing →</button>
+      </div></div>
+      <p class="src" style="text-align:center;margin-top:8px">First run only. Stored on the device, with "Not you? Switch player" for shared lab PCs.</p>
+    </div>
+    <div>
+      <div class="phone"><div class="scr lb">
+        <div class="lb-head">🏆 Leaderboard · Grade 7</div>
+        <div class="seg"><span class="on">Class 7B</span><span>All Grade 7</span></div>
+        <div class="seg"><span class="on">This week</span><span>All time</span></div>
+        <div class="podium">
+          <div class="pod p2"><span class="av">👾</span>Kavya<div class="bar">2</div></div>
+          <div class="pod p1"><span class="av">🦚</span>Tharu<div class="bar">1</div></div>
+          <div class="pod p3"><span class="av">🐯</span>Ashan<div class="bar">3</div></div>
+        </div>
+        <div class="rows">
+          <div class="rowx"><span class="r">4</span>🐘 Dilki<span class="pts">910</span></div>
+          <div class="rowx me"><span class="r">5</span>🤖 Nimesh_7B (you)<span class="pts">860</span></div>
+          <div class="rowx"><span class="r">6</span>🛸 Sahan<span class="pts">845</span></div>
+          <div class="rowx"><span class="r">7</span>🐢 Ruvi<span class="pts">790</span></div>
+        </div>
+      </div></div>
+      <p class="src" style="text-align:center;margin-top:8px">Reached from a trophy in the header. The result screen also says "You moved up to #5 in 7B!"</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:17px;margin-bottom:6px">How points work</h3>
+      <ul class="tight" style="font-size:14px">
+        <li>Each activity scores 0-100 (her existing score ÷ total).</li>
+        <li><b>Only the best try per activity counts</b>, so replaying the same easy game can't farm points. Grade totals are comparable.</li>
+        <li>This week: resets every Monday. All time: the grade total.</li>
+      </ul>
+      <h3 style="font-size:17px;margin:14px 0 6px">Fair enough, honestly</h3>
+      <ul class="tight" style="font-size:14px">
+        <li>The browser key is public by design, so a determined kid could post fake scores. The database function caps each activity at 100, so the worst a cheater can reach is a perfect score, not 99,999.</li>
+        <li>Your sister can hide or delete any name from the Supabase dashboard.</li>
+      </ul>
+      <h3 style="font-size:17px;margin:14px 0 6px">Offline first</h3>
+      <ul class="tight" style="font-size:14px"><li>Scores save on the device first and sync when online. With no internet or Supabase paused, the board shows "this device" scores instead of an error.</li></ul>
+    </div>
+  </div>
+
+  <figure class="fig" style="margin-top:18px">
+    <svg viewBox="0 0 960 250" role="img" aria-labelledby="lbT">
+      <title id="lbT">Leaderboard data flow: device, validating function, locked tables, read-only views</title>
+      <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--muted)"/></marker></defs>
+      <g id="dev"><title>Student device</title><rect x="16" y="40" width="190" height="118" rx="14" fill="var(--teal-l)" stroke="var(--teal)" stroke-opacity=".6"/>
+        <text x="30" y="64" class="h" font-size="14" fill="var(--teal)">Student device</text>
+        <text x="30" y="86" font-size="12" fill="currentColor">nickname · robot · class code</text>
+        <text x="30" y="104" font-size="12" fill="currentColor">best score per activity</text>
+        <text x="30" y="122" font-size="12" fill="var(--muted)">saved locally first</text>
+        <text x="30" y="140" font-size="12" fill="var(--muted)">random player id, no login</text></g>
+      <path d="M208 90 L 262 90" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah2)"/>
+      <text x="212" y="80" font-size="11" fill="var(--muted)">when online</text>
+      <g id="rpc"><title>submit_score database function</title><rect x="266" y="40" width="210" height="118" rx="14" fill="var(--amber-l)" stroke="var(--amber)" stroke-opacity=".6"/>
+        <text x="280" y="64" class="h" font-size="14" fill="var(--amber)">submit_score()</text>
+        <text x="280" y="86" font-size="12" fill="currentColor">nickname 2-16 chars</text>
+        <text x="280" y="104" font-size="12" fill="currentColor">points 0-100, known activity</text>
+        <text x="280" y="122" font-size="12" fill="currentColor">keeps the higher score</text>
+        <text x="280" y="140" font-size="12" fill="var(--muted)">the only way to write</text></g>
+      <path d="M478 90 L 532 90" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah2)"/>
+      <g id="tables"><title>players and scores tables, row level security on</title><rect x="536" y="40" width="190" height="118" rx="14" fill="var(--surface-3)" stroke="var(--line)"/>
+        <text x="550" y="64" class="h" font-size="14" fill="currentColor">players · scores</text>
+        <text x="550" y="86" font-size="12" fill="var(--muted)">RLS on</text>
+        <text x="550" y="104" font-size="12" fill="var(--muted)">no direct writes from</text>
+        <text x="550" y="122" font-size="12" fill="var(--muted)">the browser key</text></g>
+      <path d="M728 90 L 782 90" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah2)"/>
+      <g id="views"><title>Read-only leaderboard views</title><rect x="786" y="40" width="160" height="118" rx="14" fill="var(--green-l)" stroke="var(--green)" stroke-opacity=".6"/>
+        <text x="800" y="64" class="h" font-size="14" fill="var(--green)">leaderboard views</text>
+        <text x="800" y="86" font-size="12" fill="currentColor">class / grade</text>
+        <text x="800" y="104" font-size="12" fill="currentColor">week / all time</text>
+        <text x="800" y="122" font-size="12" fill="var(--muted)">read-only</text></g>
+      <path d="M866 160 C 866 230, 110 230, 110 162" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ah2)"/>
+      <text x="420" y="222" font-size="12" fill="var(--muted)">leaderboard screen reads the top 10 + your row</text>
+      <g id="cron"><title>Optional daily keep-alive</title><rect x="536" y="176" width="190" height="34" rx="10" fill="none" stroke="var(--line)" stroke-dasharray="4 4"/>
+        <text x="548" y="198" font-size="11.5" fill="var(--muted)">daily keep-alive (Vercel cron)</text></g>
+    </svg>
+    <figcaption>Only a small, fixed set of data ever leaves the device: nickname, robot, class code, grade, activity id, points.</figcaption>
+  </figure>
+
+  <div class="callout coral"><b>Children's data.</b> Sri Lanka's PDPA No. 9 of 2022 defines a "child" as anyone <b>under 16</b>, so every grade 6-9 player counts, and children's interests override the "legitimate interests" basis. The main parts of the Act have no commencement date yet (the 2025 date was withdrawn by Gazette 2427/34). Design as if it applies anyway: <b>nicknames only</b>, with an on-screen tip; no email, no age, no school name; optional class code; she can delete any row; a short note in the app saying what is stored. If her college or a school asks for parental consent, a class-code-only board (no public "All Grade 7" tab) keeps it inside the classroom.</div>
+  <p class="src">Sources: <a href="https://www.parliament.lk/uploads/acts/gbills/english/6242.pdf">PDPA No. 9 of 2022 (definitions, Schedule I/II)</a> · <a href="https://en.wikipedia.org/wiki/Personal_Data_Protection_Act_(Sri_Lanka)">PDPA commencement status</a></p>
+</section>
+
+<!-- ============ 7. SUPABASE ============ -->
+<section id="supa">
+  <div class="eyebrow">7 · Supabase + its MCP</div>
+  <h2>What the MCP can do here, and what you need to set up</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3 style="font-size:17px;margin-bottom:8px">Found on this machine</h3>
+      <ul class="tight" style="font-size:14px">
+        <li>A Supabase MCP exists, but it is configured <b>only for VaniBot</b> (<code>startup\whatsapp-vocie-agent</code>), so it is not loaded in this session.</li>
+        <li>It authenticates with an access token, and a Supabase token normally reaches <b>every project on your account</b>, VaniBot included. I'd rather not point that one at a kids' game.</li>
+        <li>The Vercel MCP is configured account-wide (<code>mcp.vercel.com</code>) but not authenticated yet. That matches your "connect later".</li>
+      </ul>
+      <h3 style="font-size:17px;margin:14px 0 8px">What I'd do through the MCP</h3>
+      <ul class="tight" style="font-size:14px">
+        <li>Create the tables, RLS policies, <code>submit_score()</code> and the views as one migration.</li>
+        <li>Run Supabase's security advisors and fix anything flagged.</li>
+        <li>Fetch the project URL and the browser key for <code>js/config.js</code>.</li>
+        <li>Prove RLS: a direct insert with the browser key must be refused.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="font-size:17px;margin-bottom:8px">Your part (about 5 minutes)</h3>
+      <ol style="font-size:14px;margin:0;padding-left:20px">
+        <li>In the Supabase dashboard, create a <b>new free project</b> called <code>ict-game-world</code>. Region: Mumbai (ap-south-1), the closest to Sri Lanka. Send me the project ref.</li>
+        <li>From <code>freelance-projects\ict-game-world</code>, add an MCP locked to that one project:
+<pre class="mono" style="white-space:pre-wrap;background:var(--surface-3);padding:10px;border-radius:10px;font-size:12px;margin:8px 0">claude mcp add --scope project --transport http supabase "https://mcp.supabase.com/mcp?project_ref=&lt;ref&gt;&amp;features=database,docs,development"</pre>
+          then run <code>/mcp</code> and sign in (OAuth). No token is saved in the file.</li>
+        <li>Start the build session from that folder, so the scoped MCP loads.</li>
+      </ol>
+      <div class="callout" style="margin-top:12px"><b>Free plan limits (supabase.com):</b> 2 active projects per account, 500 MB database. Projects <b>pause after 1 week</b> of too few database requests; while paused, requests get HTTP 540 until you restore the project from the dashboard. You get a warning email a week before. <b>If VaniBot plus another project already fill your 2 slots</b>, tell me in D7.</div>
+      <p class="src">Sources: <a href="https://supabase.com/pricing">supabase.com/pricing</a> · <a href="https://supabase.com/docs/guides/platform/billing-on-supabase">billing docs</a> · Supabase docs "Project Pausing" and MCP README (<code>project_ref</code>, <code>read_only</code>, <code>features</code>) via Context7 · <a href="https://vercel.com/docs/cron-jobs/usage-and-pricing">Vercel Hobby cron: once per day</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. WORKFLOW ============ -->
+<section id="flow">
+  <div class="eyebrow">8 · Workflow with Open Design</div>
+  <h2>Where Open Design sits</h2>
+  <p class="lead">Open Design owns the look: design system, key screens. I own the production code, so the logic and the answers stay exact. The finished app goes back into Open Design so she can browse and iterate there.</p>
+  <ol class="steps">
+    <li class="done"><div><h4>Originals in Open Design</h4><p>Project "ICT Game World - originals", all 9 files previewable as artifacts. Done.</p></div></li>
+    <li><div><h4>Design system in Open Design</h4><p>A design-system run with the brief: ages 11-15, 3 scripts, per-grade colour worlds, motion and reduced-motion rules, your D2 pick. Output: DESIGN.md, tokens.css, a component showcase.</p></div></li>
+    <li><div><h4>Key screens in Open Design</h4><p>Welcome and name, grade picker, lesson path, activity, result, leaderboard. Phone and desktop.</p></div></li>
+    <li class="gate"><div><h4>Checkpoint (D8)</h4><p>You look at it in Open Design before I write app code. Cheap to change here, expensive later.</p></div></li>
+    <li><div><h4>Build locally</h4><p>Data extraction plus the parity script first, then the engine, 15 activity types, motion, languages, player and leaderboard.</p></div></li>
+    <li><div><h4>Supabase via its MCP</h4><p>Schema, RLS, function, views, advisors. Needs your 5-minute setup from section 7.</p></div></li>
+    <li><div><h4>v2 back into Open Design</h4><p>Project "ICT Game World - v2", for her to explore and tweak.</p></div></li>
+    <li><div><h4>Vercel</h4><p>Config ready. Deploy only after you connect the Vercel MCP and say go.</p></div></li>
+  </ol>
+</section>
+
+<!-- ============ 9. PROOF + RISKS ============ -->
+<section id="proof">
+  <div class="eyebrow">9 · Proof + risks</div>
+  <h2>How I'll show it works</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3 style="font-size:17px;margin-bottom:8px">Proof</h3>
+      <ul class="tight" style="font-size:14px">
+        <li><code>node scripts/check-data.mjs</code>: 0 differences in lessons, activity ids, types or answers vs her 9 originals; 0 missing translations.</li>
+        <li>Playwright: 4 grades x 3 languages x 375px and 1366px. Every activity type played to the end with correct answers; 0 console errors; 0 sideways scroll.</li>
+        <li>The same run with reduce-motion on.</li>
+        <li>Leaderboard: two browser profiles rank correctly; a direct insert is refused; <code>submit_score</code> rejects 101 points and a 40-character name; offline play syncs on reconnect.</li>
+        <li>Before/after screenshots of the same screens in <code>evidence/</code>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="font-size:17px;margin-bottom:8px">Risks</h3>
+      <ul class="tight" style="font-size:14px">
+        <li><span class="pill p-amber">med</span> Porting 4 engines into 1 could change an answer. The parity script guards it on every run.</li>
+        <li><span class="pill p-amber">med</span> AI-drafted Tamil (all grades) and Sinhala (grade 9) need a human teacher's review before real classroom use. Shown as "beta" until then.</li>
+        <li><span class="pill p-amber">med</span> Supabase free pausing during school holidays. The board falls back to device scores; the optional daily cron keeps it awake.</li>
+        <li><span class="pill p-coral">note</span> It is her assessed final-year project. She should be able to explain every part at her viva, and her college's rules on outside help apply. See D10.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. DECIDE ============ -->
+<section id="decide">
+  <div class="eyebrow">10 · Decide</div>
+  <h2>Ten decisions, one submit</h2>
+  <p class="lead">My picks are pre-selected. Change any of them, add notes, then press <b>Queue my decisions</b> and <b>Send to Agent</b> in the Lavish panel. Queue again to replace the earlier answer.</p>
+  <form class="decide" id="gate" data-lavish-question="plan-gate">
+
+    <fieldset class="q"><legend><span class="id">D1</span>How should the code be built?</legend>
+      <div class="ctx"><div><b>Hard because:</b> she has to maintain and explain it; a build tool is more "pro" but adds a toolchain.</div><div><b>Evidence:</b> 9 files, 4 engines; a third language multiplies copies. Section 3.</div><div><b>If wrong (A):</b> moving to Vite later is easy, since the modules stay the same.</div><div><b>If wrong (C):</b> Tamil = 4 more copies, and the fixes live in 13 places.</div></div>
+      <label class="choice"><input type="radio" name="d1" value="A - one static trilingual app, shared engine + per-grade data, no build step" checked><span><span class="t">A · One static app, no build step <span class="rec-badge">my pick</span></span><br><span class="x">Plain HTML/CSS/JS modules, data files per grade, Vercel serves it as-is.</span></span></label>
+      <label class="choice"><input type="radio" name="d1" value="B - same structure with a Vite build"><span><span class="t">B · Same, with Vite</span><br><span class="x">npm + bundler. Hot reload and minified output; one more thing to learn.</span></span></label>
+      <label class="choice"><input type="radio" name="d1" value="C - restyle the 9 files in place"><span><span class="t">C · Restyle the 9 files in place</span><br><span class="x">Smallest change on paper; Tamil and every fix get copied 13 times.</span></span></label>
+    </fieldset>
+
+    <fieldset class="q"><legend><span class="id">D2</span>Which design direction should Open Design build?</legend>
+      <div class="ctx"><div><b>Hard because:</b> ages 11 to 15 is a wide span. What delights grade 6 can embarrass grade 9.</div><div><b>Evidence:</b> the three phone sketches in section 4; her originals already use chunky 3D buttons.</div><div><b>If wrong:</b> caught at the D8 checkpoint before any app code.</div><div></div></div>
+      <label class="choice"><input type="radio" name="d2" value="A - Game Lab" checked><span><span class="t">A · Game Lab <span class="rec-badge">my pick</span></span><br><span class="x">Gamified, lesson path, mascot, per-grade colour worlds, darker grade 9.</span></span></label>
+      <label class="choice"><input type="radio" name="d2" value="B - Lanka Quest"><span><span class="t">B · Lanka Quest</span><br><span class="x">Adventure map with strong Sri Lankan craft motifs.</span></span></label>
+      <label class="choice"><input type="radio" name="d2" value="C - Clay Pop"><span><span class="t">C · Clay Pop</span><br><span class="x">Soft pastel 3D; skews young.</span></span></label>
+      <label class="choice"><input type="radio" name="d2" value="Let Open Design generate all three as boards first, then I pick"><span><span class="t">Show me all three as Open Design boards first</span><br><span class="x">One more round trip, better visuals to judge.</span></span></label>
+    </fieldset>
+
+    <fieldset class="q"><legend><span class="id">D3</span>What is the grade 9 source of truth?</legend>
+      <div class="ctx"><div><b>Hard because:</b> she built two different grade 9 games; only one has the Scratch builder, the other has Sinhala sub-titles.</div><div><b>Evidence:</b> English medium: 18 activities + 14 Scratch puzzles. ICT Adventure: 18 quiz/sort/memory games on the same 6 lessons.</div><div><b>If wrong (A):</b> grade 9 is longer than the others; the bonus rounds are easy to hide.</div><div><b>If wrong (B):</b> 18 of her games disappear from the new app.</div></div>
+      <label class="choice"><input type="radio" name="d3" value="A - English-medium base + ICT Adventure games as a bonus round per lesson" checked><span><span class="t">A · English-medium base + Adventure games as "bonus round" <span class="rec-badge">my pick</span></span><br><span class="x">Nothing she built is lost; they map 3-per-lesson onto the same 6 lessons.</span></span></label>
+      <label class="choice"><input type="radio" name="d3" value="B - English-medium only; ICT Adventure stays in original/"><span><span class="t">B · English-medium only</span><br><span class="x">Simplest; ICT Adventure kept only as an archived file.</span></span></label>
+      <label class="choice"><input type="radio" name="d3" value="C - keep both as separate grade 9 games"><span><span class="t">C · Keep both as separate games</span><br><span class="x">Two grade 9 entries on the home screen.</span></span></label>
+    </fieldset>
+
+    <fieldset class="q"><legend><span class="id">D4</span>Tamil: how far?</legend>
+      <div class="ctx"><div><b>Hard because:</b> wrong ICT terms would teach Tamil-medium kids the wrong words, and nobody on our side reads Tamil.</div><div><b>Evidence:</b> ~1,000 strings + ~80 labels; NIE publishes Tamil-medium ICT books to check terms against.</div><div><b>If wrong (A):</b> a flagged term fix in one data file.</div><div><b>If wrong (C):</b> the "Tamil is a plus" goal is missed.</div></div>
+      <label class="choice"><input type="radio" name="d4" value="A - full Tamil, AI-drafted, terms checked against NIE Tamil-medium books, marked beta until reviewed" checked><span><span class="t">A · Full Tamil, marked "beta" until a teacher reviews <span class="rec-badge">my pick</span></span><br><span class="x">All content and UI, plus a side-by-side review list.</span></span></label>
+      <label class="choice"><input type="radio" name="d4" value="B - Tamil UI labels only"><span><span class="t">B · Tamil menus and buttons only</span><br><span class="x">Content stays Sinhala/English for Tamil-medium students.</span></span></label>
+      <label class="choice"><input type="radio" name="d4" value="C - Sinhala + English only for now"><span><span class="t">C · Skip Tamil for now</span><br><span class="x">The switch shows two languages; Tamil can be added later without code changes.</span></span></label>
+    </fieldset>
+
+    <fieldset class="q"><legend><span class="id">D5</span>Sinhala typos</legend>
+      <div class="ctx"><div><b>Hard because:</b> it's her text, and her assessor may compare the versions.</div><div><b>Evidence:</b> the 5 patterns, 44 hits, in section 5.</div><div><b>If wrong:</b> a reviewer spots මාදුකාංග 19 times.</div><div></div></div>
+      <label class="choice"><input type="radio" name="d5" value="A - fix, from a before/after list she approves" checked><span><span class="t">A · Fix them, from a list she approves first <span class="rec-badge">my pick</span></span></span></label>
+      <label class="choice"><input type="radio" name="d5" value="B - leave Sinhala exactly as written"><span><span class="t">B · Leave her Sinhala exactly as written</span></span></label>
+    </fieldset>
+
+    <fieldset class="q"><legend><span class="id">D6</span>Leaderboard</legend>
+      <div class="ctx"><div><b>Hard because:</b> it motivates kids but stores data about children, and needs a backend that can pause.</div><div><b>Evidence:</b> section 6 (design, PDPA) and section 7 (Supabase limits).</div><div><b>If wrong (A):</b> she deletes the project; the game keeps working offline.</div><div><b>If wrong (B):</b> no cross-device competition; can upgrade to A later.</div></div>
+      <label class="choice"><input type="radio" name="d6" value="A - online class leaderboard on Supabase, nickname + robot + class code, local-first" checked><span><span class="t">A · Online class leaderboard on Supabase <span class="rec-badge">my pick</span></span><br><span class="x">Class and grade tabs, this week and all time, device fallback.</span></span></label>
+      <label class="choice"><input type="radio" name="d6" value="A-lite - online, class-code tab only (no public all-grade tab)"><span><span class="t">A-lite · Online, class code tab only</span><br><span class="x">Stricter privacy: you only see your own class.</span></span></label>
+      <label class="choice"><input type="radio" name="d6" value="B - device-only leaderboard, no backend"><span><span class="t">B · Device-only leaderboard</span><br><span class="x">No backend. On a shared lab PC it still ranks everyone who played there.</span></span></label>
+      <label class="choice"><input type="radio" name="d6" value="C - no leaderboard"><span><span class="t">C · No leaderboard</span></span></label>
+    </fieldset>
+
+    <fieldset class="q"><legend><span class="id">D7</span>Supabase setup</legend>
+      <div class="ctx"><div><b>Hard because:</b> free slots are limited (2 active projects), and your existing MCP token reaches VaniBot too.</div><div><b>Evidence:</b> section 7.</div><div><b>If wrong (B):</b> a kids' app shares a database and keys with VaniBot.</div><div><b>If wrong (C):</b> needs a small server function on Vercel instead of direct browser access.</div></div>
+      <label class="choice"><input type="radio" name="d7" value="A - new dedicated free project, MCP scoped with project_ref over OAuth" checked><span><span class="t">A · New dedicated free project, MCP locked to it <span class="rec-badge">my pick</span></span></span></label>
+      <label class="choice"><input type="radio" name="d7" value="B - new schema inside an existing Supabase project"><span><span class="t">B · A new schema inside an existing project</span><br><span class="x">Saves a slot; mixes data and keys.</span></span></label>
+      <label class="choice"><input type="radio" name="d7" value="C - use Neon Postgres via Vercel instead of Supabase"><span><span class="t">C · Neon Postgres through Vercel instead</span><br><span class="x">Wakes itself up instead of pausing; needs an API route.</span></span></label>
+      <div class="fields" style="margin-top:12px">
+        <label>Active free Supabase projects you have now<select name="slots"><option value="unknown">Not sure - I'll check</option><option value="0-1">0 or 1 - there is room</option><option value="2 (full)">2 - slots are full</option><option value="paid plan">I'm on a paid plan</option></select></label>
+        <label>Supabase project ref (if already created)<input type="text" name="ref" placeholder="e.g. abcd1234efgh5678"></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="q"><legend><span class="id">D8</span>Checkpoint after the Open Design design system?</legend>
+      <label class="choice"><input type="radio" name="d8" value="A - pause after the design system for a look in Open Design" checked><span><span class="t">A · Yes, pause so I can look in Open Design <span class="rec-badge">my pick</span></span><br><span class="x">Look and feel is subjective; changing it here is cheap.</span></span></label>
+      <label class="choice"><input type="radio" name="d8" value="B - carry straight on to the build"><span><span class="t">B · No, carry straight on</span></span></label>
+    </fieldset>
+
+    <fieldset class="q"><legend><span class="id">D9</span>Optional extras (not asked for; tick to include)</legend>
+      <label class="choice"><input type="checkbox" name="extras" value="offline + installable (PWA) with self-hosted fonts"><span><span class="t">Works offline + installable on phones, fonts self-hosted</span><br><span class="x">Good for labs with patchy internet and students on mobile data. Adds a small service worker.</span></span></label>
+      <label class="choice"><input type="checkbox" name="extras" value="daily keep-alive cron for Supabase" checked><span><span class="t">Daily keep-alive cron for Supabase <span class="rec-badge">my pick if D6 = A</span></span><br><span class="x">One tiny Vercel function, once a day (the most the free Hobby plan allows), so holidays don't pause the board.</span></span></label>
+      <label class="choice"><input type="checkbox" name="extras" value="English term hints under Sinhala/Tamil words"><span><span class="t">English term hints</span><br><span class="x">Shows "(software)" under මෘදුකාංග. Sinhala-medium ICT is often taught with the English terms alongside.</span></span></label>
+    </fieldset>
+
+    <fieldset class="q"><legend><span class="id">D10</span>Details and go</legend>
+      <div class="fields">
+        <label>Project folder name<input type="text" name="folder" value="ict-game-world"></label>
+        <label>Credit line in the footer<input type="text" name="credit" value="Ruwanpura NCoE · 2022-2024 Batch" placeholder="add her name if she wants it"></label>
+      </div>
+      <label class="choice" style="margin-top:12px"><input type="checkbox" name="integrity" value="confirmed: her college allows this help; she will walk through the code before her viva" ><span><span class="t">Her college is fine with this level of help, and she'll walk through the code before her viva</span><br><span class="x">It's her assessed project. If her college restricts outside help, tell me and we'll scope it down.</span></span></label>
+      <label style="display:block;margin-top:12px;font-weight:800;font-size:13.5px">Anything else<textarea name="notes" rows="3" placeholder="e.g. her name, a school to pilot with, colours she likes"></textarea></label>
+      <div class="fields" style="margin-top:12px">
+        <label class="choice" style="margin:0"><input type="radio" name="go" value="GO - build with these choices" checked><span><span class="t">✅ Go - build with these choices</span></span></label>
+        <label class="choice" style="margin:0"><input type="radio" name="go" value="HOLD - revise the plan first (see notes)"><span><span class="t">✋ Hold - revise the plan first</span></span></label>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn amber" style="font-size:16px">Queue my decisions</button>
+    <div class="qstatus" id="qstatus" role="status">Not queued yet. Nothing has been sent.</div>
+  </form>
+</section>
+
+</main>
+
+<script>
+  const replay = (el, cls) => { el.classList.remove(cls); void el.getBoundingClientRect(); el.classList.add(cls); };
+  function burst(stage){
+    stage.querySelectorAll('.spark').forEach(s => s.remove());
+    const colors = ['#22c55e','#fbbf24','#14b8a6','#fb7185','#818cf8','#22c55e','#fbbf24','#14b8a6'];
+    colors.forEach((c, i) => { const s = document.createElement('span'); s.className = 'spark'; s.style.background = c; s.style.setProperty('--r', (i * 45) + 'deg'); stage.appendChild(s); requestAnimationFrame(() => s.classList.add('go')); });
+  }
+  const plays = {
+    ok(){ const o = document.getElementById('optOk'); o.classList.remove('ok'); void o.offsetWidth; o.classList.add('ok'); burst(document.getElementById('stOk')); },
+    no(){ const o = document.getElementById('optNo'); o.classList.remove('no'); void o.offsetWidth; o.classList.add('no'); },
+    stars(){ replay(document.getElementById('stars'), 'go'); },
+    draw(){ replay(document.getElementById('draw'), 'go'); }
+  };
+  document.querySelectorAll('[data-play]').forEach(b => b.addEventListener('click', () => plays[b.dataset.play]()));
+  document.getElementById('optOk').addEventListener('click', plays.ok);
+  document.getElementById('optNo').addEventListener('click', plays.no);
+  window.addEventListener('load', () => { plays.stars(); plays.draw(); setTimeout(plays.ok, 400); });
+
+  const form = document.getElementById('gate');
+  const status = document.getElementById('qstatus');
+  let queued = false;
+  form.addEventListener('change', () => { if (queued) { status.className = 'qstatus changed'; status.textContent = 'Changed since you queued it. Press "Queue my decisions" again to replace the earlier answer.'; } });
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const fd = new FormData(form);
+    const answers = {
+      D1: fd.get('d1'), D2: fd.get('d2'), D3: fd.get('d3'), D4: fd.get('d4'), D5: fd.get('d5'),
+      D6: fd.get('d6'), D7: fd.get('d7'), supabaseSlots: fd.get('slots'), supabaseRef: fd.get('ref') || '',
+      D8: fd.get('d8'), D9_extras: fd.getAll('extras'), folder: fd.get('folder'), credit: fd.get('credit'),
+      integrity: fd.get('integrity') || 'NOT confirmed', go: fd.get('go'), notes: fd.get('notes') || ''
+    };
+    const lines = [
+      'Plan gate for ICT Game World redesign: ' + answers.go,
+      'D1 architecture: ' + answers.D1,
+      'D2 design direction: ' + answers.D2,
+      'D3 grade 9 source: ' + answers.D3,
+      'D4 Tamil: ' + answers.D4,
+      'D5 Sinhala typos: ' + answers.D5,
+      'D6 leaderboard: ' + answers.D6,
+      'D7 Supabase: ' + answers.D7 + ' | active free projects: ' + answers.supabaseSlots + (answers.supabaseRef ? ' | ref: ' + answers.supabaseRef : ''),
+      'D8 checkpoint: ' + answers.D8,
+      'D9 extras: ' + (answers.D9_extras.length ? answers.D9_extras.join('; ') : 'none'),
+      'D10 folder: ' + answers.folder + ' | credit: ' + answers.credit + ' | integrity: ' + answers.integrity,
+      'Notes: ' + (answers.notes || 'none')
+    ];
+    if (window.lavish && window.lavish.queuePrompt) {
+      window.lavish.queuePrompt(lines.join('\n'), { tag: 'choice', text: 'Plan gate: ' + answers.go, element: form, queueKey: 'plan-gate', data: { question: 'plan-gate', answers } });
+      queued = true;
+      status.className = 'qstatus queued';
+      status.textContent = 'Queued. Press "Send to Agent" in the Lavish panel. Change anything and queue again to replace it.';
+    } else {
+      status.className = 'qstatus changed';
+      status.textContent = 'Lavish is not connected on this page, so nothing was queued. Copy your choices into chat instead.';
+    }
+  });
+</script>
+</body>
+</html>

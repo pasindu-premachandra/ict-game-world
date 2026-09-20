@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 7 ICT Game | Ruwanpura NCoE</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f172a;--bg2:#1e293b;--card:#ffffff;--ink:#1f2d3d;--muted:#64748b;
+    --line:#e2e8f0;
+    --teal:#14b8a6;--teal-d:#0f766e;--teal-l:#ccfbf1;
+    --amber:#fbbf24;--amber-d:#d97706;--amber-l:#fef3c7;
+    --coral:#fb7185;--coral-d:#e11d48;--coral-l:#ffe4e6;
+    --indigo:#818cf8;--indigo-d:#4338ca;--indigo-l:#e0e7ff;
+    --green:#22c55e;--green-d:#15803d;--green-l:#dcfce7;
+    --pink:#f472b6;--pink-d:#be185d;--pink-l:#fce7f3;
+    --purple:#a855f7;--purple-d:#7e22ce;--purple-l:#f3e8ff;
+    --cyan:#22d3ee;--cyan-d:#0891b2;
+    --red:#ef4444;--red-d:#b91c1c;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:linear-gradient(160deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);
+    color:var(--ink);font-family:'Nunito',system-ui,sans-serif;
+    min-height:100vh;display:flex;flex-direction:column;
+    -webkit-tap-highlight-color:transparent;overflow-x:hidden;
+  }
+
+  /* Animated starry background */
+  .stars-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .star{
+    position:absolute;background:#fff;border-radius:50%;
+    animation:twinkleStar 3s ease-in-out infinite;
+  }
+  @keyframes twinkleStar{
+    0%,100%{opacity:.15;transform:scale(1);}
+    50%{opacity:.9;transform:scale(1.4);}
+  }
+  .floaters{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .floater{
+    position:absolute;font-size:32px;opacity:.18;
+    animation:floatAround 16s ease-in-out infinite;
+  }
+  @keyframes floatAround{
+    0%,100%{transform:translate(0,0) rotate(-8deg) scale(1);}
+    25%{transform:translate(25px,-35px) rotate(8deg) scale(1.1);}
+    50%{transform:translate(-20px,-15px) rotate(-5deg) scale(.95);}
+    75%{transform:translate(18px,25px) rotate(12deg) scale(1.05);}
+  }
+
+  /* ============ HUD TOP BAR ============ */
+  .hud{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:12px 18px;background:rgba(15,23,42,.85);
+    border-bottom:3px solid var(--cyan);backdrop-filter:blur(10px);
+    flex-wrap:wrap;position:sticky;top:0;z-index:100;
+    box-shadow:0 4px 20px rgba(34,211,238,.15);
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-chip{
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    color:#fff;font-weight:900;font-size:15px;padding:8px 16px;border-radius:12px;
+    box-shadow:0 0 20px rgba(34,211,238,.5);letter-spacing:1px;
+    font-family:'Fredoka',sans-serif;
+  }
+  .brand-text{font-weight:800;font-size:14px;color:#e2e8f0;}
+  .hud-stats{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .hud-chip{
+    background:rgba(255,255,255,.1);color:#fff;font-weight:900;font-size:13px;
+    padding:8px 14px;border-radius:999px;display:flex;align-items:center;gap:6px;
+    border:2px solid rgba(255,255,255,.15);
+  }
+  .hud-chip.xp{border-color:var(--amber);color:var(--amber);}
+  .hud-chip.combo{border-color:var(--coral);color:var(--coral);}
+  .hud-chip.combo.hot{animation:comboPulse .6s infinite alternate;}
+  @keyframes comboPulse{from{transform:scale(1);box-shadow:0 0 0 rgba(251,113,133,.6);}to{transform:scale(1.1);box-shadow:0 0 20px rgba(251,113,133,.8);}}
+  .music-btn{
+    border:none;background:var(--cyan);color:#0f172a;font-family:inherit;
+    font-weight:900;font-size:13.5px;padding:10px 16px;border-radius:999px;
+    cursor:pointer;box-shadow:0 3px 0 var(--cyan-d);transition:all .15s;
+  }
+  .music-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--cyan-d);}
+  .music-btn.on{background:var(--green);color:#fff;box-shadow:0 3px 0 var(--green-d);}
+
+  /* XP bar */
+  .xp-bar-wrap{
+    position:fixed;top:0;left:0;right:0;height:5px;background:rgba(15,23,42,.4);z-index:200;
+  }
+  .xp-bar{
+    height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--purple),var(--coral));
+    transition:width .6s cubic-bezier(.4,0,.2,1);
+    box-shadow:0 0 12px rgba(168,85,247,.7);
+  }
+
+  main{flex:1;width:100%;max-width:1100px;margin:0 auto;padding:20px;position:relative;z-index:1;}
+  .screen{display:none;animation:slideIn .4s;}
+  .screen.active{display:block;}
+  @keyframes slideIn{from{opacity:0;transform:translateY(20px) scale(.98);}to{opacity:1;transform:none;}}
+
+  h1{font-size:30px;margin:0 0 8px;text-align:center;color:#fff;font-family:'Fredoka',sans-serif;font-weight:700;
+    text-shadow:0 0 20px rgba(34,211,238,.4);}
+  h2{font-size:20px;margin:0 0 14px;text-align:center;color:var(--cyan);font-weight:800;}
+  .sub{text-align:center;color:#94a3b8;font-size:15px;margin:0 0 22px;line-height:1.7;font-weight:600;}
+
+  /* ============ BUTTONS ============ */
+  .btn{
+    border:none;font-family:inherit;font-weight:900;font-size:16px;
+    padding:14px 26px;border-radius:16px;cursor:pointer;color:#fff;
+    background:var(--cyan);box-shadow:0 5px 0 var(--cyan-d), 0 0 20px rgba(34,211,238,.3);
+    transition:all .12s;display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--cyan-d);}
+  .btn.amber{background:var(--amber);color:#422006;box-shadow:0 5px 0 var(--amber-d),0 0 20px rgba(251,191,36,.3);}
+  .btn.amber:active{box-shadow:0 1px 0 var(--amber-d);}
+  .btn.coral{background:var(--coral);box-shadow:0 5px 0 var(--coral-d),0 0 20px rgba(251,113,133,.3);}
+  .btn.coral:active{box-shadow:0 1px 0 var(--coral-d);}
+  .btn.purple{background:var(--purple);box-shadow:0 5px 0 var(--purple-d),0 0 20px rgba(168,85,247,.3);}
+  .btn.purple:active{box-shadow:0 1px 0 var(--purple-d);}
+  .btn.ghost{background:rgba(255,255,255,.1);color:#fff;box-shadow:0 5px 0 rgba(0,0,0,.3);border:2px solid rgba(255,255,255,.2);}
+  .btn.ghost:active{box-shadow:0 1px 0 rgba(0,0,0,.3);}
+  .btn.small{padding:10px 18px;font-size:14px;border-radius:12px;}
+  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px;}
+
+  /* ============ HOME ============ */
+  .hero{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:20px;}
+  .hero-svg{width:170px;height:170px;animation:bob 3s ease-in-out infinite;
+    filter:drop-shadow(0 0 30px rgba(34,211,238,.6));}
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(-3deg);}
+    50%{transform:translateY(-16px) rotate(3deg);}
+  }
+  .hero-bubble{
+    background:rgba(255,255,255,.95);border:3px dashed var(--cyan);border-radius:22px;
+    padding:14px 24px;font-weight:800;font-size:16px;color:var(--teal-d);
+    text-align:center;max-width:600px;line-height:1.7;
+    animation:pulseBubble 3s ease-in-out infinite;
+  }
+  @keyframes pulseBubble{0%,100%{transform:scale(1);}50%{transform:scale(1.02);}}
+
+  /* ============ LESSON GRID ============ */
+  .lesson-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;margin-top:22px;
+  }
+  .lesson-card{
+    background:var(--card);border-radius:24px;padding:22px 16px 18px;cursor:pointer;
+    border:4px solid transparent;
+    box-shadow:0 8px 0 rgba(0,0,0,.3), 0 0 30px rgba(34,211,238,.15);
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+    display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .lesson-card::before{
+    content:'';position:absolute;top:-40px;right:-40px;width:130px;height:130px;
+    border-radius:50%;opacity:.4;
+  }
+  .lesson-card.l1::before{background:var(--cyan);}
+  .lesson-card.l2::before{background:var(--coral);}
+  .lesson-card.l3::before{background:var(--red);}
+  .lesson-card.l4::before{background:var(--purple);}
+  .lesson-card.l5::before{background:var(--green);}
+  .lesson-card.l6::before{background:var(--amber);}
+  .lesson-card.l7::before{background:var(--pink);}
+  .lesson-card:active{transform:translateY(6px);box-shadow:0 2px 0 rgba(0,0,0,.3);}
+  .lesson-card:hover{transform:translateY(-4px) scale(1.02);border-color:var(--cyan);box-shadow:0 12px 0 rgba(0,0,0,.3),0 0 40px rgba(34,211,238,.4);}
+  .lesson-icon{
+    width:80px;height:80px;border-radius:24px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:42px;position:relative;z-index:1;
+    box-shadow:inset 0 -4px 0 rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.15);
+  }
+  .lesson-card.l1 .lesson-icon{background:var(--cyan);}
+  .lesson-card.l2 .lesson-icon{background:var(--coral);}
+  .lesson-card.l3 .lesson-icon{background:var(--red);}
+  .lesson-card.l4 .lesson-icon{background:var(--purple);}
+  .lesson-card.l5 .lesson-icon{background:var(--green);}
+  .lesson-card.l6 .lesson-icon{background:var(--amber);}
+  .lesson-card.l7 .lesson-icon{background:var(--pink);}
+  .lesson-num{
+    position:absolute;top:12px;left:14px;font-size:11.5px;font-weight:900;
+    color:var(--teal-d);background:var(--teal-l);padding:4px 12px;border-radius:999px;
+    z-index:1;letter-spacing:1px;
+  }
+  .lesson-title{font-weight:900;font-size:16px;line-height:1.4;position:relative;z-index:1;color:var(--ink);}
+  .lesson-progress{
+    font-size:13px;font-weight:800;color:var(--muted);
+    background:var(--bg);padding:5px 14px;border-radius:999px;position:relative;z-index:1;
+    display:flex;align-items:center;gap:6px;
+  }
+  .prog-dots{display:flex;gap:3px;}
+  .prog-dot{width:8px;height:8px;border-radius:50%;background:#cbd5e1;}
+  .prog-dot.done{background:var(--green);box-shadow:0 0 6px rgba(34,197,94,.6);}
+
+  /* ============ ACTIVITY LIST ============ */
+  .act-list{display:grid;gap:12px;max-width:720px;margin:0 auto;}
+  .act-item{
+    background:#fff;border:3px solid var(--line);border-radius:18px;
+    padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;
+    box-shadow:0 5px 0 var(--line);transition:all .15s;
+  }
+  .act-item:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line);}
+  .act-item:hover{transform:translateX(4px);border-color:var(--cyan);}
+  .act-item.done{border-color:var(--green);background:var(--green-l);}
+  .act-item.done .act-num{background:var(--green);color:#fff;}
+  .act-num{
+    width:46px;height:46px;border-radius:14px;background:var(--amber-l);
+    color:var(--amber-d);display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:18px;flex-shrink:0;
+  }
+  .act-name{flex:1;font-weight:800;font-size:15px;line-height:1.45;color:var(--ink);}
+  .act-type{
+    font-size:11.5px;color:var(--muted);font-weight:800;
+    background:var(--bg);padding:5px 12px;border-radius:999px;flex-shrink:0;letter-spacing:.5px;
+  }
+
+  /* ============ ACTIVITY VIEW ============ */
+  .act-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+  .score-pill{
+    background:#fff;border:3px solid var(--line);border-radius:999px;
+    padding:8px 18px;font-weight:900;font-size:15px;color:var(--teal-d);
+    margin-left:auto;
+  }
+  .act-body{background:#fff;border-radius:22px;padding:22px;border:3px solid var(--line);
+    box-shadow:0 10px 40px rgba(0,0,0,.2);}
+  .act-instruction{
+    background:linear-gradient(135deg,var(--teal-l),#a7f3d0);color:var(--teal-d);
+    border-radius:16px;padding:14px 18px;font-weight:800;font-size:15px;line-height:1.7;
+    margin-bottom:20px;display:flex;gap:10px;align-items:flex-start;
+    border-left:6px solid var(--teal);
+  }
+  .act-instruction::before{content:'💡';font-size:22px;flex-shrink:0;}
+
+  /* MCQ */
+  .q-text{font-size:19px;font-weight:800;line-height:1.6;margin:6px 0 18px;color:var(--ink);}
+  .q-counter{font-size:13px;color:var(--muted);font-weight:900;margin-bottom:6px;letter-spacing:1px;}
+  .options{display:grid;gap:11px;}
+  .opt{
+    border:3px solid var(--line);background:#fff;border-radius:15px;
+    padding:15px 18px;font-family:inherit;font-size:16px;font-weight:700;
+    cursor:pointer;color:var(--ink);text-align:left;transition:all .13s;
+    box-shadow:0 4px 0 var(--line);position:relative;overflow:hidden;
+  }
+  .opt:hover{border-color:var(--cyan);transform:translateX(4px);}
+  .opt:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .opt.correct{background:var(--green-l);border-color:var(--green);color:var(--green-d);
+    animation:correctPulse .5s;}
+  @keyframes correctPulse{0%{transform:scale(1);}50%{transform:scale(1.03);}100%{transform:scale(1);}}
+  .opt.wrong{background:var(--coral-l);border-color:var(--coral);color:var(--coral-d);
+    animation:wrongShake .4s;}
+  @keyframes wrongShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .opt:disabled{cursor:default;}
+  .feedback{margin-top:16px;font-weight:900;font-size:17px;min-height:26px;text-align:center;}
+
+  /* MATCH */
+  .match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .match-col{display:grid;gap:11px;align-content:start;}
+  .match-item{
+    background:#fff;border:3px solid var(--line);border-radius:15px;
+    padding:14px 16px;font-weight:700;font-size:15px;line-height:1.5;
+    cursor:pointer;transition:all .13s;text-align:center;
+    box-shadow:0 4px 0 var(--line);
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    min-height:66px;
+  }
+  .match-item:hover{border-color:var(--cyan);}
+  .match-item:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .match-item.selected{border-color:var(--purple);background:var(--purple-l);color:var(--purple-d);
+    box-shadow:0 4px 0 var(--purple), 0 0 20px rgba(168,85,247,.4);}
+  .match-item.matched{
+    border-color:var(--green);background:var(--green-l);color:var(--green-d);
+    pointer-events:none;opacity:.9;animation:correctPulse .5s;
+  }
+  .match-item.shake{animation:wrongShake .4s;}
+  .match-icon{font-size:28px;flex-shrink:0;}
+
+  /* SYM MATCH */
+  .sym-match-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  .sym-col-header{font-size:12px;color:var(--muted);font-weight:900;text-align:center;
+    margin-bottom:4px;letter-spacing:1px;}
+  .sym-card{
+    background:#fff;border:3px solid var(--line);border-radius:15px;
+    padding:12px 8px;font-weight:700;font-size:14px;line-height:1.4;
+    cursor:pointer;transition:all .13s;text-align:center;
+    box-shadow:0 4px 0 var(--line);
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    min-height:118px;justify-content:center;
+  }
+  .sym-card:hover{border-color:var(--cyan);}
+  .sym-card:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .sym-card.selected{border-color:var(--purple);background:var(--purple-l);
+    box-shadow:0 4px 0 var(--purple),0 0 20px rgba(168,85,247,.4);}
+  .sym-card.matched{
+    border-color:var(--green);background:var(--green-l);color:var(--green-d);
+    pointer-events:none;opacity:.9;animation:correctPulse .5s;
+  }
+  .sym-card.shake{animation:wrongShake .4s;}
+  .sym-card svg{width:80px;height:50px;}
+
+  /* ORDER */
+  .order-list{display:grid;gap:10px;}
+  .order-item{
+    background:#fff;border:3px solid var(--line);border-radius:15px;
+    padding:13px 16px;font-weight:700;font-size:15px;line-height:1.55;
+    display:flex;align-items:center;gap:12px;
+    box-shadow:0 4px 0 var(--line);
+    transition:all .13s;
+  }
+  .order-item:hover{border-color:var(--cyan);}
+  .order-item .num{
+    width:36px;height:36px;border-radius:11px;background:var(--amber-l);
+    color:var(--amber-d);display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:16px;flex-shrink:0;
+  }
+  .order-item .txt{flex:1;display:flex;align-items:center;gap:8px;}
+  .order-item .movers{display:flex;gap:5px;flex-direction:column;}
+  .mover{
+    border:none;background:var(--teal-l);color:var(--teal-d);
+    width:36px;height:26px;border-radius:8px;font-weight:900;
+    cursor:pointer;font-size:13px;line-height:1;transition:all .1s;
+  }
+  .mover:hover{background:var(--teal);color:#fff;}
+  .mover:disabled{opacity:.3;cursor:default;}
+  .order-item.correct{border-color:var(--green);background:var(--green-l);}
+  .order-item.correct .num{background:var(--green);color:#fff;}
+
+  /* BUCKET */
+  .bucket-items{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px;min-height:60px;}
+  .b-item{
+    background:#fff;border:3px solid var(--line);border-radius:13px;
+    padding:11px 16px;font-weight:800;font-size:14.5px;cursor:pointer;
+    transition:all .13s;box-shadow:0 4px 0 var(--line);
+    display:flex;align-items:center;gap:6px;
+  }
+  .b-item:hover{border-color:var(--cyan);transform:translateY(-2px);}
+  .b-item:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .b-item.selected{border-color:var(--purple);background:var(--purple-l);color:var(--purple-d);
+    box-shadow:0 4px 0 var(--purple),0 0 15px rgba(168,85,247,.4);}
+  .b-item.placed{opacity:.2;pointer-events:none;}
+  .buckets{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .bucket{
+    background:var(--bg);border:3px dashed var(--line);border-radius:18px;
+    padding:14px;min-height:150px;cursor:pointer;transition:all .15s;
+  }
+  .bucket:hover{border-color:var(--cyan);border-style:solid;}
+  .bucket.active{background:var(--teal-l);border-color:var(--teal);border-style:solid;
+    transform:scale(1.02);}
+  .bucket-title{
+    font-weight:900;font-size:14.5px;color:var(--teal-d);
+    text-align:center;margin-bottom:10px;padding-bottom:9px;
+    border-bottom:2px solid var(--line);
+  }
+  .bucket-contents{display:flex;flex-wrap:wrap;gap:6px;}
+  .b-chip{
+    background:var(--green-l);color:var(--green-d);font-weight:800;
+    font-size:12.5px;padding:6px 12px;border-radius:10px;animation:chipIn .3s;
+  }
+  @keyframes chipIn{from{transform:scale(0);}to{transform:scale(1);}}
+
+  /* PICK */
+  .pick-list{display:grid;gap:10px;}
+  .pick-item{
+    background:#fff;border:3px solid var(--line);border-radius:15px;
+    padding:14px 16px;font-weight:700;font-size:15px;line-height:1.55;
+    cursor:pointer;transition:all .13s;display:flex;align-items:center;gap:12px;
+    box-shadow:0 4px 0 var(--line);
+  }
+  .pick-item:hover{border-color:var(--cyan);transform:translateX(4px);}
+  .pick-item:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);}
+  .pick-box{
+    width:28px;height:28px;border-radius:9px;border:3px solid var(--line);
+    flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-size:16px;font-weight:900;transition:all .15s;
+  }
+  .pick-item.picked{border-color:var(--purple);background:var(--purple-l);}
+  .pick-item.picked .pick-box{border-color:var(--purple);background:var(--purple);color:#fff;}
+  .pick-item.correct{border-color:var(--green);background:var(--green-l);}
+  .pick-item.correct .pick-box{border-color:var(--green);background:var(--green);color:#fff;}
+  .pick-item.wrong{border-color:var(--coral);background:var(--coral-l);}
+  .pick-item.wrong .pick-box{border-color:var(--coral);background:var(--coral);color:#fff;}
+  .pick-icon{font-size:24px;flex-shrink:0;}
+
+  /* RESULT */
+  .result-box{
+    background:#fff;border-radius:26px;padding:32px 22px;text-align:center;
+    border:3px solid var(--line);position:relative;overflow:hidden;
+  }
+  .result-box::before{
+    content:'';position:absolute;inset:-50%;
+    background:radial-gradient(circle,rgba(34,211,238,.15),transparent 60%);
+    animation:rotateGlow 8s linear infinite;
+  }
+  @keyframes rotateGlow{to{transform:rotate(360deg);}}
+  .result-emoji{font-size:80px;line-height:1;margin-bottom:10px;animation:pop .6s;
+    position:relative;z-index:1;}
+  @keyframes pop{0%{transform:scale(0) rotate(-30deg);}70%{transform:scale(1.2) rotate(10deg);}100%{transform:scale(1) rotate(0);}}
+  .stars{font-size:54px;letter-spacing:6px;margin:14px 0;position:relative;z-index:1;}
+  .stars .star-fill{color:var(--amber);text-shadow:0 0 20px rgba(251,191,36,.8);display:inline-block;animation:starPop .5s backwards;}
+  .stars .star-empty{color:#cbd5e1;}
+  @keyframes starPop{from{transform:scale(0) rotate(-180deg);}to{transform:scale(1) rotate(0);}}
+  .result-msg{font-size:17px;font-weight:800;color:var(--muted);line-height:1.7;position:relative;z-index:1;}
+  .result-score{font-size:34px;font-weight:900;color:var(--teal-d);margin:8px 0;position:relative;z-index:1;}
+
+  /* ============ FOOTER ============ */
+  .footer{padding:36px 16px 48px;text-align:center;position:relative;z-index:1;}
+  .footer-badge{
+    display:inline-flex;flex-direction:column;align-items:center;gap:6px;
+    padding:30px 60px;border-radius:38px;position:relative;
+    background:linear-gradient(135deg,#14b8a6 0%,#22d3ee 25%,#a855f7 55%,#fb7185 80%,#fbbf24 100%);
+    background-size:280% 280%;
+    animation:gradientShift 8s ease infinite, badgePulse 3s ease-in-out infinite;
+    box-shadow:
+      0 0 0 6px rgba(255,255,255,.9),
+      0 0 0 12px rgba(34,211,238,.35),
+      0 24px 70px rgba(168,85,247,.5),
+      0 0 80px rgba(34,211,238,.4);
+    transform:rotate(-1deg);
+  }
+  @keyframes gradientShift{
+    0%,100%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+  }
+  @keyframes badgePulse{
+    0%,100%{transform:rotate(-1deg) scale(1);}
+    50%{transform:rotate(1deg) scale(1.04);}
+  }
+  .badge-stars{
+    font-size:22px;letter-spacing:8px;animation:twinkle 1.8s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle{from{opacity:.7;transform:scale(.95);}to{opacity:1;transform:scale(1.15);}}
+  .badge-years{
+    font-size:22px;font-weight:900;letter-spacing:4px;
+    color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.4);
+    font-family:'Fredoka',sans-serif;
+  }
+  .badge-name{
+    font-size:36px;font-weight:900;letter-spacing:2px;
+    color:#fff;line-height:1.05;
+    text-shadow:0 4px 16px rgba(0,0,0,.5), 0 0 30px rgba(255,255,255,.4);
+    font-family:'Fredoka',sans-serif;
+  }
+  .badge-sub{
+    font-size:12px;font-weight:900;letter-spacing:4px;
+    color:rgba(255,255,255,.95);text-transform:uppercase;margin-top:2px;
+  }
+  .badge-emoji{position:absolute;font-size:30px;animation:floatAround 5s ease-in-out infinite;}
+  .badge-emoji.e1{top:-18px;left:-14px;animation-delay:.2s;}
+  .badge-emoji.e2{top:-18px;right:-14px;animation-delay:.8s;}
+  .badge-emoji.e3{bottom:-16px;left:15%;animation-delay:1.4s;}
+  .badge-emoji.e4{bottom:-16px;right:15%;animation-delay:.5s;}
+
+  /* FLOATING SCORE */
+  .float-score{
+    position:fixed;font-weight:900;font-size:26px;pointer-events:none;
+    animation:floatUp 1s ease-out forwards;z-index:9999;
+    text-shadow:0 2px 8px rgba(0,0,0,.3);
+  }
+  @keyframes floatUp{
+    0%{opacity:1;transform:translateY(0) scale(.6);}
+    40%{transform:translateY(-40px) scale(1.2);}
+    100%{opacity:0;transform:translateY(-80px) scale(1);}
+  }
+
+  /* CONFETTI */
+  .confetti{
+    position:fixed;top:-20px;width:12px;height:12px;border-radius:3px;
+    animation:fall linear forwards;z-index:9998;pointer-events:none;
+  }
+  @keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.15;}}
+
+  /* SCREEN FLASH */
+  .flash{
+    position:fixed;inset:0;pointer-events:none;z-index:9997;
+    animation:flash 0.3s ease-out forwards;
+  }
+  @keyframes flash{from{background:rgba(255,255,255,.6);}to{background:rgba(255,255,255,0);}}
+
+  @media (max-width:640px){
+    h1{font-size:22px;}
+    h2{font-size:17px;}
+    .hero-svg{width:130px;height:130px;}
+    .hero-bubble{font-size:14px;padding:12px 16px;}
+    .match-wrap{grid-template-columns:1fr;}
+    .sym-match-wrap{grid-template-columns:1fr;}
+    .buckets{grid-template-columns:1fr;}
+    .footer-badge{padding:22px 32px;}
+    .badge-name{font-size:26px;}
+    .badge-years{font-size:17px;}
+    .lesson-title{font-size:14px;}
+    .act-name{font-size:13.5px;}
+    .q-text{font-size:16px;}
+    .opt{font-size:14px;}
+    .hud-chip{font-size:11.5px;padding:6px 10px;}
+    .brand-text{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="xp-bar-wrap"><div class="xp-bar" id="xpBar"></div></div>
+<div class="stars-bg" id="starsBg"></div>
+<div class="floaters" id="floaters"></div>
+
+<header class="hud">
+  <div class="brand">
+    <span class="brand-chip">ICT 7</span>
+    <span class="brand-text">Grade 7 • Information &amp; Communication Technology</span>
+  </div>
+  <div class="hud-stats">
+    <div class="hud-chip xp">⚡ XP: <span id="xpVal">0</span></div>
+    <div class="hud-chip combo" id="comboChip">🔥 Combo: <span id="comboVal">0</span></div>
+    <button id="musicBtn" class="music-btn">🔇 Music</button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer class="footer">
+  <div class="footer-badge">
+    <div class="badge-emoji e1">💻</div>
+    <div class="badge-emoji e2">🎮</div>
+    <div class="badge-emoji e3">⭐</div>
+    <div class="badge-emoji e4">🏆</div>
+    <div class="badge-stars">⭐ ✦ ⭐</div>
+    <div class="badge-years">2022 – 2024</div>
+    <div class="badge-name">Ruwanpura NCoE</div>
+    <div class="badge-sub">✦ Batch ✦</div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   AUDIO — Game-vibe melodies
+   ============================================================ */
+let actx=null,musicOn=false,musicTimer=null,musicGain=null,currentMelody='home';
+const MELODIES={
+  home:{notes:[[329.63,1],[392,1],[440,1],[392,1],[329.63,1],[293.66,2],
+    [329.63,1],[392,1],[440,1],[493.88,1],[440,1],[392,2]],
+    wave:'triangle',tempo:.28,bass:[164.81,220,164.81,196]},
+  mcq:{notes:[[523.25,1],[659.25,1],[783.99,1],[1046.5,1],[987.77,1],[783.99,1],[659.25,1],[523.25,1],
+    [587.33,1],[698.46,1],[880,1],[1174.66,1],[1046.5,1],[880,1],[698.46,1],[587.33,1]],
+    wave:'square',tempo:.14,bass:[130.81,146.83,130.81,146.83]},
+  match:{notes:[[392,1],[493.88,1],[587.33,1],[783.99,1],[698.46,1],[587.33,1],[493.88,1],[392,1],
+    [440,1],[523.25,1],[659.25,1],[880,1],[783.99,1],[659.25,1],[523.25,1],[440,1]],
+    wave:'sine',tempo:.19,bass:[196,220,196,220]},
+  order:{notes:[[523.25,1],[523.25,1],[392,1],[392,1],[440,1],[440,1],[392,2],
+    [349.23,1],[349.23,1],[329.63,1],[329.63,1],[293.66,1],[293.66,1],[261.63,2]],
+    wave:'triangle',tempo:.24,bass:[130.81,130.81,146.83,130.81]},
+  bucket:{notes:[[659.25,1],[783.99,1],[659.25,1],[783.99,1],[880,1],[783.99,1],[659.25,1],[587.33,1],
+    [523.25,1],[659.25,1],[523.25,1],[659.25,1],[783.99,1],[659.25,1],[523.25,2]],
+    wave:'sine',tempo:.16,bass:[164.81,196,164.81,196]},
+  pick:{notes:[[783.99,1],[659.25,1],[523.25,1],[659.25,1],[783.99,1],[1046.5,1],[783.99,1],[659.25,1],
+    [880,1],[698.46,1],[587.33,1],[698.46,1],[880,1],[1174.66,1],[880,1],[698.46,1]],
+    wave:'square',tempo:.13,bass:[196,164.81,196,220]},
+  symmatch:{notes:[[440,1],[587.33,1],[739.99,1],[880,1],[739.99,1],[587.33,1],[440,2],
+    [493.88,1],[622.25,1],[783.99,1],[987.77,1],[783.99,1],[622.25,1],[493.88,2]],
+    wave:'triangle',tempo:.2,bass:[110,146.83,110,164.81]}
+};
+function ensureAudio(){
+  if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)();
+    musicGain=actx.createGain();musicGain.gain.value=.04;musicGain.connect(actx.destination);}
+    catch(e){return;}}
+  if(actx.state==='suspended')actx.resume();
+}
+function playMelody(){
+  if(!musicOn||!actx)return;
+  const m=MELODIES[currentMelody]||MELODIES.home;
+  const beat=m.tempo;let t=actx.currentTime+.05;
+  m.notes.forEach(([f,d])=>{
+    if(f>0){
+      const o=actx.createOscillator(),g=actx.createGain();
+      o.type=m.wave;o.frequency.value=f;
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.exponentialRampToValueAtTime(1,t+.02);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+d*beat*.9);
+      o.connect(g);g.connect(musicGain);o.start(t);o.stop(t+d*beat);
+    }
+    t+=d*beat;
+  });
+  const total=m.notes.reduce((a,n)=>a+n[1],0)*beat;
+  const bass=m.bass||[];
+  bass.forEach((bf,i)=>{
+    const bt=actx.currentTime+.05+(total/bass.length)*i;
+    const bo=actx.createOscillator(),bg=actx.createGain();
+    bo.type='sine';bo.frequency.value=bf;
+    bg.gain.setValueAtTime(0.0001,bt);
+    bg.gain.exponentialRampToValueAtTime(.6,bt+.03);
+    bg.gain.exponentialRampToValueAtTime(0.0001,bt+beat*2);
+    bo.connect(bg);bg.connect(musicGain);bo.start(bt);bo.stop(bt+beat*2+.05);
+  });
+  musicTimer=setTimeout(playMelody,total*1000+400);
+}
+function switchMusic(k){currentMelody=k;if(!musicOn)return;clearTimeout(musicTimer);playMelody();}
+function toggleMusic(){
+  ensureAudio();musicOn=!musicOn;
+  const b=document.getElementById('musicBtn');
+  if(musicOn){b.textContent='🔊 Music';b.classList.add('on');playMelody();}
+  else{b.textContent='🔇 Music';b.classList.remove('on');clearTimeout(musicTimer);}
+}
+document.getElementById('musicBtn').onclick=toggleMusic;
+function blip(f,d=.08,type='sine',v=.13,delay=0){
+  if(!actx)return;const t=actx.currentTime+delay;
+  const o=actx.createOscillator(),g=actx.createGain();
+  o.type=type;o.frequency.value=f;
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(v,t+.01);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+d);
+  o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+d+.03);
+}
+const sfx={
+  correct(){ensureAudio();[659.25,783.99,987.77,1318.51].forEach((f,i)=>blip(f,.15,'sine',.18,i*.05));},
+  wrong(){ensureAudio();blip(220,.15,'sawtooth',.12,0);blip(160,.2,'sawtooth',.12,.1);},
+  click(){ensureAudio();blip(1000,.04,'square',.05);},
+  hover(){ensureAudio();blip(800,.02,'sine',.03);},
+  win(){ensureAudio();[523.25,659.25,783.99,1046.5,1318.51,1567.98,2093].forEach((f,i)=>blip(f,.24,'triangle',.16,i*.1));},
+  combo(){ensureAudio();[880,1108.73,1318.51].forEach((f,i)=>blip(f,.1,'square',.15,i*.05));}
+};
+
+/* ============================================================
+   SYMBOLS (SVG)
+   ============================================================ */
+const SYMBOLS={
+  oval:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="40" rx="20" ry="20" fill="#a7f3d0" stroke="#0f766e" stroke-width="3"/></svg>`,
+  parallelogram:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg"><polygon points="20,5 95,5 80,45 5,45" fill="#fde68a" stroke="#d97706" stroke-width="3"/></svg>`,
+  rectangle:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="40" fill="#fed7aa" stroke="#d97706" stroke-width="3"/></svg>`,
+  diamond:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg"><polygon points="50,3 97,25 50,47 3,25" fill="#c7d2fe" stroke="#4338ca" stroke-width="3"/></svg>`,
+  arrow:`<svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg"><line x1="10" y1="25" x2="80" y2="25" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/><polygon points="75,15 95,25 75,35" fill="#0f766e"/></svg>`
+};
+
+/* ============================================================
+   LESSONS DATA — Grade 7
+   ============================================================ */
+const LESSONS=[
+{
+  id:1,title:'Central Processing Unit',icon:'🧠',cls:'l1',
+  activities:[
+    {id:'1.1',type:'match',name:'Match CPU Components',instruction:'Match each CPU component with its correct function.',
+      pairs:[
+        {l:'🧮 ALU',r:'Performs mathematical and logical operations',li:'🧮',ri:'➕'},
+        {l:'🎛️ Control Unit',r:'Controls all devices and manages data flow',li:'🎛️',ri:'🚦'},
+        {l:'📦 Memory Registers',r:'Temporarily stores data and instructions',li:'📦',ri:'⏳'}
+      ]},
+    {id:'1.2',type:'order',name:'Order CPU Generations',instruction:'Arrange the four generations of CPU from oldest to newest.',
+      correctOrder:[
+        {text:'First Generation — Vacuum Tubes (1940-1956)',icon:'🔌'},
+        {text:'Second Generation — Transistors (1956-1963)',icon:'📻'},
+        {text:'Third Generation — Integrated Circuits (1964-1971)',icon:'🔲'},
+        {text:'Fourth Generation — Microprocessors (1971-present)',icon:'💻'}
+      ]},
+    {id:'1.3',type:'pick',name:'Pick Correct CPU Facts',instruction:'Select ONLY the correct facts about the CPU.',
+      items:[
+        {text:'The CPU can be observed from outside the system unit',icon:'👀',correct:false},
+        {text:'The CPU is located on the motherboard',icon:'🔧',correct:true},
+        {text:'The CPU is known as the brain of the computer',icon:'🧠',correct:true},
+        {text:'A dual-core processor can handle two tasks at the same time',icon:'⚡',correct:true},
+        {text:'CPU speed is measured in grams (g)',icon:'⚖️',correct:false},
+        {text:'CPU speed is measured in hertz (Hz)',icon:'⏱️',correct:true}
+      ]},
+    {id:'1.4',type:'bucket',name:'Sort CPU Generations by Speed',instruction:'Click an item first, then click the correct speed category.',
+      buckets:[
+        {name:'⚡ Older Generations',items:['Millisecond (1st Gen)','Microsecond (2nd Gen)','Nanosecond (3rd Gen)']},
+        {name:'🚀 Modern Generation',items:['MIPS (4th Gen)','Picosecond (4th Gen)','Gigahertz (GHz)']}
+      ]}
+  ]
+},
+{
+  id:2,title:'Operating System',icon:'🪟',cls:'l2',
+  activities:[
+    {id:'2.1',type:'match',name:'Match OS Types with Devices',instruction:'Match each operating system with the device it is used in.',
+      pairs:[
+        {l:'🪟 Microsoft Windows',r:'Personal computers',li:'🪟',ri:'💻'},
+        {l:'🍎 macOS',r:'Apple Macintosh computers',li:'🍎',ri:'🖥️'},
+        {l:'🐧 Linux / Ubuntu',r:'Open source computers',li:'🐧',ri:'⚙️'},
+        {l:'🤖 Android',r:'Smart mobile phones (non-Apple)',li:'🤖',ri:'📱'},
+        {l:'📱 iOS',r:'Apple iPhones and iPads',li:'📱',ri:'🍏'}
+      ]},
+    {id:'2.2',type:'pick',name:'Pick Operating System Tasks',instruction:'Select ONLY the tasks performed by an operating system.',
+      items:[
+        {text:'Provides a user interface',icon:'🖥️',correct:true},
+        {text:'Controls the CPU',icon:'🎛️',correct:true},
+        {text:'Cooks food in the kitchen',icon:'🍳',correct:false},
+        {text:'Manages computer memory',icon:'💾',correct:true},
+        {text:'Processes files and folders',icon:'📁',correct:true},
+        {text:'Paints the walls',icon:'🎨',correct:false},
+        {text:'Protects with usernames and passwords',icon:'🔐',correct:true}
+      ]},
+    {id:'2.3',type:'bucket',name:'Sort Storage Devices',instruction:'Click a device, then click the correct storage technology.',
+      buckets:[
+        {name:'🧲 Magnetic Media',items:['Hard Disk','Magnetic Tape','Floppy Disk']},
+        {name:'💿 Optical Media',items:['Compact Disk (CD)','DVD','Blue-Ray Disk']},
+        {name:'⚡ Solid State Media',items:['Pen Drive','SSD Drive','Memory Card']}
+      ]},
+    {id:'2.4',type:'match',name:'Match File Extensions',instruction:'Match each file extension with its correct file type.',
+      pairs:[
+        {l:'.txt',r:'Text document',li:'📄',ri:'📝'},
+        {l:'.mp3',r:'Audio / sound file',li:'🎵',ri:'🔊'},
+        {l:'.jpg',r:'Image file',li:'🖼️',ri:'📷'},
+        {l:'.avi',r:'Video file',li:'🎬',ri:'📹'},
+        {l:'.docx',r:'Word processing document',li:'📘',ri:'✍️'}
+      ]}
+  ]
+},
+{
+  id:3,title:'Security of Computer System',icon:'🛡️',cls:'l3',
+  activities:[
+    {id:'3.1',type:'bucket',name:'Sort Hardware vs Software Security',instruction:'Click each issue, then click the correct security category.',
+      buckets:[
+        {name:'🔧 Hardware Security',items:['Sudden power failure','High voltage current','Overheating inside','Dust and insects','Theft of equipment']},
+        {name:'💻 Software Security',items:['Malware attack','Unauthorized access','File deletion','Operating system bugs','Natural disasters']}
+      ]},
+    {id:'3.2',type:'match',name:'Match Malware Types',instruction:'Match each malware type with its correct description.',
+      pairs:[
+        {l:'🦠 Computer Virus',r:'Replicates itself and spreads via portable devices',li:'🦠',ri:'📀'},
+        {l:'🐛 Computer Worm',r:'Spreads across networks without a host program',li:'🐛',ri:'🌐'},
+        {l:'🐴 Trojan Horse',r:'Appears useful but damages secretly',li:'🐴',ri:'🎭'},
+        {l:'👁️ Spyware',r:'Secretly collects user information and sends it away',li:'👁️',ri:'📤'}
+      ]},
+    {id:'3.3',type:'pick',name:'Pick Ways to Protect from Malware',instruction:'Select ONLY the correct methods to protect against malware.',
+      items:[
+        {text:'Install antivirus software and update regularly',icon:'🛡️',correct:true},
+        {text:'Click all pop-up windows that appear',icon:'🖱️',correct:false},
+        {text:'Scan external storage devices before opening',icon:'🔍',correct:true},
+        {text:'Open suspicious emails and attachments',icon:'📧',correct:false},
+        {text:'Use original licensed software only',icon:'✅',correct:true},
+        {text:'Use pirated software for free',icon:'🏴‍☠️',correct:false}
+      ]},
+    {id:'3.4',type:'match',name:'Match Security Methods',instruction:'Match each security method with its correct protection purpose.',
+      pairs:[
+        {l:'🔋 UPS',r:'Provides power during sudden power failure',li:'🔋',ri:'⚡'},
+        {l:'🔌 Surge Protector',r:'Protects from high voltage and lightning',li:'🔌',ri:'⚡'},
+        {l:'❄️ Air Conditioner',r:'Prevents overheating inside the computer',li:'❄️',ri:'🌡️'},
+        {l:'🔐 Password',r:'Protects access to computer systems',li:'🔐',ri:'🗝️'},
+        {l:'👆 Biometric',r:'Uses fingerprints or voice to authenticate',li:'👆',ri:'🫆'}
+      ]}
+  ]
+},
+{
+  id:4,title:'Word Processing',icon:'📝',cls:'l4',
+  activities:[
+    {id:'4.1',type:'match',name:'Match Keyboard Key Groups',instruction:'Match each key group with its correct function.',
+      pairs:[
+        {l:'🎛️ Control Keys',r:'Used with other keys (Ctrl, Alt, Esc)',li:'🎛️',ri:'⌨️'},
+        {l:'🔤 Character Keys',r:'Type letters, numbers and symbols',li:'🔤',ri:'🔡'},
+        {l:'⚙️ Function Keys',r:'Perform specific tasks (F1-F12)',li:'⚙️',ri:'🎚️'},
+        {l:'🧭 Navigation Keys',r:'Move cursor around the document',li:'🧭',ri:'↔️'},
+        {l:'🔢 Numeric Keypad',r:'Enter numbers on the right side',li:'🔢',ri:'#️⃣'}
+      ]},
+    {id:'4.2',type:'match',name:'Match Keyboard Keys with Functions',instruction:'Match each key with its correct function.',
+      pairs:[
+        {l:'⎵ Space Bar',r:'Creates a space between two words',li:'⎵',ri:'↔️'},
+        {l:'⇥ Tab Key',r:'Creates a large space between words',li:'⇥',ri:'➡️'},
+        {l:'↵ Enter Key',r:'Moves cursor down to the next line',li:'↵',ri:'⬇️'},
+        {l:'← Backspace',r:'Deletes character to the left of cursor',li:'←',ri:'🗑️'},
+        {l:'⇧ Shift Key',r:'Types capital letters and upper symbols',li:'⇧',ri:'🅰️'},
+        {l:'🔒 Caps Lock',r:'Types all letters in capital continuously',li:'🔒',ri:'🔠'}
+      ]},
+    {id:'4.3',type:'order',name:'Order Word Processing History',instruction:'Arrange the development of word processing from oldest to newest.',
+      correctOrder:[
+        {text:'Writing on leaves, stone chips and skin',icon:'🍃'},
+        {text:'Invention of paper and manual writing',icon:'📜'},
+        {text:'Use of wood blocks and clay blocks for printing',icon:'🪵'},
+        {text:'Invention of the printing machine',icon:'🖨️'},
+        {text:'Invention of the manual typewriter',icon:'⌨️'},
+        {text:'Invention of the electric typewriter',icon:'⚡'},
+        {text:'Use of computer for word processing',icon:'💻'}
+      ]},
+    {id:'4.4',type:'pick',name:'Pick Benefits of Touch Typing',instruction:'Select ONLY the benefits of learning touch typing.',
+      items:[
+        {text:'Can type very quickly',icon:'⚡',correct:true},
+        {text:'Minimizes errors in documents',icon:'🎯',correct:true},
+        {text:'Causes prolonged bone diseases',icon:'🦴',correct:false},
+        {text:'Saves time',icon:'⏰',correct:true},
+        {text:'Reduces mental and physical fatigue',icon:'😌',correct:true},
+        {text:'Makes you forget how to write',icon:'🚫',correct:false}
+      ]}
+  ]
+},
+{
+  id:5,title:'Programme Development',icon:'🧩',cls:'l5',
+  activities:[
+    {id:'5.1',type:'order',name:'Order the Decomposition Process',instruction:'Arrange the steps of solving a complex problem.',
+      correctOrder:[
+        {text:'Identify the complex problem',icon:'❓'},
+        {text:'Break it into smaller sub-problems',icon:'✂️'},
+        {text:'Solve each sub-problem separately',icon:'🔧'},
+        {text:'Combine all solutions logically',icon:'🔗'},
+        {text:'Reach the final solution',icon:'✅'}
+      ]},
+    {id:'5.2',type:'symmatch',name:'Match Flow Chart Symbols',instruction:'Click a SYMBOL, then its NAME, then its MEANING.',
+      triples:[
+        {symbol:'oval',name:'Oval',meaning:'Start / End'},
+        {symbol:'parallelogram',name:'Parallelogram',meaning:'Input / Output'},
+        {symbol:'rectangle',name:'Rectangle',meaning:'Process / Action'},
+        {symbol:'diamond',name:'Diamond',meaning:'Decision'},
+        {symbol:'arrow',name:'Arrow',meaning:'Direction of flow'}
+      ]},
+    {id:'5.3',type:'match',name:'Match Control Structures',instruction:'Match each control structure with its meaning.',
+      pairs:[
+        {l:'➡️ Sequence',r:'Execute instructions one after another from top to bottom',li:'➡️',ri:'📋'},
+        {l:'❓ Selection',r:'Make a decision based on a condition',li:'❓',ri:'🔀'},
+        {l:'🔁 Repetition',r:'Repeat instructions until a condition is satisfied',li:'🔁',ri:'♻️'}
+      ]},
+    {id:'5.4',type:'pick',name:'Pick Correct Scratch Facts',instruction:'Select ONLY the correct facts about Scratch programming.',
+      items:[
+        {text:'Scratch is a visual programming software',icon:'🎨',correct:true},
+        {text:'Scratch is a paid software',icon:'💰',correct:false},
+        {text:'Scratch uses command blocks to build programs',icon:'🧱',correct:true},
+        {text:'Sprites are the characters in Scratch',icon:'🐱',correct:true},
+        {text:'Errors in a program are called bugs',icon:'🐛',correct:true},
+        {text:'Debugging means deleting the whole program',icon:'🗑️',correct:false}
+      ]}
+  ]
+},
+{
+  id:6,title:'Presentation Software',icon:'📊',cls:'l6',
+  activities:[
+    {id:'6.1',type:'match',name:'Match Presentation Software',instruction:'Match each presentation software with its correct company/developer.',
+      pairs:[
+        {l:'🅿️ Microsoft PowerPoint',r:'Microsoft',li:'🅿️',ri:'🪟'},
+        {l:'🍎 Apple Keynote',r:'Apple',li:'🍎',ri:'🍏'},
+        {l:'📖 OpenOffice Impress',r:'Open source community',li:'📖',ri:'🌐'},
+        {l:'🎨 Corel Presentations',r:'Corel Corporation',li:'🎨',ri:'🖌️'}
+      ]},
+    {id:'6.2',type:'pick',name:'Pick Advantages of Electronic Presentations',instruction:'Select ONLY the advantages of using electronic presentations.',
+      items:[
+        {text:'Videos and songs can be included',icon:'🎬',correct:true},
+        {text:'Content can be changed anytime',icon:'✏️',correct:true},
+        {text:'Cannot include animations',icon:'🚫',correct:false},
+        {text:'Makes the audience lose concentration',icon:'😴',correct:false},
+        {text:'Links to other files can be added',icon:'🔗',correct:true},
+        {text:'Less effort is needed to explain facts',icon:'💡',correct:true}
+      ]},
+    {id:'6.3',type:'order',name:'Order Slide Design Steps',instruction:'Arrange the steps of creating a presentation correctly.',
+      correctOrder:[
+        {text:'Open the presentation software',icon:'🚀'},
+        {text:'Select a blank or template slide',icon:'📄'},
+        {text:'Add text, images and shapes',icon:'🎨'},
+        {text:'Insert multimedia and tables',icon:'🎬'},
+        {text:'Apply slide design and transitions',icon:'✨'},
+        {text:'Save the presentation',icon:'💾'},
+        {text:'Run the presentation',icon:'▶️'}
+      ]},
+    {id:'6.4',type:'match',name:'Match Slide Types',instruction:'Match each slide type with its correct description.',
+      pairs:[
+        {l:'📌 Title Slide',r:'Contains only the main title',li:'📌',ri:'📄'},
+        {l:'📑 Title & Content',r:'Title and main content area',li:'📑',ri:'📋'},
+        {l:'📊 Comparison Slide',r:'Two side-by-side content areas',li:'📊',ri:'⚖️'},
+        {l:'🖼️ Picture Slide',r:'Contains a large image',li:'🖼️',ri:'📷'},
+        {l:'⬜ Empty Slide',r:'Completely blank slide',li:'⬜',ri:'📃'}
+      ]}
+  ]
+},
+{
+  id:7,title:'Using Internet',icon:'🌐',cls:'l7',
+  activities:[
+    {id:'7.1',type:'match',name:'Match Internet Terms',instruction:'Match each internet term with its correct meaning.',
+      pairs:[
+        {l:'🌐 Internet',r:'A large collection of computer networks',li:'🌐',ri:'🕸️'},
+        {l:'🔗 World Wide Web',r:'A main service provided by the internet',li:'🔗',ri:'🌍'},
+        {l:'📍 URL',r:'Address used to identify web resources',li:'📍',ri:'🔖'},
+        {l:'🧭 Web Browser',r:'Software to view web pages',li:'🧭',ri:'📄'},
+        {l:'🔍 Search Engine',r:'Software that finds information online',li:'🔍',ri:'🔎'}
+      ]},
+    {id:'7.2',type:'bucket',name:'Sort Browser vs Search Engine',instruction:'Click each item, then click the correct category.',
+      buckets:[
+        {name:'🧭 Web Browsers',items:['Google Chrome','Mozilla Firefox','Internet Explorer','Microsoft Edge']},
+        {name:'🔍 Search Engines',items:['Google','Yahoo','Bing','DuckDuckGo']}
+      ]},
+    {id:'7.3',type:'match',name:'Match Email Fields',instruction:'Match each email field with its correct purpose.',
+      pairs:[
+        {l:'📬 To',r:'Main recipient of the email',li:'📬',ri:'👤'},
+        {l:'📋 Cc',r:'People who receive a copy (visible to all)',li:'📋',ri:'👥'},
+        {l:'🕵️ Bcc',r:'People who receive a hidden copy',li:'🕵️',ri:'🤫'},
+        {l:'📌 Subject',r:'Topic of the email message',li:'📌',ri:'💬'},
+        {l:'📎 Attachment',r:'Files like photos or videos sent with email',li:'📎',ri:'📁'}
+      ]},
+    {id:'7.4',type:'pick',name:'Pick Safe Internet Practices',instruction:'Select ONLY the safe practices for using the internet.',
+      items:[
+        {text:'Use strong passwords with letters, numbers and symbols',icon:'🔐',correct:true},
+        {text:'Click on suspicious email attachments',icon:'📧',correct:false},
+        {text:'Check for https:// and the lock icon before entering data',icon:'🔒',correct:true},
+        {text:'Share personal information with strangers online',icon:'🗣️',correct:false},
+        {text:'Update antivirus software regularly',icon:'🛡️',correct:true},
+        {text:'Log out after using public computers',icon:'🚪',correct:true}
+      ]},
+    {id:'7.5',type:'match',name:'Match HTML Codes',instruction:'Match each HTML code with its correct purpose.',
+      pairs:[
+        {l:'&lt;html&gt;',r:'Beginning and ending of a web page',li:'🏠',ri:'📄'},
+        {l:'&lt;title&gt;',r:'Topic of a web page',li:'📌',ri:'🏷️'},
+        {l:'&lt;body&gt;',r:'Content that appears on the page',li:'📃',ri:'👁️'},
+        {l:'&lt;br&gt;',r:'Break line and go to the next line',li:'↵',ri:'⬇️'},
+        {l:'&lt;img src&gt;',r:'Insert an image to the web page',li:'🖼️',ri:'📷'}
+      ]}
+  ]
+}
+];
+
+/* ============================================================
+   GAME STATE (XP, combo)
+   ============================================================ */
+const state={currentLesson:null,currentActivity:null,completed:{},
+  xp:0,combo:0,comboMax:0,highestCombo:0};
+
+function addXP(amount){
+  state.xp+=amount;
+  document.getElementById('xpVal').textContent=state.xp;
+  const bar=document.getElementById('xpBar');
+  const pct=Math.min(100,(state.xp%200)/2);
+  bar.style.width=pct+'%';
+  const color=state.xp<200?'linear-gradient(90deg,#22d3ee,#a855f7)':
+    state.xp<500?'linear-gradient(90deg,#a855f7,#fb7185)':'linear-gradient(90deg,#fbbf24,#fb7185)';
+  bar.style.background=color;
+}
+function addCombo(){
+  state.combo++;
+  state.comboMax=Math.max(state.comboMax,state.combo);
+  document.getElementById('comboVal').textContent=state.combo;
+  const chip=document.getElementById('comboChip');
+  if(state.combo>=3){chip.classList.add('hot');sfx.combo();
+    showFloatScore('+'+(state.combo*5)+' combo!','#fb7185');
+  }else chip.classList.remove('hot');
+}
+function resetCombo(){state.combo=0;document.getElementById('comboVal').textContent=0;
+  document.getElementById('comboChip').classList.remove('hot');}
+function showFloatScore(text,color){
+  const d=document.createElement('div');
+  d.className='float-score';d.textContent=text;d.style.color=color;
+  d.style.left=(window.innerWidth/2-40)+'px';
+  d.style.top=(window.innerHeight/2)+'px';
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),1000);
+}
+function flashScreen(){
+  const f=document.createElement('div');f.className='flash';
+  document.body.appendChild(f);setTimeout(()=>f.remove(),300);
+}
+function confettiBurst(count){
+  const colors=['#22d3ee','#fbbf24','#fb7185','#a855f7','#22c55e','#ef4444'];
+  for(let i=0;i<count;i++){
+    const c=document.createElement('div');c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.animationDuration=(1.8+Math.random()*1.8)+'s';
+    c.style.animationDelay=(Math.random()*.5)+'s';
+    if(Math.random()>.6)c.style.borderRadius='50%';
+    document.body.appendChild(c);setTimeout(()=>c.remove(),4200);
+  }
+}
+
+/* ============================================================
+   BACKGROUND
+   ============================================================ */
+function buildBackground(){
+  const s=document.getElementById('starsBg');
+  for(let i=0;i<50;i++){
+    const st=document.createElement('div');st.className='star';
+    const sz=1+Math.random()*2.5;
+    st.style.width=sz+'px';st.style.height=sz+'px';
+    st.style.left=Math.random()*100+'%';st.style.top=Math.random()*100+'%';
+    st.style.animationDelay=(Math.random()*3)+'s';
+    s.appendChild(st);
+  }
+  const fl=document.getElementById('floaters');
+  const emojis=['💻','🖱️','⌨️','💾','🖥️','📱','⭐','🎮','📁','🔍','🌐','📀','🖨️','📸','🎵','✏️','🧠','🛡️','📊','🧩'];
+  const positions=[{top:'8%',left:'3%'},{top:'18%',right:'5%'},{top:'32%',left:'2%'},
+    {top:'48%',right:'3%'},{top:'62%',left:'4%'},{top:'78%',right:'4%'},
+    {top:'88%',left:'8%'},{top:'12%',right:'12%'},{top:'55%',left:'8%'},{top:'72%',right:'10%'}];
+  positions.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='floater';
+    d.textContent=emojis[i%emojis.length];
+    Object.assign(d.style,p);
+    d.style.animationDelay=(i*.7)+'s';
+    d.style.animationDuration=(14+Math.random()*8)+'s';
+    fl.appendChild(d);
+  });
+}
+
+/* ============================================================
+   ROUTER
+   ============================================================ */
+const app=document.getElementById('app');
+function render(html){app.innerHTML=html;}
+function goHome(){sfx.click();state.currentLesson=null;state.currentActivity=null;
+  switchMusic('home');resetCombo();renderHome();}
+function goLesson(id){sfx.click();state.currentLesson=LESSONS.find(l=>l.id===id);renderLesson();}
+function goActivity(lid,aid){sfx.click();
+  state.currentLesson=LESSONS.find(l=>l.id===lid);
+  state.currentActivity=state.currentLesson.activities.find(a=>a.id===aid);
+  switchMusic(state.currentActivity.type);renderActivity();}
+
+/* ============================================================
+   HOME
+   ============================================================ */
+function renderHome(){
+  let cards='';
+  LESSONS.forEach(l=>{
+    const done=l.activities.filter(a=>state.completed[l.id+'-'+a.id]).length;
+    const total=l.activities.length;
+    let dots='';
+    l.activities.forEach((a,i)=>{
+      dots+=`<div class="prog-dot ${state.completed[l.id+'-'+a.id]?'done':''}"></div>`;
+    });
+    cards+=`
+      <div class="lesson-card ${l.cls}" onclick="goLesson(${l.id})">
+        <div class="lesson-num">LEVEL ${l.id}</div>
+        <div class="lesson-icon">${l.icon}</div>
+        <div class="lesson-title">${l.title}</div>
+        <div class="lesson-progress"><div class="prog-dots">${dots}</div> ${done}/${total}</div>
+      </div>`;
+  });
+  render(`
+    <section class="screen active">
+      <div class="hero">
+        <svg class="hero-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:1"/>
+              <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1"/>
+            </linearGradient>
+          </defs>
+          <g stroke="#0891b2" stroke-width="7" stroke-linecap="round">
+            <line x1="70" y1="22" x2="70" y2="44"/><line x1="95" y1="22" x2="95" y2="44"/>
+            <line x1="120" y1="22" x2="120" y2="44"/><line x1="145" y1="22" x2="145" y2="44"/>
+            <line x1="70" y1="156" x2="70" y2="178"/><line x1="95" y1="156" x2="95" y2="178"/>
+            <line x1="120" y1="156" x2="120" y2="178"/><line x1="145" y1="156" x2="145" y2="178"/>
+            <line x1="22" y1="70" x2="44" y2="70"/><line x1="22" y1="95" x2="44" y2="95"/>
+            <line x1="22" y1="120" x2="44" y2="120"/><line x1="22" y1="145" x2="44" y2="145"/>
+            <line x1="156" y1="70" x2="178" y2="70"/><line x1="156" y1="95" x2="178" y2="95"/>
+            <line x1="156" y1="120" x2="178" y2="120"/><line x1="156" y1="145" x2="178" y2="145"/>
+          </g>
+          <rect x="44" y="44" width="112" height="112" rx="26" fill="url(#grad1)"/>
+          <rect x="56" y="56" width="88" height="88" rx="18" fill="#22d3ee" opacity=".5"/>
+          <circle cx="82" cy="90" r="12" fill="#fff"/>
+          <circle cx="118" cy="90" r="12" fill="#fff"/>
+          <circle cx="84" cy="92" r="6" fill="#1f2d3d"/>
+          <circle cx="120" cy="92" r="6" fill="#1f2d3d"/>
+          <circle cx="86" cy="89" r="2" fill="#fff"/>
+          <circle cx="122" cy="89" r="2" fill="#fff"/>
+          <circle cx="66" cy="110" r="7" fill="#fb7185" opacity=".7"/>
+          <circle cx="134" cy="110" r="7" fill="#fb7185" opacity=".7"/>
+          <path d="M86 116 Q100 132 114 116" stroke="#1f2d3d" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="30" cy="140" r="13" fill="#fbbf24"/>
+          <circle cx="170" cy="140" r="13" fill="#fbbf24"/>
+        </svg>
+        <div class="hero-bubble">Welcome, young coder! 🎮 Complete all 7 levels to become an ICT champion! 🏆</div>
+      </div>
+      <h1>Grade 7 ICT Game World</h1>
+      <p class="sub">Pick a level. Each level has 4 activities. Earn XP and build combos to reach the top! ⭐</p>
+      <div class="lesson-grid">${cards}</div>
+    </section>
+  `);
+  document.getElementById('xpVal').textContent=state.xp;
+}
+
+/* ============================================================
+   LESSON
+   ============================================================ */
+function renderLesson(){
+  const l=state.currentLesson;if(!l)return goHome();
+  let items='';
+  l.activities.forEach((a,i)=>{
+    const done=state.completed[l.id+'-'+a.id];
+    items+=`
+      <div class="act-item ${done?'done':''}" onclick="goActivity(${l.id},'${a.id}')">
+        <div class="act-num">${done?'✓':i+1}</div>
+        <div class="act-name">${a.name}</div>
+        <div class="act-type">${typeLabel(a.type)}</div>
+      </div>`;
+  });
+  render(`
+    <section class="screen active">
+      <div class="act-header"><button class="btn ghost small" onclick="goHome()">← Home</button></div>
+      <h1>${l.icon} Level ${l.id}</h1>
+      <h2>${l.title}</h2>
+      <p class="sub">Choose an activity to start 👇</p>
+      <div class="act-list">${items}</div>
+    </section>
+  `);
+}
+function typeLabel(t){
+  return {mcq:'Quiz',match:'Matching',order:'Ordering',bucket:'Sorting',
+    pick:'Selecting',symmatch:'Symbol Match'}[t]||'';
+}
+
+/* ============================================================
+   ACTIVITY DISPATCH
+   ============================================================ */
+function renderActivity(){
+  const a=state.currentActivity,l=state.currentLesson;
+  if(!a||!l)return goHome();
+  render(`
+    <section class="screen active">
+      <div class="act-header">
+        <button class="btn ghost small" onclick="goLesson(${l.id})">← Level</button>
+        <div class="score-pill" id="scorePill">Score: 0</div>
+      </div>
+      <h1 style="font-size:20px;">${a.name}</h1>
+      <div class="act-body" id="actBody"></div>
+    </section>
+  `);
+  const c=document.getElementById('actBody');
+  const fns={mcq:renderMCQ,match:renderMatch,order:renderOrder,bucket:renderBucket,pick:renderPick,symmatch:renderSymMatch};
+  (fns[a.type]||renderMCQ)(c,a);
+}
+
+/* ============================================================
+   MCQ
+   ============================================================ */
+function renderMCQ(c,a){
+  let idx=0,score=0;const total=a.questions.length;
+  function draw(){
+    if(idx>=total)return finish();
+    const q=a.questions[idx];
+    c.innerHTML=`
+      <div class="act-instruction">${a.instruction}</div>
+      <div class="q-counter">QUESTION ${idx+1} / ${total}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts"></div>
+      <div class="feedback" id="fb"></div>`;
+    const o=document.getElementById('opts');
+    q.opts.forEach((t,i)=>{
+      const b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=()=>pick(i,b);o.appendChild(b);
+    });
+    document.getElementById('scorePill').textContent=`Score: ${score} / ${total}`;
+  }
+  function pick(i,btn){
+    const q=a.questions[idx];const all=document.querySelectorAll('.opt');
+    all.forEach(x=>x.disabled=true);
+    if(i===q.ans){
+      btn.classList.add('correct');score++;addCombo();
+      sfx.correct();flashScreen();
+      showFloatScore('+'+(10+state.combo*2)+' XP','#22c55e');
+      addXP(10+state.combo*2);
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Correct! 🎉</span>';
+    }else{
+      btn.classList.add('wrong');all[q.ans].classList.add('correct');
+      sfx.wrong();resetCombo();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Wrong. Green = correct answer.</span>';
+    }
+    document.getElementById('scorePill').textContent=`Score: ${score} / ${total}`;
+    setTimeout(()=>{idx++;draw();},1500);
+  }
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;sfx.win();
+    const stars=score===total?3:score>=total*.6?2:1;
+    let starHTML='';
+    for(let i=0;i<3;i++){
+      if(i<stars)starHTML+=`<span class="star-fill" style="animation-delay:${i*.2}s">⭐</span>`;
+      else starHTML+=`<span class="star-empty">☆</span>`;
+    }
+    if(stars===3)confettiBurst(50);
+    c.innerHTML=`
+      <div class="result-box">
+        <div class="result-emoji">${stars===3?'🏆':stars===2?'🎯':'💪'}</div>
+        <h2 style="color:var(--teal-d);">LEVEL COMPLETE!</h2>
+        <div class="stars">${starHTML}</div>
+        <div class="result-score">${score} / ${total}</div>
+        <p class="result-msg">Highest Combo: <b>${state.comboMax}</b> 🔥</p>
+        <div class="btn-row">
+          <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Level</button>
+          <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+        </div>
+      </div>`;
+  }
+  draw();
+}
+
+/* ============================================================
+   MATCH
+   ============================================================ */
+function renderMatch(c,a){
+  const pairs=a.pairs;
+  const left=pairs.map((p,i)=>({text:p.l,key:i,icon:p.li}));
+  const right=shuffle(pairs.map((p,i)=>({text:p.r,key:i,icon:p.ri})));
+  let sel=null,matched=0,wrongAttempts=0;const total=pairs.length;
+  function updatePill(){document.getElementById('scorePill').textContent=`Matched: ${matched} / ${total}`;}
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="match-wrap"><div class="match-col" id="lc"></div><div class="match-col" id="rc"></div></div>
+    <div class="feedback" id="fb"></div>`;
+  const lc=document.getElementById('lc'),rc=document.getElementById('rc');
+  left.forEach(it=>{
+    const d=document.createElement('div');d.className='match-item';
+    d.innerHTML=`<span class="match-icon">${it.icon||''}</span><span>${it.text}</span>`;
+    d.dataset.key=it.key;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#lc .match-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');sel={el:d,it};};
+    lc.appendChild(d);
+  });
+  right.forEach(it=>{
+    const d=document.createElement('div');d.className='match-item';
+    d.innerHTML=`<span class="match-icon">${it.icon||''}</span><span>${it.text}</span>`;
+    d.dataset.key=it.key;
+    d.onclick=()=>{
+      if(d.classList.contains('matched'))return;
+      if(!sel){document.getElementById('fb').textContent='Select an item from the left first.';return;}
+      if(sel.it.key===it.key){
+        sel.el.classList.remove('selected');sel.el.classList.add('matched');d.classList.add('matched');
+        matched++;addCombo();sfx.correct();
+        showFloatScore('+'+(8+state.combo*2)+' XP','#22c55e');
+        addXP(8+state.combo*2);
+        document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Perfect match! 👏</span>';
+        sel=null;updatePill();
+        if(matched===total)finish();
+      }else{
+        d.classList.add('shake');const sl=sel.el;sl.classList.add('shake');
+        setTimeout(()=>{d.classList.remove('shake');sl.classList.remove('shake');},450);
+        sfx.wrong();wrongAttempts++;resetCombo();
+        document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Not a match. Try again.</span>';
+        sl.classList.remove('selected');sel=null;
+      }
+    };
+    rc.appendChild(d);
+  });
+  updatePill();
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;
+    setTimeout(()=>{
+      sfx.win();
+      const stars=wrongAttempts===0?3:wrongAttempts<=2?2:1;
+      let starHTML='';
+      for(let i=0;i<3;i++){
+        if(i<stars)starHTML+=`<span class="star-fill" style="animation-delay:${i*.2}s">⭐</span>`;
+        else starHTML+=`<span class="star-empty">☆</span>`;
+      }
+      if(stars===3)confettiBurst(50);
+      c.innerHTML=`
+        <div class="result-box">
+          <div class="result-emoji">${stars===3?'🌟':stars===2?'🎯':'💪'}</div>
+          <h2 style="color:var(--teal-d);">ALL MATCHED!</h2>
+          <div class="stars">${starHTML}</div>
+          <p class="result-msg">Wrong attempts: <b>${wrongAttempts}</b></p>
+          <div class="btn-row">
+            <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Level</button>
+            <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+          </div>
+        </div>`;
+    },900);
+  }
+}
+
+/* ============================================================
+   SYMBOL MATCH
+   ============================================================ */
+function renderSymMatch(c,a){
+  const triples=a.triples;
+  const symOrder=shuffle(triples.map((t,i)=>({...t,key:i})));
+  const nameOrder=shuffle(triples.map((t,i)=>({...t,key:i})));
+  const meanOrder=shuffle(triples.map((t,i)=>({...t,key:i})));
+  let selSym=null,selName=null,selMean=null,matchedCount=0;
+  const total=triples.length;
+  function updatePill(){document.getElementById('scorePill').textContent=`Matched: ${matchedCount} / ${total}`;}
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="sym-match-wrap">
+      <div><div class="sym-col-header">SYMBOL</div><div id="symCol" style="display:grid;gap:11px;"></div></div>
+      <div><div class="sym-col-header">NAME</div><div id="nameCol" style="display:grid;gap:11px;"></div></div>
+      <div><div class="sym-col-header">MEANING</div><div id="meanCol" style="display:grid;gap:11px;"></div></div>
+    </div>
+    <div class="feedback" id="fb"></div>`;
+  const symCol=document.getElementById('symCol'),nameCol=document.getElementById('nameCol'),meanCol=document.getElementById('meanCol');
+  symOrder.forEach(t=>{
+    const d=document.createElement('div');d.className='sym-card';d.dataset.key=t.key;
+    d.innerHTML=`<div style="display:flex;justify-content:center;">${SYMBOLS[t.symbol]}</div>`;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#symCol .sym-card').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selSym={el:d,key:t.key};checkTriple();};
+    symCol.appendChild(d);
+  });
+  nameOrder.forEach(t=>{
+    const d=document.createElement('div');d.className='sym-card';d.dataset.key=t.key;
+    d.innerHTML=`<span style="font-size:14px;font-weight:800;">${t.name}</span>`;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#nameCol .sym-card').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selName={el:d,key:t.key};checkTriple();};
+    nameCol.appendChild(d);
+  });
+  meanOrder.forEach(t=>{
+    const d=document.createElement('div');d.className='sym-card';d.dataset.key=t.key;
+    d.innerHTML=`<span style="font-size:14px;font-weight:800;">${t.meaning}</span>`;
+    d.onclick=()=>{if(d.classList.contains('matched'))return;sfx.click();
+      document.querySelectorAll('#meanCol .sym-card').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selMean={el:d,key:t.key};checkTriple();};
+    meanCol.appendChild(d);
+  });
+  updatePill();
+  function checkTriple(){
+    if(selSym&&selName&&selMean){
+      const k1=selSym.key,k2=selName.key,k3=selMean.key;
+      if(k1===k2&&k2===k3){
+        [selSym.el,selName.el,selMean.el].forEach(el=>{el.classList.remove('selected');el.classList.add('matched');});
+        matchedCount++;addCombo();sfx.correct();
+        showFloatScore('+'+(15+state.combo*3)+' XP','#22c55e');addXP(15+state.combo*3);
+        document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Perfect triple! 🎉</span>';
+        selSym=selName=selMean=null;updatePill();
+        if(matchedCount===total)finish();
+      }else{
+        [selSym.el,selName.el,selMean.el].forEach(el=>{
+          el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),450);
+        });
+        sfx.wrong();resetCombo();
+        document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Not a correct triple. Try again.</span>';
+        setTimeout(()=>{
+          [selSym.el,selName.el,selMean.el].forEach(el=>el.classList.remove('selected'));
+          selSym=selName=selMean=null;
+        },500);
+      }
+    }
+  }
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;
+    setTimeout(()=>{
+      sfx.win();confettiBurst(60);
+      c.innerHTML=`
+        <div class="result-box">
+          <div class="result-emoji">🏆</div>
+          <h2 style="color:var(--teal-d);">ALL SYMBOLS MATCHED!</h2>
+          <div class="stars">
+            <span class="star-fill">⭐</span><span class="star-fill" style="animation-delay:.2s">⭐</span><span class="star-fill" style="animation-delay:.4s">⭐</span>
+          </div>
+          <p class="result-msg">You know your flow chart symbols perfectly!</p>
+          <div class="btn-row">
+            <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Level</button>
+            <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+          </div>
+        </div>`;
+    },900);
+  }
+}
+
+/* ============================================================
+   ORDER
+   ============================================================ */
+function renderOrder(c,a){
+  const correct=a.correctOrder.map(x=>typeof x==='string'?x:x.text);
+  let current=shuffle(a.correctOrder.map((x,i)=>({text:typeof x==='string'?x:x.text,icon:typeof x==='string'?null:x.icon,orig:i})));
+  function draw(){
+    c.innerHTML=`
+      <div class="act-instruction">${a.instruction}</div>
+      <div class="order-list" id="ol"></div>
+      <div class="btn-row" style="margin-top:18px;">
+        <button class="btn purple" id="ck">✔ Check Order</button>
+      </div>
+      <div class="feedback" id="fb"></div>`;
+    const list=document.getElementById('ol');
+    current.forEach((it,i)=>{
+      const d=document.createElement('div');d.className='order-item';
+      d.innerHTML=`
+        <div class="num">${i+1}</div>
+        <div class="txt">${it.icon?`<span style="font-size:22px;">${it.icon}</span>`:''}<span>${it.text}</span></div>
+        <div class="movers">
+          <button class="mover" ${i===0?'disabled':''} data-dir="up">▲</button>
+          <button class="mover" ${i===current.length-1?'disabled':''} data-dir="down">▼</button>
+        </div>`;
+      list.appendChild(d);
+      d.querySelector('[data-dir="up"]').onclick=()=>swap(i,i-1);
+      d.querySelector('[data-dir="down"]').onclick=()=>swap(i,i+1);
+    });
+    document.getElementById('ck').onclick=check;
+  }
+  function swap(i,j){
+    if(j<0||j>=current.length)return;sfx.click();
+    [current[i],current[j]]=[current[j],current[i]];draw();
+  }
+  function check(){
+    let allCorrect=true;
+    document.querySelectorAll('.order-item').forEach((el,i)=>{
+      if(current[i].text===correct[i])el.classList.add('correct');
+      else allCorrect=false;
+    });
+    if(allCorrect){
+      sfx.correct();flashScreen();
+      showFloatScore('+'+(20+state.combo*3)+' XP','#22c55e');addXP(20+state.combo*3);addCombo();
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Perfect order! 🎉</span>';
+      state.completed[state.currentLesson.id+'-'+a.id]=true;
+      setTimeout(()=>{
+        sfx.win();confettiBurst(60);
+        c.innerHTML=`
+          <div class="result-box">
+            <div class="result-emoji">✅</div>
+            <h2 style="color:var(--teal-d);">WELL DONE!</h2>
+            <div class="stars">
+              <span class="star-fill">⭐</span><span class="star-fill" style="animation-delay:.2s">⭐</span><span class="star-fill" style="animation-delay:.4s">⭐</span>
+            </div>
+            <div class="btn-row">
+              <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Level</button>
+              <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+            </div>
+          </div>`;
+      },1400);
+    }else{
+      sfx.wrong();resetCombo();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Some steps are wrong. Try again.</span>';
+      setTimeout(()=>{document.querySelectorAll('.order-item.correct').forEach(el=>el.classList.remove('correct'));},1400);
+    }
+  }
+  draw();
+}
+
+/* ============================================================
+   BUCKET
+   ============================================================ */
+function renderBucket(c,a){
+  const allItems=[];a.buckets.forEach((b,bi)=>b.items.forEach(t=>allItems.push({text:t,bucket:bi})));
+  const pool=shuffle(allItems.slice());let selected=null,placed=0;const total=allItems.length;
+  function updatePill(){document.getElementById('scorePill').textContent=`Score: ${placed} / ${total}`;}
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="bucket-items" id="pool"></div>
+    <div class="buckets" id="bks"></div>
+    <div class="feedback" id="fb"></div>`;
+  const poolEl=document.getElementById('pool');
+  pool.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='b-item';d.textContent=it.text;
+    d.onclick=()=>{
+      if(d.classList.contains('placed'))return;sfx.click();
+      document.querySelectorAll('.b-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');selected={el:d,item:it};
+    };
+    poolEl.appendChild(d);
+  });
+  const bksEl=document.getElementById('bks');
+  a.buckets.forEach((b,bi)=>{
+    const d=document.createElement('div');d.className='bucket';d.dataset.bi=bi;
+    d.innerHTML=`<div class="bucket-title">${b.name}</div><div class="bucket-contents"></div>`;
+    d.onclick=()=>drop(bi,d);bksEl.appendChild(d);
+  });
+  updatePill();
+  function drop(bi,el){
+    if(!selected)return;const it=selected.item;
+    if(it.bucket===bi){
+      el.classList.add('active');setTimeout(()=>el.classList.remove('active'),500);
+      const chip=document.createElement('div');chip.className='b-chip';chip.textContent=it.text;
+      el.querySelector('.bucket-contents').appendChild(chip);
+      selected.el.classList.remove('selected');selected.el.classList.add('placed');
+      selected=null;placed++;addCombo();sfx.correct();
+      showFloatScore('+'+(6+state.combo*2)+' XP','#22c55e');addXP(6+state.combo*2);
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Correct bucket!</span>';
+      updatePill();
+      if(placed===total)finish();
+    }else{
+      el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),450);sfx.wrong();resetCombo();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Wrong bucket. Try again.</span>';
+    }
+  }
+  function finish(){
+    state.completed[state.currentLesson.id+'-'+a.id]=true;
+    setTimeout(()=>{
+      sfx.win();confettiBurst(50);
+      c.innerHTML=`
+        <div class="result-box">
+          <div class="result-emoji">🗂️</div>
+          <h2 style="color:var(--teal-d);">ALL SORTED!</h2>
+          <div class="stars">
+            <span class="star-fill">⭐</span><span class="star-fill" style="animation-delay:.2s">⭐</span><span class="star-fill" style="animation-delay:.4s">⭐</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Level</button>
+            <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+          </div>
+        </div>`;
+    },900);
+  }
+}
+
+/* ============================================================
+   PICK
+   ============================================================ */
+function renderPick(c,a){
+  const items=shuffle(a.items.slice());const picked=new Set();
+  c.innerHTML=`
+    <div class="act-instruction">${a.instruction}</div>
+    <div class="pick-list" id="pl"></div>
+    <div class="btn-row" style="margin-top:18px;">
+      <button class="btn purple" id="ck">✔ Check Answers</button>
+    </div>
+    <div class="feedback" id="fb"></div>`;
+  const list=document.getElementById('pl');
+  items.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='pick-item';
+    d.innerHTML=`<div class="pick-box"></div>${it.icon?`<span class="pick-icon">${it.icon}</span>`:''}<div style="flex:1;">${it.text}</div>`;
+    d.onclick=()=>{
+      sfx.click();
+      if(picked.has(i)){picked.delete(i);d.classList.remove('picked');d.querySelector('.pick-box').textContent='';}
+      else{picked.add(i);d.classList.add('picked');d.querySelector('.pick-box').textContent='✓';}
+    };
+    list.appendChild(d);
+  });
+  document.getElementById('ck').onclick=()=>{
+    let correct=true;
+    document.querySelectorAll('.pick-item').forEach((el,i)=>{
+      const it=items[i];const wasPicked=picked.has(i);
+      if(it.correct&&wasPicked){el.classList.remove('picked');el.classList.add('correct');el.querySelector('.pick-box').textContent='✓';}
+      else if(it.correct&&!wasPicked){el.classList.add('correct');el.querySelector('.pick-box').textContent='✓';correct=false;}
+      else if(!it.correct&&wasPicked){el.classList.remove('picked');el.classList.add('wrong');el.querySelector('.pick-box').textContent='✘';correct=false;}
+    });
+    if(correct){
+      sfx.correct();flashScreen();addCombo();
+      showFloatScore('+'+(20+state.combo*3)+' XP','#22c55e');addXP(20+state.combo*3);
+      document.getElementById('fb').innerHTML='<span style="color:var(--green-d)">✔ Perfect! All correct! 🎉</span>';
+      state.completed[state.currentLesson.id+'-'+a.id]=true;
+      setTimeout(()=>{
+        sfx.win();confettiBurst(60);
+        c.innerHTML=`
+          <div class="result-box">
+            <div class="result-emoji">🌟</div>
+            <h2 style="color:var(--teal-d);">EXCELLENT!</h2>
+            <div class="stars">
+              <span class="star-fill">⭐</span><span class="star-fill" style="animation-delay:.2s">⭐</span><span class="star-fill" style="animation-delay:.4s">⭐</span>
+            </div>
+            <div class="btn-row">
+              <button class="btn" onclick="goLesson(${state.currentLesson.id})">← Level</button>
+              <button class="btn ghost" onclick="goHome()">🏠 Home</button>
+            </div>
+          </div>`;
+      },1500);
+    }else{
+      sfx.wrong();resetCombo();
+      document.getElementById('fb').innerHTML='<span style="color:var(--coral-d)">✘ Some are wrong. Check the red/green marks.</span>';
+    }
+  };
+}
+
+/* ============================================================
+   UTIL + INIT
+   ============================================================ */
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+document.addEventListener('pointerdown',ensureAudio,{once:true});
+buildBackground();
+renderHome();
+</script>
+</body>
+</html>

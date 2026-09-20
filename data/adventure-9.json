@@ -1,0 +1,2326 @@
+{
+  "grade": 9,
+  "set": "adventure",
+  "languages": [
+    "en",
+    "si"
+  ],
+  "lessons": [
+    {
+      "num": "01",
+      "theme": "cpu",
+      "emoji": "💻",
+      "title": {
+        "en": "Computer & Peripheral",
+        "si": "පරිගණක හා පර්යන්ත උපාංග"
+      },
+      "games": [
+        {
+          "id": "c1",
+          "icon": "🖥️",
+          "name": {
+            "en": "Computer Types",
+            "si": null
+          },
+          "desc": {
+            "en": "Sort computers by category",
+            "si": null
+          },
+          "kind": "sortGame",
+          "items": [
+            {
+              "name": {
+                "en": "🖥️ Server",
+                "si": null
+              },
+              "bin": "fixed"
+            },
+            {
+              "name": {
+                "en": "💻 Desktop",
+                "si": null
+              },
+              "bin": "fixed"
+            },
+            {
+              "name": {
+                "en": "🖥️ Workstation",
+                "si": null
+              },
+              "bin": "fixed"
+            },
+            {
+              "name": {
+                "en": "🖱️ All-in-One",
+                "si": null
+              },
+              "bin": "fixed"
+            },
+            {
+              "name": {
+                "en": "💻 Laptop",
+                "si": null
+              },
+              "bin": "portable"
+            },
+            {
+              "name": {
+                "en": "📓 Notebook",
+                "si": null
+              },
+              "bin": "portable"
+            },
+            {
+              "name": {
+                "en": "📱 Tablet",
+                "si": null
+              },
+              "bin": "portable"
+            },
+            {
+              "name": {
+                "en": "📞 Smartphone",
+                "si": null
+              },
+              "bin": "portable"
+            }
+          ],
+          "bins": [
+            {
+              "id": "fixed",
+              "name": {
+                "en": "Stationary Computer",
+                "si": null
+              },
+              "emoji": "🏢"
+            },
+            {
+              "id": "portable",
+              "name": {
+                "en": "Portable Computer",
+                "si": null
+              },
+              "emoji": "🎒"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "icon": "📦",
+          "name": {
+            "en": "Peripheral Sorter",
+            "si": null
+          },
+          "desc": {
+            "en": "Input / Output / Storage",
+            "si": null
+          },
+          "kind": "sortGame",
+          "items": [
+            {
+              "name": {
+                "en": "⌨️ Keyboard",
+                "si": null
+              },
+              "bin": "input"
+            },
+            {
+              "name": {
+                "en": "🖱️ Mouse",
+                "si": null
+              },
+              "bin": "input"
+            },
+            {
+              "name": {
+                "en": "🎤 Microphone",
+                "si": null
+              },
+              "bin": "input"
+            },
+            {
+              "name": {
+                "en": "📷 Scanner",
+                "si": null
+              },
+              "bin": "input"
+            },
+            {
+              "name": {
+                "en": "🖥️ Monitor",
+                "si": null
+              },
+              "bin": "output"
+            },
+            {
+              "name": {
+                "en": "🖨️ Printer",
+                "si": null
+              },
+              "bin": "output"
+            },
+            {
+              "name": {
+                "en": "🔊 Speaker",
+                "si": null
+              },
+              "bin": "output"
+            },
+            {
+              "name": {
+                "en": "📽️ Projector",
+                "si": null
+              },
+              "bin": "output"
+            },
+            {
+              "name": {
+                "en": "💾 Hard Disk",
+                "si": null
+              },
+              "bin": "storage"
+            },
+            {
+              "name": {
+                "en": "💿 DVD Drive",
+                "si": null
+              },
+              "bin": "storage"
+            },
+            {
+              "name": {
+                "en": "🔑 Flash Drive",
+                "si": null
+              },
+              "bin": "storage"
+            },
+            {
+              "name": {
+                "en": "📼 Magnetic Tape",
+                "si": null
+              },
+              "bin": "storage"
+            }
+          ],
+          "bins": [
+            {
+              "id": "input",
+              "name": {
+                "en": "Input",
+                "si": null
+              },
+              "emoji": "📥"
+            },
+            {
+              "id": "output",
+              "name": {
+                "en": "Output",
+                "si": null
+              },
+              "emoji": "📤"
+            },
+            {
+              "id": "storage",
+              "name": {
+                "en": "Storage",
+                "si": null
+              },
+              "emoji": "💾"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "icon": "⚡",
+          "name": {
+            "en": "Specifications",
+            "si": null
+          },
+          "desc": {
+            "en": "Match specs to functions",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "CPU speed is measured in?",
+                "si": "CPU වේගය මනිනු ලබන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Meters",
+                  "si": null
+                },
+                {
+                  "en": "MHz / GHz",
+                  "si": null
+                },
+                {
+                  "en": "Liters",
+                  "si": null
+                },
+                {
+                  "en": "Kilograms",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Which is the main storage in a computer?",
+                "si": "පරිගණකයේ ප්‍රධාන ආවරණ උපාංගය?"
+              },
+              "opts": [
+                {
+                  "en": "RAM",
+                  "si": null
+                },
+                {
+                  "en": "Hard Disk",
+                  "si": null
+                },
+                {
+                  "en": "CPU",
+                  "si": null
+                },
+                {
+                  "en": "Monitor",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Which port connects a network cable?",
+                "si": "ජාල කේබලය සම්බන්ධ කරන පෝට් එක?"
+              },
+              "opts": [
+                {
+                  "en": "VGA",
+                  "si": null
+                },
+                {
+                  "en": "HDMI",
+                  "si": null
+                },
+                {
+                  "en": "RJ45",
+                  "si": null
+                },
+                {
+                  "en": "USB",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            },
+            {
+              "q": {
+                "en": "HDMI carries what signals?",
+                "si": "HDMI මගින් ගෙන යන සංඥා?"
+              },
+              "opts": [
+                {
+                  "en": "Only video",
+                  "si": null
+                },
+                {
+                  "en": "Only audio",
+                  "si": null
+                },
+                {
+                  "en": "Both audio & video",
+                  "si": null
+                },
+                {
+                  "en": "Only data",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            },
+            {
+              "q": {
+                "en": "RAM is what type of memory?",
+                "si": "RAM යනු කුමන මතකයද?"
+              },
+              "opts": [
+                {
+                  "en": "Non-volatile",
+                  "si": null
+                },
+                {
+                  "en": "Volatile",
+                  "si": null
+                },
+                {
+                  "en": "Permanent",
+                  "si": null
+                },
+                {
+                  "en": "Optical",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Which warranty is provided by manufacturer?",
+                "si": "නිෂ්පාදකයා ලබා දෙන වගකීම?"
+              },
+              "opts": [
+                {
+                  "en": "Extended",
+                  "si": null
+                },
+                {
+                  "en": "Manufacturer",
+                  "si": null
+                },
+                {
+                  "en": "Onsite",
+                  "si": null
+                },
+                {
+                  "en": "Third-party",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Screen size is measured in?",
+                "si": "තිර ප්‍රමාණය මනිනු ලබන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Centimeters",
+                  "si": null
+                },
+                {
+                  "en": "Inches (diagonal)",
+                  "si": null
+                },
+                {
+                  "en": "Millimeters",
+                  "si": null
+                },
+                {
+                  "en": "Pixels",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Which is NOT an input device?",
+                "si": "ආදාන උපාංගයක් නොවන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Keyboard",
+                  "si": null
+                },
+                {
+                  "en": "Mouse",
+                  "si": null
+                },
+                {
+                  "en": "Monitor",
+                  "si": null
+                },
+                {
+                  "en": "Microphone",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "num": "02",
+      "theme": "sheet",
+      "emoji": "📊",
+      "title": {
+        "en": "Spreadsheets",
+        "si": "විද්‍යුත් පැතුරුම්පත්"
+      },
+      "games": [
+        {
+          "id": "s1",
+          "icon": "📋",
+          "name": {
+            "en": "Cell Address",
+            "si": null
+          },
+          "desc": {
+            "en": "Find the correct cell",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "Where is column D and row 5 located?",
+                "si": "D තීරුව සහ 5 පේළිය යන ස්ථානය?"
+              },
+              "opts": [
+                {
+                  "en": "D5",
+                  "si": null
+                },
+                {
+                  "en": "5D",
+                  "si": null
+                },
+                {
+                  "en": "D-5",
+                  "si": null
+                },
+                {
+                  "en": "RowD5",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "Columns are labeled with?",
+                "si": "තීරු නම් කරන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Numbers 1,2,3",
+                  "si": null
+                },
+                {
+                  "en": "Letters A,B,C",
+                  "si": null
+                },
+                {
+                  "en": "Both",
+                  "si": null
+                },
+                {
+                  "en": "Symbols",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Rows are labeled with?",
+                "si": "පේළි නම් කරන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Letters",
+                  "si": null
+                },
+                {
+                  "en": "Numbers 1,2,3",
+                  "si": null
+                },
+                {
+                  "en": "Both",
+                  "si": null
+                },
+                {
+                  "en": "Symbols",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "The intersection of a row and column is called?",
+                "si": "පේළියක් සහ තීරුවක් හමුවන ස්ථානය?"
+              },
+              "opts": [
+                {
+                  "en": "Cell",
+                  "si": null
+                },
+                {
+                  "en": "Range",
+                  "si": null
+                },
+                {
+                  "en": "Box",
+                  "si": null
+                },
+                {
+                  "en": "Frame",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "A group of cells is called?",
+                "si": "කෝෂ කිහිපයක් එකතුව?"
+              },
+              "opts": [
+                {
+                  "en": "Cell Range",
+                  "si": null
+                },
+                {
+                  "en": "Cell Box",
+                  "si": null
+                },
+                {
+                  "en": "Cell Set",
+                  "si": null
+                },
+                {
+                  "en": "Cell Union",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "The formula bar shows?",
+                "si": "සූත්‍ර තීරය පෙන්වන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Date",
+                  "si": null
+                },
+                {
+                  "en": "Content of selected cell",
+                  "si": null
+                },
+                {
+                  "en": "Menu",
+                  "si": null
+                },
+                {
+                  "en": "Toolbar",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "icon": "🧮",
+          "name": {
+            "en": "Spreadsheet Functions",
+            "si": null
+          },
+          "desc": {
+            "en": "SUM, AVERAGE, MAX, MIN",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "Which function adds all numbers?",
+                "si": "සියලු සංඛ්‍යා එකතු කරන ශ්‍රිතය?"
+              },
+              "opts": [
+                {
+                  "en": "SUM",
+                  "si": null
+                },
+                {
+                  "en": "AVERAGE",
+                  "si": null
+                },
+                {
+                  "en": "MAX",
+                  "si": null
+                },
+                {
+                  "en": "MIN",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "Which function finds the average?",
+                "si": "සාමාන්‍යය සොයන ශ්‍රිතය?"
+              },
+              "opts": [
+                {
+                  "en": "SUM",
+                  "si": null
+                },
+                {
+                  "en": "AVERAGE",
+                  "si": null
+                },
+                {
+                  "en": "MAX",
+                  "si": null
+                },
+                {
+                  "en": "MIN",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Which function finds the largest value?",
+                "si": "විශාලතම අගය සොයන ශ්‍රිතය?"
+              },
+              "opts": [
+                {
+                  "en": "SUM",
+                  "si": null
+                },
+                {
+                  "en": "AVERAGE",
+                  "si": null
+                },
+                {
+                  "en": "MAX",
+                  "si": null
+                },
+                {
+                  "en": "MIN",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            },
+            {
+              "q": {
+                "en": "Which function finds the smallest value?",
+                "si": "කුඩාම අගය සොයන ශ්‍රිතය?"
+              },
+              "opts": [
+                {
+                  "en": "SUM",
+                  "si": null
+                },
+                {
+                  "en": "AVERAGE",
+                  "si": null
+                },
+                {
+                  "en": "MAX",
+                  "si": null
+                },
+                {
+                  "en": "MIN",
+                  "si": null
+                }
+              ],
+              "ans": 3
+            },
+            {
+              "q": {
+                "en": "Formulas start with?",
+                "si": "සූත්‍ර ආරම්භ වන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "=",
+                  "si": null
+                },
+                {
+                  "en": "+",
+                  "si": null
+                },
+                {
+                  "en": "-",
+                  "si": null
+                },
+                {
+                  "en": "*",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "Which symbol multiplies?",
+                "si": "ගුණ කිරීමට යොදන සංකේතය?"
+              },
+              "opts": [
+                {
+                  "en": "+",
+                  "si": null
+                },
+                {
+                  "en": "-",
+                  "si": null
+                },
+                {
+                  "en": "*",
+                  "si": null
+                },
+                {
+                  "en": "/",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "icon": "📈",
+          "name": {
+            "en": "Chart Master",
+            "si": null
+          },
+          "desc": {
+            "en": "Choose the right chart type",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "Best for showing trends over time?",
+                "si": "කාලය සමග ප්‍රවණතා පෙන්වීමට හොඳම ප්‍රස්තාරය?"
+              },
+              "opts": [
+                {
+                  "en": "Pie Chart",
+                  "si": null
+                },
+                {
+                  "en": "Line Chart",
+                  "si": null
+                },
+                {
+                  "en": "Column Chart",
+                  "si": null
+                },
+                {
+                  "en": "Scatter",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Best for showing parts of a whole?",
+                "si": "මුළු එකතුවේ කොටස් පෙන්වීමට හොඳම?"
+              },
+              "opts": [
+                {
+                  "en": "Line",
+                  "si": null
+                },
+                {
+                  "en": "Pie Chart",
+                  "si": null
+                },
+                {
+                  "en": "Bar",
+                  "si": null
+                },
+                {
+                  "en": "Scatter",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Best for comparing categories?",
+                "si": "වර්ග සංසන්දනයට හොඳම?"
+              },
+              "opts": [
+                {
+                  "en": "Column Chart",
+                  "si": null
+                },
+                {
+                  "en": "Pie Chart",
+                  "si": null
+                },
+                {
+                  "en": "Line",
+                  "si": null
+                },
+                {
+                  "en": "Scatter",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "Best for showing relationships between two variables?",
+                "si": "විචල්‍ය 2ක් අතර සම්බන්ධය?"
+              },
+              "opts": [
+                {
+                  "en": "Pie",
+                  "si": null
+                },
+                {
+                  "en": "Line",
+                  "si": null
+                },
+                {
+                  "en": "Scatter",
+                  "si": null
+                },
+                {
+                  "en": "Column",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "num": "03",
+      "theme": "code",
+      "emoji": "⚙️",
+      "title": {
+        "en": "Programming",
+        "si": "ක්‍රමලේඛ ගොඩනැගීම"
+      },
+      "games": [
+        {
+          "id": "p1",
+          "icon": "🔀",
+          "name": {
+            "en": "Control Structures",
+            "si": null
+          },
+          "desc": {
+            "en": "Sequence / Selection / Repetition",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "Which runs steps one after another?",
+                "si": "පියවර එකින් එක ක්‍රියාත්මක වන වුහය?"
+              },
+              "opts": [
+                {
+                  "en": "Sequence",
+                  "si": null
+                },
+                {
+                  "en": "Selection",
+                  "si": null
+                },
+                {
+                  "en": "Repetition",
+                  "si": null
+                },
+                {
+                  "en": "Loop",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "Which uses IF-THEN-ELSE?",
+                "si": "IF-THEN-ELSE භාවිත කරන වුහය?"
+              },
+              "opts": [
+                {
+                  "en": "Sequence",
+                  "si": null
+                },
+                {
+                  "en": "Selection",
+                  "si": null
+                },
+                {
+                  "en": "Repetition",
+                  "si": null
+                },
+                {
+                  "en": "Random",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Which repeats steps?",
+                "si": "පියවර නැවත නැවත කරන වුහය?"
+              },
+              "opts": [
+                {
+                  "en": "Sequence",
+                  "si": null
+                },
+                {
+                  "en": "Selection",
+                  "si": null
+                },
+                {
+                  "en": "Repetition",
+                  "si": null
+                },
+                {
+                  "en": "Linear",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            },
+            {
+              "q": {
+                "en": "Nested repetition means?",
+                "si": "නිවිත පුනර්කරණය යනු?"
+              },
+              "opts": [
+                {
+                  "en": "Single loop",
+                  "si": null
+                },
+                {
+                  "en": "Loop within a loop",
+                  "si": null
+                },
+                {
+                  "en": "No loop",
+                  "si": null
+                },
+                {
+                  "en": "Random loop",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "A \"coin jar filling\" is an example of?",
+                "si": "කාසි කැටය පිරීම උදාහරණයක්?"
+              },
+              "opts": [
+                {
+                  "en": "Sequence",
+                  "si": null
+                },
+                {
+                  "en": "Selection",
+                  "si": null
+                },
+                {
+                  "en": "Repetition",
+                  "si": null
+                },
+                {
+                  "en": "None",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            },
+            {
+              "q": {
+                "en": "A dice roll showing 1-6 is?",
+                "si": "දාදු කැටය 1-6 පෙන්වීම?"
+              },
+              "opts": [
+                {
+                  "en": "Simple selection",
+                  "si": null
+                },
+                {
+                  "en": "Multi-way selection",
+                  "si": null
+                },
+                {
+                  "en": "Sequence",
+                  "si": null
+                },
+                {
+                  "en": "Loop",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "icon": "🔷",
+          "name": {
+            "en": "Flow Symbols",
+            "si": null
+          },
+          "desc": {
+            "en": "Match flowchart symbols",
+            "si": null
+          },
+          "kind": "memoryGame",
+          "pairs": [
+            {
+              "a": {
+                "en": "⬭ Oval",
+                "si": null
+              },
+              "b": {
+                "en": "Start / End",
+                "si": null
+              },
+              "key": "o"
+            },
+            {
+              "a": {
+                "en": "▭ Rectangle",
+                "si": null
+              },
+              "b": {
+                "en": "Process",
+                "si": null
+              },
+              "key": "r"
+            },
+            {
+              "a": {
+                "en": "◇ Diamond",
+                "si": null
+              },
+              "b": {
+                "en": "Decision",
+                "si": null
+              },
+              "key": "d"
+            },
+            {
+              "a": {
+                "en": "▱ Parallelogram",
+                "si": null
+              },
+              "b": {
+                "en": "Input / Output",
+                "si": null
+              },
+              "key": "p"
+            },
+            {
+              "a": {
+                "en": "→ Arrow",
+                "si": null
+              },
+              "b": {
+                "en": "Flow direction",
+                "si": null
+              },
+              "key": "ar"
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "icon": "🔄",
+          "name": {
+            "en": "Repeat Blocks",
+            "si": null
+          },
+          "desc": {
+            "en": "Scratch repetition quiz",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "Scratch \"repeat 10\" runs how many times?",
+                "si": "Scratch \"repeat 10\" කී වරක් ද?"
+              },
+              "opts": [
+                {
+                  "en": "1",
+                  "si": null
+                },
+                {
+                  "en": "5",
+                  "si": null
+                },
+                {
+                  "en": "10",
+                  "si": null
+                },
+                {
+                  "en": "Infinite",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            },
+            {
+              "q": {
+                "en": "Scratch \"forever\" runs how many times?",
+                "si": "Scratch \"forever\" කී වරක් ද?"
+              },
+              "opts": [
+                {
+                  "en": "1",
+                  "si": null
+                },
+                {
+                  "en": "10",
+                  "si": null
+                },
+                {
+                  "en": "100",
+                  "si": null
+                },
+                {
+                  "en": "Infinitely",
+                  "si": null
+                }
+              ],
+              "ans": 3
+            },
+            {
+              "q": {
+                "en": "\"repeat until\" block stops when?",
+                "si": "\"repeat until\" නවතින්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Immediately",
+                  "si": null
+                },
+                {
+                  "en": "When condition is true",
+                  "si": null
+                },
+                {
+                  "en": "After 1 loop",
+                  "si": null
+                },
+                {
+                  "en": "Never",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "An array in Scratch is called?",
+                "si": "Scratch හි අරාව හඳුන්වන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Variable",
+                  "si": null
+                },
+                {
+                  "en": "List",
+                  "si": null
+                },
+                {
+                  "en": "Array",
+                  "si": null
+                },
+                {
+                  "en": "Table",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "\"length of\" block returns?",
+                "si": "\"length of\" block ලබා දෙන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "First item",
+                  "si": null
+                },
+                {
+                  "en": "Last item",
+                  "si": null
+                },
+                {
+                  "en": "Number of items",
+                  "si": null
+                },
+                {
+                  "en": "Random item",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "num": "04",
+      "theme": "micro",
+      "emoji": "🔧",
+      "title": {
+        "en": "Microcontrollers",
+        "si": "ක්ෂුද්‍ර පාලක"
+      },
+      "games": [
+        {
+          "id": "m1",
+          "icon": "🎛️",
+          "name": {
+            "en": "micro:bit Parts",
+            "si": null
+          },
+          "desc": {
+            "en": "Match components",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "micro:bit has how many programmable buttons?",
+                "si": "micro:bit හි කී බොත්තම් ද?"
+              },
+              "opts": [
+                {
+                  "en": "1",
+                  "si": null
+                },
+                {
+                  "en": "2",
+                  "si": null
+                },
+                {
+                  "en": "3",
+                  "si": null
+                },
+                {
+                  "en": "4",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "A = ? B = ?",
+                "si": "A = ? B = ?"
+              },
+              "opts": [
+                {
+                  "en": "Left, Right",
+                  "si": null
+                },
+                {
+                  "en": "Right, Left",
+                  "si": null
+                },
+                {
+                  "en": "Top, Bottom",
+                  "si": null
+                },
+                {
+                  "en": "Up, Down",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "How many LEDs does micro:bit have?",
+                "si": "micro:bit හි කී LED ද?"
+              },
+              "opts": [
+                {
+                  "en": "5",
+                  "si": null
+                },
+                {
+                  "en": "10",
+                  "si": null
+                },
+                {
+                  "en": "25",
+                  "si": null
+                },
+                {
+                  "en": "50",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            },
+            {
+              "q": {
+                "en": "micro:bit connects to computer via?",
+                "si": "micro:bit පරිගණකයට සම්බන්ධ වන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "VGA",
+                  "si": null
+                },
+                {
+                  "en": "HDMI",
+                  "si": null
+                },
+                {
+                  "en": "Micro USB",
+                  "si": null
+                },
+                {
+                  "en": "RJ45",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            },
+            {
+              "q": {
+                "en": "Which sensor detects motion?",
+                "si": "චලනය හඳුනා ගන්නා සංවේදකය?"
+              },
+              "opts": [
+                {
+                  "en": "Temperature",
+                  "si": null
+                },
+                {
+                  "en": "Light",
+                  "si": null
+                },
+                {
+                  "en": "Accelerometer",
+                  "si": null
+                },
+                {
+                  "en": "Compass",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            },
+            {
+              "q": {
+                "en": "Which sensor detects magnetic direction?",
+                "si": "චුම්බක දිශාව හඳුනා ගන්නා?"
+              },
+              "opts": [
+                {
+                  "en": "Compass",
+                  "si": null
+                },
+                {
+                  "en": "Light",
+                  "si": null
+                },
+                {
+                  "en": "Temperature",
+                  "si": null
+                },
+                {
+                  "en": "Motion",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "icon": "📡",
+          "name": {
+            "en": "Sensor Match",
+            "si": null
+          },
+          "desc": {
+            "en": "Match sensor to function",
+            "si": null
+          },
+          "kind": "memoryGame",
+          "pairs": [
+            {
+              "a": {
+                "en": "🌡️ Temperature",
+                "si": null
+              },
+              "b": {
+                "en": "Heat detection",
+                "si": null
+              },
+              "key": "t"
+            },
+            {
+              "a": {
+                "en": "💡 Light",
+                "si": null
+              },
+              "b": {
+                "en": "Brightness detection",
+                "si": null
+              },
+              "key": "l"
+            },
+            {
+              "a": {
+                "en": "📡 PIR Sensor",
+                "si": null
+              },
+              "b": {
+                "en": "Human motion",
+                "si": null
+              },
+              "key": "p"
+            },
+            {
+              "a": {
+                "en": "📶 Ultrasonic",
+                "si": null
+              },
+              "b": {
+                "en": "Distance measure",
+                "si": null
+              },
+              "key": "u"
+            },
+            {
+              "a": {
+                "en": "🧭 Compass",
+                "si": null
+              },
+              "b": {
+                "en": "Direction finding",
+                "si": null
+              },
+              "key": "c"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "icon": "💡",
+          "name": {
+            "en": "Real Applications",
+            "si": null
+          },
+          "desc": {
+            "en": "Smart devices using microcontrollers",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "Solar lamp uses which sensor?",
+                "si": "සූර්ය ලාම්පුව භාවිත කරන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Temperature",
+                  "si": null
+                },
+                {
+                  "en": "Light sensor",
+                  "si": null
+                },
+                {
+                  "en": "Compass",
+                  "si": null
+                },
+                {
+                  "en": "Motion",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Washing machine uses microcontroller to?",
+                "si": "රෙදි සෝදන යන්ත්‍රයේ ක්ෂුද්‍ර පාලකය භාවිත කරන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Auto wash",
+                  "si": null
+                },
+                {
+                  "en": "Sound",
+                  "si": null
+                },
+                {
+                  "en": "Display",
+                  "si": null
+                },
+                {
+                  "en": "All of these",
+                  "si": null
+                }
+              ],
+              "ans": 3
+            },
+            {
+              "q": {
+                "en": "Microwave oven controls?",
+                "si": "ක්ෂුද්‍ර තරංග උදුන පාලනය කරන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Only time",
+                  "si": null
+                },
+                {
+                  "en": "Temperature & time",
+                  "si": null
+                },
+                {
+                  "en": "Only temperature",
+                  "si": null
+                },
+                {
+                  "en": "None",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Arduino Uno uses which chip?",
+                "si": "Arduino Uno භාවිත කරන චිපය?"
+              },
+              "opts": [
+                {
+                  "en": "Intel i5",
+                  "si": null
+                },
+                {
+                  "en": "ATMEGA328p",
+                  "si": null
+                },
+                {
+                  "en": "ARM Cortex",
+                  "si": null
+                },
+                {
+                  "en": "AMD Ryzen",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Which is a Single Board Computer?",
+                "si": "තනි පුවරු පරිගණකයක් වන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Arduino",
+                  "si": null
+                },
+                {
+                  "en": "Raspberry Pi",
+                  "si": null
+                },
+                {
+                  "en": "micro:bit",
+                  "si": null
+                },
+                {
+                  "en": "Breadboard",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "num": "05",
+      "theme": "net",
+      "emoji": "🌐",
+      "title": {
+        "en": "Networking",
+        "si": "පරිගණක ජාලකරණය"
+      },
+      "games": [
+        {
+          "id": "n1",
+          "icon": "📡",
+          "name": {
+            "en": "Wired or Wireless?",
+            "si": null
+          },
+          "desc": {
+            "en": "Classify network media",
+            "si": null
+          },
+          "kind": "sortGame",
+          "items": [
+            {
+              "name": {
+                "en": "🔌 Twisted Pair",
+                "si": null
+              },
+              "bin": "wired"
+            },
+            {
+              "name": {
+                "en": "💡 Optical Fiber",
+                "si": null
+              },
+              "bin": "wired"
+            },
+            {
+              "name": {
+                "en": "📡 Infrared Waves",
+                "si": null
+              },
+              "bin": "wireless"
+            },
+            {
+              "name": {
+                "en": "🔵 Bluetooth",
+                "si": null
+              },
+              "bin": "wireless"
+            },
+            {
+              "name": {
+                "en": "📶 Wi-Fi Waves",
+                "si": null
+              },
+              "bin": "wireless"
+            },
+            {
+              "name": {
+                "en": "📻 Radio Waves",
+                "si": null
+              },
+              "bin": "wireless"
+            }
+          ],
+          "bins": [
+            {
+              "id": "wired",
+              "name": {
+                "en": "Wired (රැහැන් සහිත)",
+                "si": null
+              },
+              "emoji": "🔌"
+            },
+            {
+              "id": "wireless",
+              "name": {
+                "en": "Wireless (රැහැන් රහිත)",
+                "si": null
+              },
+              "emoji": "📡"
+            }
+          ]
+        },
+        {
+          "id": "n2",
+          "icon": "🖥️",
+          "name": {
+            "en": "Network Components",
+            "si": null
+          },
+          "desc": {
+            "en": "Match device to role",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "What connects two computers?",
+                "si": "පරිගණක 2ක් සම්බන්ධ කරන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Switch",
+                  "si": null
+                },
+                {
+                  "en": "CPU",
+                  "si": null
+                },
+                {
+                  "en": "Mouse",
+                  "si": null
+                },
+                {
+                  "en": "Monitor",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "What connects LAN to internet?",
+                "si": "LAN අන්තර්ජාලයට සම්බන්ධ කරන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Switch",
+                  "si": null
+                },
+                {
+                  "en": "Router",
+                  "si": null
+                },
+                {
+                  "en": "Hub",
+                  "si": null
+                },
+                {
+                  "en": "Mouse",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "What stores shared files?",
+                "si": "හවුල් ගොනු ගබඩා කරන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Client",
+                  "si": null
+                },
+                {
+                  "en": "Server",
+                  "si": null
+                },
+                {
+                  "en": "Router",
+                  "si": null
+                },
+                {
+                  "en": "Printer",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "NIC stands for?",
+                "si": "NIC යනු?"
+              },
+              "opts": [
+                {
+                  "en": "Network Internet Card",
+                  "si": null
+                },
+                {
+                  "en": "Network Interface Card",
+                  "si": null
+                },
+                {
+                  "en": "New Internet Card",
+                  "si": null
+                },
+                {
+                  "en": "Network Internal Card",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Which is used for a wired network?",
+                "si": "රැහැන් සහිත ජාලයට?"
+              },
+              "opts": [
+                {
+                  "en": "RJ45 Cable",
+                  "si": null
+                },
+                {
+                  "en": "Bluetooth",
+                  "si": null
+                },
+                {
+                  "en": "Wi-Fi",
+                  "si": null
+                },
+                {
+                  "en": "Infrared",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            }
+          ]
+        },
+        {
+          "id": "n3",
+          "icon": "💻",
+          "name": {
+            "en": "Network OS Quiz",
+            "si": null
+          },
+          "desc": {
+            "en": "Networking concepts",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "Main purpose of networking?",
+                "si": "ජාලකරණයේ ප්‍රධාන අරමුණ?"
+              },
+              "opts": [
+                {
+                  "en": "Share resources",
+                  "si": null
+                },
+                {
+                  "en": "Play games",
+                  "si": null
+                },
+                {
+                  "en": "Slow down",
+                  "si": null
+                },
+                {
+                  "en": "Security",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "Which is a benefit of networking?",
+                "si": "ජාලකරණයේ වාසියක්?"
+              },
+              "opts": [
+                {
+                  "en": "Share printer",
+                  "si": null
+                },
+                {
+                  "en": "Cannot share",
+                  "si": null
+                },
+                {
+                  "en": "Only offline",
+                  "si": null
+                },
+                {
+                  "en": "No communication",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "CLI stands for?",
+                "si": "CLI යනු?"
+              },
+              "opts": [
+                {
+                  "en": "Command Line Interface",
+                  "si": null
+                },
+                {
+                  "en": "Common Link Interface",
+                  "si": null
+                },
+                {
+                  "en": "Central Line Input",
+                  "si": null
+                },
+                {
+                  "en": "Computer Link Input",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "Which can be shared on a network?",
+                "si": "ජාලයක හවුල් කළ හැක්කේ?"
+              },
+              "opts": [
+                {
+                  "en": "Only files",
+                  "si": null
+                },
+                {
+                  "en": "Only printers",
+                  "si": null
+                },
+                {
+                  "en": "Software, hardware, files",
+                  "si": null
+                },
+                {
+                  "en": "Nothing",
+                  "si": null
+                }
+              ],
+              "ans": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "num": "06",
+      "theme": "society",
+      "emoji": "🌍",
+      "title": {
+        "en": "ICT & Society",
+        "si": "තොරතුරු තාක්ෂණය සහ සමාජය"
+      },
+      "games": [
+        {
+          "id": "so1",
+          "icon": "🏥",
+          "name": {
+            "en": "e-Services Match",
+            "si": null
+          },
+          "desc": {
+            "en": "Match e-idea to field",
+            "si": null
+          },
+          "kind": "mcQuiz",
+          "questions": [
+            {
+              "q": {
+                "en": "e-Education means?",
+                "si": "e-Education යනු?"
+              },
+              "opts": [
+                {
+                  "en": "Online learning",
+                  "si": null
+                },
+                {
+                  "en": "Electronic books only",
+                  "si": null
+                },
+                {
+                  "en": "No education",
+                  "si": null
+                },
+                {
+                  "en": "School only",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            },
+            {
+              "q": {
+                "en": "e-Health refers to?",
+                "si": "e-Health යනු?"
+              },
+              "opts": [
+                {
+                  "en": "Health apps only",
+                  "si": null
+                },
+                {
+                  "en": "ICT in healthcare",
+                  "si": null
+                },
+                {
+                  "en": "Only hospital",
+                  "si": null
+                },
+                {
+                  "en": "No medicine",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "e-Government provides?",
+                "si": "e-Government සපයන්නේ?"
+              },
+              "opts": [
+                {
+                  "en": "Only taxes",
+                  "si": null
+                },
+                {
+                  "en": "Online public services",
+                  "si": null
+                },
+                {
+                  "en": "Only police",
+                  "si": null
+                },
+                {
+                  "en": "Nothing",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "e-Commerce means?",
+                "si": "e-Commerce යනු?"
+              },
+              "opts": [
+                {
+                  "en": "Only shops",
+                  "si": null
+                },
+                {
+                  "en": "Online buying/selling",
+                  "si": null
+                },
+                {
+                  "en": "Only banking",
+                  "si": null
+                },
+                {
+                  "en": "Only travel",
+                  "si": null
+                }
+              ],
+              "ans": 1
+            },
+            {
+              "q": {
+                "en": "Digital divide is?",
+                "si": "අංකිත බෙදීම යනු?"
+              },
+              "opts": [
+                {
+                  "en": "Between tech users & non-users",
+                  "si": null
+                },
+                {
+                  "en": "File split",
+                  "si": null
+                },
+                {
+                  "en": "New folder",
+                  "si": null
+                },
+                {
+                  "en": "Internet split",
+                  "si": null
+                }
+              ],
+              "ans": 0
+            }
+          ]
+        },
+        {
+          "id": "so2",
+          "icon": "♻️",
+          "name": {
+            "en": "3R Sorter",
+            "si": null
+          },
+          "desc": {
+            "en": "Reduce / Reuse / Recycle",
+            "si": null
+          },
+          "kind": "sortGame",
+          "items": [
+            {
+              "name": {
+                "en": "🛍️ Buy less stuff",
+                "si": null
+              },
+              "bin": "reduce"
+            },
+            {
+              "name": {
+                "en": "🚫 Avoid new gadgets",
+                "si": null
+              },
+              "bin": "reduce"
+            },
+            {
+              "name": {
+                "en": "🔧 Repair old device",
+                "si": null
+              },
+              "bin": "reuse"
+            },
+            {
+              "name": {
+                "en": "♻️ Give away working items",
+                "si": null
+              },
+              "bin": "reuse"
+            },
+            {
+              "name": {
+                "en": "🔋 Send battery to recycling center",
+                "si": null
+              },
+              "bin": "recycle"
+            },
+            {
+              "name": {
+                "en": "💻 Recycle old computer",
+                "si": null
+              },
+              "bin": "recycle"
+            }
+          ],
+          "bins": [
+            {
+              "id": "reduce",
+              "name": {
+                "en": "Reduce (අවම කරමු)",
+                "si": null
+              },
+              "emoji": "📉"
+            },
+            {
+              "id": "reuse",
+              "name": {
+                "en": "Reuse (නැවත භාවිත)",
+                "si": null
+              },
+              "emoji": "♻️"
+            },
+            {
+              "id": "recycle",
+              "name": {
+                "en": "Recycle (ප්‍රතිචක්‍රීකරණය)",
+                "si": null
+              },
+              "emoji": "🔄"
+            }
+          ]
+        },
+        {
+          "id": "so3",
+          "icon": "💼",
+          "name": {
+            "en": "ICT Jobs Match",
+            "si": null
+          },
+          "desc": {
+            "en": "Match job to description",
+            "si": null
+          },
+          "kind": "memoryGame",
+          "pairs": [
+            {
+              "a": {
+                "en": "👨‍💻 Software Engineer",
+                "si": null
+              },
+              "b": {
+                "en": "Creates software",
+                "si": null
+              },
+              "key": "se"
+            },
+            {
+              "a": {
+                "en": "🌐 Web Developer",
+                "si": null
+              },
+              "b": {
+                "en": "Builds websites",
+                "si": null
+              },
+              "key": "wd"
+            },
+            {
+              "a": {
+                "en": "🔧 Network Admin",
+                "si": null
+              },
+              "b": {
+                "en": "Manages networks",
+                "si": null
+              },
+              "key": "na"
+            },
+            {
+              "a": {
+                "en": "📊 System Analyst",
+                "si": null
+              },
+              "b": {
+                "en": "Designs systems",
+                "si": null
+              },
+              "key": "sa"
+            },
+            {
+              "a": {
+                "en": "🎨 Graphic Designer",
+                "si": null
+              },
+              "b": {
+                "en": "Creates visuals",
+                "si": null
+              },
+              "key": "gd"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "source": {
+    "en": "original/grade-9/ict-adventure.html"
+  }
+}
