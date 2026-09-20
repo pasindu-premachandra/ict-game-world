@@ -1,0 +1,780 @@
+{
+  "languages": [
+    "en"
+  ],
+  "source": {
+    "en": "original/grade-9/scratch.html"
+  },
+  "structures": [
+    {
+      "id": "sequence",
+      "title": {
+        "en": "Sequence",
+        "si": null
+      },
+      "icon": "➡️",
+      "color": "sequence",
+      "desc": {
+        "en": "Steps executed one after another, in order",
+        "si": null
+      },
+      "puzzles": [
+        {
+          "id": "seq1",
+          "name": {
+            "en": "Add Two Numbers",
+            "si": null
+          },
+          "description": {
+            "en": "Ask for two numbers, add them, and show the result.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "a1",
+              "isHat": true
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">Enter first number</span> and wait",
+              "id": "a2"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Num1</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "a3"
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">Enter second number</span> and wait",
+              "id": "a4"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Num2</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "a5"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Sum</b> to <span class=\"scratch-pill blue\">Num1 + Num2</span>",
+              "id": "a6"
+            },
+            {
+              "type": "looks",
+              "text": "say (join <span class=\"scratch-pill\">Sum = </span> <b>Sum</b>) for <span class=\"scratch-pill\">2</span> secs",
+              "id": "a7"
+            }
+          ]
+        },
+        {
+          "id": "seq2",
+          "name": {
+            "en": "Draw a Square with Pen",
+            "si": null
+          },
+          "description": {
+            "en": "Draw a square using pen blocks. Each side is 100 steps.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "b1",
+              "isHat": true
+            },
+            {
+              "type": "pen",
+              "text": "clear",
+              "id": "b2"
+            },
+            {
+              "type": "pen",
+              "text": "pen down",
+              "id": "b3"
+            },
+            {
+              "type": "motion",
+              "text": "move <span class=\"scratch-pill\">100</span> steps",
+              "id": "b4"
+            },
+            {
+              "type": "motion",
+              "text": "turn ↻ <span class=\"scratch-pill\">90</span> degrees",
+              "id": "b5"
+            },
+            {
+              "type": "motion",
+              "text": "move <span class=\"scratch-pill\">100</span> steps",
+              "id": "b6"
+            },
+            {
+              "type": "motion",
+              "text": "turn ↻ <span class=\"scratch-pill\">90</span> degrees",
+              "id": "b7"
+            },
+            {
+              "type": "motion",
+              "text": "move <span class=\"scratch-pill\">100</span> steps",
+              "id": "b8"
+            },
+            {
+              "type": "motion",
+              "text": "turn ↻ <span class=\"scratch-pill\">90</span> degrees",
+              "id": "b9"
+            },
+            {
+              "type": "motion",
+              "text": "move <span class=\"scratch-pill\">100</span> steps",
+              "id": "b10"
+            },
+            {
+              "type": "motion",
+              "text": "turn ↻ <span class=\"scratch-pill\">90</span> degrees",
+              "id": "b11"
+            },
+            {
+              "type": "pen",
+              "text": "pen up",
+              "id": "b12"
+            }
+          ]
+        },
+        {
+          "id": "seq3",
+          "name": {
+            "en": "Ask Name and Greet",
+            "si": null
+          },
+          "description": {
+            "en": "Ask the user's name and say hello using it.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "c1",
+              "isHat": true
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">What's your name?</span> and wait",
+              "id": "c2"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Name</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "c3"
+            },
+            {
+              "type": "looks",
+              "text": "say (join <span class=\"scratch-pill\">Hello, </span> <b>Name</b>) for <span class=\"scratch-pill\">2</span> secs",
+              "id": "c4"
+            }
+          ]
+        },
+        {
+          "id": "seq4",
+          "name": {
+            "en": "Calculate Rectangle Area",
+            "si": null
+          },
+          "description": {
+            "en": "Ask for length and width, then calculate and show the area.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "d1",
+              "isHat": true
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">Enter length</span> and wait",
+              "id": "d2"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Length</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "d3"
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">Enter width</span> and wait",
+              "id": "d4"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Width</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "d5"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Area</b> to <span class=\"scratch-pill blue\">Length * Width</span>",
+              "id": "d6"
+            },
+            {
+              "type": "looks",
+              "text": "say (join <span class=\"scratch-pill\">Area = </span> <b>Area</b>) for <span class=\"scratch-pill\">2</span> secs",
+              "id": "d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "selection",
+      "title": {
+        "en": "Selection",
+        "si": null
+      },
+      "icon": "❓",
+      "color": "selection",
+      "desc": {
+        "en": "Choose between options based on a condition",
+        "si": null
+      },
+      "puzzles": [
+        {
+          "id": "sel1",
+          "name": {
+            "en": "Even or Odd Checker",
+            "si": null
+          },
+          "description": {
+            "en": "Ask for a number and check if it is even or odd using if...else.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "e1",
+              "isHat": true
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">Enter a number</span> and wait",
+              "id": "e2"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Num</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "e3"
+            },
+            {
+              "type": "control",
+              "text": "if <span class=\"scratch-pill green\">(Num mod 2) = 0</span> then",
+              "id": "e4",
+              "isC": true,
+              "body": [
+                {
+                  "type": "looks",
+                  "text": "say <span class=\"scratch-pill\">Even number</span> for <span class=\"scratch-pill\">2</span> secs",
+                  "id": "e5"
+                }
+              ]
+            },
+            {
+              "type": "control",
+              "text": "else",
+              "id": "e6",
+              "isElse": true
+            },
+            {
+              "type": "looks",
+              "text": "say <span class=\"scratch-pill\">Odd number</span> for <span class=\"scratch-pill\">2</span> secs",
+              "id": "e7"
+            }
+          ]
+        },
+        {
+          "id": "sel2",
+          "name": {
+            "en": "Pass or Fail",
+            "si": null
+          },
+          "description": {
+            "en": "Check if a student passed (marks ≥ 50) or failed.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "f1",
+              "isHat": true
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">Enter marks</span> and wait",
+              "id": "f2"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Marks</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "f3"
+            },
+            {
+              "type": "control",
+              "text": "if <span class=\"scratch-pill green\">Marks ≥ 50</span> then",
+              "id": "f4",
+              "isC": true,
+              "body": [
+                {
+                  "type": "looks",
+                  "text": "say <span class=\"scratch-pill\">You passed!</span> for <span class=\"scratch-pill\">2</span> secs",
+                  "id": "f5"
+                }
+              ]
+            },
+            {
+              "type": "control",
+              "text": "else",
+              "id": "f6",
+              "isElse": true
+            },
+            {
+              "type": "looks",
+              "text": "say <span class=\"scratch-pill\">You failed</span> for <span class=\"scratch-pill\">2</span> secs",
+              "id": "f7"
+            }
+          ]
+        },
+        {
+          "id": "sel3",
+          "name": {
+            "en": "Withdraw Money Safely",
+            "si": null
+          },
+          "description": {
+            "en": "Check balance before withdrawing money from an account with 5000.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "g1",
+              "isHat": true
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Balance</b> to <span class=\"scratch-pill\">5000</span>",
+              "id": "g2"
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">Enter amount</span> and wait",
+              "id": "g3"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Amount</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "g4"
+            },
+            {
+              "type": "control",
+              "text": "if <span class=\"scratch-pill green\">Balance ≥ Amount</span> then",
+              "id": "g5",
+              "isC": true,
+              "body": [
+                {
+                  "type": "variables",
+                  "text": "change <b>Balance</b> by <span class=\"scratch-pill blue\">(0 - Amount)</span>",
+                  "id": "g6"
+                },
+                {
+                  "type": "looks",
+                  "text": "say (join <span class=\"scratch-pill\">New Balance: </span> <b>Balance</b>) for <span class=\"scratch-pill\">2</span> secs",
+                  "id": "g7"
+                }
+              ]
+            },
+            {
+              "type": "control",
+              "text": "else",
+              "id": "g8",
+              "isElse": true
+            },
+            {
+              "type": "looks",
+              "text": "say <span class=\"scratch-pill\">Insufficient balance</span> for <span class=\"scratch-pill\">2</span> secs",
+              "id": "g9"
+            }
+          ]
+        },
+        {
+          "id": "sel4",
+          "name": {
+            "en": "Greater of Two Numbers",
+            "si": null
+          },
+          "description": {
+            "en": "Ask for two numbers and show which one is greater.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "h1",
+              "isHat": true
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">Enter first number</span> and wait",
+              "id": "h2"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>A</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "h3"
+            },
+            {
+              "type": "sensing",
+              "text": "ask <span class=\"scratch-pill\">Enter second number</span> and wait",
+              "id": "h4"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>B</b> to <span class=\"scratch-pill purple\">answer</span>",
+              "id": "h5"
+            },
+            {
+              "type": "control",
+              "text": "if <span class=\"scratch-pill green\">A > B</span> then",
+              "id": "h6",
+              "isC": true,
+              "body": [
+                {
+                  "type": "looks",
+                  "text": "say <span class=\"scratch-pill\">A is greater</span> for <span class=\"scratch-pill\">2</span> secs",
+                  "id": "h7"
+                }
+              ]
+            },
+            {
+              "type": "control",
+              "text": "else",
+              "id": "h8",
+              "isElse": true
+            },
+            {
+              "type": "looks",
+              "text": "say <span class=\"scratch-pill\">B is greater</span> for <span class=\"scratch-pill\">2</span> secs",
+              "id": "h9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "repetition",
+      "title": {
+        "en": "Repetition",
+        "si": null
+      },
+      "icon": "🔁",
+      "color": "repetition",
+      "desc": {
+        "en": "Repeat steps until a condition is met",
+        "si": null
+      },
+      "puzzles": [
+        {
+          "id": "rep1",
+          "name": {
+            "en": "Show Numbers 1 to 5",
+            "si": null
+          },
+          "description": {
+            "en": "Display numbers 1 to 5 using a repeat-until loop.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "i1",
+              "isHat": true
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Count</b> to <span class=\"scratch-pill\">1</span>",
+              "id": "i2"
+            },
+            {
+              "type": "control",
+              "text": "repeat until <span class=\"scratch-pill green\">Count > 5</span>",
+              "id": "i3",
+              "isC": true,
+              "body": [
+                {
+                  "type": "looks",
+                  "text": "say <b>Count</b> for <span class=\"scratch-pill\">1</span> secs",
+                  "id": "i4"
+                },
+                {
+                  "type": "variables",
+                  "text": "change <b>Count</b> by <span class=\"scratch-pill\">1</span>",
+                  "id": "i5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rep2",
+          "name": {
+            "en": "Show Numbers 1 to 10",
+            "si": null
+          },
+          "description": {
+            "en": "Display numbers 1 to 10 using a repeat 10 loop.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "j1",
+              "isHat": true
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Count</b> to <span class=\"scratch-pill\">1</span>",
+              "id": "j2"
+            },
+            {
+              "type": "control",
+              "text": "repeat <span class=\"scratch-pill\">10</span>",
+              "id": "j3",
+              "isC": true,
+              "body": [
+                {
+                  "type": "looks",
+                  "text": "say <b>Count</b> for <span class=\"scratch-pill\">1</span> secs",
+                  "id": "j4"
+                },
+                {
+                  "type": "variables",
+                  "text": "change <b>Count</b> by <span class=\"scratch-pill\">1</span>",
+                  "id": "j5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rep3",
+          "name": {
+            "en": "Multiplication Table of 3",
+            "si": null
+          },
+          "description": {
+            "en": "Show the multiplication table of 3 using a repeat loop.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "k1",
+              "isHat": true
+            },
+            {
+              "type": "variables",
+              "text": "set <b>i</b> to <span class=\"scratch-pill\">1</span>",
+              "id": "k2"
+            },
+            {
+              "type": "control",
+              "text": "repeat <span class=\"scratch-pill\">10</span>",
+              "id": "k3",
+              "isC": true,
+              "body": [
+                {
+                  "type": "variables",
+                  "text": "set <b>Result</b> to <span class=\"scratch-pill blue\">3 * i</span>",
+                  "id": "k4"
+                },
+                {
+                  "type": "looks",
+                  "text": "say <b>Result</b> for <span class=\"scratch-pill\">1</span> secs",
+                  "id": "k5"
+                },
+                {
+                  "type": "variables",
+                  "text": "change <b>i</b> by <span class=\"scratch-pill\">1</span>",
+                  "id": "k6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rep4",
+          "name": {
+            "en": "Sum of 1 to 10",
+            "si": null
+          },
+          "description": {
+            "en": "Calculate the total of numbers from 1 to 10 using repetition.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "l1",
+              "isHat": true
+            },
+            {
+              "type": "variables",
+              "text": "set <b>Total</b> to <span class=\"scratch-pill\">0</span>",
+              "id": "l2"
+            },
+            {
+              "type": "variables",
+              "text": "set <b>i</b> to <span class=\"scratch-pill\">1</span>",
+              "id": "l3"
+            },
+            {
+              "type": "control",
+              "text": "repeat <span class=\"scratch-pill\">10</span>",
+              "id": "l4",
+              "isC": true,
+              "body": [
+                {
+                  "type": "variables",
+                  "text": "change <b>Total</b> by <span class=\"scratch-pill blue\">i</span>",
+                  "id": "l5"
+                },
+                {
+                  "type": "variables",
+                  "text": "change <b>i</b> by <span class=\"scratch-pill\">1</span>",
+                  "id": "l6"
+                }
+              ]
+            },
+            {
+              "type": "looks",
+              "text": "say (join <span class=\"scratch-pill\">Total = </span> <b>Total</b>) for <span class=\"scratch-pill\">2</span> secs",
+              "id": "l7"
+            }
+          ]
+        },
+        {
+          "id": "rep5",
+          "name": {
+            "en": "Draw a Colorful Circle",
+            "si": null
+          },
+          "description": {
+            "en": "Use a forever loop to draw a colorful rotating circle.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "m1",
+              "isHat": true
+            },
+            {
+              "type": "pen",
+              "text": "clear",
+              "id": "m2"
+            },
+            {
+              "type": "control",
+              "text": "forever",
+              "id": "m3",
+              "isC": true,
+              "body": [
+                {
+                  "type": "motion",
+                  "text": "go to x: <span class=\"scratch-pill\">0</span> y: <span class=\"scratch-pill\">0</span>",
+                  "id": "m4"
+                },
+                {
+                  "type": "pen",
+                  "text": "pen down",
+                  "id": "m5"
+                },
+                {
+                  "type": "motion",
+                  "text": "move <span class=\"scratch-pill\">150</span> steps",
+                  "id": "m6"
+                },
+                {
+                  "type": "pen",
+                  "text": "change pen color by <span class=\"scratch-pill\">10</span>",
+                  "id": "m7"
+                },
+                {
+                  "type": "motion",
+                  "text": "turn ↻ <span class=\"scratch-pill\">1</span> degrees",
+                  "id": "m8"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rep6",
+          "name": {
+            "en": "Count Down from 10",
+            "si": null
+          },
+          "description": {
+            "en": "Show a countdown from 10 to 1 using repetition.",
+            "si": null
+          },
+          "order": [
+            {
+              "type": "events",
+              "text": "when 🚩 clicked",
+              "id": "n1",
+              "isHat": true
+            },
+            {
+              "type": "variables",
+              "text": "set <b>n</b> to <span class=\"scratch-pill\">10</span>",
+              "id": "n2"
+            },
+            {
+              "type": "control",
+              "text": "repeat until <span class=\"scratch-pill green\">n < 1</span>",
+              "id": "n3",
+              "isC": true,
+              "body": [
+                {
+                  "type": "looks",
+                  "text": "say <b>n</b> for <span class=\"scratch-pill\">1</span> secs",
+                  "id": "n4"
+                },
+                {
+                  "type": "variables",
+                  "text": "change <b>n</b> by <span class=\"scratch-pill\">-1</span>",
+                  "id": "n5"
+                }
+              ]
+            },
+            {
+              "type": "looks",
+              "text": "say <span class=\"scratch-pill\">Blast off!</span> for <span class=\"scratch-pill\">2</span> secs",
+              "id": "n6"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

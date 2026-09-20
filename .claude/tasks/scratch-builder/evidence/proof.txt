@@ -1,0 +1,127 @@
+Scratch Code Builder - proof run
+=================================
+20 September 2026. Served from the working tree at 127.0.0.1:8788, driven in a
+real browser. The service worker was unregistered and its caches cleared first,
+so every result below is the code on disk and not a cached build.
+
+
+1. BOTH GATES
+-------------
+node scripts/check-data.mjs
+
+  ok    grade 6      8 lessons, 28 activities, en + si rebuild matches exactly
+  ok    grade 7      8 lessons, 36 activities, en + si rebuild matches exactly
+  ok    grade 8      7 lessons, 22 activities, en + si rebuild matches exactly
+  ok    grade 9      7 lessons, 26 activities, en rebuild matches exactly
+  ok    adventure    6 lessons, 18 mini games, rebuild matches original exactly
+  ok    scratch      3 structures, 14 puzzles, rebuild matches original exactly
+  All grades match their originals.
+
+node scripts/check-syllabus.mjs
+
+  PASS: all 59 competency levels have at least one activity, all ids resolve,
+        every new string has en and si.
+  Warnings (1): grade 9 activity 3.4 is not listed under any competency
+                (pre-existing, and the reason the builder is bonus content)
+
+
+2. EVERY PROGRAM BUILT FROM ITS OWN ANSWER KEY
+----------------------------------------------
+Each puzzle's expected tree was derived independently from data/scratch.json,
+then clicked into the UI block by block, into the right mouth each time.
+
+  en at 375px ....... 14 / 14 programs built, 99 blocks placed
+  si at 375px ....... 14 / 14 programs built, 99 blocks placed
+  All 14 render at 1366px ... 14 / 14
+
+Progress persisted across navigation, read back off the hub:
+
+  Sequence      4 / 4 programs built
+  Selection     4 / 4 programs built
+  Repetition    6 / 6 programs built
+
+
+3. IT REJECTS A WRONG PROGRAM
+-----------------------------
+Same blocks, dumped at the root in tray order, nesting nothing. sel1 was used
+because it carries an if/else, so this also proves the check compares the tree
+and not just the flat set of blocks.
+
+  every block placed, tray empty ..... yes (0 left)
+  accepted? .......................... NO, correctly rejected
+  blocks marked wrong and shaken ..... 6
+  feedback line ...................... "Not yet. The blocks that shake are in
+                                        the wrong place."
+  in Sinhala ......................... "තවම නැහැ. වෙව්ලන බ්ලොක් වැරදි තැන ඇත."
+
+Run is disabled until every block is placed:
+
+  at the start, 4 in the tray ........ disabled
+  after placing 1 of 4 ............... disabled
+
+
+4. THE NESTING BEHAVES
+----------------------
+rep1, taking a placed loop back out takes its contents with it, the way
+lifting a loop out of a script in Scratch lifts what is inside it:
+
+  tray at the start .................. 5 blocks
+  after placing the loop + 1 inside ... 3 blocks
+  after taking the loop back out ...... 5 blocks   (both came back)
+
+The if/else reads as a real program for the first time - see
+05-ifelse-built-375.png. The originals draw the loop empty and leave its
+blocks loose underneath; the else branch now sits inside the else.
+
+
+5. THE TWO DOORS
+----------------
+  home page card ..................... <a href="#/scratch">, "Scratch Code
+                                       Builder / For every grade"
+  grade 9 path, 3.4 .................. <a href="#/scratch">, no longer is-soon
+  old bookmark #/g9/3.4 .............. redirects to #/scratch
+  ... with no nickname saved ......... still #/scratch, no name prompt
+  a real activity #/g9/1.1 ........... still gated to #/name, unchanged
+
+
+6. LAYOUT AND CONSOLE
+---------------------
+  Horizontal overflow, en at 375px ... 0
+  Horizontal overflow, si at 375px ... 0   (checked on every puzzle, three
+                                            times each: empty, full, finished)
+  Horizontal overflow at 1366px ...... 0   (hub, all 3 lists, all 14 puzzles)
+  Tap targets under 40px ............. 0   (blocks, move buttons, slots, btns)
+  Console messages from the app ...... 0
+
+
+7. SINHALA, PER GATE ANSWER Q4 A
+--------------------------------
+  <html lang> ........................ si
+  hub title .......................... ස්ක්‍රැච් ක්‍රමලේඛ ගොඩනැගීම
+  hub lead ........................... පාලන ව්‍යුහයක් තෝරන්න. එක් එකක් තුළ බ්ලොක්
+                                       පිළිවෙළට තබා ගොඩනගන ක්‍රමලේඛ ඇත.
+  block text under lang=si ........... "set Num2 to answer"  (English, correct)
+  English-only note shown ............ මෙයට සිංහල තවම ලියැවෙමින් පවතී.
+
+  check-data.mjs counts the gap independently: "scratch: 34 strings have no
+  Sinhala yet" - the same 34 quoted at the gate. They are 3 structure names,
+  3 descriptions, 14 program names and 14 program descriptions.
+
+
+SCREENSHOTS
+-----------
+  01-home-builder-card-375.png    the new door on the home page
+  02-hub-375.png                  the three control structures
+  03-nested-loop-375.png          a block sitting inside a repeat-until
+  04-si-wrong-shake-375.png       a wrong program rejected, in Sinhala
+  05-ifelse-built-375.png         if/else built, both branches nested
+  06-seq2-12-blocks-1366.png      the 12 block program on a lab PC
+
+
+NOT COVERED BY THIS RUN
+-----------------------
+- Drag and drop. The tap route is exercised above end to end; the HTML5 drag
+  route shares the same place() path but was not driven by a synthetic drag.
+  Worth one manual check on a lab PC.
+- Production. Everything here is local. Nothing was pushed, and nothing in
+  this task touches Supabase: the builder scores nothing by gate answer Q1 A.

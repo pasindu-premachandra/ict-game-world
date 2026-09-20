@@ -62,6 +62,32 @@ const STRINGS = {
   bonus:        { en: 'Bonus', si: 'අමතර' },
   moves:        { en: 'Turns', si: 'වාර' },
   hiddenCard:   { en: 'Hidden card, turn it over', si: 'සැඟවුණු කාඩ්පත, හරවන්න' },
+
+  // The Scratch Code Builder. Drafted Sinhala, same review list. The block
+  // text itself is never translated: it is Scratch's own block language and a
+  // student meets it in English in the lab, the same rule the trace
+  // activities follow for code.
+  scratchTitle: { en: 'Scratch Code Builder', si: 'ස්ක්‍රැච් ක්‍රමලේඛ ගොඩනැගීම' },
+  scratchLead:  { en: 'Pick a control structure. Each one holds programs you build by putting blocks in order.',
+                  si: 'පාලන ව්‍යුහයක් තෝරන්න. එක් එකක් තුළ බ්ලොක් පිළිවෙළට තබා ගොඩනගන ක්‍රමලේඛ ඇත.' },
+  forEveryGrade:{ en: 'For every grade', si: 'සියලු ශ්‍රේණි සඳහා' },
+  programsBuilt:{ en: 'programs built', si: 'ක්‍රමලේඛ ගොඩනගා ඇත' },
+  built:        { en: 'Built', si: 'ගොඩනගා ඇත' },
+  scriptArea:   { en: 'Script area', si: 'ක්‍රමලේඛ ප්‍රදේශය' },
+  blockTray:    { en: 'Block tray', si: 'බ්ලොක් තැටිය' },
+  placeHere:    { en: 'Put the next block here', si: 'ඊළඟ බ්ලොකය මෙහි තබන්න' },
+  insideLoop:   { en: 'Put it inside this one', si: 'මේක ඇතුළේ තබන්න' },
+  placed:       { en: 'placed', si: 'තබා ඇත' },
+  addBlock:     { en: 'Add block', si: 'බ්ලොකය එක් කරන්න' },
+  removeBlock:  { en: 'Take block out', si: 'බ්ලොකය ඉවතට ගන්න' },
+  runProgram:   { en: 'Run the program', si: 'ක්‍රමලේඛය ධාවනය කරන්න' },
+  reset:        { en: 'Start over', si: 'නැවත පටන් ගන්න' },
+  trayEmpty:    { en: 'Every block is placed. Run the program!',
+                  si: 'සියලුම බ්ලොක් තබා ඇත. ක්‍රමලේඛය ධාවනය කරන්න!' },
+  notYet:       { en: 'Not yet. The blocks that shake are in the wrong place.',
+                  si: 'තවම නැහැ. වෙව්ලන බ්ලොක් වැරදි තැන ඇත.' },
+  programRuns:  { en: 'The program runs!', si: 'ක්‍රමලේඛය ක්‍රියා කරයි!' },
+  nextProgram:  { en: 'Next program', si: 'ඊළඟ ක්‍රමලේඛය' },
 };
 
 export const LANGS = ['si', 'en'];

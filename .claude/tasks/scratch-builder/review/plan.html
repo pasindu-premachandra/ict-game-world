@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scratch Code Builder - plan and gate</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Design source: this project's own design system - css/tokens.css (grade 9 "night lab" world)
+   plus the Scratch block component from the Open Design project ict-game-world-design-system. */
+:root{
+  --page:#0d1626; --surface:#192437; --surface-2:#1f2c42; --sunk:#040915;
+  --line:#2d3645; --line-soft:#303d55;
+  --text:#e6edf6; --text-muted:#b0c0d1; --text-dim:#8697ab;
+  --base:#43d0f9; --base-dark:#0080ad; --base-soft:#003850; --base-ink:#92e5ff;
+  --on-base:#062033;
+  --ok:#03a14a; --ok-soft:#0d2e1d; --ok-ink:#6ee89b;
+  --no:#ec485f; --no-soft:#3a1620; --no-ink:#ff9aa7;
+  --warn:#f2b036; --warn-soft:#332616; --warn-ink:#ffd489;
+  --tip-soft:#12263c; --tip-ink:#8ec8fb;
+  --gold:#f9c230;
+
+  /* Scratch 3.0 categories, straight from css/tokens.css:81-89 */
+  --sc-motion:#4c97ff;    --sc-motion-e:#3373cc;
+  --sc-looks:#ad85ff;     --sc-looks-e:#774dcb;
+  --sc-events:#ffbf00;    --sc-events-e:#cc9900;
+  --sc-control:#ffab19;   --sc-control-e:#cf8b17;
+  --sc-sensing:#5cb1d6;   --sc-sensing-e:#2e8eb8;
+  --sc-variables:#ff8c1a; --sc-variables-e:#db6e00;
+  --sc-pen:#0fbd8c;       --sc-pen-e:#0b8e69;
+  --sc-text:#1d2a3a;
+
+  --font-display:"Baloo 2",system-ui,sans-serif;
+  --font-body:"Nunito",system-ui,sans-serif;
+  --font-si:"Noto Sans Sinhala","Nunito",system-ui,sans-serif;
+  --font-mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --r-block:6px; --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:20px; --r-pill:999px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px;
+  --sp-8:32px; --sp-10:40px; --sp-12:48px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; background:var(--page); color:var(--text);
+  font-family:var(--font-body); font-size:17px; line-height:1.6;
+  padding:var(--sp-8) var(--sp-4) 112px; overflow-x:hidden;
+}
+.wrap{max-width:980px;margin:0 auto;}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.2;margin:0;}
+h1{font-size:clamp(28px,5.2vw,42px);font-weight:800;letter-spacing:-.01em;}
+h2{font-size:clamp(21px,3.4vw,28px);font-weight:700;margin-bottom:var(--sp-3);}
+h3{font-size:19px;font-weight:700;}
+h4{font-size:16px;font-weight:700;}
+p{margin:0 0 var(--sp-4);}
+ul{margin:0 0 var(--sp-4);padding-left:1.2em;}
+li{margin-bottom:var(--sp-2);}
+a{color:var(--base);}
+strong{color:#fff;font-weight:800;}
+code{font-family:var(--font-mono);font-size:.86em;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--base-ink);
+  word-break:break-word;}
+pre{margin:0 0 var(--sp-4);padding:var(--sp-4);background:var(--sunk);border:1px solid var(--line);
+  border-radius:var(--r-md);overflow-x:auto;}
+pre code{background:none;border:0;padding:0;color:var(--text-muted);font-size:13.5px;line-height:1.7;}
+
+header.top{border-bottom:2px solid var(--line);padding-bottom:var(--sp-6);margin-bottom:var(--sp-10);}
+.eyebrow{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--base);margin-bottom:var(--sp-2);}
+.lede{font-size:19px;color:var(--text-muted);max-width:70ch;margin-top:var(--sp-4);}
+.said{margin-top:var(--sp-5);padding:var(--sp-4) var(--sp-5);background:var(--base-soft);
+  border-left:4px solid var(--base);border-radius:0 var(--r-md) var(--r-md) 0;color:var(--base-ink);}
+.said b{color:#fff;}
+
+section{margin-bottom:var(--sp-12);}
+.sec-head{display:flex;align-items:baseline;gap:var(--sp-3);flex-wrap:wrap;margin-bottom:var(--sp-5);
+  border-bottom:1px solid var(--line);padding-bottom:var(--sp-3);}
+.sec-num{font-family:var(--font-display);font-weight:800;font-size:13px;color:var(--base);
+  letter-spacing:.1em;}
+.sec-head p{margin:0;font-size:15px;color:var(--text-dim);}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:var(--sp-5);min-width:0;}
+.grid{display:grid;gap:var(--sp-4);}
+.g2{grid-template-columns:minmax(0,1fr);}
+.g3{grid-template-columns:minmax(0,1fr);}
+@media(min-width:760px){
+  .g2{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .g3{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:var(--sp-4);min-width:0;}
+.fact .n{font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1;color:var(--base);}
+.fact .k{font-size:14px;color:var(--text-dim);margin-top:6px;}
+.fact .w{font-size:14px;color:var(--text-muted);margin-top:var(--sp-2);}
+
+.note{border-radius:var(--r-md);padding:var(--sp-4);font-size:15px;border:1px solid transparent;}
+.note p:last-child{margin-bottom:0;}
+.note.warn{background:var(--warn-soft);border-color:#5a4520;color:var(--warn-ink);}
+.note.tip{background:var(--tip-soft);border-color:#1e4266;color:var(--tip-ink);}
+.note.ok{background:var(--ok-soft);border-color:#1b5233;color:var(--ok-ink);}
+.note b{color:#fff;}
+
+table{width:100%;border-collapse:collapse;font-size:15px;}
+th,td{text-align:left;padding:9px var(--sp-3);border-bottom:1px solid var(--line);vertical-align:top;}
+th{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-dim);}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+tbody tr:last-child td{border-bottom:0;}
+tr.total td{border-top:2px solid var(--line-soft);font-weight:800;color:#fff;}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.pid{font-family:var(--font-mono);font-size:13px;color:var(--base-ink);}
+
+figure{margin:0 0 var(--sp-5);}
+figure svg{display:block;width:100%;height:auto;max-width:620px;margin:0 auto;}
+figcaption{font-size:14px;color:var(--text-dim);text-align:center;margin-top:var(--sp-3);
+  max-width:64ch;margin-inline:auto;}
+
+/* ---- Scratch block component, from the Open Design showcase ---- */
+.sb{--c:var(--sc-motion);--e:var(--sc-motion-e);}
+.sb--events{--c:var(--sc-events);--e:var(--sc-events-e);}
+.sb--control{--c:var(--sc-control);--e:var(--sc-control-e);}
+.sb--looks{--c:var(--sc-looks);--e:var(--sc-looks-e);}
+.sb--pen{--c:var(--sc-pen);--e:var(--sc-pen-e);}
+.sb--sensing{--c:var(--sc-sensing);--e:var(--sc-sensing-e);}
+.sb--variables{--c:var(--sc-variables);--e:var(--sc-variables-e);}
+.sbk,.sbc__head{display:inline-flex;align-items:center;gap:var(--sp-2);min-height:34px;
+  padding:0 10px;border-radius:var(--r-block);background:var(--c);border:2px solid var(--e);
+  box-shadow:0 3px 0 var(--e);color:var(--sc-text);font-weight:800;font-size:13px;
+  line-height:1.2;white-space:nowrap;width:fit-content;max-width:100%;}
+.sbk--hat{min-height:40px;padding-top:5px;border-radius:18px 18px var(--r-block) var(--r-block);}
+.sbk i,.sbc__head i{display:inline-block;min-width:24px;padding:1px 7px;border-radius:var(--r-pill);
+  background:#fff;color:#1d2a3a;font-style:normal;text-align:center;font-size:12px;}
+.sbk--bool{min-height:26px;padding:0 14px;border:0;box-shadow:none;
+  clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,10px 100%,0 50%);}
+.sbc{display:grid;width:fit-content;max-width:100%;border-radius:var(--r-block);
+  background:var(--c);border:2px solid var(--e);box-shadow:0 3px 0 var(--e);}
+.sbc__head{border:0;box-shadow:none;border-radius:0;}
+.sbc__body{display:grid;gap:5px;justify-items:start;margin-left:14px;padding:7px;background:var(--sunk);}
+.sbc__foot{height:12px;}
+.sbstack{display:grid;gap:5px;justify-items:start;min-width:0;}
+.sbcat{display:inline-flex;align-items:center;gap:6px;min-height:30px;padding:0 10px;
+  border-radius:var(--r-pill);background:var(--surface-2);color:var(--text);
+  border:2px solid var(--line);font-weight:800;font-size:12px;}
+.sbcat i{width:12px;height:12px;border-radius:50%;background:var(--c);border:2px solid var(--e);}
+.chips{display:flex;flex-wrap:wrap;gap:var(--sp-2);}
+
+/* ---- phone mockups in the app's own chrome ---- */
+.mocks{display:grid;gap:var(--sp-5);justify-items:center;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));}
+.mock{width:100%;max-width:310px;min-width:0;}
+.mock__tag{display:block;font-family:var(--font-display);font-weight:700;font-size:13px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:var(--sp-2);
+  text-align:center;}
+.phone{border:3px solid var(--line-soft);border-radius:24px;background:var(--page);
+  padding:8px;box-shadow:0 10px 30px rgba(0,0,0,.4);}
+.phone__in{border-radius:16px;overflow:hidden;background:var(--page);}
+.pbar{display:flex;align-items:center;justify-content:space-between;gap:6px;
+  padding:8px 10px;background:var(--surface);border-bottom:3px solid var(--base);}
+.pchip{font-family:var(--font-display);font-weight:800;font-size:12px;background:var(--base);
+  color:var(--on-base);border-radius:var(--r-pill);padding:5px 12px;white-space:nowrap;}
+.plang{display:flex;border:2px solid var(--line);border-radius:var(--r-pill);overflow:hidden;
+  font-size:11px;flex:none;}
+.plang span{padding:4px 8px;color:var(--text-dim);font-weight:700;}
+.plang span.on{background:var(--base);color:var(--on-base);}
+.pbody{padding:var(--sp-4) var(--sp-3) var(--sp-5);display:grid;gap:10px;min-width:0;}
+.ptitle{font-family:var(--font-display);font-weight:800;font-size:17px;}
+.psub{font-size:12px;color:var(--text-muted);margin:0;}
+
+.gcard{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;
+  padding:10px;border-radius:var(--r-xl);background:var(--surface);border:3px solid var(--line);
+  box-shadow:0 4px 0 #040915;}
+.gcard__num{display:grid;place-items:center;width:44px;height:44px;border-radius:var(--r-md);
+  background:var(--base);color:var(--on-base);box-shadow:0 4px 0 var(--base-dark);
+  font-family:var(--font-display);font-weight:800;font-size:22px;}
+.gcard__num--sc{background:var(--sc-control);box-shadow:0 4px 0 var(--sc-control-e);font-size:20px;}
+.gcard__t{font-family:var(--font-display);font-weight:700;font-size:15px;}
+.gcard__s{font-size:11.5px;color:var(--text-muted);}
+.gcard__chev{color:var(--text-dim);font-size:18px;}
+.gcard--new{border-color:var(--sc-control);}
+
+.scard{display:grid;gap:6px;padding:12px;border-radius:var(--r-lg);background:var(--surface);
+  border:3px solid var(--line);box-shadow:0 4px 0 #040915;min-width:0;}
+.scard__top{display:flex;align-items:center;gap:8px;}
+.scard__ic{font-size:20px;}
+.scard__t{font-family:var(--font-display);font-weight:700;font-size:15px;}
+.scard__d{font-size:11.5px;color:var(--text-muted);}
+.scard__p{font-size:11.5px;color:var(--text-dim);font-variant-numeric:tabular-nums;}
+.bar{height:8px;border-radius:var(--r-pill);background:var(--sunk);overflow:hidden;}
+.bar i{display:block;height:100%;border-radius:var(--r-pill);background:var(--c,var(--base));}
+
+.tray{padding:10px;border-radius:var(--r-lg);background:var(--sunk);border:3px dashed var(--line);
+  display:flex;flex-wrap:wrap;gap:6px;min-width:0;}
+.zone{padding:10px;border-radius:var(--r-lg);background:var(--surface);border:3px solid var(--line);
+  display:grid;gap:5px;justify-items:start;min-height:64px;min-width:0;}
+.zrow{display:flex;align-items:center;gap:4px;max-width:100%;min-width:0;}
+.slot{width:100%;min-height:26px;border:2px dashed var(--line-soft);border-radius:var(--r-block);
+  display:grid;place-items:center;font-size:11px;color:var(--text-dim);text-align:center;padding:2px;}
+.pmoves{display:inline-flex;gap:3px;flex:none;}
+.pmoves b{display:grid;place-items:center;width:20px;height:20px;border-radius:5px;
+  background:var(--base-soft);color:var(--base-ink);font-size:9px;}
+.pbtn{font-family:var(--font-display);font-weight:800;font-size:12.5px;background:var(--base);
+  color:var(--on-base);border-radius:var(--r-md);box-shadow:0 4px 0 var(--base-dark);
+  padding:9px 10px;text-align:center;}
+.pbtn--ghost{background:var(--surface);color:var(--text);border:2px solid var(--line);
+  box-shadow:0 4px 0 #040915;}
+.prow{display:flex;gap:8px;}
+.prow>*{flex:1;min-width:0;}
+.si{font-family:var(--font-si);line-height:1.75;}
+.label{font-size:11px;color:var(--text-dim);font-weight:700;letter-spacing:.06em;}
+
+/* ---- question forms ---- */
+.q{background:var(--surface);border:2px solid var(--base-dark);border-radius:var(--r-xl);
+  padding:var(--sp-5);margin-top:var(--sp-5);}
+.q__h{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);flex-wrap:wrap;}
+.q__n{font-family:var(--font-display);font-weight:800;font-size:12px;letter-spacing:.1em;
+  background:var(--base);color:var(--on-base);padding:4px 10px;border-radius:var(--r-pill);}
+.q__t{font-family:var(--font-display);font-weight:700;font-size:19px;color:#fff;}
+.q__why{font-size:15px;color:var(--text-muted);margin-bottom:var(--sp-4);}
+.q fieldset{border:0;margin:0 0 var(--sp-4);padding:0;display:grid;gap:10px;}
+.q label.pick{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--sp-3);
+  align-items:start;padding:var(--sp-3) var(--sp-4);background:var(--surface-2);
+  border:2px solid var(--line);border-radius:var(--r-md);cursor:pointer;}
+.q label.pick:hover{border-color:var(--base-dark);}
+.q label.pick input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--base);}
+.q label.pick:has(input:checked){border-color:var(--base);background:var(--base-soft);}
+.q .pl{display:block;font-family:var(--font-display);font-weight:700;font-size:16px;color:#fff;}
+.q .pd{display:block;font-size:14px;color:var(--text-muted);margin-top:4px;}
+.q .pd b{color:var(--ok-ink);font-weight:700;}
+.q .pd em{color:var(--no-ink);font-style:normal;font-weight:700;}
+.q textarea{width:100%;font-family:var(--font-body);font-size:15px;color:var(--text);
+  background:var(--sunk);border:2px solid var(--line);border-radius:var(--r-md);
+  padding:var(--sp-3);margin-bottom:var(--sp-4);resize:vertical;min-height:62px;}
+.q button{font-family:var(--font-display);font-weight:800;font-size:15px;background:var(--base);
+  color:var(--on-base);border:0;border-radius:var(--r-md);box-shadow:0 5px 0 var(--base-dark);
+  padding:12px 22px;cursor:pointer;min-height:48px;}
+.q button:active{transform:translateY(3px);box-shadow:0 2px 0 var(--base-dark);}
+.q .sent{display:none;margin:var(--sp-3) 0 0;font-size:14px;color:var(--ok-ink);font-weight:700;}
+.q.is-queued .sent{display:block;}
+.q.is-queued{border-color:var(--ok);}
+.tag{font-family:var(--font-display);font-weight:800;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;padding:3px 9px;border-radius:var(--r-pill);white-space:nowrap;}
+.tag--rec{background:var(--ok);color:#03210f;}
+.coupled{font-size:14px;color:var(--warn-ink);background:var(--warn-soft);border:1px solid #5a4520;
+  border-radius:var(--r-sm);padding:10px 14px;margin-bottom:var(--sp-4);}
+
+.steps{display:grid;gap:var(--sp-3);counter-reset:s;}
+.step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--sp-4);
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4);}
+.step::before{counter-increment:s;content:counter(s);font-family:var(--font-display);font-weight:800;
+  display:grid;place-items:center;width:32px;height:32px;border-radius:50%;
+  background:var(--base-soft);color:var(--base-ink);font-size:15px;}
+.step h4{margin-bottom:4px;}
+.step p{margin:0;font-size:15px;color:var(--text-muted);}
+.step .files{font-family:var(--font-mono);font-size:12.5px;color:var(--base-ink);margin-top:6px;
+  word-break:break-word;}
+
+footer.foot{border-top:1px solid var(--line);padding-top:var(--sp-5);margin-top:var(--sp-12);
+  font-size:14px;color:var(--text-dim);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">ICT Game World &middot; task scratch-builder &middot; gate</div>
+  <h1>The Scratch Code Builder moves to the home page</h1>
+  <p class="lede">It is the last unported activity, and it was never really a grade 9 activity. Here is what is actually in it, what the three screens look like, what I will build, and the four calls I need from you before writing any of it.</p>
+  <div class="said"><b>What started this:</b> "i think we need to work on scratch builder - lets move that to home page as sister said its common for all grades and its easier that way" &mdash; 20 September 2026.</div>
+</header>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">01</span><h2>Where it stands today</h2>
+    <p>Checked in the repo, not remembered.</p>
+  </div>
+
+  <div class="grid g3" style="margin-bottom:var(--sp-5)">
+    <div class="fact"><div class="n">1</div><div class="k">of 112 activities still unplayable</div><div class="w">Grade 9 <code>3.4</code>, the only one left after last session ported seven types.</div></div>
+    <div class="fact"><div class="n">0</div><div class="k">of its content is in <code>data/</code></div><div class="w">Like the hotspot options, it lives outside the <code>LESSONS</code> literal, so the extractor never saw it.</div></div>
+    <div class="fact"><div class="n">59</div><div class="k">competency levels covered without it</div><div class="w"><code>check-syllabus.mjs</code> already warns 3.4 belongs to no competency. It is bonus content.</div></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-bottom:var(--sp-3)">What the data file holds</h3>
+      <pre><code>{
+  "id": "3.4",
+  "type": "scratch-hub",
+  "name": { "en": "Scratch Code Builder", "si": null },
+  "instruction": {
+    "en": "Build real Scratch programs by
+           arranging blocks for each
+           control structure.",
+    "si": null
+  }
+}</code></pre>
+      <p style="margin:0;font-size:15px;color:var(--text-muted)">A name and a sentence. No structures, no puzzles, no blocks. <code>js/app.js:70</code> checks the type against the playable list, misses, and draws a grey "coming soon" row.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:var(--sp-3)">Where the content actually is</h3>
+      <p style="font-size:15px">Two copies, both outside the literal the extractor reads:</p>
+      <ul style="font-size:15px;color:var(--text-muted)">
+        <li><code>original/grade-9/english-medium.html:858</code> &mdash; <code>const SCRATCH_STRUCTURES</code></li>
+        <li><code>original/grade-9/scratch.html:608</code> &mdash; <code>const STRUCTURES</code>, inside a <strong>whole standalone app</strong> of its own</li>
+      </ul>
+      <div class="note ok"><p>I diffed them block for block. <b>The 99 blocks are identical.</b> They differ only in 3 structure titles ("Sequence Programs" against "Sequence"), 2 structure descriptions, and 1 puzzle name ("Rectangle Area" against "Calculate Rectangle Area").</p></div>
+      <p style="margin:var(--sp-4) 0 0;font-size:15px;color:var(--text-muted)">That standalone file is the evidence for Ishini's point. <strong>The originals already treat the builder as its own app</strong>; the grade 9 game embeds a copy of it.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">02</span><h2>The move</h2>
+    <p>One builder, two doors into it.</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 520 320" role="img" aria-labelledby="routing-t routing-d">
+      <title id="routing-t">Proposed routing for the Scratch Code Builder</title>
+      <desc id="routing-d">The home page and the grade 9 lesson path both link to a single Scratch route, which branches into three control structures holding four, four and six puzzles.</desc>
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <g font-family="Nunito, sans-serif" font-weight="700">
+
+        <g id="door-home">
+          <title>The home page gains a Scratch Code Builder card</title>
+          <rect x="6" y="18" width="168" height="54" rx="12" fill="#192437" stroke="#43d0f9" stroke-width="2.5"/>
+          <text x="90" y="40" text-anchor="middle" fill="#e6edf6" font-size="14">Home&#160;&#160;#/</text>
+          <text x="90" y="59" text-anchor="middle" fill="#92e5ff" font-size="12" font-weight="600">new card, every grade</text>
+        </g>
+
+        <g id="door-g9">
+          <title>Grade 9 activity 3.4 becomes a link into the same builder</title>
+          <rect x="6" y="112" width="168" height="54" rx="12" fill="#192437" stroke="#303d55" stroke-width="2.5"/>
+          <text x="90" y="134" text-anchor="middle" fill="#e6edf6" font-size="14">Grade 9 path&#160;&#160;3.4</text>
+          <text x="90" y="153" text-anchor="middle" fill="#b0c0d1" font-size="12" font-weight="600">was "coming soon"</text>
+        </g>
+
+        <g color="#43d0f9" stroke="currentColor" stroke-width="2.5" fill="none" marker-end="url(#ar)">
+          <path id="edge-home" d="M174 45 L198 45 Q214 45 214 61 L214 82"><title>Opened from the home page</title></path>
+        </g>
+        <g color="#5c6b80" stroke="currentColor" stroke-width="2.5" fill="none" marker-end="url(#ar)">
+          <path id="edge-g9" d="M174 139 L198 139 Q214 139 214 123 L214 114"><title>Opened from the grade 9 lesson path</title></path>
+        </g>
+
+        <g id="hub">
+          <title>The single Scratch Code Builder route</title>
+          <rect x="198" y="82" width="188" height="62" rx="14" fill="#003850" stroke="#43d0f9" stroke-width="3"/>
+          <text x="292" y="107" text-anchor="middle" fill="#ffffff" font-size="14.5" font-weight="800">Scratch Code Builder</text>
+          <text x="292" y="128" text-anchor="middle" fill="#92e5ff" font-size="12.5" font-family="ui-monospace, monospace">#/scratch</text>
+        </g>
+
+        <g color="#43d0f9" stroke="currentColor" stroke-width="2.5" fill="none" marker-end="url(#ar)">
+          <path d="M292 144 L292 164 Q292 176 280 176 L98 176 Q86 176 86 188 L86 204"/>
+          <path d="M292 144 L292 204"/>
+          <path d="M292 144 L292 164 Q292 176 304 176 L486 176 Q498 176 498 188 L498 204"/>
+        </g>
+
+        <g id="s-sequence">
+          <title>Sequence: four puzzles, thirty blocks</title>
+          <rect x="8" y="204" width="156" height="92" rx="12" fill="#192437" stroke="#ffbf00" stroke-width="2.5"/>
+          <text x="86" y="232" text-anchor="middle" font-size="20">&#10145;&#65039;</text>
+          <text x="86" y="256" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800">Sequence</text>
+          <text x="86" y="276" text-anchor="middle" fill="#b0c0d1" font-size="12" font-weight="600">4 puzzles</text>
+          <text x="86" y="290" text-anchor="middle" fill="#8697ab" font-size="11" font-weight="600">30 blocks</text>
+        </g>
+        <g id="s-selection">
+          <title>Selection: four puzzles, thirty two blocks, four if-else structures</title>
+          <rect x="214" y="204" width="156" height="92" rx="12" fill="#192437" stroke="#ffab19" stroke-width="2.5"/>
+          <text x="292" y="232" text-anchor="middle" font-size="20">&#10067;</text>
+          <text x="292" y="256" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800">Selection</text>
+          <text x="292" y="276" text-anchor="middle" fill="#b0c0d1" font-size="12" font-weight="600">4 puzzles</text>
+          <text x="292" y="290" text-anchor="middle" fill="#8697ab" font-size="11" font-weight="600">32 blocks &middot; 4 loops</text>
+        </g>
+        <g id="s-repetition">
+          <title>Repetition: six puzzles, thirty seven blocks, six loops</title>
+          <rect x="420" y="204" width="156" height="92" rx="12" fill="#192437" stroke="#0fbd8c" stroke-width="2.5" transform="translate(-78,0)"/>
+          <text x="498" y="232" text-anchor="middle" font-size="20">&#128257;</text>
+          <text x="498" y="256" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800">Repetition</text>
+          <text x="498" y="276" text-anchor="middle" fill="#b0c0d1" font-size="12" font-weight="600">6 puzzles</text>
+          <text x="498" y="290" text-anchor="middle" fill="#8697ab" font-size="11" font-weight="600">37 blocks &middot; 6 loops</text>
+        </g>
+      </g>
+    </svg>
+    <figcaption>Two doors, one builder. Grade 9's 3.4 keeps its row so the lesson path is not left with a hole, but it now opens the same screen as the home page card.</figcaption>
+  </figure>
+
+  <div class="note tip">
+    <p><b>Why 3.4 keeps its row rather than being deleted.</b> <code>check-data.mjs</code> proves extraction is reversible: it rebuilds each language's view out of <code>data/grade-N.json</code> and deep-compares it against the original file. Deleting an activity that exists in the original would fail that gate. Turning it into a link costs nothing and keeps the gate honest.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">03</span><h2>What gets extracted</h2>
+    <p>3 structures, 14 puzzles, 99 blocks.</p>
+  </div>
+
+  <div class="scroll" style="margin-bottom:var(--sp-5)">
+    <table>
+      <thead><tr>
+        <th>Structure</th><th class="num">Puzzles</th><th class="num">Blocks</th><th class="num">Loops</th><th>Scratch categories used</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>&#10145;&#65039; Sequence</td><td class="num">4</td><td class="num">30</td><td class="num">0</td><td>events, looks, motion, pen, sensing, variables</td></tr>
+        <tr><td>&#10067; Selection</td><td class="num">4</td><td class="num">32</td><td class="num">4</td><td>control, events, looks, sensing, variables</td></tr>
+        <tr><td>&#128257; Repetition</td><td class="num">6</td><td class="num">37</td><td class="num">6</td><td>control, events, looks, motion, pen, variables</td></tr>
+        <tr class="total"><td>Total</td><td class="num">14</td><td class="num">99</td><td class="num">10</td><td>all 7 categories</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-bottom:var(--sp-3)">The 14 programs</h3>
+      <div class="scroll"><table>
+        <tbody>
+          <tr><td class="pid">seq1</td><td>Add Two Numbers</td><td class="num">7</td></tr>
+          <tr><td class="pid">seq2</td><td>Draw a Square with Pen</td><td class="num">12</td></tr>
+          <tr><td class="pid">seq3</td><td>Ask Name and Greet</td><td class="num">4</td></tr>
+          <tr><td class="pid">seq4</td><td>Rectangle Area</td><td class="num">7</td></tr>
+          <tr><td class="pid">sel1</td><td>Even or Odd Checker</td><td class="num">7</td></tr>
+          <tr><td class="pid">sel2</td><td>Pass or Fail</td><td class="num">7</td></tr>
+          <tr><td class="pid">sel3</td><td>Withdraw Money Safely</td><td class="num">9</td></tr>
+          <tr><td class="pid">sel4</td><td>Greater of Two Numbers</td><td class="num">9</td></tr>
+          <tr><td class="pid">rep1</td><td>Show Numbers 1 to 5</td><td class="num">5</td></tr>
+          <tr><td class="pid">rep2</td><td>Show Numbers 1 to 10</td><td class="num">5</td></tr>
+          <tr><td class="pid">rep3</td><td>Multiplication Table of 3</td><td class="num">6</td></tr>
+          <tr><td class="pid">rep4</td><td>Sum of 1 to 10</td><td class="num">7</td></tr>
+          <tr><td class="pid">rep5</td><td>Draw a Colorful Circle</td><td class="num">8</td></tr>
+          <tr><td class="pid">rep6</td><td>Count Down from 10</td><td class="num">6</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:var(--sp-3)">The block, already designed</h3>
+      <p style="font-size:15px;color:var(--text-muted)">None of this look is invented. <code>css/tokens.css:81-89</code> already ships the seven Scratch colours and <code>--radius-block: 6px</code>, unused since the redesign, and the Open Design showcase carries the component with its states.</p>
+      <div class="chips" style="margin-bottom:var(--sp-4)">
+        <span class="sbcat sb--events"><i></i>Events</span><span class="sbcat sb--control"><i></i>Control</span><span class="sbcat sb--looks"><i></i>Looks</span><span class="sbcat sb"><i></i>Motion</span><span class="sbcat sb--pen"><i></i>Pen</span><span class="sbcat sb--sensing"><i></i>Sensing</span><span class="sbcat sb--variables"><i></i>Variables</span>
+      </div>
+      <div class="sbstack">
+        <div class="sbk sbk--hat sb--events">when <i>&#127937;</i> clicked</div>
+        <div class="sbk sb--variables">set <i>Count</i> to <i>1</i></div>
+        <div class="sbc sb--control">
+          <div class="sbc__head">repeat until <span class="sbk sbk--bool sb--sensing">Count &gt; 5</span></div>
+          <div class="sbc__body">
+            <div class="sbk sb--looks">say <i>Count</i> for <i>1</i> secs</div>
+            <div class="sbk sb--variables">change <i>Count</i> by <i>1</i></div>
+          </div>
+          <div class="sbc__foot"></div>
+        </div>
+      </div>
+      <p style="margin:var(--sp-4) 0 0;font-size:14px;color:var(--text-dim)">That is puzzle <code>rep1</code>, "Show Numbers 1 to 5", drawn in the design system as it looks once built correctly.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">04</span><h2>The three screens</h2>
+    <p>Drawn in the app's real components, at phone width.</p>
+  </div>
+
+  <div class="mocks">
+    <div class="mock">
+      <span class="mock__tag">A &middot; Home, with the new card</span>
+      <div class="phone"><div class="phone__in">
+        <div class="pbar"><span class="pchip">ICT Game World</span><span class="plang"><span>&#3523;&#3465;&#3458;</span><span class="on">EN</span></span></div>
+        <div class="pbody">
+          <div class="ptitle">Choose your grade</div>
+          <div class="gcard"><span class="gcard__num">6</span><span><span class="gcard__t">Grade 6</span><br><span class="gcard__s">6 lessons</span></span><span class="gcard__chev">&rsaquo;</span></div>
+          <div class="gcard"><span class="gcard__num">7</span><span><span class="gcard__t">Grade 7</span><br><span class="gcard__s">7 lessons</span></span><span class="gcard__chev">&rsaquo;</span></div>
+          <div class="gcard"><span class="gcard__num">8</span><span><span class="gcard__t">Grade 8</span><br><span class="gcard__s">6 lessons</span></span><span class="gcard__chev">&rsaquo;</span></div>
+          <div class="gcard"><span class="gcard__num">9</span><span><span class="gcard__t">Grade 9</span><br><span class="gcard__s">6 lessons</span></span><span class="gcard__chev">&rsaquo;</span></div>
+          <div class="gcard gcard--new"><span class="gcard__num gcard__num--sc">&#128049;</span><span><span class="gcard__t">Scratch Code Builder</span><br><span class="gcard__s">For every grade &middot; 14 programs</span></span><span class="gcard__chev">&rsaquo;</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="mock">
+      <span class="mock__tag">B &middot; The hub</span>
+      <div class="phone"><div class="phone__in">
+        <div class="pbar"><span class="pchip">&#128049; Scratch</span><span class="plang"><span>&#3523;&#3465;&#3458;</span><span class="on">EN</span></span></div>
+        <div class="pbody">
+          <div class="ptitle">Scratch Code Builder</div>
+          <p class="psub">Pick a control structure. Each one holds programs you build by arranging blocks.</p>
+          <div class="scard" style="--c:var(--sc-events)">
+            <div class="scard__top"><span class="scard__ic">&#10145;&#65039;</span><span class="scard__t">Sequence</span></div>
+            <span class="scard__d">Steps executed one after another from top to bottom</span>
+            <span class="scard__p">2 / 4 programs built</span>
+            <span class="bar"><i style="width:50%"></i></span>
+          </div>
+          <div class="scard" style="--c:var(--sc-control)">
+            <div class="scard__top"><span class="scard__ic">&#10067;</span><span class="scard__t">Selection</span></div>
+            <span class="scard__d">Choose between options based on a condition</span>
+            <span class="scard__p">0 / 4 programs built</span>
+            <span class="bar"><i style="width:0%"></i></span>
+          </div>
+          <div class="scard" style="--c:var(--sc-pen)">
+            <div class="scard__top"><span class="scard__ic">&#128257;</span><span class="scard__t">Repetition</span></div>
+            <span class="scard__d">Repeat steps until a condition is satisfied</span>
+            <span class="scard__p">0 / 6 programs built</span>
+            <span class="bar"><i style="width:0%"></i></span>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="mock">
+      <span class="mock__tag">C &middot; A program, part built</span>
+      <div class="phone"><div class="phone__in">
+        <div class="pbar"><span class="pchip">&#10145;&#65039; Sequence</span><span class="plang"><span>&#3523;&#3465;&#3458;</span><span class="on">EN</span></span></div>
+        <div class="pbody">
+          <div class="ptitle">Ask Name and Greet</div>
+          <p class="psub">Ask the user's name and say hello using it. &nbsp;<b style="color:var(--base-ink)">2 / 4 placed</b></p>
+          <span class="label">SCRIPT AREA</span>
+          <div class="zone">
+            <div class="zrow"><span class="sbk sbk--hat sb--events">when <i>&#127937;</i> clicked</span><span class="pmoves"><b>&#9650;</b><b>&#9660;</b></span></div>
+            <div class="zrow"><span class="sbk sb--sensing">ask <i>name?</i> and wait</span><span class="pmoves"><b>&#9650;</b><b>&#9660;</b></span></div>
+            <div class="slot">tap a block below to add it here</div>
+          </div>
+          <span class="label">BLOCK TRAY</span>
+          <div class="tray">
+            <span class="sbk sb--looks">say (join <i>Hello,</i> <i>Name</i>)</span>
+            <span class="sbk sb--variables">set <i>Name</i> to <i>answer</i></span>
+          </div>
+          <div class="prow"><span class="pbtn">Run the program</span><span class="pbtn pbtn--ghost">Reset</span></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="note tip" style="margin-top:var(--sp-5)">
+    <p><b>Every block has a tap route and a drag route.</b> The design system settled this one already: "Order item: drag handle plus up and down buttons, so dragging is never the only way." So tapping a tray block places it, the up and down buttons reorder it, and dragging does the same for a child with a mouse or a touchscreen. That is not one of the four questions below, it is a constraint I am following.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">05</span><h2>Four decisions</h2>
+    <p>Each one changes what I write. Answer in any order, then send.</p>
+  </div>
+
+  <div class="q" id="q1">
+    <div class="q__h"><span class="q__n">Q1</span><span class="q__t">Does the builder feed the leaderboard?</span></div>
+    <p class="q__why">This is the one with a database behind it. <code>submit_score()</code> validates every argument (<code>supabase/migrations/0001_init.sql:74-79</code>):</p>
+    <pre><code>if p_grade is null or p_grade &lt; 6 or p_grade &gt; 9 then
+  raise exception 'grade must be between 6 and 9';
+end if;
+if p_activity is null or p_activity !~ '^[0-9]{1,2}\.[0-9]{1,2}$' then
+  raise exception 'activity id must look like 1.2';
+end if;</code></pre>
+    <p class="q__why">A puzzle id like <code>seq1</code> is rejected, and a builder that belongs to every grade has no grade to file under. The board is per grade too, since <code>leaderboard_grade</code> groups by <code>s.grade</code>. So anything the builder scores has to land in one grade's table.</p>
+
+    <form data-lavish-question="q1-scoring" onsubmit="qsubmit(event,'q1','Q1 scoring and the leaderboard')">
+      <fieldset>
+        <label class="pick"><input type="radio" name="q1" value="A - local only, no leaderboard" required>
+          <span><span class="pl">A &mdash; Local only &nbsp;<span class="tag tag--rec">Recommended</span></span>
+          <span class="pd">Progress lives on the device, exactly as the original did (<code>state.completed['sc-'+p.id]</code>). The hub shows "2 / 4 programs built" per structure and a tick per program. Nothing is pushed to Supabase.<br><b>Gains:</b> no migration, no distortion of the per-grade boards, ships this session. <em>Costs:</em> the hardest thing in the app earns no XP and no place on a board.</span></span></label>
+
+        <label class="pick"><input type="radio" name="q1" value="B - one aggregate score under grade 9 activity 3.4">
+          <span><span class="pl">B &mdash; One aggregate score under grade 9's 3.4</span>
+          <span class="pd">Programs built out of 14, as a score out of 100, pushed as grade 9 activity <code>3.4</code>. Fits the existing validation with no migration.<br><b>Gains:</b> keeps 3.4 scored and XP working. <em>Costs:</em> a grade 6 child's Scratch work lands on the grade 9 board, which writes the "it belongs to no grade" problem into the data.</span></span></label>
+
+        <label class="pick"><input type="radio" name="q1" value="C - migration so scratch scores in its own scope">
+          <span><span class="pl">C &mdash; Migrate, and give it its own scope</span>
+          <span class="pd">Widen the activity-id check, add a scratch scope to <code>scores</code>, add a fourth leaderboard tab. A real migration on the live database plus a new board to design and test.<br><b>Gains:</b> the honest answer if the builder should compete at all. <em>Costs:</em> the biggest change here, and the boards stop being purely per grade.</span></span></label>
+      </fieldset>
+      <textarea name="q1note" placeholder="Anything else about scoring (optional)"></textarea>
+      <button type="submit">Queue this answer</button>
+      <p class="sent">Queued. Press Send to Agent once you have answered the rest.</p>
+    </form>
+  </div>
+
+  <div class="q" id="q2">
+    <div class="q__h"><span class="q__n">Q2</span><span class="q__t">One attempt, or fiddle until the program runs?</span></div>
+    <div class="coupled"><strong>Coupled to Q1.</strong> If the builder is not scored (Q1 A), fiddling is free and is how a child learns. If it is scored (Q1 B or C), a score everyone reaches by retrying tells you nothing, which is exactly why last session moved the seven ported types to one answer per round.</div>
+    <p class="q__why">The original let a child retry until the blocks were right and paid XP with a combo multiplier. Everything built since takes one answer per round, because a retry-until-right score cannot discriminate.</p>
+
+    <form data-lavish-question="q2-attempts" onsubmit="qsubmit(event,'q2','Q2 attempts per program')">
+      <fieldset>
+        <label class="pick"><input type="radio" name="q2" value="A - fiddle until it runs, record built or not built" required>
+          <span><span class="pl">A &mdash; Fiddle until it runs &nbsp;<span class="tag tag--rec">Recommended with Q1 A</span></span>
+          <span class="pd">Press "Run the program" as often as you like. Blocks in the wrong place shake and stay put, so the child fixes the one that is wrong instead of starting over. The program records only built or not built.<br><b>Gains:</b> this is how Scratch itself works, and how a control structure is actually learned. <em>Costs:</em> nothing to score out of 100, so it only makes sense if Q1 is A.</span></span></label>
+
+        <label class="pick"><input type="radio" name="q2" value="B - one check, scored on blocks in the right place">
+          <span><span class="pl">B &mdash; One check, partial credit</span>
+          <span class="pd">One press of Check. The score is the fraction of blocks sitting in the right position, out of 100, exactly as <code>order.js</code> already scores its steps.<br><b>Gains:</b> a score that discriminates, which Q1 B and C both need. <em>Costs:</em> a 12-block program failed on one misplaced block is a harsh first taste of programming.</span></span></label>
+
+        <label class="pick"><input type="radio" name="q2" value="C - fiddle until it runs, and remember the first try">
+          <span><span class="pl">C &mdash; Fiddle freely, but remember the first try</span>
+          <span class="pd">Unlimited runs, and the program separately remembers whether it ran correctly on the first press. The hub shows a gold tick for a first-try build and a plain tick otherwise.<br><b>Gains:</b> keeps a reward without punishing experiment. <em>Costs:</em> a second piece of state per program, and a distinction a child may never notice.</span></span></label>
+      </fieldset>
+      <textarea name="q2note" placeholder="Anything else about attempts (optional)"></textarea>
+      <button type="submit">Queue this answer</button>
+      <p class="sent">Queued. Press Send to Agent once you have answered the rest.</p>
+    </form>
+  </div>
+
+  <div class="q" id="q3">
+    <div class="q__h"><span class="q__n">Q3</span><span class="q__t">Does a loop actually hold its blocks?</span></div>
+    <p class="q__why">10 of the 14 programs contain a C-block, a <code>repeat</code> or an <code>if</code> that wraps other blocks. The originals <strong>flatten</strong> them: the C-block is drawn as an empty C shape and the blocks that belong inside it sit loose underneath, in the right order. The child is never shown a loop containing anything. The design system draws the opposite, with <code>.sbc__body</code> wrapping its children.</p>
+
+    <div class="grid g2" style="margin-bottom:var(--sp-5)">
+      <div class="card">
+        <h4 style="margin-bottom:var(--sp-3);color:var(--ok-ink)">Nested &mdash; what the design system draws</h4>
+        <div class="sbstack">
+          <div class="sbk sbk--hat sb--events">when <i>&#127937;</i> clicked</div>
+          <div class="sbk sb--variables">set <i>Count</i> to <i>1</i></div>
+          <div class="sbc sb--control">
+            <div class="sbc__head">repeat <i>10</i></div>
+            <div class="sbc__body">
+              <div class="sbk sb--looks">say <i>Count</i> for <i>1</i> secs</div>
+              <div class="sbk sb--variables">change <i>Count</i> by <i>1</i></div>
+            </div>
+            <div class="sbc__foot"></div>
+          </div>
+        </div>
+        <p style="margin:var(--sp-4) 0 0;font-size:14px;color:var(--text-muted)">The mouth of the loop is a second drop target. What the child builds looks like what they will see when they open Scratch.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin-bottom:var(--sp-3);color:var(--warn-ink)">Flat &mdash; what the original does</h4>
+        <div class="sbstack">
+          <div class="sbk sbk--hat sb--events">when <i>&#127937;</i> clicked</div>
+          <div class="sbk sb--variables">set <i>Count</i> to <i>1</i></div>
+          <div class="sbc sb--control">
+            <div class="sbc__head">repeat <i>10</i></div>
+            <div class="sbc__body" style="min-height:22px"></div>
+            <div class="sbc__foot"></div>
+          </div>
+          <div class="sbk sb--looks">say <i>Count</i> for <i>1</i> secs</div>
+          <div class="sbk sb--variables">change <i>Count</i> by <i>1</i></div>
+        </div>
+        <p style="margin:var(--sp-4) 0 0;font-size:14px;color:var(--text-muted)">One drop zone, one flat list, and the answer is just the right order. The loop is drawn empty even when the program is correct.</p>
+      </div>
+    </div>
+
+    <form data-lavish-question="q3-nesting" onsubmit="qsubmit(event,'q3','Q3 nested or flat workspace')">
+      <fieldset>
+        <label class="pick"><input type="radio" name="q3" value="A - nested, blocks go inside the loop" required>
+          <span><span class="pl">A &mdash; Nested &nbsp;<span class="tag tag--rec">Recommended</span></span>
+          <span class="pd">A C-block's mouth is its own drop target and the program is compared as a tree.<br><b>Gains:</b> the whole lesson is "a control structure contains steps", and this is the only version that shows it. Matches the design system and matches real Scratch. <em>Costs:</em> more code, two levels of drop target, and the part most likely to need a second pass at 375px.</span></span></label>
+
+        <label class="pick"><input type="radio" name="q3" value="B - flat, faithful to the original">
+          <span><span class="pl">B &mdash; Flat, like the original</span>
+          <span class="pd">One drop zone, blocks in a line, the answer is the flattened order.<br><b>Gains:</b> faithful to what Ishini and Dilini built, simplest to ship, shares its shape with <code>order.js</code>. <em>Costs:</em> teaches a picture of a loop that is wrong, and the design system already drew it the other way.</span></span></label>
+      </fieldset>
+      <textarea name="q3note" placeholder="Anything else about the workspace (optional)"></textarea>
+      <button type="submit">Queue this answer</button>
+      <p class="sent">Queued. Press Send to Agent once you have answered the rest.</p>
+    </form>
+  </div>
+
+  <div class="q" id="q4">
+    <div class="q__h"><span class="q__n">Q4</span><span class="q__t">How far does the Sinhala go?</span></div>
+    <p class="q__why">Grade 9 has no Sinhala original, so every one of these arrives English only: 3 structure names, 3 descriptions, 14 program names, 14 descriptions, and the block text itself. The app falls back to English and shows the "Sinhala for this one is still being written" note rather than a blank.</p>
+    <div class="grid g2" style="margin-bottom:var(--sp-5)">
+      <div class="card">
+        <h4 style="margin-bottom:var(--sp-3)">Chrome translated, block text left alone</h4>
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:6px">Buttons and headings in Sinhala, reusing strings the app already ships:</p>
+        <p class="si" style="font-size:17px;margin-bottom:var(--sp-4)">පරීක්ෂා කරන්න &middot; නැවත උත්සාහ කරන්න</p>
+        <div class="sbstack">
+          <div class="sbk sbk--hat sb--events">when <i>&#127937;</i> clicked</div>
+          <div class="sbk sb">move <i>100</i> steps</div>
+        </div>
+        <p style="margin:var(--sp-3) 0 0;font-size:14px;color:var(--text-muted)">The same rule <code>trace.js</code> already follows: code is never translated.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin-bottom:var(--sp-3)">What this hands Ishini</h4>
+        <p style="font-size:15px;color:var(--text-muted);margin-bottom:var(--sp-3)">34 new strings for the Sinhala review list. That list is already open and already holds F3, T1 to T5, the robot name, the ceramic plate draft, everything flagged <code>siDraft</code>, and 11 UI strings from last session.</p>
+        <div class="note warn"><p>It still has no single document. This task adds to it either way, so it is worth saying now whether it also gets written up.</p></div>
+      </div>
+    </div>
+
+    <form data-lavish-question="q4-sinhala" onsubmit="qsubmit(event,'q4','Q4 Sinhala scope')">
+      <fieldset>
+        <label class="pick"><input type="radio" name="q4" value="A - chrome translated, block text stays English, 34 strings go on Ishini's list" required>
+          <span><span class="pl">A &mdash; Chrome in both, block text English &nbsp;<span class="tag tag--rec">Recommended</span></span>
+          <span class="pd">Buttons, headings and hints get Sinhala now. Structure and program names fall back to English with the existing note until Ishini writes them. Block text stays English for good, because it is Scratch's own block language and a child will meet it in English in the lab.<br><b>Gains:</b> ships now, teaches the words the real tool uses. <em>Costs:</em> a Sinhala-medium child reads English program names until the list comes back.</span></span></label>
+
+        <label class="pick"><input type="radio" name="q4" value="B - same as A, and I draft the Sinhala for the 34 strings for Ishini to correct">
+          <span><span class="pl">B &mdash; A, plus I draft the 34 strings</span>
+          <span class="pd">Same as A, but I write drafted Sinhala for the names and descriptions and mark every one <code>siDraft</code>, so Ishini corrects rather than composes.<br><b>Gains:</b> nothing reads English only, and correcting is faster than writing. <em>Costs:</em> drafted Sinhala has needed fixing before, so more drafts means more for her to check.</span></span></label>
+
+        <label class="pick"><input type="radio" name="q4" value="C - translate the block text as well">
+          <span><span class="pl">C &mdash; Translate the block text too</span>
+          <span class="pd">The blocks themselves read in Sinhala.<br><b>Gains:</b> fully Sinhala. <em>Costs:</em> the child learns block names they will not find in the Scratch they actually open, and it contradicts the rule the app already follows for code.</span></span></label>
+      </fieldset>
+      <textarea name="q4note" placeholder="Should the whole Sinhala review list become one document in this task? (optional)"></textarea>
+      <button type="submit">Queue this answer</button>
+      <p class="sent">Queued. Press Send to Agent once you have answered the rest.</p>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">06</span><h2>What I will build once you answer</h2>
+    <p>Eight steps. Nothing outside this list.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step"><div><h4>Extract the content the same way as everything else</h4>
+      <p>A reader for the two constants, merged through the pipeline that already exists, writing one data file. The block text is data, so Node parses the literal rather than a regex reading it.</p>
+      <p class="files">new scripts/lib/read-scratch.mjs &middot; scripts/extract.mjs &middot; new data/scratch.json</p></div></div>
+
+    <div class="step"><div><h4>Extend the parity gate to cover it</h4>
+      <p>The same reversibility check the grades get: rebuild the structures out of <code>data/scratch.json</code> and deep-compare against the original. If a block moved, the gate fails.</p>
+      <p class="files">scripts/check-data.mjs</p></div></div>
+
+    <div class="step"><div><h4>The three screens</h4>
+      <p>Hub, structure, program. Kept out of <code>app.js</code> the way <code>screens.js</code> is, because the router is already the longest thing in the app.</p>
+      <p class="files">new js/scratch.js</p></div></div>
+
+    <div class="step"><div><h4>Routes and the two doors</h4>
+      <p><code>#/scratch</code>, <code>#/scratch/&lt;structure&gt;</code>, <code>#/scratch/&lt;structure&gt;/&lt;program&gt;</code>, the home page card, and grade 9's 3.4 rewritten from a dead "coming soon" row into a link.</p>
+      <p class="files">js/app.js</p></div></div>
+
+    <div class="step"><div><h4>The block components</h4>
+      <p>Ported from the Open Design showcase into the app stylesheet, on the tokens already in <code>tokens.css</code>. No raw colours, no new tokens.</p>
+      <p class="files">css/app.css</p></div></div>
+
+    <div class="step"><div><h4>The new UI strings</h4>
+      <p>Roughly ten: script area, block tray, run the program, reset, programs built, and the feedback lines. Sinhala drafted and commented as drafted, per Q4.</p>
+      <p class="files">js/i18n.js</p></div></div>
+
+    <div class="step"><div><h4>Offline</h4>
+      <p>The new module and the new data file added to the precache list, and <code>CACHE</code> bumped off <code>igw-v5</code>, or every browser keeps serving the old build and the new code looks broken.</p>
+      <p class="files">sw.js</p></div></div>
+
+    <div class="step"><div><h4>Proof, the same shape as last session</h4>
+      <p>All 14 programs built from their own answer key, at 375px and 1366px, in both languages. Deliberately wrong answers checked so the result discriminates. Zero console messages, zero horizontal overflow, both gates green.</p>
+      <p class="files">.claude/tasks/scratch-builder/evidence/</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">07</span><h2>Risks, and what I am not doing</h2>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-bottom:var(--sp-3)">Risks I can see</h3>
+      <ul style="font-size:15px;color:var(--text-muted)">
+        <li><strong>seq2 is 12 blocks.</strong> On a 375px phone that is a long script area plus a tray. The tray scrolls, the script area does not, and I will screenshot it before saying it works.</li>
+        <li><strong>Nesting on a phone</strong> (if Q3 is A). A drop target inside a drop target, at 44px minimum, inside 375px. Most likely part to need a second pass.</li>
+        <li><strong>The hub is a fourth kind of screen.</strong> The app knows grade picker, lesson path and activity. This adds hub, structure list and program, and the router grows with them.</li>
+        <li><strong>Block text carries HTML</strong> (<code>&lt;span class="scratch-pill"&gt;</code>, <code>&lt;b&gt;</code>). It is content from the originals, so it gets parsed into structured parts and built with <code>el()</code>. Nothing reaches <code>innerHTML</code>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:var(--sp-3)">Not in this task</h3>
+      <ul style="font-size:15px;color:var(--text-muted)">
+        <li>The 18 adventure mini games. Still no UI, still bonus, still separate.</li>
+        <li>The Sinhala pass over every screen at 375px that came out of the logo finding. Its own job.</li>
+        <li>The grade picker's card shape. The app's square cards diverge from the design system's row cards; I am matching the design system for the new card and leaving the four grade cards alone.</li>
+        <li>The two <code>LiveCheck</code> rows still in Supabase from last session's production check. One line of SQL, but not part of this.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p style="margin:0">Design source: this project's own design system &mdash; <code>css/tokens.css</code> (grade 9 night lab world) and the Scratch block component from the Open Design project <code>ict-game-world-design-system</code>. No third-party framework.</p>
+  <p style="margin:var(--sp-2) 0 0">Made by Ishini Premachandra &amp; Dilini Wijesooriya &middot; task <code>scratch-builder</code> &middot; 20 September 2026</p>
+</footer>
+
+</div>
+
+<script>
+function qsubmit(event, id, label) {
+  event.preventDefault();
+  var form = event.currentTarget;
+  var data = new FormData(form);
+  var answer = data.get(id);
+  if (!answer) return;
+  var note = (data.get(id + 'note') || '').toString().trim();
+  var msg = label + ': ' + answer + (note ? '. Note: ' + note : '');
+  if (window.lavish && window.lavish.queuePrompt) {
+    window.lavish.queuePrompt(msg, {
+      tag: 'choice',
+      text: label + ' -> ' + answer,
+      element: form,
+      queueKey: id,
+      data: { question: id, answer: answer, note: note }
+    });
+  }
+  document.getElementById(id).classList.add('is-queued');
+}
+</script>
+</body>
+</html>

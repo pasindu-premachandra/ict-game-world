@@ -11,6 +11,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { readLessons } from './lib/read-lessons.mjs';
 import { readOptionSets } from './lib/read-option-sets.mjs';
+import { readScratch } from './lib/read-scratch.mjs';
 import { readAdventure } from './lib/read-adventure.mjs';
 import { normalise } from './lib/normalise-adventure.mjs';
 import { mergeLang, MergeError } from './lib/merge-lang.mjs';
@@ -97,6 +98,36 @@ for (const { grade, en, si } of GRADES) {
     console.log(`         sinhala: ${drafted.filled} strings filled from content/grade-${grade}.sinhala.json across ${drafted.drafted.length} activities${drafted.draft ? ', all marked siDraft' : ''}`);
   }
 }
+
+// The Scratch Code Builder. It belongs to no grade - the originals ship it as
+// its own app - so it gets its own file rather than sitting under a grade.
+// Only the four copy fields are wrapped for translation: the block text stays
+// a plain string, because it is Scratch's own block language and is never
+// translated, the same rule the trace activities follow for code.
+const SCRATCH = 'original/grade-9/scratch.html';
+const copy = (s) => ({ en: s, si: null });
+const scratch = {
+  languages: ['en'],
+  source: { en: SCRATCH },
+  structures: readScratch(SCRATCH).map((structure) => ({
+    ...structure,
+    title: copy(structure.title),
+    desc: copy(structure.desc),
+    puzzles: structure.puzzles.map((puzzle) => ({
+      ...puzzle,
+      name: copy(puzzle.name),
+      description: copy(puzzle.description),
+    })),
+  })),
+};
+writeFileSync('data/scratch.json', JSON.stringify(scratch, null, 2) + '\n');
+const puzzleCount = scratch.structures.reduce((n, s) => n + s.puzzles.length, 0);
+const blockCount = scratch.structures.reduce((n, s) => n + s.puzzles.reduce((m, p) => {
+  let c = 0;
+  (function walk(list) { list.forEach((b) => { c++; if (b.body) walk(b.body); }); })(p.order);
+  return m + c;
+}, 0), 0);
+console.log(`scratch: ${scratch.structures.length} structures, ${puzzleCount} puzzles, ${blockCount} blocks -> data/scratch.json`);
 
 // Grade 9's second game, folded in as bonus rounds per gate D3 in redesign-trilingual.
 const ADVENTURE = 'original/grade-9/ict-adventure.html';

@@ -9,6 +9,7 @@
 import { readFileSync } from 'node:fs';
 import { readLessons } from './lib/read-lessons.mjs';
 import { readAdventure } from './lib/read-adventure.mjs';
+import { readScratch } from './lib/read-scratch.mjs';
 import { denormalise } from './lib/normalise-adventure.mjs';
 import { applyCorrections, correctionsFor } from './lib/apply-corrections.mjs';
 
@@ -144,6 +145,26 @@ for (const { grade, en, si } of GRADES) {
   const suspect = [];
   scanStrings(data.lessons, 'lessons', gaps, suspect);
   if (gaps.length) notes.push(`adventure: ${gaps.length} strings have no Sinhala yet`);
+}
+
+// Scratch Code Builder: same reversibility check. Only the four copy fields are
+// wrapped, so the English view has to come back identical to the original -
+// including every block's text, which is deliberately never translated.
+{
+  const data = JSON.parse(readFileSync('data/scratch.json', 'utf8'));
+  const d = diff(view(data.structures, 'en'), readScratch('original/grade-9/scratch.html'), 'scratch');
+  const puzzles = data.structures.reduce((n, s) => n + s.puzzles.length, 0);
+  if (d.length) {
+    failures++;
+    console.log(`FAIL  scratch  ${d.length} parity problem(s)`);
+    d.slice(0, 10).forEach((p) => console.log(`        ${p}`));
+  } else {
+    console.log(`ok    scratch  ${data.structures.length} structures, ${puzzles} puzzles, rebuild matches original exactly`);
+  }
+  const gaps = [];
+  const suspect = [];
+  scanStrings(data.structures, '', gaps, suspect);
+  if (gaps.length) notes.push(`scratch: ${gaps.length} strings have no Sinhala yet`);
 }
 
 if (notes.length) {

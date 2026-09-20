@@ -44,6 +44,39 @@ export function totalFor(grade) {
     .reduce((sum, [, points]) => sum + points, 0);
 }
 
+// The Scratch Code Builder belongs to no grade, so it gets its own key rather
+// than a prefix inside the progress map, where totalFor() would sweep it into
+// some grade's XP. A program is built or it is not; there is no score, because
+// submit_score() only takes a grade and an activity id like "1.2".
+const BUILT_KEY = 'igw.scratch';
+
+function readBuilt() {
+  try {
+    return JSON.parse(localStorage.getItem(BUILT_KEY) || '{}');
+  } catch {
+    return {};
+  }
+}
+
+export function isBuilt(programId) {
+  return readBuilt()[programId] === true;
+}
+
+export function markBuilt(programId) {
+  const state = readBuilt();
+  if (state[programId]) return;
+  state[programId] = true;
+  try {
+    localStorage.setItem(BUILT_KEY, JSON.stringify(state));
+  } catch {
+    // Blocked storage: the tick is kept for this session only.
+  }
+}
+
+export function builtCount() {
+  return Object.values(readBuilt()).filter(Boolean).length;
+}
+
 export function starsFor(points) {
   if (points === null) return 0;
   if (points >= 90) return 3;

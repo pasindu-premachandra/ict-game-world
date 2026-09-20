@@ -558,3 +558,128 @@ main:focus { outline: none; }
   .combo.is-hot { animation: none; }
   .toast { transition: none; }
 }
+
+/* ---- home: the Scratch Code Builder door ---- */
+
+.builder-card {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+  gap: var(--space-4); margin-top: var(--space-4); padding: var(--space-3) var(--space-4);
+  text-decoration: none; background: var(--surface);
+  border: var(--border) solid var(--scratch-control); border-radius: var(--radius-xl);
+  box-shadow: var(--lift-card); min-height: var(--tap-hero);
+}
+.builder-icon {
+  display: grid; place-items: center; width: 48px; height: 48px;
+  border-radius: var(--radius-md); background: var(--scratch-control);
+  box-shadow: 0 4px 0 var(--scratch-control-edge); font-size: var(--text-xl);
+}
+.builder-body { display: grid; min-width: 0; }
+.builder-title { font-family: var(--font-display); font-weight: var(--weight-bold); font-size: var(--text-lg); }
+.builder-sub { font-size: var(--text-sm); color: var(--text-muted); }
+.builder-chev { color: var(--text-muted); font-size: var(--text-xl); }
+
+/* ---- scratch: the hub ---- */
+
+.struct-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+.struct-card {
+  display: grid; gap: var(--space-2); align-content: start; padding: var(--space-4);
+  text-decoration: none; background: var(--surface);
+  border: var(--border) solid var(--line); border-radius: var(--radius-lg);
+  box-shadow: var(--lift-card); min-width: 0;
+}
+.struct-card[data-sc="sequence"]   { border-color: var(--scratch-events); --sc: var(--scratch-events); }
+.struct-card[data-sc="selection"]  { border-color: var(--scratch-control); --sc: var(--scratch-control); }
+.struct-card[data-sc="repetition"] { border-color: var(--scratch-pen); --sc: var(--scratch-pen); }
+.struct-top { display: flex; align-items: center; gap: var(--space-2); min-width: 0; }
+.struct-icon { font-size: var(--text-xl); line-height: 1; }
+.struct-title { font-family: var(--font-display); font-weight: var(--weight-bold); font-size: var(--text-lg); overflow-wrap: anywhere; }
+.struct-desc { font-size: var(--text-sm); color: var(--text-muted); }
+.struct-count { font-size: var(--text-xs); color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.struct-bar { height: 10px; border-radius: var(--radius-pill); background: var(--surface-sunk); overflow: hidden; }
+.struct-fill { display: block; height: 100%; border-radius: var(--radius-pill); background: var(--sc, var(--g-base)); }
+
+.act-num {
+  font-family: var(--font-display); font-weight: var(--weight-heavy);
+  color: var(--g-base); min-width: 1.5em; flex: none;
+}
+.act.is-built { border-color: var(--success); }
+.act.is-built .act-num { color: var(--success-ink); }
+
+/* ---- scratch: the workspace ---- */
+
+.sb-legend {
+  font-family: var(--font-display); font-weight: var(--weight-bold); font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label); text-transform: var(--case-label);
+  color: var(--text-muted); margin: var(--space-5) 0 var(--space-2);
+}
+.sb-zone {
+  display: grid; gap: var(--space-2); justify-items: start; min-width: 0;
+  padding: var(--space-3); min-height: 5rem;
+  background: var(--surface); border: var(--border) solid var(--line); border-radius: var(--radius-lg);
+}
+.sb-zone.is-done { border-color: var(--success); }
+.sb-tray {
+  display: flex; flex-wrap: wrap; gap: var(--space-2); min-width: 0; padding: var(--space-3);
+  background: var(--surface-sunk); border: var(--border) dashed var(--line); border-radius: var(--radius-lg);
+}
+.sb-tray-empty { margin: 0; color: var(--text-muted); font-size: var(--text-sm); }
+.sb-row { display: flex; align-items: center; gap: var(--space-2); max-width: 100%; min-width: 0; }
+.sb-moves { display: flex; gap: var(--space-1); flex: none; }
+
+/* The Scratch block, on the seven category tokens tokens.css already ships.
+   Real Scratch never wraps a block, but a 12-block program on a 375px phone
+   has to go somewhere, and wrapping the label beats scrolling the page. */
+.sb-block {
+  font: inherit; font-weight: var(--weight-heavy); font-size: var(--text-sm);
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  text-align: start; cursor: pointer; min-height: 40px; max-width: 100%;
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-block);
+  background: var(--sc-fill); color: var(--scratch-text);
+  border: var(--border-thin) solid var(--sc-edge); box-shadow: 0 3px 0 var(--sc-edge);
+}
+.sb-block.is-hat { min-height: 46px; border-radius: 22px 22px var(--radius-block) var(--radius-block); }
+.sb-block.is-wrong-place { animation: shake var(--dur-slow) var(--ease-standard) both; }
+.sb-label { overflow-wrap: anywhere; }
+
+.sb-events    { --sc-fill: var(--scratch-events);    --sc-edge: var(--scratch-events-edge); }
+.sb-control   { --sc-fill: var(--scratch-control);   --sc-edge: var(--scratch-control-edge); }
+.sb-looks     { --sc-fill: var(--scratch-looks);     --sc-edge: var(--scratch-looks-edge); }
+.sb-motion    { --sc-fill: var(--scratch-motion);    --sc-edge: var(--scratch-motion-edge); }
+.sb-pen       { --sc-fill: var(--scratch-pen);       --sc-edge: var(--scratch-pen-edge); }
+.sb-sensing   { --sc-fill: var(--scratch-sensing);   --sc-edge: var(--scratch-sensing-edge); }
+.sb-variables { --sc-fill: var(--scratch-variables); --sc-edge: var(--scratch-variables-edge); }
+
+/* The white inset that holds a value or a variable name inside a block. */
+.sb-pill {
+  display: inline-block; font-style: normal; font-size: var(--text-xs);
+  min-width: 26px; padding: 2px var(--space-2); margin: 0 2px;
+  border-radius: var(--radius-pill); background: var(--white); color: var(--ink);
+  text-align: center; overflow-wrap: anywhere;
+}
+.sb-pill.is-purple { background: var(--scratch-looks); color: var(--ink); }
+.sb-pill.is-blue   { background: var(--scratch-motion); color: var(--ink); }
+.sb-pill.is-green  { background: var(--scratch-pen); color: var(--ink); }
+
+/* A C-block: head, the mouth that holds its blocks, then the foot. */
+.sb-c { display: grid; max-width: 100%; min-width: 0; border-radius: var(--radius-block); }
+.sb-c > .sb-row > .sb-block, .sb-c > .sb-block { box-shadow: none; border-radius: var(--radius-block) var(--radius-block) 0 0; }
+.sb-c-body {
+  display: grid; gap: var(--space-2); justify-items: start; min-width: 0;
+  margin-left: var(--space-4); padding: var(--space-2);
+  background: var(--surface-sunk); border: var(--border-thin) solid var(--line); border-top: 0;
+}
+.sb-c-foot {
+  display: block; height: 14px; border-radius: 0 0 var(--radius-block) var(--radius-block);
+  background: var(--scratch-control); border: var(--border-thin) solid var(--scratch-control-edge);
+  border-top: 0; box-shadow: 0 3px 0 var(--scratch-control-edge);
+}
+
+/* Where the next block lands. With no loop placed there is only one. */
+.sb-slot {
+  font: inherit; font-size: var(--text-xs); color: var(--text-muted); cursor: pointer;
+  width: 100%; min-height: var(--tap-min); padding: var(--space-2);
+  background: transparent; border: var(--border-thin) dashed var(--edge);
+  border-radius: var(--radius-block);
+}
+.sb-slot.is-chosen { border-color: var(--g-base); color: var(--g-ink, var(--g-dark)); border-style: solid; }
+.sb-slot.is-over { background: var(--g-light); border-color: var(--g-base); }

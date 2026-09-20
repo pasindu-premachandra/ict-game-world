@@ -7,6 +7,7 @@ import { nameEntry, leaderboard } from './screens.js';
 import { soundOn, setSound } from './audio.js';
 import { stars, resetStreak, finished } from './reward.js';
 import { loadAdventure, bonusFor, findActivity, PREFIX } from './adventure.js';
+import { scratchHub, scratchStructure, scratchPuzzle } from './scratch.js';
 
 const GRADES = [6, 7, 8, 9];
 const TYPES = [
@@ -58,6 +59,16 @@ function gradePicker() {
       ]);
       return card;
     })),
+    // The Scratch Code Builder teaches the control structures, which every
+    // grade meets, so it sits beside the grades rather than inside one.
+    el('a', { class: 'builder-card', href: '#/scratch' }, [
+      el('span', { class: 'builder-icon', 'aria-hidden': 'true' }, ['🐱']),
+      el('span', { class: 'builder-body' }, [
+        el('span', { class: 'builder-title' }, [t('scratchTitle')]),
+        el('span', { class: 'builder-sub' }, [t('forEveryGrade')]),
+      ]),
+      el('span', { class: 'builder-chev', 'aria-hidden': 'true' }, ['›']),
+    ]),
   );
 }
 
@@ -75,10 +86,13 @@ async function lessonPath(grade) {
     const bonus = adventure ? bonusFor(adventure, lesson.id) : [];
     const items = [...lesson.activities, ...bonus].map((activity) => {
       const points = scoreFor(grade, activity.id);
-      const playable = TYPES.includes(activity.type);
+      // The Scratch Code Builder is not a grade activity - it lives on the home
+      // page, for every grade - so grade 9's 3.4 is a door into it.
+      const builder = activity.type === 'scratch-hub';
+      const playable = builder || TYPES.includes(activity.type);
       const node = el(playable ? 'a' : 'span', {
         class: `act${playable ? '' : ' is-soon'}${activity.bonus ? ' is-bonus' : ''}`,
-        href: playable ? `#/g${grade}/${activity.id}` : null,
+        href: playable ? (builder ? '#/scratch' : `#/g${grade}/${activity.id}`) : null,
       }, [
         el('span', { class: 'act-name' }, [text(activity.name)]),
         activity.bonus ? el('span', { class: 'act-bonus' }, [t('bonus')]) : null,
@@ -122,6 +136,8 @@ async function activityScreen(grade, activityId) {
       if (hit) { found = { lesson, activity: hit }; break; }
     }
   }
+  // A bookmark of grade 9's 3.4 from before the builder moved out.
+  if (found?.activity.type === 'scratch-hub') { location.hash = '#/scratch'; return; }
   if (!found || !TYPES.includes(found.activity.type)) return notFound();
 
   // A hotspot's clickable options are shared by every round, so the originals
@@ -195,6 +211,15 @@ async function route() {
       showXp(null);
       return nameEntry(main, () => { flushQueue(); history.back(); });
     }
+    // Before the hasPlayer() redirect below: the builder scores nothing, so it
+    // never needs a nickname. It also leaves data-grade alone, so a child stays
+    // in their own colour world.
+    if (parts[0] === 'scratch') {
+      showXp(null);
+      if (parts.length === 1) return await scratchHub(main);
+      if (parts.length === 2) return await scratchStructure(main, parts[1]);
+      return await scratchPuzzle(main, parts[1], parts[2]);
+    }
     if (!parts.length) return gradePicker();
     const grade = Number((parts[0].match(/^g([6-9])$/) || [])[1]);
     if (!grade) return notFound();
@@ -204,6 +229,13 @@ async function route() {
       showXp(grade);
       if (!hasPlayer()) { location.hash = '#/name'; return; }
       return await leaderboard(main, grade);
+    }
+    // An old bookmark of 3.4 is a door into the builder, which scores nothing,
+    // so resolve it before the name gate rather than after it.
+    const lessons = (await loadGrade(grade)).lessons;
+    if (lessons.some((l) => l.activities.some((a) => a.id === parts[1] && a.type === 'scratch-hub'))) {
+      location.hash = '#/scratch';
+      return;
     }
     // A score with no player behind it cannot reach the leaderboard, so ask
     // for the name before the first activity rather than losing that score.
