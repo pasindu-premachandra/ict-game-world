@@ -20,67 +20,67 @@
           "icon": "🖥️",
           "name": {
             "en": "Computer Types",
-            "si": null
+            "si": "පරිගණක වර්ග"
           },
           "desc": {
             "en": "Sort computers by category",
-            "si": null
+            "si": "පරිගණක ප්‍රවර්ග අනුව වර්ග කරන්න"
           },
           "kind": "sortGame",
           "items": [
             {
               "name": {
                 "en": "🖥️ Server",
-                "si": null
+                "si": "🖥️ සේවාදායකය"
               },
               "bin": "fixed"
             },
             {
               "name": {
                 "en": "💻 Desktop",
-                "si": null
+                "si": "💻 මේස පරිගණකය"
               },
               "bin": "fixed"
             },
             {
               "name": {
                 "en": "🖥️ Workstation",
-                "si": null
+                "si": "🖥️ කාර්ය මධ්‍යස්ථානය"
               },
               "bin": "fixed"
             },
             {
               "name": {
                 "en": "🖱️ All-in-One",
-                "si": null
+                "si": "🖱️ ඒකාබද්ධ පරිගණකය"
               },
               "bin": "fixed"
             },
             {
               "name": {
                 "en": "💻 Laptop",
-                "si": null
+                "si": "💻 ලැප්ටොප් පරිගණකය"
               },
               "bin": "portable"
             },
             {
               "name": {
                 "en": "📓 Notebook",
-                "si": null
+                "si": "📓 නෝට්බුක් පරිගණකය"
               },
               "bin": "portable"
             },
             {
               "name": {
                 "en": "📱 Tablet",
-                "si": null
+                "si": "📱 ටැබ්ලට් පරිගණකය"
               },
               "bin": "portable"
             },
             {
               "name": {
                 "en": "📞 Smartphone",
-                "si": null
+                "si": "📞 සුහුරු දුරකථනය"
               },
               "bin": "portable"
             }
@@ -90,7 +90,7 @@
               "id": "fixed",
               "name": {
                 "en": "Stationary Computer",
-                "si": null
+                "si": "ස්ථාවර පරිගණක"
               },
               "emoji": "🏢"
             },
@@ -98,106 +98,107 @@
               "id": "portable",
               "name": {
                 "en": "Portable Computer",
-                "si": null
+                "si": "අතේ ගෙන යා හැකි පරිගණක"
               },
               "emoji": "🎒"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "c2",
           "icon": "📦",
           "name": {
             "en": "Peripheral Sorter",
-            "si": null
+            "si": "පර්යන්ත උපාංග වර්ග කිරීම"
           },
           "desc": {
             "en": "Input / Output / Storage",
-            "si": null
+            "si": "ආදාන / ප්‍රතිදාන / ගබඩා"
           },
           "kind": "sortGame",
           "items": [
             {
               "name": {
                 "en": "⌨️ Keyboard",
-                "si": null
+                "si": "⌨️ යතුරු පුවරුව"
               },
               "bin": "input"
             },
             {
               "name": {
                 "en": "🖱️ Mouse",
-                "si": null
+                "si": "🖱️ මූසිකය"
               },
               "bin": "input"
             },
             {
               "name": {
                 "en": "🎤 Microphone",
-                "si": null
+                "si": "🎤 මයික්‍රොෆෝනය"
               },
               "bin": "input"
             },
             {
               "name": {
                 "en": "📷 Scanner",
-                "si": null
+                "si": "📷 පරිලෝකකය"
               },
               "bin": "input"
             },
             {
               "name": {
                 "en": "🖥️ Monitor",
-                "si": null
+                "si": "🖥️ සන්දර්ශකය"
               },
               "bin": "output"
             },
             {
               "name": {
                 "en": "🖨️ Printer",
-                "si": null
+                "si": "🖨️ මුද්‍රකය"
               },
               "bin": "output"
             },
             {
               "name": {
                 "en": "🔊 Speaker",
-                "si": null
+                "si": "🔊 ශබ්ද විකාශකය"
               },
               "bin": "output"
             },
             {
               "name": {
                 "en": "📽️ Projector",
-                "si": null
+                "si": "📽️ ප්‍රක්ෂේපකය"
               },
               "bin": "output"
             },
             {
               "name": {
                 "en": "💾 Hard Disk",
-                "si": null
+                "si": "💾 දෘඪ තැටිය"
               },
               "bin": "storage"
             },
             {
               "name": {
                 "en": "💿 DVD Drive",
-                "si": null
+                "si": "💿 DVD ධාවකය"
               },
               "bin": "storage"
             },
             {
               "name": {
                 "en": "🔑 Flash Drive",
-                "si": null
+                "si": "🔑 ෆ්ලෑෂ් ධාවකය"
               },
               "bin": "storage"
             },
             {
               "name": {
                 "en": "📼 Magnetic Tape",
-                "si": null
+                "si": "📼 චුම්බක පටිය"
               },
               "bin": "storage"
             }
@@ -207,7 +208,7 @@
               "id": "input",
               "name": {
                 "en": "Input",
-                "si": null
+                "si": "ආදාන"
               },
               "emoji": "📥"
             },
@@ -215,7 +216,7 @@
               "id": "output",
               "name": {
                 "en": "Output",
-                "si": null
+                "si": "ප්‍රතිදාන"
               },
               "emoji": "📤"
             },
@@ -223,22 +224,23 @@
               "id": "storage",
               "name": {
                 "en": "Storage",
-                "si": null
+                "si": "ගබඩා"
               },
               "emoji": "💾"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "c3",
           "icon": "⚡",
           "name": {
             "en": "Specifications",
-            "si": null
+            "si": "පිරිවිතර"
           },
           "desc": {
             "en": "Match specs to functions",
-            "si": null
+            "si": "පිරිවිතර හා ක්‍රියාකාරිත්වය ගළපන්න"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -250,19 +252,19 @@
               "opts": [
                 {
                   "en": "Meters",
-                  "si": null
+                  "si": "මීටර"
                 },
                 {
                   "en": "MHz / GHz",
-                  "si": null
+                  "si": "MHz / GHz"
                 },
                 {
                   "en": "Liters",
-                  "si": null
+                  "si": "ලීටර"
                 },
                 {
                   "en": "Kilograms",
-                  "si": null
+                  "si": "කිලෝග්‍රෑම්"
                 }
               ],
               "ans": 1
@@ -275,19 +277,19 @@
               "opts": [
                 {
                   "en": "RAM",
-                  "si": null
+                  "si": "RAM"
                 },
                 {
                   "en": "Hard Disk",
-                  "si": null
+                  "si": "දෘඪ තැටිය"
                 },
                 {
                   "en": "CPU",
-                  "si": null
+                  "si": "CPU"
                 },
                 {
                   "en": "Monitor",
-                  "si": null
+                  "si": "සන්දර්ශකය"
                 }
               ],
               "ans": 1
@@ -300,19 +302,19 @@
               "opts": [
                 {
                   "en": "VGA",
-                  "si": null
+                  "si": "VGA"
                 },
                 {
                   "en": "HDMI",
-                  "si": null
+                  "si": "HDMI"
                 },
                 {
                   "en": "RJ45",
-                  "si": null
+                  "si": "RJ45"
                 },
                 {
                   "en": "USB",
-                  "si": null
+                  "si": "USB"
                 }
               ],
               "ans": 2
@@ -325,19 +327,19 @@
               "opts": [
                 {
                   "en": "Only video",
-                  "si": null
+                  "si": "දෘශ්‍ය පමණි"
                 },
                 {
                   "en": "Only audio",
-                  "si": null
+                  "si": "ශ්‍රව්‍ය පමණි"
                 },
                 {
                   "en": "Both audio & video",
-                  "si": null
+                  "si": "ශ්‍රව්‍ය හා දෘශ්‍ය දෙකම"
                 },
                 {
                   "en": "Only data",
-                  "si": null
+                  "si": "දත්ත පමණි"
                 }
               ],
               "ans": 2
@@ -350,19 +352,19 @@
               "opts": [
                 {
                   "en": "Non-volatile",
-                  "si": null
+                  "si": "අස්ථායී නොවන (non-volatile)"
                 },
                 {
                   "en": "Volatile",
-                  "si": null
+                  "si": "අස්ථායී (volatile)"
                 },
                 {
                   "en": "Permanent",
-                  "si": null
+                  "si": "ස්ථිර"
                 },
                 {
                   "en": "Optical",
-                  "si": null
+                  "si": "ප්‍රකාශ"
                 }
               ],
               "ans": 1
@@ -375,19 +377,19 @@
               "opts": [
                 {
                   "en": "Extended",
-                  "si": null
+                  "si": "විස්තීර්ණ"
                 },
                 {
                   "en": "Manufacturer",
-                  "si": null
+                  "si": "නිෂ්පාදකයා"
                 },
                 {
                   "en": "Onsite",
-                  "si": null
+                  "si": "ස්ථානගත"
                 },
                 {
                   "en": "Third-party",
-                  "si": null
+                  "si": "තෙවන පාර්ශ්වීය"
                 }
               ],
               "ans": 1
@@ -400,19 +402,19 @@
               "opts": [
                 {
                   "en": "Centimeters",
-                  "si": null
+                  "si": "සෙන්ටිමීටර"
                 },
                 {
                   "en": "Inches (diagonal)",
-                  "si": null
+                  "si": "අඟල් (විකර්ණය)"
                 },
                 {
                   "en": "Millimeters",
-                  "si": null
+                  "si": "මිලිමීටර"
                 },
                 {
                   "en": "Pixels",
-                  "si": null
+                  "si": "පික්සල"
                 }
               ],
               "ans": 1
@@ -425,24 +427,25 @@
               "opts": [
                 {
                   "en": "Keyboard",
-                  "si": null
+                  "si": "යතුරු පුවරුව"
                 },
                 {
                   "en": "Mouse",
-                  "si": null
+                  "si": "මූසිකය"
                 },
                 {
                   "en": "Monitor",
-                  "si": null
+                  "si": "සන්දර්ශකය"
                 },
                 {
                   "en": "Microphone",
-                  "si": null
+                  "si": "මයික්‍රොෆෝනය"
                 }
               ],
               "ans": 2
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     },
@@ -460,11 +463,11 @@
           "icon": "📋",
           "name": {
             "en": "Cell Address",
-            "si": null
+            "si": "කෝෂ ලිපිනය"
           },
           "desc": {
             "en": "Find the correct cell",
-            "si": null
+            "si": "නිවැරදි කෝෂය සොයන්න"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -476,19 +479,19 @@
               "opts": [
                 {
                   "en": "D5",
-                  "si": null
+                  "si": "D5"
                 },
                 {
                   "en": "5D",
-                  "si": null
+                  "si": "5D"
                 },
                 {
                   "en": "D-5",
-                  "si": null
+                  "si": "D-5"
                 },
                 {
                   "en": "RowD5",
-                  "si": null
+                  "si": "RowD5"
                 }
               ],
               "ans": 0
@@ -501,19 +504,19 @@
               "opts": [
                 {
                   "en": "Numbers 1,2,3",
-                  "si": null
+                  "si": "අංක 1,2,3"
                 },
                 {
                   "en": "Letters A,B,C",
-                  "si": null
+                  "si": "අකුරු A,B,C"
                 },
                 {
                   "en": "Both",
-                  "si": null
+                  "si": "දෙකම"
                 },
                 {
                   "en": "Symbols",
-                  "si": null
+                  "si": "සංකේත"
                 }
               ],
               "ans": 1
@@ -526,19 +529,19 @@
               "opts": [
                 {
                   "en": "Letters",
-                  "si": null
+                  "si": "අකුරු"
                 },
                 {
                   "en": "Numbers 1,2,3",
-                  "si": null
+                  "si": "අංක 1,2,3"
                 },
                 {
                   "en": "Both",
-                  "si": null
+                  "si": "දෙකම"
                 },
                 {
                   "en": "Symbols",
-                  "si": null
+                  "si": "සංකේත"
                 }
               ],
               "ans": 1
@@ -551,19 +554,19 @@
               "opts": [
                 {
                   "en": "Cell",
-                  "si": null
+                  "si": "කෝෂය"
                 },
                 {
                   "en": "Range",
-                  "si": null
+                  "si": "පරාසය"
                 },
                 {
                   "en": "Box",
-                  "si": null
+                  "si": "කොටුව"
                 },
                 {
                   "en": "Frame",
-                  "si": null
+                  "si": "රාමුව"
                 }
               ],
               "ans": 0
@@ -576,19 +579,19 @@
               "opts": [
                 {
                   "en": "Cell Range",
-                  "si": null
+                  "si": "කෝෂ පරාසය"
                 },
                 {
                   "en": "Cell Box",
-                  "si": null
+                  "si": "කෝෂ කොටුව"
                 },
                 {
                   "en": "Cell Set",
-                  "si": null
+                  "si": "කෝෂ කුලකය"
                 },
                 {
                   "en": "Cell Union",
-                  "si": null
+                  "si": "කෝෂ එකතුව"
                 }
               ],
               "ans": 0
@@ -601,35 +604,36 @@
               "opts": [
                 {
                   "en": "Date",
-                  "si": null
+                  "si": "දිනය"
                 },
                 {
                   "en": "Content of selected cell",
-                  "si": null
+                  "si": "තෝරාගත් කෝෂයේ අන්තර්ගතය"
                 },
                 {
                   "en": "Menu",
-                  "si": null
+                  "si": "මෙනුව"
                 },
                 {
                   "en": "Toolbar",
-                  "si": null
+                  "si": "මෙවලම් තීරුව"
                 }
               ],
               "ans": 1
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "s2",
           "icon": "🧮",
           "name": {
             "en": "Spreadsheet Functions",
-            "si": null
+            "si": "පැතුරුම්පත්ශ්‍රිත"
           },
           "desc": {
             "en": "SUM, AVERAGE, MAX, MIN",
-            "si": null
+            "si": "SUM, AVERAGE, MAX, MIN"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -641,19 +645,19 @@
               "opts": [
                 {
                   "en": "SUM",
-                  "si": null
+                  "si": "SUM"
                 },
                 {
                   "en": "AVERAGE",
-                  "si": null
+                  "si": "AVERAGE"
                 },
                 {
                   "en": "MAX",
-                  "si": null
+                  "si": "MAX"
                 },
                 {
                   "en": "MIN",
-                  "si": null
+                  "si": "MIN"
                 }
               ],
               "ans": 0
@@ -666,19 +670,19 @@
               "opts": [
                 {
                   "en": "SUM",
-                  "si": null
+                  "si": "SUM"
                 },
                 {
                   "en": "AVERAGE",
-                  "si": null
+                  "si": "AVERAGE"
                 },
                 {
                   "en": "MAX",
-                  "si": null
+                  "si": "MAX"
                 },
                 {
                   "en": "MIN",
-                  "si": null
+                  "si": "MIN"
                 }
               ],
               "ans": 1
@@ -691,19 +695,19 @@
               "opts": [
                 {
                   "en": "SUM",
-                  "si": null
+                  "si": "SUM"
                 },
                 {
                   "en": "AVERAGE",
-                  "si": null
+                  "si": "AVERAGE"
                 },
                 {
                   "en": "MAX",
-                  "si": null
+                  "si": "MAX"
                 },
                 {
                   "en": "MIN",
-                  "si": null
+                  "si": "MIN"
                 }
               ],
               "ans": 2
@@ -716,19 +720,19 @@
               "opts": [
                 {
                   "en": "SUM",
-                  "si": null
+                  "si": "SUM"
                 },
                 {
                   "en": "AVERAGE",
-                  "si": null
+                  "si": "AVERAGE"
                 },
                 {
                   "en": "MAX",
-                  "si": null
+                  "si": "MAX"
                 },
                 {
                   "en": "MIN",
-                  "si": null
+                  "si": "MIN"
                 }
               ],
               "ans": 3
@@ -741,19 +745,19 @@
               "opts": [
                 {
                   "en": "=",
-                  "si": null
+                  "si": "="
                 },
                 {
                   "en": "+",
-                  "si": null
+                  "si": "+"
                 },
                 {
                   "en": "-",
-                  "si": null
+                  "si": "-"
                 },
                 {
                   "en": "*",
-                  "si": null
+                  "si": "*"
                 }
               ],
               "ans": 0
@@ -766,35 +770,36 @@
               "opts": [
                 {
                   "en": "+",
-                  "si": null
+                  "si": "+"
                 },
                 {
                   "en": "-",
-                  "si": null
+                  "si": "-"
                 },
                 {
                   "en": "*",
-                  "si": null
+                  "si": "*"
                 },
                 {
                   "en": "/",
-                  "si": null
+                  "si": "/"
                 }
               ],
               "ans": 2
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "s3",
           "icon": "📈",
           "name": {
             "en": "Chart Master",
-            "si": null
+            "si": "ප්‍රස්තාර ශූරයා"
           },
           "desc": {
             "en": "Choose the right chart type",
-            "si": null
+            "si": "නිවැරදි ප්‍රස්තාර වර්ගය තෝරන්න"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -806,19 +811,19 @@
               "opts": [
                 {
                   "en": "Pie Chart",
-                  "si": null
+                  "si": "රවුම් ප්‍රස්තාරය"
                 },
                 {
                   "en": "Line Chart",
-                  "si": null
+                  "si": "රේඛීය ප්‍රස්තාරය"
                 },
                 {
                   "en": "Column Chart",
-                  "si": null
+                  "si": "තීරු ප්‍රස්තාරය"
                 },
                 {
                   "en": "Scatter",
-                  "si": null
+                  "si": "විසිරුම්"
                 }
               ],
               "ans": 1
@@ -831,19 +836,19 @@
               "opts": [
                 {
                   "en": "Line",
-                  "si": null
+                  "si": "රේඛීය"
                 },
                 {
                   "en": "Pie Chart",
-                  "si": null
+                  "si": "රවුම් ප්‍රස්තාරය"
                 },
                 {
                   "en": "Bar",
-                  "si": null
+                  "si": "තිරස් තීරු"
                 },
                 {
                   "en": "Scatter",
-                  "si": null
+                  "si": "විසිරුම්"
                 }
               ],
               "ans": 1
@@ -856,19 +861,19 @@
               "opts": [
                 {
                   "en": "Column Chart",
-                  "si": null
+                  "si": "තීරු ප්‍රස්තාරය"
                 },
                 {
                   "en": "Pie Chart",
-                  "si": null
+                  "si": "රවුම් ප්‍රස්තාරය"
                 },
                 {
                   "en": "Line",
-                  "si": null
+                  "si": "රේඛීය"
                 },
                 {
                   "en": "Scatter",
-                  "si": null
+                  "si": "විසිරුම්"
                 }
               ],
               "ans": 0
@@ -881,24 +886,25 @@
               "opts": [
                 {
                   "en": "Pie",
-                  "si": null
+                  "si": "රවුම්"
                 },
                 {
                   "en": "Line",
-                  "si": null
+                  "si": "රේඛීය"
                 },
                 {
                   "en": "Scatter",
-                  "si": null
+                  "si": "විසිරුම්"
                 },
                 {
                   "en": "Column",
-                  "si": null
+                  "si": "තීරු"
                 }
               ],
               "ans": 2
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     },
@@ -916,11 +922,11 @@
           "icon": "🔀",
           "name": {
             "en": "Control Structures",
-            "si": null
+            "si": "පාලන ව්‍යූහ"
           },
           "desc": {
             "en": "Sequence / Selection / Repetition",
-            "si": null
+            "si": "අනුක්‍රමය / තේරීම / පුනර්කරණය"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -932,19 +938,19 @@
               "opts": [
                 {
                   "en": "Sequence",
-                  "si": null
+                  "si": "අනුක්‍රමය"
                 },
                 {
                   "en": "Selection",
-                  "si": null
+                  "si": "තේරීම"
                 },
                 {
                   "en": "Repetition",
-                  "si": null
+                  "si": "පුනර්කරණය"
                 },
                 {
                   "en": "Loop",
-                  "si": null
+                  "si": "ලූපය"
                 }
               ],
               "ans": 0
@@ -957,19 +963,19 @@
               "opts": [
                 {
                   "en": "Sequence",
-                  "si": null
+                  "si": "අනුක්‍රමය"
                 },
                 {
                   "en": "Selection",
-                  "si": null
+                  "si": "තේරීම"
                 },
                 {
                   "en": "Repetition",
-                  "si": null
+                  "si": "පුනර්කරණය"
                 },
                 {
                   "en": "Random",
-                  "si": null
+                  "si": "අහඹු"
                 }
               ],
               "ans": 1
@@ -982,19 +988,19 @@
               "opts": [
                 {
                   "en": "Sequence",
-                  "si": null
+                  "si": "අනුක්‍රමය"
                 },
                 {
                   "en": "Selection",
-                  "si": null
+                  "si": "තේරීම"
                 },
                 {
                   "en": "Repetition",
-                  "si": null
+                  "si": "පුනර්කරණය"
                 },
                 {
                   "en": "Linear",
-                  "si": null
+                  "si": "රේඛීය"
                 }
               ],
               "ans": 2
@@ -1007,19 +1013,19 @@
               "opts": [
                 {
                   "en": "Single loop",
-                  "si": null
+                  "si": "තනි ලූපයක්"
                 },
                 {
                   "en": "Loop within a loop",
-                  "si": null
+                  "si": "ලූපයක් තුළ ලූපයක්"
                 },
                 {
                   "en": "No loop",
-                  "si": null
+                  "si": "ලූපයක් නැත"
                 },
                 {
                   "en": "Random loop",
-                  "si": null
+                  "si": "අහඹු ලූපයක්"
                 }
               ],
               "ans": 1
@@ -1032,19 +1038,19 @@
               "opts": [
                 {
                   "en": "Sequence",
-                  "si": null
+                  "si": "අනුක්‍රමය"
                 },
                 {
                   "en": "Selection",
-                  "si": null
+                  "si": "තේරීම"
                 },
                 {
                   "en": "Repetition",
-                  "si": null
+                  "si": "පුනර්කරණය"
                 },
                 {
                   "en": "None",
-                  "si": null
+                  "si": "කිසිවක් නැත"
                 }
               ],
               "ans": 2
@@ -1057,105 +1063,107 @@
               "opts": [
                 {
                   "en": "Simple selection",
-                  "si": null
+                  "si": "සරල තේරීම"
                 },
                 {
                   "en": "Multi-way selection",
-                  "si": null
+                  "si": "බහුමාර්ග තේරීම"
                 },
                 {
                   "en": "Sequence",
-                  "si": null
+                  "si": "අනුක්‍රමය"
                 },
                 {
                   "en": "Loop",
-                  "si": null
+                  "si": "ලූපය"
                 }
               ],
               "ans": 1
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "p2",
           "icon": "🔷",
           "name": {
             "en": "Flow Symbols",
-            "si": null
+            "si": "ගැලීම් සටහන් සංකේත"
           },
           "desc": {
             "en": "Match flowchart symbols",
-            "si": null
+            "si": "ගැලීම් සටහන් සංකේත ගළපන්න"
           },
           "kind": "memoryGame",
           "pairs": [
             {
               "a": {
                 "en": "⬭ Oval",
-                "si": null
+                "si": "⬭ ඕවලය"
               },
               "b": {
                 "en": "Start / End",
-                "si": null
+                "si": "ආරම්භය / අවසානය"
               },
               "key": "o"
             },
             {
               "a": {
                 "en": "▭ Rectangle",
-                "si": null
+                "si": "▭ සෘජුකෝණාස්‍රය"
               },
               "b": {
                 "en": "Process",
-                "si": null
+                "si": "ක්‍රියාවලිය"
               },
               "key": "r"
             },
             {
               "a": {
                 "en": "◇ Diamond",
-                "si": null
+                "si": "◇ දියමන්තිය"
               },
               "b": {
                 "en": "Decision",
-                "si": null
+                "si": "තීරණය"
               },
               "key": "d"
             },
             {
               "a": {
                 "en": "▱ Parallelogram",
-                "si": null
+                "si": "▱ සමාන්තරාස්‍රය"
               },
               "b": {
                 "en": "Input / Output",
-                "si": null
+                "si": "ආදාන / ප්‍රතිදාන"
               },
               "key": "p"
             },
             {
               "a": {
                 "en": "→ Arrow",
-                "si": null
+                "si": "→ ඊතලය"
               },
               "b": {
                 "en": "Flow direction",
-                "si": null
+                "si": "ගැලීම් දිශාව"
               },
               "key": "ar"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "p3",
           "icon": "🔄",
           "name": {
             "en": "Repeat Blocks",
-            "si": null
+            "si": "පුනර්කරණ බ්ලොක"
           },
           "desc": {
             "en": "Scratch repetition quiz",
-            "si": null
+            "si": "ස්ක්‍රැච් පුනර්කරණ ප්‍රශ්නාවලිය"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -1167,19 +1175,19 @@
               "opts": [
                 {
                   "en": "1",
-                  "si": null
+                  "si": "1"
                 },
                 {
                   "en": "5",
-                  "si": null
+                  "si": "5"
                 },
                 {
                   "en": "10",
-                  "si": null
+                  "si": "10"
                 },
                 {
                   "en": "Infinite",
-                  "si": null
+                  "si": "අනන්ත"
                 }
               ],
               "ans": 2
@@ -1192,19 +1200,19 @@
               "opts": [
                 {
                   "en": "1",
-                  "si": null
+                  "si": "1"
                 },
                 {
                   "en": "10",
-                  "si": null
+                  "si": "10"
                 },
                 {
                   "en": "100",
-                  "si": null
+                  "si": "100"
                 },
                 {
                   "en": "Infinitely",
-                  "si": null
+                  "si": "අනන්ත ලෙස"
                 }
               ],
               "ans": 3
@@ -1217,19 +1225,19 @@
               "opts": [
                 {
                   "en": "Immediately",
-                  "si": null
+                  "si": "වහාම"
                 },
                 {
                   "en": "When condition is true",
-                  "si": null
+                  "si": "කොන්දේසිය සත්‍ය වූ විට"
                 },
                 {
                   "en": "After 1 loop",
-                  "si": null
+                  "si": "ලූප 1 කට පසු"
                 },
                 {
                   "en": "Never",
-                  "si": null
+                  "si": "කිසිදා නැත"
                 }
               ],
               "ans": 1
@@ -1242,19 +1250,19 @@
               "opts": [
                 {
                   "en": "Variable",
-                  "si": null
+                  "si": "විචල්‍යය"
                 },
                 {
                   "en": "List",
-                  "si": null
+                  "si": "ලැයිස්තුව"
                 },
                 {
                   "en": "Array",
-                  "si": null
+                  "si": "ආරාව"
                 },
                 {
                   "en": "Table",
-                  "si": null
+                  "si": "වගුව"
                 }
               ],
               "ans": 1
@@ -1267,24 +1275,25 @@
               "opts": [
                 {
                   "en": "First item",
-                  "si": null
+                  "si": "පළමු අයිතමය"
                 },
                 {
                   "en": "Last item",
-                  "si": null
+                  "si": "අවසාන අයිතමය"
                 },
                 {
                   "en": "Number of items",
-                  "si": null
+                  "si": "අයිතම ගණන"
                 },
                 {
                   "en": "Random item",
-                  "si": null
+                  "si": "අහඹු අයිතමයක්"
                 }
               ],
               "ans": 2
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     },
@@ -1302,11 +1311,11 @@
           "icon": "🎛️",
           "name": {
             "en": "micro:bit Parts",
-            "si": null
+            "si": "micro:bit කොටස්"
           },
           "desc": {
             "en": "Match components",
-            "si": null
+            "si": "අංග ගළපන්න"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -1318,19 +1327,19 @@
               "opts": [
                 {
                   "en": "1",
-                  "si": null
+                  "si": "1"
                 },
                 {
                   "en": "2",
-                  "si": null
+                  "si": "2"
                 },
                 {
                   "en": "3",
-                  "si": null
+                  "si": "3"
                 },
                 {
                   "en": "4",
-                  "si": null
+                  "si": "4"
                 }
               ],
               "ans": 1
@@ -1343,19 +1352,19 @@
               "opts": [
                 {
                   "en": "Left, Right",
-                  "si": null
+                  "si": "වම, දකුණ"
                 },
                 {
                   "en": "Right, Left",
-                  "si": null
+                  "si": "දකුණ, වම"
                 },
                 {
                   "en": "Top, Bottom",
-                  "si": null
+                  "si": "ඉහළ, පහළ"
                 },
                 {
                   "en": "Up, Down",
-                  "si": null
+                  "si": "උඩට, පහළට"
                 }
               ],
               "ans": 0
@@ -1368,19 +1377,19 @@
               "opts": [
                 {
                   "en": "5",
-                  "si": null
+                  "si": "5"
                 },
                 {
                   "en": "10",
-                  "si": null
+                  "si": "10"
                 },
                 {
                   "en": "25",
-                  "si": null
+                  "si": "25"
                 },
                 {
                   "en": "50",
-                  "si": null
+                  "si": "50"
                 }
               ],
               "ans": 2
@@ -1393,19 +1402,19 @@
               "opts": [
                 {
                   "en": "VGA",
-                  "si": null
+                  "si": "VGA"
                 },
                 {
                   "en": "HDMI",
-                  "si": null
+                  "si": "HDMI"
                 },
                 {
                   "en": "Micro USB",
-                  "si": null
+                  "si": "Micro USB"
                 },
                 {
                   "en": "RJ45",
-                  "si": null
+                  "si": "RJ45"
                 }
               ],
               "ans": 2
@@ -1418,19 +1427,19 @@
               "opts": [
                 {
                   "en": "Temperature",
-                  "si": null
+                  "si": "උෂ්ණත්වය"
                 },
                 {
                   "en": "Light",
-                  "si": null
+                  "si": "ආලෝකය"
                 },
                 {
                   "en": "Accelerometer",
-                  "si": null
+                  "si": "ත්වරණමානය"
                 },
                 {
                   "en": "Compass",
-                  "si": null
+                  "si": "මාලිමාව"
                 }
               ],
               "ans": 2
@@ -1443,105 +1452,107 @@
               "opts": [
                 {
                   "en": "Compass",
-                  "si": null
+                  "si": "මාලිමාව"
                 },
                 {
                   "en": "Light",
-                  "si": null
+                  "si": "ආලෝකය"
                 },
                 {
                   "en": "Temperature",
-                  "si": null
+                  "si": "උෂ්ණත්වය"
                 },
                 {
                   "en": "Motion",
-                  "si": null
+                  "si": "චලනය"
                 }
               ],
               "ans": 0
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "m2",
           "icon": "📡",
           "name": {
             "en": "Sensor Match",
-            "si": null
+            "si": "සංවේදක ගැලපීම"
           },
           "desc": {
             "en": "Match sensor to function",
-            "si": null
+            "si": "සංවේදකය හා එහි කාර්යය ගළපන්න"
           },
           "kind": "memoryGame",
           "pairs": [
             {
               "a": {
                 "en": "🌡️ Temperature",
-                "si": null
+                "si": "🌡️ උෂ්ණත්වය"
               },
               "b": {
                 "en": "Heat detection",
-                "si": null
+                "si": "තාපය හඳුනා ගැනීම"
               },
               "key": "t"
             },
             {
               "a": {
                 "en": "💡 Light",
-                "si": null
+                "si": "💡 ආලෝකය"
               },
               "b": {
                 "en": "Brightness detection",
-                "si": null
+                "si": "දීප්තිය හඳුනා ගැනීම"
               },
               "key": "l"
             },
             {
               "a": {
                 "en": "📡 PIR Sensor",
-                "si": null
+                "si": "📡 PIR සංවේදකය"
               },
               "b": {
                 "en": "Human motion",
-                "si": null
+                "si": "මිනිස් චලනය"
               },
               "key": "p"
             },
             {
               "a": {
                 "en": "📶 Ultrasonic",
-                "si": null
+                "si": "📶 අතිධ්වනික"
               },
               "b": {
                 "en": "Distance measure",
-                "si": null
+                "si": "දුර මැනීම"
               },
               "key": "u"
             },
             {
               "a": {
                 "en": "🧭 Compass",
-                "si": null
+                "si": "🧭 මාලිමාව"
               },
               "b": {
                 "en": "Direction finding",
-                "si": null
+                "si": "දිශාව සොයා ගැනීම"
               },
               "key": "c"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "m3",
           "icon": "💡",
           "name": {
             "en": "Real Applications",
-            "si": null
+            "si": "සැබෑ යෙදුම්"
           },
           "desc": {
             "en": "Smart devices using microcontrollers",
-            "si": null
+            "si": "ක්ෂුද්‍ර පාලක භාවිත කරන සුහුරු උපාංග"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -1553,19 +1564,19 @@
               "opts": [
                 {
                   "en": "Temperature",
-                  "si": null
+                  "si": "උෂ්ණත්වය"
                 },
                 {
                   "en": "Light sensor",
-                  "si": null
+                  "si": "ආලෝක සංවේදකය"
                 },
                 {
                   "en": "Compass",
-                  "si": null
+                  "si": "මාලිමාව"
                 },
                 {
                   "en": "Motion",
-                  "si": null
+                  "si": "චලනය"
                 }
               ],
               "ans": 1
@@ -1578,19 +1589,19 @@
               "opts": [
                 {
                   "en": "Auto wash",
-                  "si": null
+                  "si": "ස්වයංක්‍රීය සේදීම"
                 },
                 {
                   "en": "Sound",
-                  "si": null
+                  "si": "ශබ්දය"
                 },
                 {
                   "en": "Display",
-                  "si": null
+                  "si": "සංදර්ශනය"
                 },
                 {
                   "en": "All of these",
-                  "si": null
+                  "si": "මේ සියල්ලම"
                 }
               ],
               "ans": 3
@@ -1603,19 +1614,19 @@
               "opts": [
                 {
                   "en": "Only time",
-                  "si": null
+                  "si": "වේලාව පමණි"
                 },
                 {
                   "en": "Temperature & time",
-                  "si": null
+                  "si": "උෂ්ණත්වය හා වේලාව"
                 },
                 {
                   "en": "Only temperature",
-                  "si": null
+                  "si": "උෂ්ණත්වය පමණි"
                 },
                 {
                   "en": "None",
-                  "si": null
+                  "si": "කිසිවක් නැත"
                 }
               ],
               "ans": 1
@@ -1628,19 +1639,19 @@
               "opts": [
                 {
                   "en": "Intel i5",
-                  "si": null
+                  "si": "Intel i5"
                 },
                 {
                   "en": "ATMEGA328p",
-                  "si": null
+                  "si": "ATMEGA328p"
                 },
                 {
                   "en": "ARM Cortex",
-                  "si": null
+                  "si": "ARM Cortex"
                 },
                 {
                   "en": "AMD Ryzen",
-                  "si": null
+                  "si": "AMD Ryzen"
                 }
               ],
               "ans": 1
@@ -1653,24 +1664,25 @@
               "opts": [
                 {
                   "en": "Arduino",
-                  "si": null
+                  "si": "Arduino"
                 },
                 {
                   "en": "Raspberry Pi",
-                  "si": null
+                  "si": "Raspberry Pi"
                 },
                 {
                   "en": "micro:bit",
-                  "si": null
+                  "si": "micro:bit"
                 },
                 {
                   "en": "Breadboard",
-                  "si": null
+                  "si": "බ්‍රෙඩ්බෝඩ්"
                 }
               ],
               "ans": 1
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     },
@@ -1688,53 +1700,53 @@
           "icon": "📡",
           "name": {
             "en": "Wired or Wireless?",
-            "si": null
+            "si": "රැහැන් සහිතද රැහැන් රහිතද?"
           },
           "desc": {
             "en": "Classify network media",
-            "si": null
+            "si": "ජාල මාධ්‍ය වර්ග කරන්න"
           },
           "kind": "sortGame",
           "items": [
             {
               "name": {
                 "en": "🔌 Twisted Pair",
-                "si": null
+                "si": "🔌 වංක යුගල"
               },
               "bin": "wired"
             },
             {
               "name": {
                 "en": "💡 Optical Fiber",
-                "si": null
+                "si": "💡 ප්‍රකාශ තන්තු"
               },
               "bin": "wired"
             },
             {
               "name": {
                 "en": "📡 Infrared Waves",
-                "si": null
+                "si": "📡 අධෝරක්ත තරංග"
               },
               "bin": "wireless"
             },
             {
               "name": {
                 "en": "🔵 Bluetooth",
-                "si": null
+                "si": "🔵 බ්ලූටූත්"
               },
               "bin": "wireless"
             },
             {
               "name": {
                 "en": "📶 Wi-Fi Waves",
-                "si": null
+                "si": "📶 Wi-Fi තරංග"
               },
               "bin": "wireless"
             },
             {
               "name": {
                 "en": "📻 Radio Waves",
-                "si": null
+                "si": "📻 ගුවන් විදුලි තරංග"
               },
               "bin": "wireless"
             }
@@ -1744,7 +1756,7 @@
               "id": "wired",
               "name": {
                 "en": "Wired (රැහැන් සහිත)",
-                "si": null
+                "si": "රැහැන් සහිත"
               },
               "emoji": "🔌"
             },
@@ -1752,22 +1764,23 @@
               "id": "wireless",
               "name": {
                 "en": "Wireless (රැහැන් රහිත)",
-                "si": null
+                "si": "රැහැන් රහිත"
               },
               "emoji": "📡"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "n2",
           "icon": "🖥️",
           "name": {
             "en": "Network Components",
-            "si": null
+            "si": "ජාල අංග"
           },
           "desc": {
             "en": "Match device to role",
-            "si": null
+            "si": "උපාංගය හා එහි කාර්යභාරය ගළපන්න"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -1779,19 +1792,19 @@
               "opts": [
                 {
                   "en": "Switch",
-                  "si": null
+                  "si": "ස්විචය"
                 },
                 {
                   "en": "CPU",
-                  "si": null
+                  "si": "CPU"
                 },
                 {
                   "en": "Mouse",
-                  "si": null
+                  "si": "මූසිකය"
                 },
                 {
                   "en": "Monitor",
-                  "si": null
+                  "si": "සන්දර්ශකය"
                 }
               ],
               "ans": 0
@@ -1804,19 +1817,19 @@
               "opts": [
                 {
                   "en": "Switch",
-                  "si": null
+                  "si": "ස්විචය"
                 },
                 {
                   "en": "Router",
-                  "si": null
+                  "si": "රවුටරය"
                 },
                 {
                   "en": "Hub",
-                  "si": null
+                  "si": "හබ්"
                 },
                 {
                   "en": "Mouse",
-                  "si": null
+                  "si": "මූසිකය"
                 }
               ],
               "ans": 1
@@ -1829,19 +1842,19 @@
               "opts": [
                 {
                   "en": "Client",
-                  "si": null
+                  "si": "සේවාලාභියා"
                 },
                 {
                   "en": "Server",
-                  "si": null
+                  "si": "සේවාදායකය"
                 },
                 {
                   "en": "Router",
-                  "si": null
+                  "si": "රවුටරය"
                 },
                 {
                   "en": "Printer",
-                  "si": null
+                  "si": "මුද්‍රකය"
                 }
               ],
               "ans": 1
@@ -1854,19 +1867,19 @@
               "opts": [
                 {
                   "en": "Network Internet Card",
-                  "si": null
+                  "si": "Network Internet Card"
                 },
                 {
                   "en": "Network Interface Card",
-                  "si": null
+                  "si": "Network Interface Card"
                 },
                 {
                   "en": "New Internet Card",
-                  "si": null
+                  "si": "New Internet Card"
                 },
                 {
                   "en": "Network Internal Card",
-                  "si": null
+                  "si": "Network Internal Card"
                 }
               ],
               "ans": 1
@@ -1879,35 +1892,36 @@
               "opts": [
                 {
                   "en": "RJ45 Cable",
-                  "si": null
+                  "si": "RJ45 කේබලය"
                 },
                 {
                   "en": "Bluetooth",
-                  "si": null
+                  "si": "බ්ලූටූත්"
                 },
                 {
                   "en": "Wi-Fi",
-                  "si": null
+                  "si": "Wi-Fi"
                 },
                 {
                   "en": "Infrared",
-                  "si": null
+                  "si": "අධෝරක්ත"
                 }
               ],
               "ans": 0
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "n3",
           "icon": "💻",
           "name": {
             "en": "Network OS Quiz",
-            "si": null
+            "si": "ජාල මෙහෙයුම් පද්ධති ප්‍රශ්නාවලිය"
           },
           "desc": {
             "en": "Networking concepts",
-            "si": null
+            "si": "ජාලකරණ සංකල්ප"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -1919,19 +1933,19 @@
               "opts": [
                 {
                   "en": "Share resources",
-                  "si": null
+                  "si": "සම්පත් බෙදා ගැනීම"
                 },
                 {
                   "en": "Play games",
-                  "si": null
+                  "si": "ක්‍රීඩා කිරීම"
                 },
                 {
                   "en": "Slow down",
-                  "si": null
+                  "si": "මන්දගාමී වීම"
                 },
                 {
                   "en": "Security",
-                  "si": null
+                  "si": "ආරක්ෂාව"
                 }
               ],
               "ans": 0
@@ -1944,19 +1958,19 @@
               "opts": [
                 {
                   "en": "Share printer",
-                  "si": null
+                  "si": "මුද්‍රකය බෙදා ගැනීම"
                 },
                 {
                   "en": "Cannot share",
-                  "si": null
+                  "si": "බෙදා ගත නොහැක"
                 },
                 {
                   "en": "Only offline",
-                  "si": null
+                  "si": "මාර්ගගත නොවී පමණි"
                 },
                 {
                   "en": "No communication",
-                  "si": null
+                  "si": "සන්නිවේදනයක් නැත"
                 }
               ],
               "ans": 0
@@ -1969,19 +1983,19 @@
               "opts": [
                 {
                   "en": "Command Line Interface",
-                  "si": null
+                  "si": "Command Line Interface"
                 },
                 {
                   "en": "Common Link Interface",
-                  "si": null
+                  "si": "Common Link Interface"
                 },
                 {
                   "en": "Central Line Input",
-                  "si": null
+                  "si": "Central Line Input"
                 },
                 {
                   "en": "Computer Link Input",
-                  "si": null
+                  "si": "Computer Link Input"
                 }
               ],
               "ans": 0
@@ -1994,24 +2008,25 @@
               "opts": [
                 {
                   "en": "Only files",
-                  "si": null
+                  "si": "ගොනු පමණි"
                 },
                 {
                   "en": "Only printers",
-                  "si": null
+                  "si": "මුද්‍රක පමණි"
                 },
                 {
                   "en": "Software, hardware, files",
-                  "si": null
+                  "si": "මෘදුකාංග, දෘඪාංග, ගොනු"
                 },
                 {
                   "en": "Nothing",
-                  "si": null
+                  "si": "කිසිවක් නැත"
                 }
               ],
               "ans": 2
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     },
@@ -2029,11 +2044,11 @@
           "icon": "🏥",
           "name": {
             "en": "e-Services Match",
-            "si": null
+            "si": "ඊ-සේවා ගැලපීම"
           },
           "desc": {
             "en": "Match e-idea to field",
-            "si": null
+            "si": "ඊ-සංකල්පය හා ක්ෂේත්‍රය ගළපන්න"
           },
           "kind": "mcQuiz",
           "questions": [
@@ -2045,19 +2060,19 @@
               "opts": [
                 {
                   "en": "Online learning",
-                  "si": null
+                  "si": "මාර්ගගත ඉගෙනීම"
                 },
                 {
                   "en": "Electronic books only",
-                  "si": null
+                  "si": "විද්‍යුත් පොත් පමණි"
                 },
                 {
                   "en": "No education",
-                  "si": null
+                  "si": "අධ්‍යාපනයක් නැත"
                 },
                 {
                   "en": "School only",
-                  "si": null
+                  "si": "පාසල පමණි"
                 }
               ],
               "ans": 0
@@ -2070,19 +2085,19 @@
               "opts": [
                 {
                   "en": "Health apps only",
-                  "si": null
+                  "si": "සෞඛ්‍ය යෙදුම් පමණි"
                 },
                 {
                   "en": "ICT in healthcare",
-                  "si": null
+                  "si": "සෞඛ්‍ය සේවයේ තොරතුරු තාක්ෂණය"
                 },
                 {
                   "en": "Only hospital",
-                  "si": null
+                  "si": "රෝහල පමණි"
                 },
                 {
                   "en": "No medicine",
-                  "si": null
+                  "si": "ඖෂධ නැත"
                 }
               ],
               "ans": 1
@@ -2095,19 +2110,19 @@
               "opts": [
                 {
                   "en": "Only taxes",
-                  "si": null
+                  "si": "බදු පමණි"
                 },
                 {
                   "en": "Online public services",
-                  "si": null
+                  "si": "මාර්ගගත රාජ්‍ය සේවා"
                 },
                 {
                   "en": "Only police",
-                  "si": null
+                  "si": "පොලිසිය පමණි"
                 },
                 {
                   "en": "Nothing",
-                  "si": null
+                  "si": "කිසිවක් නැත"
                 }
               ],
               "ans": 1
@@ -2120,19 +2135,19 @@
               "opts": [
                 {
                   "en": "Only shops",
-                  "si": null
+                  "si": "සාප්පු පමණි"
                 },
                 {
                   "en": "Online buying/selling",
-                  "si": null
+                  "si": "මාර්ගගත ගැනුම් හා විකුණුම්"
                 },
                 {
                   "en": "Only banking",
-                  "si": null
+                  "si": "බැංකුකරණය පමණි"
                 },
                 {
                   "en": "Only travel",
-                  "si": null
+                  "si": "සංචාරය පමණි"
                 }
               ],
               "ans": 1
@@ -2145,77 +2160,78 @@
               "opts": [
                 {
                   "en": "Between tech users & non-users",
-                  "si": null
+                  "si": "තාක්ෂණය භාවිත කරන්නන් හා නොකරන්නන් අතර"
                 },
                 {
                   "en": "File split",
-                  "si": null
+                  "si": "ගොනු බෙදීම"
                 },
                 {
                   "en": "New folder",
-                  "si": null
+                  "si": "නව බහාලුම"
                 },
                 {
                   "en": "Internet split",
-                  "si": null
+                  "si": "අන්තර්ජාල බෙදීම"
                 }
               ],
               "ans": 0
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "so2",
           "icon": "♻️",
           "name": {
             "en": "3R Sorter",
-            "si": null
+            "si": "3R වර්ග කිරීම"
           },
           "desc": {
             "en": "Reduce / Reuse / Recycle",
-            "si": null
+            "si": "අවම කරමු / නැවත භාවිත / ප්‍රතිචක්‍රීකරණය"
           },
           "kind": "sortGame",
           "items": [
             {
               "name": {
                 "en": "🛍️ Buy less stuff",
-                "si": null
+                "si": "🛍️ අඩුවෙන් දේවල් මිලදී ගන්න"
               },
               "bin": "reduce"
             },
             {
               "name": {
                 "en": "🚫 Avoid new gadgets",
-                "si": null
+                "si": "🚫 නව උපකරණ ගැනීමෙන් වළකින්න"
               },
               "bin": "reduce"
             },
             {
               "name": {
                 "en": "🔧 Repair old device",
-                "si": null
+                "si": "🔧 පැරණි උපාංගය අලුත්වැඩියා කරන්න"
               },
               "bin": "reuse"
             },
             {
               "name": {
                 "en": "♻️ Give away working items",
-                "si": null
+                "si": "♻️ ක්‍රියා කරන දේ අන් අයට දෙන්න"
               },
               "bin": "reuse"
             },
             {
               "name": {
                 "en": "🔋 Send battery to recycling center",
-                "si": null
+                "si": "🔋 බැටරිය ප්‍රතිචක්‍රීකරණ මධ්‍යස්ථානයට යවන්න"
               },
               "bin": "recycle"
             },
             {
               "name": {
                 "en": "💻 Recycle old computer",
-                "si": null
+                "si": "💻 පැරණි පරිගණකය ප්‍රතිචක්‍රීකරණය කරන්න"
               },
               "bin": "recycle"
             }
@@ -2225,7 +2241,7 @@
               "id": "reduce",
               "name": {
                 "en": "Reduce (අවම කරමු)",
-                "si": null
+                "si": "අවම කරමු"
               },
               "emoji": "📉"
             },
@@ -2233,7 +2249,7 @@
               "id": "reuse",
               "name": {
                 "en": "Reuse (නැවත භාවිත)",
-                "si": null
+                "si": "නැවත භාවිත"
               },
               "emoji": "♻️"
             },
@@ -2241,81 +2257,83 @@
               "id": "recycle",
               "name": {
                 "en": "Recycle (ප්‍රතිචක්‍රීකරණය)",
-                "si": null
+                "si": "ප්‍රතිචක්‍රීකරණය"
               },
               "emoji": "🔄"
             }
-          ]
+          ],
+          "siDraft": true
         },
         {
           "id": "so3",
           "icon": "💼",
           "name": {
             "en": "ICT Jobs Match",
-            "si": null
+            "si": "තොරතුරු තාක්ෂණ රැකියා ගැලපීම"
           },
           "desc": {
             "en": "Match job to description",
-            "si": null
+            "si": "රැකියාව හා විස්තරය ගළපන්න"
           },
           "kind": "memoryGame",
           "pairs": [
             {
               "a": {
                 "en": "👨‍💻 Software Engineer",
-                "si": null
+                "si": "👨‍💻 මෘදුකාංග ඉංජිනේරු"
               },
               "b": {
                 "en": "Creates software",
-                "si": null
+                "si": "මෘදුකාංග නිර්මාණය කරයි"
               },
               "key": "se"
             },
             {
               "a": {
                 "en": "🌐 Web Developer",
-                "si": null
+                "si": "🌐 වෙබ් සංවර්ධක"
               },
               "b": {
                 "en": "Builds websites",
-                "si": null
+                "si": "වෙබ් අඩවි නිර්මාණය කරයි"
               },
               "key": "wd"
             },
             {
               "a": {
                 "en": "🔧 Network Admin",
-                "si": null
+                "si": "🔧 ජාල පරිපාලක"
               },
               "b": {
                 "en": "Manages networks",
-                "si": null
+                "si": "පරිගණක ජාල කළමනාකරණය කරයි"
               },
               "key": "na"
             },
             {
               "a": {
                 "en": "📊 System Analyst",
-                "si": null
+                "si": "📊 පද්ධති විශ්ලේෂක"
               },
               "b": {
                 "en": "Designs systems",
-                "si": null
+                "si": "තොරතුරු පද්ධති සැලසුම් කරයි"
               },
               "key": "sa"
             },
             {
               "a": {
                 "en": "🎨 Graphic Designer",
-                "si": null
+                "si": "🎨 චිත්‍රක නිර්මාණකරු"
               },
               "b": {
                 "en": "Creates visuals",
-                "si": null
+                "si": "දෘශ්‍ය නිර්මාණය කරයි"
               },
               "key": "gd"
             }
-          ]
+          ],
+          "siDraft": true
         }
       ]
     }

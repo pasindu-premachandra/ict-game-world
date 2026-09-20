@@ -1,0 +1,63 @@
+{
+  "why": "The Scratch Code Builder comes from original/grade-9/scratch.html, which is English only, so extract.mjs sets si: null on all 34 of its copy strings. This file is that Sinhala, drafted 2026-09-20 against the NIE Sinhala-medium terms in content/pages/word-bank.md: Sequence = අනුක්‍රමය, Selection = තේරීම, Repetition = පුනර්කරණය, control structure = පාලන ව්‍යූහය, program = වැඩසටහන. Keyed by the English string, so a key that no longer matches fails loudly. Block text is deliberately absent: it is Scratch's own block language and is never translated, which is also why the descriptions name the blocks in English (repeat until, forever, if...else) - that is the wording a student sees on screen and in the lab.",
+  "draft": true,
+
+  "structures": {
+    "sequence": {
+      "Sequence": "අනුක්‍රමය",
+      "Steps executed one after another, in order": "එකින් එක, පිළිවෙළට ක්‍රියාත්මක වන පියවර",
+
+      "Add Two Numbers": "සංඛ්‍යා දෙකක් එකතු කිරීම",
+      "Ask for two numbers, add them, and show the result.": "සංඛ්‍යා දෙකක් අසා, ඒවා එකතු කර, පිළිතුර පෙන්වන්න.",
+
+      "Draw a Square with Pen": "පෑනෙන් සමචතුරස්‍රයක් ඇඳීම",
+      "Draw a square using pen blocks. Each side is 100 steps.": "pen බ්ලොක් භාවිතයෙන් සමචතුරස්‍රයක් අඳින්න. එක් පැත්තක් පියවර 100 කි.",
+
+      "Ask Name and Greet": "නම අසා ආචාර කිරීම",
+      "Ask the user's name and say hello using it.": "පරිශීලකයාගේ නම අසා, එම නමින් ආචාර කරන්න.",
+
+      "Calculate Rectangle Area": "සෘජුකෝණාස්‍රයේ වර්ගඵලය ගණනය කිරීම",
+      "Ask for length and width, then calculate and show the area.": "දිග හා පළල අසා, වර්ගඵලය ගණනය කර පෙන්වන්න."
+    },
+
+    "selection": {
+      "Selection": "තේරීම",
+      "Choose between options based on a condition": "කොන්දේසියක් මත විකල්ප අතරින් එකක් තෝරා ගැනීම",
+
+      "Even or Odd Checker": "ඉරට්ටේද ඔත්තේද පරීක්ෂකය",
+      "Ask for a number and check if it is even or odd using if...else.": "සංඛ්‍යාවක් අසා, if...else භාවිතයෙන් එය ඉරට්ටේද ඔත්තේද යන්න පරීක්ෂා කරන්න.",
+
+      "Pass or Fail": "සමත්ද අසමත්ද",
+      "Check if a student passed (marks ≥ 50) or failed.": "සිසුවෙකු සමත් වී ඇත්ද (ලකුණු 50 හෝ ඊට වැඩි) නැතහොත් අසමත් වී ඇත්ද යන්න පරීක්ෂා කරන්න.",
+
+      "Withdraw Money Safely": "මුදල් ආරක්ෂිතව ලබා ගැනීම",
+      "Check balance before withdrawing money from an account with 5000.": "රුපියල් 5000 ක් ඇති ගිණුමකින් මුදල් ලබා ගැනීමට පෙර ශේෂය පරීක්ෂා කරන්න.",
+
+      "Greater of Two Numbers": "සංඛ්‍යා දෙකෙන් විශාලතම",
+      "Ask for two numbers and show which one is greater.": "සංඛ්‍යා දෙකක් අසා, ඒවායින් විශාල කුමක්ද යන්න පෙන්වන්න."
+    },
+
+    "repetition": {
+      "Repetition": "පුනර්කරණය",
+      "Repeat steps until a condition is met": "කොන්දේසියක් සපුරන තෙක් පියවර නැවත නැවත කිරීම",
+
+      "Show Numbers 1 to 5": "1 සිට 5 දක්වා සංඛ්‍යා පෙන්වීම",
+      "Display numbers 1 to 5 using a repeat-until loop.": "repeat until ලූපයක් භාවිතයෙන් 1 සිට 5 දක්වා සංඛ්‍යා පෙන්වන්න.",
+
+      "Show Numbers 1 to 10": "1 සිට 10 දක්වා සංඛ්‍යා පෙන්වීම",
+      "Display numbers 1 to 10 using a repeat 10 loop.": "repeat 10 ලූපයක් භාවිතයෙන් 1 සිට 10 දක්වා සංඛ්‍යා පෙන්වන්න.",
+
+      "Multiplication Table of 3": "3 හි ගුණන වගුව",
+      "Show the multiplication table of 3 using a repeat loop.": "repeat ලූපයක් භාවිතයෙන් 3 හි ගුණන වගුව පෙන්වන්න.",
+
+      "Sum of 1 to 10": "1 සිට 10 දක්වා එකතුව",
+      "Calculate the total of numbers from 1 to 10 using repetition.": "පුනර්කරණය භාවිතයෙන් 1 සිට 10 දක්වා සංඛ්‍යාවල එකතුව ගණනය කරන්න.",
+
+      "Draw a Colorful Circle": "වර්ණවත් වෘත්තයක් ඇඳීම",
+      "Use a forever loop to draw a colorful rotating circle.": "භ්‍රමණය වන වර්ණවත් වෘත්තයක් ඇඳීමට forever ලූපයක් භාවිත කරන්න.",
+
+      "Count Down from 10": "10 සිට පහළට ගණන් කිරීම",
+      "Show a countdown from 10 to 1 using repetition.": "පුනර්කරණය භාවිතයෙන් 10 සිට 1 දක්වා ආපසු ගණන් කිරීමක් පෙන්වන්න."
+    }
+  }
+}

@@ -94,17 +94,19 @@ blocks loose underneath; the else branch now sits inside the else.
   Console messages from the app ...... 0
 
 
-7. SINHALA, PER GATE ANSWER Q4 A
---------------------------------
+7. SINHALA, AS IT STOOD AT GATE ANSWER Q4 A
+-------------------------------------------
+SUPERSEDED. See the addendum at the end of this file: Pasindu then asked for
+the Sinhala to be written, so the 34 gaps recorded here are now filled and the
+English-only note no longer appears anywhere. Kept for the record.
+
   <html lang> ........................ si
-  hub title .......................... ස්ක්‍රැච් ක්‍රමලේඛ ගොඩනැගීම
-  hub lead ........................... පාලන ව්‍යුහයක් තෝරන්න. එක් එකක් තුළ බ්ලොක්
-                                       පිළිවෙළට තබා ගොඩනගන ක්‍රමලේඛ ඇත.
-  block text under lang=si ........... "set Num2 to answer"  (English, correct)
+  block text under lang=si ........... "set Num2 to answer"  (English, correct,
+                                        and still correct after the addendum)
   English-only note shown ............ මෙයට සිංහල තවම ලියැවෙමින් පවතී.
 
-  check-data.mjs counts the gap independently: "scratch: 34 strings have no
-  Sinhala yet" - the same 34 quoted at the gate. They are 3 structure names,
+  check-data.mjs counted the gap independently: "scratch: 34 strings have no
+  Sinhala yet" - the same 34 quoted at the gate. They were 3 structure names,
   3 descriptions, 14 program names and 14 program descriptions.
 
 
@@ -125,3 +127,93 @@ NOT COVERED BY THIS RUN
   Worth one manual check on a lab PC.
 - Production. Everything here is local. Nothing was pushed, and nothing in
   this task touches Supabase: the builder scores nothing by gate answer Q1 A.
+
+
+=====================================================================
+ADDENDUM - the Sinhala, written 2026-09-20
+=====================================================================
+Pasindu asked for the "මෙයට සිංහල තවම ලියැවෙමින් පවතී." note to be fixed
+everywhere, then "do the sinhala properly". That reverses gate answer Q4 A
+(which had parked 34 strings on Ishini's list) and extends the job to the
+adventure set, which had 348.
+
+
+WHAT WAS WRITTEN
+----------------
+  content/scratch.sinhala.json       34 strings  (3 structures, 14 programs)
+  content/adventure-9.sinhala.json  348 strings  (18 games)
+                                    --- 382 total
+
+Both go through the same overlay pipeline grade 9 already used: keyed by the
+English string, applied by scripts/lib/apply-sinhala.mjs, every touched node
+marked siDraft: true, and a key matching nothing is a hard error so the file
+cannot rot as the English changes underneath it.
+
+Terms come from content/pages/word-bank.md, the NIE Sinhala-medium list, so
+the bonus games and the builder cannot drift from the lessons:
+
+  Sequence ............ අනුක්‍රමය
+  Selection ........... තේරීම
+  Repetition .......... පුනර්කරණය
+  Control structure ... පාලන ව්‍යූහය
+  Program ............. වැඩසටහන
+  Variable ............ විචල්‍යය
+  Array ............... ආරාව
+  Sensor .............. සංවේදකය
+  Mouse ............... මූසිකය
+
+Eight UI strings in js/i18n.js were corrected to match: they had used
+ක්‍රමලේඛ (programming, the subject) where the word bank says වැඩසටහන
+(a program, the thing you build), and ව්‍යුහය where the NIE writes ව්‍යූහය.
+
+
+DELIBERATELY LEFT IN ENGLISH
+----------------------------
+- Scratch block text, all 99 blocks. It is Scratch's own block language and a
+  student meets it in English in the lab. Unchanged from gate answer Q4 A.
+- Product and standard names: VGA, HDMI, RJ45, USB, RAM, CPU, Wi-Fi,
+  micro:bit, Arduino, Raspberry Pi, Intel i5, ATMEGA328p, ARM Cortex,
+  AMD Ryzen.
+- Spreadsheet functions and operators: SUM, AVERAGE, MAX, MIN, = + - * /
+- Cell addresses (D5, 5D) and bare numbers.
+- The acronym-expansion distractors in n2 (NIC) and n3 (CLI). All four
+  options in each are English expansions; translating any would destroy the
+  question.
+Each of these is recorded with its reason in the overlay file's own notes.
+
+
+PROOF
+-----
+Data, counted straight off the files:
+
+  grade-6      untranslated: 0
+  grade-7      untranslated: 0
+  grade-8      untranslated: 0
+  grade-9      untranslated: 0
+  adventure-9  untranslated: 0
+  scratch      untranslated: 0
+  TOTAL REMAINING: 0
+
+In the browser, service worker cleared, language set to Sinhala:
+
+  130 activities opened across grades 6, 7, 8 and 9
+   17 Scratch Code Builder screens opened (hub, 3 lists, 14 programs)
+  ---
+  fallback notes seen ............... 0
+  titles still reading as English ... 0
+  instructions still English ........ 0
+
+  A block in the tray still reads "set n to 10", which is correct.
+
+Parity unaffected - check-data.mjs still rebuilds all six sources byte
+identically, because the overlay only fills si and `view()` strips siDraft.
+
+  07-si-adventure-quiz-375.png   the Control Structures quiz, fully Sinhala
+
+
+STILL A DRAFT
+-------------
+Every one of the 382 is marked siDraft and is Ishini's to correct, not mine
+to call final. The value of doing it now is that she corrects rather than
+composes, and that nothing reads English-only to a Sinhala-medium child in
+the meantime.

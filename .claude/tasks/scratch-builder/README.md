@@ -74,12 +74,34 @@ Headline numbers: **14 / 14 programs built from their own answer key in English 
 
 An old bookmark of `#/g9/3.4` hit the `hasPlayer()` name gate before reaching the builder, so a child who had never entered a nickname was asked for one to open something that scores nothing. `route()` now resolves the builder door before the gate, by looking the activity type up in the already-cached grade data. A real activity is still gated, which the proof run checks explicitly.
 
+### Then: the Sinhala was written, 2026-09-20
+
+Pasindu asked for the "මෙයට සිංහල තවම ලියැවෙමින් පවතී." note to be fixed everywhere, then "do the sinhala properly". **That reverses gate answer Q4 A** and extends the job past this task into the adventure set.
+
+**382 strings written**, through the same overlay pipeline grade 9 already used, all marked `siDraft`:
+
+| | | |
+|---|---|---|
+| `content/scratch.sinhala.json` | new | 34 - 3 structures, 14 programs |
+| `content/adventure-9.sinhala.json` | new | 348 - 18 games |
+| `scripts/lib/apply-sinhala.mjs` | `applyScratchSinhala` + `applyAdventureSinhala`, sharing one `fillOrThrow` | |
+| `scripts/extract.mjs` | applies both and reports the counts | |
+| `js/i18n.js` | 8 strings corrected to the word bank | |
+
+Terms come from `content/pages/word-bank.md`, the NIE Sinhala-medium list, so the builder and the bonus games cannot drift from the lessons: Sequence = අනුක්‍රමය, Selection = තේරීම, Repetition = පුනර්කරණය, control structure = පාලන ව්‍යූහය, program = වැඩසටහන. **My first drafts were wrong on two of these** and are fixed: I had used ක්‍රමලේඛ (programming, the subject) where the word bank says වැඩසටහන (a program, the thing you build), and ව්‍යුහය where the NIE writes ව්‍යූහය.
+
+**Left in English on purpose**, each with its reason recorded in the overlay's own `notes` block: all 99 Scratch block texts, product and standard names (VGA, RJ45, micro:bit, Arduino, ATMEGA328p...), spreadsheet functions and operators (SUM, AVERAGE, `= + - * /`), cell addresses, bare numbers, and the acronym-expansion distractors in `n2` (NIC) and `n3` (CLI), where translating an option would destroy the question.
+
+**Proof:** 0 untranslated strings left in any of the six data files; 130 activities across all four grades plus all 17 builder screens opened in Sinhala with 0 fallback notes and 0 English titles or instructions; parity gate still rebuilds all six sources byte identically. `evidence/proof.txt` addendum, and `07-si-adventure-quiz-375.png`.
+
+It is still a **draft**. Ishini corrects rather than composes, and nothing reads English-only to a Sinhala-medium child while she does.
+
 ### Left deliberately undone
 
 - **Not pushed.** No commit, no deploy. `CACHE` is bumped and waiting.
 - **Drag not driven by a test.** The tap route is proven end to end; the HTML5 drag route shares the same `place()` path but wants one manual check on a lab PC.
 - **No reward tie-in.** The reward layer that landed in parallel gives stars, combo and confetti to scored activities. The builder scores nothing by Q1 A, so it calls none of it. Whether a built program should still fire confetti is Pasindu's call, and it is a small change if he wants it.
-- **The 34 Sinhala strings** are on Ishini's list, unwritten. The app falls back to English and shows the existing note.
+- ~~**The 34 Sinhala strings** are on Ishini's list, unwritten.~~ Done, see above, along with the adventure set's 348.
 
 ## History - paused mid-build, 2026-09-20
 

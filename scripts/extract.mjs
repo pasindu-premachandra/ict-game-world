@@ -17,7 +17,7 @@ import { normalise } from './lib/normalise-adventure.mjs';
 import { mergeLang, MergeError } from './lib/merge-lang.mjs';
 import { applyAdditions } from './lib/apply-additions.mjs';
 import { applyCorrections, correctionsFor } from './lib/apply-corrections.mjs';
-import { applySinhala, SinhalaError } from './lib/apply-sinhala.mjs';
+import { applySinhala, applyScratchSinhala, applyAdventureSinhala, SinhalaError } from './lib/apply-sinhala.mjs';
 
 const GRADES = [
   { grade: 6, en: 'original/grade-6/english.html', si: 'original/grade-6/sinhala.html' },
@@ -120,6 +120,8 @@ const scratch = {
     })),
   })),
 };
+const scratchSi = applyScratchSinhala(scratch.structures);
+if (scratchSi?.filled) scratch.languages = ['en', 'si'];
 writeFileSync('data/scratch.json', JSON.stringify(scratch, null, 2) + '\n');
 const puzzleCount = scratch.structures.reduce((n, s) => n + s.puzzles.length, 0);
 const blockCount = scratch.structures.reduce((n, s) => n + s.puzzles.reduce((m, p) => {
@@ -128,13 +130,16 @@ const blockCount = scratch.structures.reduce((n, s) => n + s.puzzles.reduce((m, 
   return m + c;
 }, 0), 0);
 console.log(`scratch: ${scratch.structures.length} structures, ${puzzleCount} puzzles, ${blockCount} blocks -> data/scratch.json`);
+if (scratchSi?.filled) console.log(`         sinhala: ${scratchSi.filled} strings filled from content/scratch.sinhala.json across ${scratchSi.drafted.length} structures${scratchSi.draft ? ', all marked siDraft' : ''}`);
 
 // Grade 9's second game, folded in as bonus rounds per gate D3 in redesign-trilingual.
 const ADVENTURE = 'original/grade-9/ict-adventure.html';
 const adventure = normalise(readAdventure(ADVENTURE));
 adventure.source = { en: ADVENTURE };
+const adventureSi = applyAdventureSinhala(adventure.lessons);
 writeFileSync('data/adventure-9.json', JSON.stringify(adventure, null, 2) + '\n');
 const gameCount = adventure.lessons.reduce((n, l) => n + l.games.length, 0);
 console.log(`adventure: ${adventure.lessons.length} lessons, ${gameCount} mini games -> data/adventure-9.json`);
+if (adventureSi?.filled) console.log(`         sinhala: ${adventureSi.filled} strings filled from content/adventure-9.sinhala.json across ${adventureSi.drafted.length} games${adventureSi.draft ? ', all marked siDraft' : ''}`);
 
 process.exit(failed ? 1 : 0);

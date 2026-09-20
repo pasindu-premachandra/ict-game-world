@@ -1,6 +1,7 @@
 {
   "languages": [
-    "en"
+    "en",
+    "si"
   ],
   "source": {
     "en": "original/grade-9/scratch.html"
@@ -10,24 +11,24 @@
       "id": "sequence",
       "title": {
         "en": "Sequence",
-        "si": null
+        "si": "අනුක්‍රමය"
       },
       "icon": "➡️",
       "color": "sequence",
       "desc": {
         "en": "Steps executed one after another, in order",
-        "si": null
+        "si": "එකින් එක, පිළිවෙළට ක්‍රියාත්මක වන පියවර"
       },
       "puzzles": [
         {
           "id": "seq1",
           "name": {
             "en": "Add Two Numbers",
-            "si": null
+            "si": "සංඛ්‍යා දෙකක් එකතු කිරීම"
           },
           "description": {
             "en": "Ask for two numbers, add them, and show the result.",
-            "si": null
+            "si": "සංඛ්‍යා දෙකක් අසා, ඒවා එකතු කර, පිළිතුර පෙන්වන්න."
           },
           "order": [
             {
@@ -72,11 +73,11 @@
           "id": "seq2",
           "name": {
             "en": "Draw a Square with Pen",
-            "si": null
+            "si": "පෑනෙන් සමචතුරස්‍රයක් ඇඳීම"
           },
           "description": {
             "en": "Draw a square using pen blocks. Each side is 100 steps.",
-            "si": null
+            "si": "pen බ්ලොක් භාවිතයෙන් සමචතුරස්‍රයක් අඳින්න. එක් පැත්තක් පියවර 100 කි."
           },
           "order": [
             {
@@ -146,11 +147,11 @@
           "id": "seq3",
           "name": {
             "en": "Ask Name and Greet",
-            "si": null
+            "si": "නම අසා ආචාර කිරීම"
           },
           "description": {
             "en": "Ask the user's name and say hello using it.",
-            "si": null
+            "si": "පරිශීලකයාගේ නම අසා, එම නමින් ආචාර කරන්න."
           },
           "order": [
             {
@@ -180,11 +181,11 @@
           "id": "seq4",
           "name": {
             "en": "Calculate Rectangle Area",
-            "si": null
+            "si": "සෘජුකෝණාස්‍රයේ වර්ගඵලය ගණනය කිරීම"
           },
           "description": {
             "en": "Ask for length and width, then calculate and show the area.",
-            "si": null
+            "si": "දිග හා පළල අසා, වර්ගඵලය ගණනය කර පෙන්වන්න."
           },
           "order": [
             {
@@ -225,30 +226,31 @@
             }
           ]
         }
-      ]
+      ],
+      "siDraft": true
     },
     {
       "id": "selection",
       "title": {
         "en": "Selection",
-        "si": null
+        "si": "තේරීම"
       },
       "icon": "❓",
       "color": "selection",
       "desc": {
         "en": "Choose between options based on a condition",
-        "si": null
+        "si": "කොන්දේසියක් මත විකල්ප අතරින් එකක් තෝරා ගැනීම"
       },
       "puzzles": [
         {
           "id": "sel1",
           "name": {
             "en": "Even or Odd Checker",
-            "si": null
+            "si": "ඉරට්ටේද ඔත්තේද පරීක්ෂකය"
           },
           "description": {
             "en": "Ask for a number and check if it is even or odd using if...else.",
-            "si": null
+            "si": "සංඛ්‍යාවක් අසා, if...else භාවිතයෙන් එය ඉරට්ටේද ඔත්තේද යන්න පරීක්ෂා කරන්න."
           },
           "order": [
             {
@@ -297,11 +299,11 @@
           "id": "sel2",
           "name": {
             "en": "Pass or Fail",
-            "si": null
+            "si": "සමත්ද අසමත්ද"
           },
           "description": {
             "en": "Check if a student passed (marks ≥ 50) or failed.",
-            "si": null
+            "si": "සිසුවෙකු සමත් වී ඇත්ද (ලකුණු 50 හෝ ඊට වැඩි) නැතහොත් අසමත් වී ඇත්ද යන්න පරීක්ෂා කරන්න."
           },
           "order": [
             {
@@ -350,11 +352,11 @@
           "id": "sel3",
           "name": {
             "en": "Withdraw Money Safely",
-            "si": null
+            "si": "මුදල් ආරක්ෂිතව ලබා ගැනීම"
           },
           "description": {
             "en": "Check balance before withdrawing money from an account with 5000.",
-            "si": null
+            "si": "රුපියල් 5000 ක් ඇති ගිණුමකින් මුදල් ලබා ගැනීමට පෙර ශේෂය පරීක්ෂා කරන්න."
           },
           "order": [
             {
@@ -413,11 +415,11 @@
           "id": "sel4",
           "name": {
             "en": "Greater of Two Numbers",
-            "si": null
+            "si": "සංඛ්‍යා දෙකෙන් විශාලතම"
           },
           "description": {
             "en": "Ask for two numbers and show which one is greater.",
-            "si": null
+            "si": "සංඛ්‍යා දෙකක් අසා, ඒවායින් විශාල කුමක්ද යන්න පෙන්වන්න."
           },
           "order": [
             {
@@ -472,30 +474,31 @@
             }
           ]
         }
-      ]
+      ],
+      "siDraft": true
     },
     {
       "id": "repetition",
       "title": {
         "en": "Repetition",
-        "si": null
+        "si": "පුනර්කරණය"
       },
       "icon": "🔁",
       "color": "repetition",
       "desc": {
         "en": "Repeat steps until a condition is met",
-        "si": null
+        "si": "කොන්දේසියක් සපුරන තෙක් පියවර නැවත නැවත කිරීම"
       },
       "puzzles": [
         {
           "id": "rep1",
           "name": {
             "en": "Show Numbers 1 to 5",
-            "si": null
+            "si": "1 සිට 5 දක්වා සංඛ්‍යා පෙන්වීම"
           },
           "description": {
             "en": "Display numbers 1 to 5 using a repeat-until loop.",
-            "si": null
+            "si": "repeat until ලූපයක් භාවිතයෙන් 1 සිට 5 දක්වා සංඛ්‍යා පෙන්වන්න."
           },
           "order": [
             {
@@ -533,11 +536,11 @@
           "id": "rep2",
           "name": {
             "en": "Show Numbers 1 to 10",
-            "si": null
+            "si": "1 සිට 10 දක්වා සංඛ්‍යා පෙන්වීම"
           },
           "description": {
             "en": "Display numbers 1 to 10 using a repeat 10 loop.",
-            "si": null
+            "si": "repeat 10 ලූපයක් භාවිතයෙන් 1 සිට 10 දක්වා සංඛ්‍යා පෙන්වන්න."
           },
           "order": [
             {
@@ -575,11 +578,11 @@
           "id": "rep3",
           "name": {
             "en": "Multiplication Table of 3",
-            "si": null
+            "si": "3 හි ගුණන වගුව"
           },
           "description": {
             "en": "Show the multiplication table of 3 using a repeat loop.",
-            "si": null
+            "si": "repeat ලූපයක් භාවිතයෙන් 3 හි ගුණන වගුව පෙන්වන්න."
           },
           "order": [
             {
@@ -622,11 +625,11 @@
           "id": "rep4",
           "name": {
             "en": "Sum of 1 to 10",
-            "si": null
+            "si": "1 සිට 10 දක්වා එකතුව"
           },
           "description": {
             "en": "Calculate the total of numbers from 1 to 10 using repetition.",
-            "si": null
+            "si": "පුනර්කරණය භාවිතයෙන් 1 සිට 10 දක්වා සංඛ්‍යාවල එකතුව ගණනය කරන්න."
           },
           "order": [
             {
@@ -674,11 +677,11 @@
           "id": "rep5",
           "name": {
             "en": "Draw a Colorful Circle",
-            "si": null
+            "si": "වර්ණවත් වෘත්තයක් ඇඳීම"
           },
           "description": {
             "en": "Use a forever loop to draw a colorful rotating circle.",
-            "si": null
+            "si": "භ්‍රමණය වන වර්ණවත් වෘත්තයක් ඇඳීමට forever ලූපයක් භාවිත කරන්න."
           },
           "order": [
             {
@@ -731,11 +734,11 @@
           "id": "rep6",
           "name": {
             "en": "Count Down from 10",
-            "si": null
+            "si": "10 සිට පහළට ගණන් කිරීම"
           },
           "description": {
             "en": "Show a countdown from 10 to 1 using repetition.",
-            "si": null
+            "si": "පුනර්කරණය භාවිතයෙන් 10 සිට 1 දක්වා ආපසු ගණන් කිරීමක් පෙන්වන්න."
           },
           "order": [
             {
@@ -774,7 +777,8 @@
             }
           ]
         }
-      ]
+      ],
+      "siDraft": true
     }
   ]
 }
