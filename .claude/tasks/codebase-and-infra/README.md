@@ -422,6 +422,11 @@ Underneath it is the content mismatch carried over from `redesign-trilingual` (t
 - [x] `check-data.mjs` now scans `optionSets` - grade 9's 24 option strings had been invisible to it
 - [x] `index.html` skip link wired to i18n (was the one hardcoded English string left in the chrome)
 - [ ] The adventure set's 348 answer options - Sinhala not written (question stems already are)
+- [x] Reward / motion / audio layer built, 2026-09-20 - `js/audio.js`, `js/motion.js`, `js/reward.js`, plus the keyframes and reward CSS in `app.css` (was 0 `@keyframes`, now 8). The eight tokens that were declared and never used - `--dur-reward`, `--ease-pop`, `--stagger`, `--shadow-float`, `--press-depth`, `--combo`, `--star-edge`, `--star-empty` - are all in use
+- [x] The four moments from DESIGN.md: correct pop with sparks, wrong shake with a coral flash, stars landing `--stagger` apart, confetti on three stars. Drawn SVG stars replace the printed `★` everywhere
+- [x] Streak pill + combo toast at x3, floating "+N" on a correct round, sound toggle in the topbar (persisted, `aria-pressed` + `aria-label`)
+- [x] Proof at 375px, both motion modes: 6 pops / 6 spark bursts / 11 float tags on a clean run, 4 shakes + 4 flashes on a wrong run, streak resets on a miss, 3/3 stars land, 70 confetti pieces, 0 console errors, 0 overflow. Under `prefers-reduced-motion` sparks, floats and confetti drop to 0 and the CSS lands on its final frame (`evidence/after/17-combo-toast-375.png`, `18-result-stars-confetti-375.png`)
+- [x] Regression: all 25 grade 9 activities still render, and one of each non-round type (order, match, pick, bucket) still reaches a result
 - [ ] One deliberate read-it-in-Sinhala pass over every screen at 375px, by a Sinhala reader
 
 ## Release step, learned the hard way
@@ -429,7 +434,7 @@ Underneath it is the content mismatch carried over from `redesign-trilingual` (t
 `sw.js` serves cache first, so **bump `CACHE` in `sw.js` on every deploy that changes any precached file**.
 During this build the browser kept running an old `app.js` and the new routes looked broken; nothing was wrong with the code, the old worker was simply still serving `igw-v1`.
 
-Version history, so it is obvious when a bump was missed: `igw-v1` first build, `v2` the D1/D2/F2 fixes, `v3` corrections and icons, `v4` the seven ported types (live now), `v5` the Sinhala logo, **`v6` grade 9 Sinhala + the skip link** (not deployed yet).
+Version history, so it is obvious when a bump was missed: `igw-v1` first build, `v2` the D1/D2/F2 fixes, `v3` corrections and icons, `v4` the seven ported types (live now), `v5` the Sinhala logo, `v6` grade 9 Sinhala + the skip link, **`v7` the reward / motion / audio layer**, `v8` the adventure set modules (another session, in flight). Nothing from v6 on is deployed yet.
 
 Two things to remember with it:
 - **Add new modules to `PRECACHE`, not just bump the version.** The seven activity modules are in the list, or grades 7 to 9 would work online and break offline - the one failure mode a school lab would find first.

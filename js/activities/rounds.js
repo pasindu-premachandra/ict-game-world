@@ -1,5 +1,6 @@
 import { t } from '../i18n.js';
 import { el } from '../dom.js';
+import { answered } from '../reward.js';
 
 // Seven of the activity types are the same game underneath: show one round,
 // take one answer, say whether it was right, move on, and score out of the
@@ -22,16 +23,21 @@ export function rounds(total, drawRound, onDone) {
 
   let index = 0;
   let score = 0;
-  let answered = false;
+  let done = false;
 
   // Settling twice would double-count a round, which is easy to do when a
   // renderer wires both a click and an Enter key to the same answer.
   function settle(ok, message) {
-    if (answered) return;
-    answered = true;
+    if (done) return;
+    done = true;
     if (ok) score++;
     feedback.className = `round-feedback ${ok ? 'is-good' : 'is-bad'}`;
     feedback.textContent = message || t(ok ? 'correct' : 'notQuite');
+    // Every renderer marks what was answered with is-correct or is-wrong,
+    // directly or through lockOptions, so the reward layer can find it without
+    // all seven of them passing it in.
+    const hit = body.querySelector('.is-correct, .is-wrong') || body;
+    answered(ok, hit, Math.round(100 / total));
     setTimeout(() => { index++; draw(); }, ok ? RIGHT_MS : WRONG_MS);
   }
 
@@ -44,7 +50,7 @@ export function rounds(total, drawRound, onDone) {
       onDone(Math.round((score / total) * 100));
       return;
     }
-    answered = false;
+    done = false;
     progress.textContent = `${index + 1} / ${total}`;
     feedback.className = 'round-feedback';
     feedback.textContent = '';

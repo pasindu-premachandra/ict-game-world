@@ -52,6 +52,16 @@ const STRINGS = {
   clear:        { en: 'Clear', si: 'මකන්න' },
   addTiles:     { en: 'Click the tiles below to add them here.',
                   si: 'පහළ ඇති ටයිල් ක්ලික් කර මෙහි එකතු කරන්න.' },
+
+  // The reward layer. Drafted Sinhala, on the same review list as the content.
+  combo:        { en: 'Combo', si: 'කොම්බෝ' },
+  soundOn:      { en: 'Sound on', si: 'ශබ්දය ක්‍රියාත්මකයි' },
+  soundOff:     { en: 'Sound off', si: 'ශබ්දය ක්‍රියා විරහිතයි' },
+
+  // The ICT Adventure bonus games. Drafted Sinhala, same review list.
+  bonus:        { en: 'Bonus', si: 'අමතර' },
+  moves:        { en: 'Turns', si: 'වාර' },
+  hiddenCard:   { en: 'Hidden card, turn it over', si: 'සැඟවුණු කාඩ්පත, හරවන්න' },
 };
 
 export const LANGS = ['si', 'en'];

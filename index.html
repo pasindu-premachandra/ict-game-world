@@ -16,13 +16,21 @@
 
 <a class="skip" href="#main" data-i18n="skipToContent">Skip to content</a>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.5 1.2 6.4L12 17.2 6.3 20.4l1.2-6.4L2.8 9.5l6.4-.8z"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.5 3.5 4.5 5 4.5 9.5a4.5 4.5 0 01-9 0c0-1.8.8-3 1.8-4 .3 1.4 1 2 1.7 2 0-2.6-1-4.7 1-7.5z"/></symbol>
+<symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></symbol>
+</defs></svg>
+
 <header class="topbar" id="topbar">
   <button class="chip" id="homeBtn" type="button">
     <span class="chip-full" data-i18n="appName">ICT Game World</span>
     <span class="chip-short" id="chipGrade">6</span>
   </button>
   <div class="topbar-right">
-    <span class="xp" id="xp" hidden><span class="xp-star">★</span><span id="xpValue">0</span></span>
+    <span class="combo" id="combo" hidden><span class="ic-wrap"><svg viewBox="0 0 24 24"><use href="#i-flame"/></svg></span><span id="comboValue">x0</span></span>
+    <span class="xp" id="xp" hidden><span class="xp-star"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span><span id="xpValue">0</span></span>
+    <button class="soundbtn" id="soundBtn" type="button" aria-pressed="true"><span class="ic-wrap"><svg viewBox="0 0 24 24"><use href="#i-music"/></svg></span></button>
     <div class="langswitch" role="group" aria-label="Language">
       <button type="button" data-lang="si" lang="si">සිං</button>
       <button type="button" data-lang="en" lang="en">EN</button>

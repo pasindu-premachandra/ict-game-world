@@ -4,11 +4,15 @@ import { scoreFor, saveScore, totalFor, starsFor } from './store.js';
 import { hasPlayer } from './player.js';
 import { pushScore, flushQueue } from './leaderboard.js';
 import { nameEntry, leaderboard } from './screens.js';
+import { soundOn, setSound } from './audio.js';
+import { stars, resetStreak, finished } from './reward.js';
+import { loadAdventure, bonusFor, findActivity, PREFIX } from './adventure.js';
 
 const GRADES = [6, 7, 8, 9];
 const TYPES = [
   'order', 'match', 'pick', 'bucket', 'symmatch',
   'tf', 'input', 'hotspot', 'trace', 'bits', 'gate', 'query',
+  'mcquiz', 'sortgame', 'memory',
 ];
 
 const main = document.getElementById('main');
@@ -62,18 +66,23 @@ async function lessonPath(grade) {
   showXp(grade);
   main.replaceChildren(el('p', { class: 'loading' }, [t('loading')]));
   const data = await loadGrade(grade);
+  // The ICT Adventure sets are bonus rounds on the grade 9 path, one set per
+  // lesson (gate O1). Only grade 9 pays the extra fetch.
+  const adventure = grade === 9 ? await loadAdventure() : null;
 
   const list = el('ol', { class: 'path' });
   data.lessons.forEach((lesson) => {
-    const items = lesson.activities.map((activity) => {
+    const bonus = adventure ? bonusFor(adventure, lesson.id) : [];
+    const items = [...lesson.activities, ...bonus].map((activity) => {
       const points = scoreFor(grade, activity.id);
       const playable = TYPES.includes(activity.type);
       const node = el(playable ? 'a' : 'span', {
-        class: `act${playable ? '' : ' is-soon'}`,
+        class: `act${playable ? '' : ' is-soon'}${activity.bonus ? ' is-bonus' : ''}`,
         href: playable ? `#/g${grade}/${activity.id}` : null,
       }, [
         el('span', { class: 'act-name' }, [text(activity.name)]),
-        el('span', { class: 'act-stars', 'aria-hidden': 'true' }, ['★'.repeat(starsFor(points)) || '']),
+        activity.bonus ? el('span', { class: 'act-bonus' }, [t('bonus')]) : null,
+        points === null ? null : el('span', { class: 'act-stars' }, [stars(starsFor(points), 3)]),
         points === null ? null : el('span', { class: 'sr-only' }, [`${points} ${t('points')}`]),
       ]);
       return el('li', {}, [node]);
@@ -98,12 +107,20 @@ async function lessonPath(grade) {
 async function activityScreen(grade, activityId) {
   setGrade(grade);
   showXp(grade);
+  resetStreak();
   const data = await loadGrade(grade);
 
   let found = null;
-  for (const lesson of data.lessons) {
-    const hit = lesson.activities.find((a) => a.id === activityId);
-    if (hit) { found = { lesson, activity: hit }; break; }
+  if (activityId.startsWith(PREFIX)) {
+    // A bonus game lives in the adventure file, in its own shape. adventure.js
+    // hands back the activity shape everything below already understands.
+    const bonus = findActivity(await loadAdventure(), activityId);
+    if (bonus) found = { activity: bonus };
+  } else {
+    for (const lesson of data.lessons) {
+      const hit = lesson.activities.find((a) => a.id === activityId);
+      if (hit) { found = { lesson, activity: hit }; break; }
+    }
   }
   if (!found || !TYPES.includes(found.activity.type)) return notFound();
 
@@ -124,10 +141,12 @@ async function activityScreen(grade, activityId) {
     pushScore(grade, activity.id, saved);
     showXp(grade);
     result.hidden = false;
+    const won = starsFor(saved);
     result.replaceChildren(
       el('p', { class: 'result-score' }, [`${saved} ${t('points')}`]),
-      el('p', { class: 'result-stars', 'aria-hidden': 'true' }, ['★'.repeat(starsFor(saved)).padEnd(3, '☆')]),
+      stars(won, 3, true),
     );
+    finished(won);
     actions.replaceChildren(
       el('a', { class: 'btn', href: `#/g${grade}` }, [t('backToPath')]),
       el('button', { class: 'btn btn-ghost', type: 'button' }, [t('tryAgain')]),
@@ -196,8 +215,17 @@ async function route() {
   }
 }
 
+const soundBtn = document.getElementById('soundBtn');
+
+function paintSound() {
+  soundBtn.setAttribute('aria-pressed', String(soundOn()));
+  soundBtn.setAttribute('aria-label', t(soundOn() ? 'soundOn' : 'soundOff'));
+}
+
+soundBtn.addEventListener('click', () => { setSound(!soundOn()); paintSound(); });
+
 document.querySelectorAll('.langswitch button').forEach((b) => {
-  b.addEventListener('click', () => { setLang(b.dataset.lang); route(); });
+  b.addEventListener('click', () => { setLang(b.dataset.lang); paintSound(); route(); });
 });
 document.getElementById('homeBtn').addEventListener('click', () => { location.hash = '#/'; });
 
@@ -205,6 +233,7 @@ window.addEventListener('hashchange', route);
 loadLang();
 flushQueue();
 applyStatic();
+paintSound();
 route();
 
 if ('serviceWorker' in navigator) {

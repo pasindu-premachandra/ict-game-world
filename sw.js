@@ -2,7 +2,7 @@
 // the shell, the fonts and the grade data are cached on install and served
 // from cache first. Bump CACHE when anything in PRECACHE changes.
 
-const CACHE = 'igw-v6';
+const CACHE = 'igw-v8';
 
 const PRECACHE = [
   './',
@@ -19,6 +19,9 @@ const PRECACHE = [
   'js/player.js',
   'js/leaderboard.js',
   'js/screens.js',
+  'js/audio.js',
+  'js/motion.js',
+  'js/reward.js',
   'js/activities/order.js',
   'js/activities/match.js',
   'js/activities/pick.js',
@@ -32,6 +35,10 @@ const PRECACHE = [
   'js/activities/bits.js',
   'js/activities/gate.js',
   'js/activities/query.js',
+  'js/adventure.js',
+  'js/activities/mcquiz.js',
+  'js/activities/sortgame.js',
+  'js/activities/memory.js',
   'data/grade-6.json',
   'data/grade-7.json',
   'data/grade-8.json',

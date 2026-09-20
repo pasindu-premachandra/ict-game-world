@@ -392,6 +392,57 @@ main:focus { outline: none; }
 .query-tile.is-placed[disabled] { opacity: 1; }
 .query-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
 
+/* ---- ICT Adventure bonus games ---- */
+
+/* A bonus row on the lesson path. Marked with a word as well as a tint, because
+   the design system says state never rests on colour alone. */
+.act.is-bonus { border-style: dashed; }
+.act-bonus {
+  font-family: var(--font-display); font-weight: 700; font-size: var(--text-xs);
+  background: var(--warning-light); color: var(--warning-ink);
+  border-radius: var(--radius-pill); padding: 2px var(--space-2);
+  white-space: nowrap; flex: none;
+}
+
+/* ---- mcQuiz: a question and four prose answers ---- */
+
+.quiz-options { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); }
+.quiz-opt {
+  font: inherit; cursor: pointer; color: var(--text);
+  min-height: var(--tap-comfy); padding: var(--space-3) var(--space-4);
+  background: var(--surface); border: var(--border) solid var(--line);
+  border-radius: var(--radius-md); box-shadow: var(--lift-card); overflow-wrap: anywhere;
+}
+.quiz-opt[disabled] { cursor: default; }
+
+/* ---- memory: pairs under face-down cards ---- */
+
+.mem-game { display: grid; gap: var(--space-4); justify-items: center; }
+.mem-moves { margin: 0; color: var(--text-muted); font-family: var(--font-mono); }
+
+/* Two columns on a phone, five on a lab PC. The faces are text, not icons, so
+   a card has to stay wide enough to read "Brightness detection" - never three
+   narrow columns in between. */
+.mem-grid { display: grid; gap: var(--space-2); grid-template-columns: repeat(2, 1fr); width: 100%; }
+@media (min-width: 40rem) { .mem-grid { grid-template-columns: repeat(5, 1fr); } }
+
+.mem-card {
+  font: inherit; cursor: pointer; color: var(--text);
+  display: grid; place-items: center; text-align: center;
+  min-height: var(--tap-hero); padding: var(--space-2);
+  background: var(--g-light); border: var(--border) solid var(--g-base);
+  border-radius: var(--radius-lg); box-shadow: var(--lift-card);
+  transition: transform var(--dur-quick) var(--ease-standard);
+}
+.mem-card.is-open { background: var(--surface); border-color: var(--line); }
+.mem-card[disabled] { cursor: default; }
+.mem-back { font-family: var(--font-display); font-weight: 800; font-size: var(--text-xl); color: var(--g-ink); }
+.mem-face { font-size: var(--text-sm); font-weight: var(--weight-bold); overflow-wrap: anywhere; line-height: var(--lh-body); }
+
+/* ---- sortGame reuses the bucket, which now carries an optional emoji ---- */
+
+.bucket-emoji { font-size: var(--text-lg); line-height: 1; }
+
 /* ---- name entry ---- */
 
 .name-form { display: grid; gap: var(--space-3); max-width: 26rem; }
@@ -439,3 +490,71 @@ main:focus { outline: none; }
   border-radius: var(--radius-pill); padding: 2px var(--space-2); white-space: nowrap;
 }
 .board-points { font-family: var(--font-display); font-weight: 800; color: var(--xp-ink); }
+
+/* ---- reward layer -------------------------------------------------------
+   The four moments in DESIGN.md. Only transform and opacity move, and every
+   duration is a token, so the reduced-motion block in tokens.css zeroes all
+   of this without a second media query here. */
+
+.stars { display: inline-flex; align-items: center; gap: 6px; }
+.star { display: inline-grid; width: 32px; height: 32px; --sf: var(--star); --se: var(--star-edge); }
+.star.is-empty { --sf: var(--star-empty); --se: var(--star-empty-edge); }
+.star svg { width: 100%; height: 100%; }
+.star svg use { fill: var(--sf); stroke: var(--se); stroke-width: 1.6; stroke-linejoin: round; }
+
+.act-stars .star { width: 20px; height: 20px; }
+.result .stars { gap: var(--space-2); }
+.result .stars .star { width: 52px; height: 52px; }
+
+/* Stars land one at a time, --stagger apart. */
+.stars.is-landing .star { animation: land var(--dur-reward) var(--ease-pop) both; animation-delay: calc(var(--i) * var(--stagger)); }
+
+.xp-star, .ic-wrap { display: inline-grid; width: 22px; height: 22px; flex-shrink: 0; }
+.xp-star svg, .ic-wrap svg { width: 100%; height: 100%; display: block; }
+.xp-star svg use { fill: var(--star); stroke: var(--star-edge); stroke-width: 1.6; stroke-linejoin: round; }
+
+.combo { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-weight: 800; color: var(--combo); font-variant-numeric: tabular-nums; }
+.combo[hidden] { display: none; }
+.combo .ic-wrap svg { fill: var(--combo); }
+.combo.is-hot { animation: pulse 900ms var(--ease-standard) infinite alternate; }
+
+.soundbtn { display: inline-grid; place-items: center; width: 40px; height: 40px; padding: 0; border-radius: var(--radius-md); background: var(--surface); color: var(--text); border: var(--border-thin) solid var(--line); position: relative; }
+.soundbtn .ic-wrap { width: 22px; height: 22px; }
+.soundbtn .ic-wrap svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.soundbtn[aria-pressed="false"]::after { content: ""; position: absolute; width: 26px; height: 3px; border-radius: 2px; background: currentColor; transform: rotate(-45deg); }
+
+.sparks { position: fixed; width: 0; height: 0; pointer-events: none; z-index: var(--z-drag); }
+.spark { position: absolute; width: 8px; height: 8px; margin: -4px; border-radius: 50%; background: var(--gold); opacity: 0; animation: spark var(--dur-slow) var(--ease-standard) both; }
+.spark:nth-child(even) { background: var(--success); }
+
+.float-xp { position: fixed; transform: translate(-50%, 0); pointer-events: none; z-index: var(--z-drag); font-family: var(--font-display); font-weight: 900; font-size: var(--text-xl); color: var(--success-ink); text-shadow: 0 2px 8px oklch(0.2 0.04 260 / 0.25); animation: float-xp 1s var(--ease-standard) both; }
+
+.confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: var(--z-overlay); }
+.confetti i { position: absolute; top: -20px; width: 12px; height: 12px; border-radius: 3px; animation: fall linear forwards; }
+
+.toast { position: fixed; left: 50%; top: calc(var(--topbar-h) + var(--space-4)); z-index: var(--z-toast); display: inline-flex; align-items: center; gap: var(--space-3); max-width: calc(100vw - var(--space-8)); min-height: 44px; padding: var(--space-2) var(--space-5) var(--space-2) var(--space-3); border-radius: var(--radius-lg); background: var(--star); color: var(--ink); border: var(--border) solid var(--star-edge); box-shadow: var(--shadow-float); font-weight: var(--weight-bold); font-size: var(--text-md); line-height: var(--lh-body); opacity: 0; transform: translate(-50%, calc(var(--space-4) * -1)); transition: opacity var(--dur-quick) var(--ease-standard), transform var(--dur-quick) var(--ease-pop); pointer-events: none; }
+.toast.is-up { opacity: 1; transform: translate(-50%, 0); }
+.toast__ic { display: grid; place-items: center; flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: var(--star); }
+.toast__ic .ic-wrap { width: 20px; height: 20px; }
+.toast__ic .ic-wrap svg { fill: var(--star); }
+
+.anim-pop { animation: pop var(--dur-base) var(--ease-pop) both; }
+.anim-shake { animation: shake var(--dur-slow) var(--ease-standard) both; }
+.anim-flash { position: relative; }
+.anim-flash::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--error); opacity: 0; pointer-events: none; animation: flash var(--dur-slow) ease-out both; }
+
+@keyframes pop { 0% { transform: scale(.92); } 60% { transform: scale(1.06); } 100% { transform: scale(1); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-9px); } 40% { transform: translateX(9px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(4px); } }
+@keyframes flash { 0% { opacity: .3; } 100% { opacity: 0; } }
+@keyframes spark { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(.3); opacity: 0; } }
+@keyframes land { 0% { transform: translateY(-46px) scale(1.7) rotate(-24deg); opacity: 0; } 70% { opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes float-xp { 0% { opacity: 0; transform: translate(-50%, 0) scale(.6); } 25% { opacity: 1; transform: translate(-50%, -14px) scale(1); } 100% { opacity: 0; transform: translate(-50%, -72px) scale(1); } }
+@keyframes fall { to { transform: translateY(105vh) rotate(720deg); opacity: .15; } }
+@keyframes pulse { to { transform: scale(1.12); } }
+
+/* The JS-built pieces have no sensible final frame, so motion.js skips
+   building them at all; these only matter for the ones already on screen. */
+@media (prefers-reduced-motion: reduce) {
+  .combo.is-hot { animation: none; }
+  .toast { transition: none; }
+}
