@@ -240,8 +240,17 @@ says bonus twice. Dropping the `(bonus)` from the name is Ishini's call, not our
 - [x] 6 progress and leaderboard wiring (device side works now; server side waits on the migration)
 - [x] 7 service worker - 4 modules precached, `igw-v8`
 - [x] Proof run - `evidence/proof.txt`
-- [ ] **Apply `supabase/migrations/0002_adventure_activity_ids.sql`** - needs the Supabase MCP, so start
-      Claude from the project folder. Until then bonus scores queue instead of reaching the class board
+- [x] **`supabase/migrations/0002_adventure_activity_ids.sql` applied 2026-09-20**, version `20260920...`,
+      name `adventure_activity_ids`. Proven as the `anon` role inside a rolled-back transaction: `adv-c1`,
+      `adv-so3` and `3.5` all accepted; bare `c1`/`p2`/`so3`, `advc1`, `ADV-C1`, `adv-` , `adv-c1 ` (trailing
+      space), `adv-abcd1` (4 letters), `adv-c123` (3 digits) and `1.2.3` all still rejected, and the other
+      guards are untouched (101 points rejected, grade 5 rejected). `create or replace` replaced the function
+      rather than adding an overload - still exactly one `submit_score`, still `security definer`, grants
+      still `anon, authenticated, postgres, service_role`. Production row counts unchanged by the test
+      (84 scores / 13 players before and after). Security advisors: 0 errors
+- [x] Checked that O3 actually lands: `leaderboard_grade` sums `scores` with no `activity_id` filter, so
+      `adv-` rows flow into the grade 9 board with no further schema change. `activities_done` counts them
+      too, which is what O3 asked for
 - [ ] Push, then verify on production the way `codebase-and-infra` did
 - [ ] The 348 Sinhala strings, when the translation session reaches them - no code change needed, the
       fallback already carries it

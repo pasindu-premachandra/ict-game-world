@@ -415,7 +415,8 @@ Underneath it is the content mismatch carried over from `redesign-trilingual` (t
 - [x] 12 deployed - pushed by Pasindu and verified on production, `evidence/live-verify-d3.txt`
 - [x] Sinhala logo legible at its real size (`:lang(si) .chip`), committed as `e5def03`
 - [x] Sinhala logo fix pushed and verified live (22px / weight 700 on production)
-- [ ] Delete the `LiveCheck` / class `D3` rows the production check wrote
+- [x] Production test rows deleted, 2026-09-20 - 6 players / 16 scores. The two `LiveCheck` class `D3` rows this list already tracked, plus four written the same day by Playwright verification runs (`N`, `WrongCheck`, `RewardCheck`, `Shot`). 13 players / 84 scores -> 7 / 68, 0 orphans, real players untouched
+- [x] Supabase `0002_adventure_activity_ids` applied and proven as `anon` - see `../adventure-set/README.md`. Advisors 0 errors
 - [ ] `scratch-hub` (g9 3.4) - its own task, see handoff 4
 - [ ] The adventure set's 18 mini games - no UI yet
 - [x] Grade 9 Sinhala drafted - 202 strings, `content/grade-9.sinhala.json` + `scripts/lib/apply-sinhala.mjs`, all 25 playable activities render Sinhala at 375 and 1366 with 0 fallback notes (`../syllabus-enrichment/evidence/si-g9-*.png`; the Sinhala itself is that task's, per its O5)
@@ -430,6 +431,21 @@ Underneath it is the content mismatch carried over from `redesign-trilingual` (t
 - [ ] One deliberate read-it-in-Sinhala pass over every screen at 375px, by a Sinhala reader
 
 ## Release step, learned the hard way
+
+## Verification runs write to production
+
+Learned 2026-09-20, after a row audit found 16 test scores on the live class leaderboard.
+
+`js/config.js` points at the real Supabase project and `pushScore()` fires on every completed activity, so
+**any Playwright run that finishes an activity seeds real rows a child will see on the leaderboard**. Four
+fake players got there that way in one afternoon, on top of the two the earlier production check left.
+
+Before a verification run that plays activities, do one of:
+- block the request - `page.route('**/rest/v1/**', r => r.abort())`, which is the cleanest and needs no cleanup
+- or give the harness a fixed, obvious player id and delete those rows straight afterwards
+
+A hand-written player UUID is the tell. Real players get `crypto.randomUUID()`, so anything like
+`00000000-0000-4000-8000-00000000000X` in `players` is a harness leftover.
 
 `sw.js` serves cache first, so **bump `CACHE` in `sw.js` on every deploy that changes any precached file**.
 During this build the browser kept running an old `app.js` and the new routes looked broken; nothing was wrong with the code, the old worker was simply still serving `igw-v1`.
