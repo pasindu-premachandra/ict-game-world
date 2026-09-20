@@ -25,19 +25,34 @@ Repo `pasindu-premachandra/ict-game-world`. Supabase project `vjyypzmnbyfjbudusa
 **The one thing left unported is `scratch-hub` (g9 3.4), and it is not mechanical.** It is not one activity, it is a nested sub-app: a hub of three control structures, each with its own list of block-dragging puzzles, plus a workspace, a palette and a program checker (`original/grade-9/english-medium.html:1174-1520`). Its content is `SCRATCH_STRUCTURES`, which like the hotspot option sets lives **outside** the `LESSONS` literal, so it is not in `data/` yet either. It needs its own extraction step and its own screen, not a renderer. It is also the one activity the syllabus checker flags as belonging to no competency level, so it is a bonus, not a coverage gap - all 59 levels are still covered without it. Treat it as its own task, roughly the size of this one.
 
 **Deployed and verified on production, 2026-09-20.** Pasindu pushed `68300ba`; all seven types were then played through on the live site and every one scored 100, scores reached Supabase with an empty offline queue, and F4 was proven with two players who share a nickname. `evidence/live-verify-d3.txt`.
-One more commit is waiting (`e5def03`, the Sinhala logo fix) and **has not been pushed**. `sw.js` `CACHE` is already bumped to `igw-v5` for it.
 
-**Also open, in priority order.**
-- **Clean up the live-verification rows.** The live run wrote two players both nicknamed `LiveCheck`, class code `D3` - ids `aaaaaaaa-0001-...` and `bbbbbbbb-0002-...` - and 9 score rows across grades 7, 8 and 9. They were needed to prove F4 on production and there is no anon delete path, so they need the Supabase MCP or the dashboard: `delete from public.players where class_code = 'D3';` (scores cascade). The pilot's own row (Ishini, owl, 6A) should stay.
+The Sinhala logo fix went out too: `origin/master` is at `a6a0d5a`, the live `css/app.css` carries the `:lang(si) .chip` rule, the live service worker is on `igw-v5`, and the pill measures 22px at weight 700 on production. Confirmed by eye as well as by measurement.
+
+### Where to pick up next session
+
+**1. One commit is unpushed** - the last one, "Document the option sets, the live verification and the Sinhala logo finding". Documentation only: this handoff, the `optionSets` and file-tree notes in the public README, and the logo evidence images. It touches no precached file, so it needs no `CACHE` bump. `git log origin/master..HEAD` to confirm, then `git push`.
+
+**2. Delete the live-verification rows.** Proving F4 on production needed two players who share a nickname, and there is no anon delete path, so they are still there. Needs the Supabase MCP (start Claude from the project folder, see the traps) or the dashboard:
+
+```sql
+delete from public.players where class_code = 'D3';   -- scores cascade
+```
+
+That is 2 players (both nicknamed `LiveCheck`, ids `aaaaaaaa-0001-...` and `bbbbbbbb-0002-...`) and 9 score rows across grades 7, 8 and 9. **Leave Ishini's pilot row** (owl, 6A, 5 scores) alone. Write the test rows with an obvious class code next time and clean them in the same session.
+
+**Also open, after those two.**
 - **The Sinhala review list for Ishini and Dilini.** It has grown and still has no single document. It now holds: F3 (`හාවිත` -> `භාවිත`, grade 6 lesson 2 title and activity 2.1), T1-T5 from `redesign-trilingual`, the robot name, the drafted `සෙරමික් පිඟාන` from D2, everything flagged `siDraft` from `syllabus-enrichment`, and **the eleven new UI strings added this session** (marked with a comment in `js/i18n.js`). All of it is her content call, none of it is a code change. It wants one list, not eleven scattered notes.
 - **Sinhala coverage.** Grade 9 has 178 strings with no Sinhala, the adventure set 348. The app falls back to English rather than showing a blank.
 - **The adventure set has no UI at all.** 18 mini games in `data/adventure-9.json`, three kinds (`mcQuiz` 11, `memoryGame` 3, `sortGame` 4), and nothing routes to them. They are bonus content folded in by gate D3 in `redesign-trilingual`, so they are not counted in the 112.
+- **Read the rest of the app at Sinhala size.** The logo was found by eye, not by a check, and nothing in the suite would have caught it: the characters were right and only the rendering was unreadable. Worth one deliberate pass through every screen in Sinhala at 375px looking for the same class of fault - small type, a heavy weight, a tight container - rather than waiting for Ishini to report the next one.
 
 **Database state.** `players` 3 rows, `scores` 14 rows. One is the pilot's (Ishini, owl, 6A, 5 scores); the other two are the `LiveCheck` pair from the production verification above and should be deleted. The *local* proof run blocked Supabase deliberately, so it wrote nothing; only the live run did.
 
 **Traps that have already cost a session each. Do not rediscover them.**
 - **Start Claude from `E:/Projects/freelance-projects/ict-game-world`**, or the Supabase MCP never loads. It lives in the project's own `.mcp.json`, which is only read from the cwd. Starting from `E:/Projects` silently gives you no Supabase tools at all.
 - **Content can live outside the `LESSONS` literal.** The hotspot options did, and `SCRATCH_STRUCTURES` still does. If an activity's data looks incomplete, grep the original for a bare `const` before assuming the extraction dropped something.
+- **Only the weights in `css/fonts.css` exist.** Yaldevi is self-hosted at **600 and 700 only**, Noto Sans Sinhala at 400, 600 and 700. Asking for `font-weight: 800` in Sinhala makes the browser fake a weight we do not ship, and on a conjunct it smears. `--weight-heavy` (800) is for Baloo 2 and Nunito, which do have it. Check `fonts.css` before writing a weight.
+- **"The Sinhala looks wrong" usually is not the string.** Check in this order: the codepoints in `js/i18n.js` or `data/`, then the deployed copy of that file, then the DOM's `textContent`, then render the same string in Yaldevi, Noto and the system font side by side. Only after all four agree is it a font bug - and the one time it came up, it was neither. It was the size.
 - **Vercel's API cannot link this GitHub repo** (`namespaceId: null` even after connecting). The browser import flow at vercel.com/new works. Do not burn time on the API path.
 - **Commits here are title only.** One short subject line, no body, no `Co-Authored-By`, no trailers. This overrides the harness attribution default.
 - **`git config --local user.email` must be `pasindug98@gmail.com`.** The global identity is the Clouda work address, and this is a student's assessed project.
@@ -102,7 +117,65 @@ The run blocked the Supabase host on purpose, so the pilot's rows are untouched 
 
 Both gates re-run green after the change: `check-data.mjs` all five sources rebuild byte identically, `check-syllabus.mjs` 59/59 levels with the one pre-existing grade 9 3.4 warning.
 
-**Not deployed.** Committed locally; the live site still runs the old build.
+**Pushed by Pasindu**, then verified on the live site - see below.
+
+### Verified on production, 2026-09-20 (`evidence/live-verify-d3.txt`)
+
+This run did **not** block Supabase: the point was to watch a score travel from a real browser to the real database.
+
+```
+Type      Grade  Activity  Score
+tf        8      1.3       100
+input     8      1.2       100
+hotspot   8      2.1       100
+trace     7      5.6       100
+bits      8      1.1       100
+gate      8      5.4       100
+query     8      6.1       100
+hotspot   9      4.2       100      <- the recovered option sets, on the night lab
+Sinhala hotspot g8 2.1: 100, <html lang="si">
+
+Scores reached Supabase, offline queue after the run: null
+Console messages from the live app: 0
+Service worker: 1 registration, igw-v4, 47 files precached, 13 activity modules
+```
+
+**F4 proven on production, not just reasoned about.** Two players deliberately given the same nickname:
+
+```
+grade 8, class D3, straight from Supabase:
+  LiveCheck (owl) 600 pts  player_id aaaaaaaa
+  LiveCheck (fox) 100 pts  player_id bbbbbbbb
+as player A, the owl: 2 rows, 1 marked "You" -> owl
+as player B, the fox: 2 rows, 1 marked "You" -> fox
+```
+
+Before the fix both rows were badged "You" for both children. Those two players are the rows job 2 above deletes.
+
+### The Sinhala logo: correct text, unreadable at 16px
+
+Pasindu saw the logo pill mid-run and said the Sinhala was wrong. It was not, and it is worth recording how that was established, because "the Sinhala looks wrong" will come up again.
+
+Checked four ways, all agreeing the text and the font are right:
+
+- the deployed `js/i18n.js` carries `U+0D9A U+0DCA U+200D U+0DBB U+0DD3 U+0DA9 U+0DCF` then `U+0DBD U+0DDD U+0D9A U+0DBA` - the ZWJ is present, so the rakaransaya can form, and it is `U+0DDD` (long ෝ) not `U+0DDC` (short ො)
+- the live DOM's `textContent` is those exact codepoints
+- Yaldevi 700, Noto Sans Sinhala 700 and the Windows system Sinhala font all shape `ක්‍රීඩා ලෝකය` identically and correctly (`evidence/sinhala-shaping-check.png`, which also renders the string **without** the ZWJ so the broken form is there to compare against)
+- Yaldevi's subset still has its `sinh` script and its `vatu` / `blws` / `pstf` lookups, so nothing needed for the conjunct was subsetted away
+
+The fault was **size and weight**. `.chip` asked for `--text-sm` at `font-weight: 800`, which in Sinhala is 16px - and Yaldevi is only self-hosted at 600 and 700, so the browser was synthesising a weight we do not ship. At 16px the long-o stroke and the rakaransaya loop are about a pixel each, so they merged into a smudge. Reproduced pixel for pixel from the live site before changing anything.
+
+Fixed in one rule, next to `.chip`:
+
+```css
+:lang(si) .chip { font-size: var(--text-lg); font-weight: var(--weight-bold); line-height: var(--lh-title); }
+```
+
+22px at a weight Yaldevi actually has, which is what `DESIGN.md` asks for Sinhala anyway. Before and after at real pixel size: `evidence/before/15-logo-sinhala-before.png`, `evidence/after/15-logo-sinhala-fixed.png` and, once it was live, `evidence/after/16-logo-sinhala-live.png`. No horizontal overflow at 360, 375, 480, 481, 520, 600, 768 or 1366, and the topbar stays 78px tall. `sw.js` `CACHE` bumped `igw-v4` -> `igw-v5`, because `css/app.css` is precached.
+
+**What this says about the checks.** Nothing in the suite would have caught it. `check-data.mjs` compares content and the content was right; the Playwright pass asserts no overflow and no console errors and there were none. An unreadable-but-correct string is invisible to all of it, which is why a deliberate read-it-at-Sinhala-size pass is on the open list.
+
+
 
 
 ## Handoff 3 (superseded), 2026-09-20, after the pilot and the D1/D2/F2 fixes
@@ -339,14 +412,24 @@ Underneath it is the content mismatch carried over from `redesign-trilingual` (t
 - [x] D3 seven activity types ported - tf, input, hotspot, trace, bits, gate, query. 111 of 112 activities playable
 - [x] F4 leaderboard "You" badge matches on player id, not nickname
 - [x] D3 proof run - `evidence/ported-types-proof.txt`, 31 activities x 2 languages, 0 console messages, 0 overflow
+- [x] 12 deployed - pushed by Pasindu and verified on production, `evidence/live-verify-d3.txt`
+- [x] Sinhala logo legible at its real size (`:lang(si) .chip`), committed as `e5def03`
+- [x] Sinhala logo fix pushed and verified live (22px / weight 700 on production)
+- [ ] Delete the `LiveCheck` / class `D3` rows the production check wrote
 - [ ] `scratch-hub` (g9 3.4) - its own task, see handoff 4
 - [ ] The adventure set's 18 mini games - no UI yet
+- [ ] One deliberate read-it-in-Sinhala pass over every screen at 375px
 
 ## Release step, learned the hard way
 
 `sw.js` serves cache first, so **bump `CACHE` in `sw.js` on every deploy that changes any precached file**.
-During this build the browser kept running an old `app.js` and the new routes looked broken; nothing was wrong with the code, the old worker was simply still serving `igw-v1`. Now on `igw-v4`.
-The seven new activity modules are in `PRECACHE` too, or grades 7 to 9 would work online and break offline - the one failure mode a school lab would find first.
+During this build the browser kept running an old `app.js` and the new routes looked broken; nothing was wrong with the code, the old worker was simply still serving `igw-v1`.
+
+Version history, so it is obvious when a bump was missed: `igw-v1` first build, `v2` the D1/D2/F2 fixes, `v3` corrections and icons, `v4` the seven ported types (live now), **`v5` the Sinhala logo** (live now).
+
+Two things to remember with it:
+- **Add new modules to `PRECACHE`, not just bump the version.** The seven activity modules are in the list, or grades 7 to 9 would work online and break offline - the one failure mode a school lab would find first.
+- **A CSS-only change still needs the bump**, because `css/app.css` is precached. The logo fix is exactly that case.
 
 ## Risk
 
