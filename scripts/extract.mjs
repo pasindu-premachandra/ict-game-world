@@ -13,6 +13,7 @@ import { readAdventure } from './lib/read-adventure.mjs';
 import { normalise } from './lib/normalise-adventure.mjs';
 import { mergeLang, MergeError } from './lib/merge-lang.mjs';
 import { applyAdditions } from './lib/apply-additions.mjs';
+import { applyCorrections, correctionsFor } from './lib/apply-corrections.mjs';
 
 const GRADES = [
   { grade: 6, en: 'original/grade-6/english.html', si: 'original/grade-6/sinhala.html' },
@@ -25,8 +26,8 @@ mkdirSync('data', { recursive: true });
 
 let failed = 0;
 for (const { grade, en, si } of GRADES) {
-  const lessonsEn = readLessons(en);
-  const lessonsSi = si ? readLessons(si) : null;
+  const lessonsEn = applyCorrections(grade, 'en', readLessons(en));
+  const lessonsSi = si ? applyCorrections(grade, 'si', readLessons(si)) : null;
 
   if (lessonsSi && lessonsEn.length !== lessonsSi.length) {
     console.error(`grade ${grade}: ${lessonsEn.length} lessons in english, ${lessonsSi.length} in sinhala`);
@@ -51,6 +52,7 @@ for (const { grade, en, si } of GRADES) {
     languages: si ? ['en', 'si'] : ['en'],
     source: si ? { en, si } : { en },
     replaced: merged.replaced,
+    corrections: correctionsFor(grade),
     lessons: merged.lessons,
   };
   writeFileSync(`data/grade-${grade}.json`, JSON.stringify(out, null, 2) + '\n');
@@ -61,6 +63,7 @@ for (const { grade, en, si } of GRADES) {
     : '';
   console.log(`grade ${grade}: ${merged.lessons.length} lessons, ${activities} activities${extra} -> data/grade-${grade}.json`);
   merged.replaced.forEach((r) => console.log(`         lesson ${r.id} replaced: "${r.was}" -> "${r.now}"`));
+  correctionsFor(grade).forEach((c) => console.log(`         corrected ${c.lang} ${c.activity} ${c.path}: "${c.from}" -> "${c.to}"`));
 }
 
 // Grade 9's second game, folded in as bonus rounds per gate D3 in redesign-trilingual.

@@ -1,0 +1,21 @@
+[
+  {
+    "grade": 6,
+    "lang": "si",
+    "activity": "1.3",
+    "path": "items.6.text",
+    "from": "කෑදර පුටුව",
+    "to": "සෙරමික් පිඟාන",
+    "draft": true,
+    "why": "The two originals disagree on this distractor: the English file has \"Ceramic plate\", the Sinhala file has a chair. Decided 2026-09-20 to make both the plate. The Sinhala wording here is drafted, not Ishini's, and still needs her review."
+  },
+  {
+    "grade": 6,
+    "lang": "si",
+    "activity": "1.3",
+    "path": "items.6.icon",
+    "from": "🪑",
+    "to": "🍽️",
+    "why": "Follows the text correction above. It also removes the only icon that differed between the two languages, which the merge wrapped as {en, si} and the app then printed as [object Object]."
+  }
+]

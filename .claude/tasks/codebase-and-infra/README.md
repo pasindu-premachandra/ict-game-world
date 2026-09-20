@@ -4,6 +4,38 @@ Mode: `/pt` default (plan, gate, build, prove, hand over). Folder type: freelanc
 Sibling tasks: `redesign-trilingual` (design system, done - do not reopen its gate) and `syllabus-enrichment` (content, in flight).
 Review surface for the gate: `review/plan.html` (Lavish). Evidence: `evidence/`.
 
+## RESUME HERE - handoff 3, 2026-09-20, after the pilot and the D1/D2/F2 fixes
+
+**Live: https://ict-game-world.vercel.app** (production, git linked: any push to `master` auto-deploys).
+Repo `pasindu-premachandra/ict-game-world`. Supabase project `vjyypzmnbyfjbudusava` (Mumbai).
+
+**Where things stand.** The live site was smoke tested end to end on 2026-09-20 and all five deployment checks passed with zero console messages (see "Pilot run on the live site" below). Three gate answers came back in `review/pilot.html` and all three fixes are done, verified locally and pushed. Grade 6 is complete in both languages.
+
+**The next job is D3: port the remaining activity types.** Grades 7, 8 and 9 have their content extracted and syllabus checked, but only 5 of the 16 activity types have a UI, so most of those grades render as "coming soon". This is the single biggest remaining gap and it is mechanical now the pattern is proven on grade 6.
+
+To start it:
+1. `node scripts/check-data.mjs` and `node scripts/check-syllabus.mjs` should both pass before you touch anything. If they do not, stop and read why.
+2. The supported list is `const TYPES = ['order', 'match', 'pick', 'bucket', 'symmatch'];` in `js/app.js`. Anything not in it falls through to `notFound()`.
+3. Find what is still missing with:
+   `node -e "const f=require('fs');const t=new Set();for(const g of [6,7,8,9]) JSON.parse(f.readFileSync('data/grade-'+g+'.json','utf8')).lessons.forEach(l=>l.activities.forEach(a=>t.add(a.type)));console.log([...t].sort().join('\n'))"`
+4. Copy the shape of an existing renderer in `js/activities/`. Each exports `render(activity, onDone)` and returns `{ node, check, selfScoring }`. `onDone(points)` is called with 0 to 100. Style comes from `css/tokens.css` only, never raw colours.
+5. Every user-visible string goes through `text()` from `js/i18n.js`, **including `icon`** - that was finding F2, see below.
+6. **Bump `CACHE` in `sw.js`** on any deploy that changes a precached file, or browsers keep serving the old build and the new code looks broken.
+
+**Also open, in priority order.**
+- **F4, the leaderboard "You" badge matches on nickname.** Two lines, no migration, details in the F4 section below. It is a real classroom bug and was never gated because it was found after the report closed. Ask Pasindu whether to fold it in before the porting.
+- **F3 and the Sinhala typos.** `හාවිත` should be `භාවිත` in at least the grade 6 lesson 2 title and activity 2.1, plus T1-T5 carried over from `redesign-trilingual`, the robot name, and the drafted `සෙරමික් පිඟාන` wording from D2. All of these are Ishini and Dilini's content calls, not ours. They belong in one list for her, not in a code change.
+- **Sinhala coverage.** Grade 9 has 178 strings with no Sinhala and the adventure set has 348. Enrichment Sinhala is AI drafted and flagged `siDraft` until Ishini reviews it. The app falls back to English rather than showing a blank.
+
+**Database state.** `players` has 1 row and `scores` has 5, all from the pilot (Ishini, owl, class 6A, activities 1.2 to 2.2). Everything else has been cleaned up. Truncate with `truncate table public.scores, public.players restart identity;` via the Supabase MCP whenever a clean slate is wanted.
+
+**Traps that have already cost a session each. Do not rediscover them.**
+- **Start Claude from `E:/Projects/freelance-projects/ict-game-world`**, or the Supabase MCP never loads. It lives in the project's own `.mcp.json`, which is only read from the cwd. Starting from `E:/Projects` silently gives you no Supabase tools at all.
+- **Vercel's API cannot link this GitHub repo** (`namespaceId: null` even after connecting). The browser import flow at vercel.com/new works. Do not burn time on the API path.
+- **Commits here are title only.** One short subject line, no body, no `Co-Authored-By`, no trailers. This overrides the harness attribution default.
+- **`git config --local user.email` must be `pasindug98@gmail.com`.** The global identity is the Clouda work address, and this is a student's assessed project.
+- The Supabase MCP in this project is **project scoped**: `execute_sql` takes no `project_id` argument, and passing one is a Zod error.
+
 ## Problem
 
 The design system is finished and signed off, but no app code exists.
@@ -35,6 +67,110 @@ Note on O4 B: it governs *the leaderboard*, not the whole task. Steps 1-8 have n
 It also does not remove local-first caching - gate D6 in `redesign-trilingual` requires local-first with sync when online, and free projects pause after a week idle, so the device cache is the offline path regardless. What B removes is a throwaway stub backend.
 **Done 2026-09-20:** project `vjyypzmnbyfjbudusava` created (Mumbai `ap-south-1`), MCP scoped to it in the project's own `.mcp.json`, schema applied and proven.
 **Gotcha for next session:** that `.mcp.json` is project scoped, so Claude must be started from `E:/Projects/freelance-projects/ict-game-world`. Starting from `E:/Projects` loads the empty `E:/Projects/.mcp.json` and the Supabase tools never appear.
+
+## Pilot run on the live site, 2026-09-20 (all 5 handoff checks pass)
+
+**Live: https://ict-game-world.vercel.app** - production, READY, git linked to `pasindu-premachandra/ict-game-world` so every push to `master` redeploys.
+Vercel project `prj_qqbnuMMLY9guVHKbLAbGlxjcFEcX`, deployment `dpl_Bu7byX9UZfifXBAfHEbDjRdR6zfW`, from commit `5067e90`.
+
+Both Supabase tables were truncated first, then a full play session was driven through Playwright as a student called **Ishini** (owl, class `6A`).
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Play a grade 6 activity live, 0 console errors, score reaches Supabase | pass - 6 activities played, **0 console messages of any kind** |
+| 2 | `SUPABASE_URL` + `SUPABASE_PUBLISHABLE_KEY` on the Vercel project | pass - both present on production and preview |
+| 3 | Cron `/api/keep-alive` at `0 2 * * *` | pass - function live; as `vercel-cron/1.0` it returns `{"ok":true,"status":200}`, so it really reaches Supabase and is not the `skipped: supabase not configured yet` fallback |
+| 4 | `/api/keep-alive` from a browser returns 401 | pass - 401 |
+| 5 | Service worker serves the deployed build | pass - 1 registration, cache `igw-v2`, matches the deploy |
+
+**What the pilot exercised**
+
+- All four grade 6 activity types: order (1.1), match (1.2), pick (1.3), bucket (1.4). All scored 100 / 3 stars.
+- Both languages: 2.1 played entirely in Sinhala, `<html lang="si">`, correct fonts and scale.
+- Name gate: `#/g6/board` correctly redirected to `#/name`, then returned to the board after saving.
+- Leaderboard read from Supabase (`leaderboard_class` 200), own row marked, class filter `6A` applied.
+- **Best score is protected:** replayed 1.2 deliberately wrong, scored 0. The server row stayed at 100 with its original `updated_at`, so `greatest()` in `submit_score()` rejected it. A student can never lose points by practising.
+- **Offline proven live:** network killed, page reloaded fully from cache, activity 2.2 played and scored while offline, the score queued in `igw.pending`. Reconnecting flushed the queue automatically and 2.2 appeared in Supabase. Queue emptied to `[]`.
+
+**Final state:** `players` = 1 row (Ishini, owl, 6A), `scores` = 5 rows (1.2, 1.3, 1.4, 2.1, 2.2), all 100.
+
+### Gate answers, 2026-09-20 (review/pilot.html)
+
+- **D1 scores earned before naming: ask for the name before the first activity.** Done.
+- **D2 the grade 6 1.3 distractor: make both languages the ceramic plate.** Done, and the rendering bug is fixed regardless.
+- **D3 what next: fix the findings first, then start porting the remaining activity types.** Fixes done; porting not started.
+
+### What was changed for D1, D2 and F2
+
+**D1, the name gate.** One guard in the activity branch of the router in `js/app.js`, mirroring the one the leaderboard already had:
+
+```js
+if (!hasPlayer()) { setGrade(grade); location.hash = '#/name'; return; }
+```
+
+Browsing stays open: the grade picker and the lesson path still render without a name, so a child only meets the form when they actually start an activity, and only once. `setGrade` is called first so the name screen appears in that grade's colour world rather than the default.
+Verified on a cleared profile: clicking activity 1.1 redirects to `#/name`, and saving the name returns to `#/g6/1.1`, the activity that was asked for, not the lesson list. Playing it then put **activity 1.1** into Supabase with 100 points and an empty queue, which is exactly the score the pilot lost.
+
+**F2, the icon that printed as `[object Object]`.** The four renderers passed `icon` straight into a text node. All four now route it through the existing `text()` helper, the same one already used for every other translatable value:
+
+`js/activities/pick.js:19`, `js/activities/match.js:18`, `js/activities/order.js:19`, `js/app.js:81`.
+
+This is the fix that matters longer term: it is no longer possible for a differing icon to print as text, whatever the content does later.
+
+**D2, the distractor itself, and a new corrections seam.** The Sinhala side of grade 6 activity 1.3 item 6 now reads the ceramic plate, so the two languages ask the same question and the icon collapses back to a plain string. There are now **zero non-string icons in all five data files**.
+
+Correcting an original needed somewhere honest to live, because the parity gate exists precisely to stop the originals drifting. It follows the pattern `replaced` already set:
+
+- `content/corrections.json` holds every deliberate change, each with `from`, `to` and a `why`.
+- `scripts/lib/apply-corrections.mjs` applies them, and **throws if `from` no longer matches the original**, so a correction that goes stale fails loudly instead of quietly masking a real change.
+- `scripts/extract.mjs` and `scripts/check-data.mjs` apply the identical list to the identical files, and both print every correction on every run. Grade 6 also carries them in `data/grade-6.json` under `corrections` as provenance.
+
+Proven by breaking it on purpose: a wrong `from` exits 1 with
+`CorrectionError: grade 6 si: 1.3 items.6.text is "කෑදර පුටුව", correction expects "..."`.
+
+The Sinhala wording `සෙරමික් පිඟාන` is drafted, not Ishini's. It is flagged `"draft": true` and the checker prints "(drafted, awaiting review)" every run, so it cannot quietly become permanent.
+
+**Gates after the change:** `check-data.mjs` all five sources match, `check-syllabus.mjs` 59/59 levels with the one pre-existing grade 9 3.4 warning. `sw.js` `CACHE` bumped `igw-v2` to `igw-v3`, required because both `data/` and `js/` changed.
+
+**Not deployed.** Everything above is local and uncommitted; the live site still runs the old build.
+
+### F4, found after the report was written, still open
+
+The leaderboard decides which row is yours by **matching the nickname**, at `js/screens.js:102`:
+
+```js
+list.replaceChildren(...rows.map((r, i) => row(r, i + 1, r.nickname === player?.nickname)));
+```
+
+Seen live: two different students both called Ishini were each badged "You" on both rows. In a class where two children pick the same nickname, both see themselves marked on the other's row.
+The fix needs no migration, because `leaderboard_grade` already selects `p.id as player_id` (`supabase/migrations/0001_init.sql:101`). The client simply never asks for it: add `player_id` to the select in `js/leaderboard.js` and compare `r.player_id === player?.id`. Two lines. Not done, because it arrived after the gate closed and was never one of the options.
+
+### Two findings from the pilot
+
+**F1 - Scores earned before naming are silently lost (behaviour decision for Pasindu).**
+`pushScore()` in `js/leaderboard.js:57` starts `if (!getPlayer()) return;`, so an activity finished before the student picks a nickname is never sent *and never queued*. It is kept in `igw.progress` on the device, so the topbar star count includes it, but the leaderboard cannot.
+Observed: Ishini played 1.1 first, then named herself. Topbar read **600** while the leaderboard read **500** - a visible 100 point gap on the same screen, and 1.1 is absent from `scores`.
+It matters because the app does not ask for a name up front: the grade picker is the landing screen, so playing first and naming later is the natural path, not an edge case.
+Three ways out, all small: gate the first activity behind the name screen; queue pre-name scores and attribute them on naming; or show the device total on the leaderboard with a "not counted yet" note. Not changed - this is a product call.
+
+**F2 - Grade 6 activity 1.3 renders an icon as `[object Object]` (real bug, one line).**
+On screen the "Ceramic plate" option shows the literal text `[object Object]` where its emoji should be.
+Root cause: the two source files disagree on that distractor - English has "Ceramic plate" with `icon` 🍽, Sinhala has a different word with `icon` 🪑. Because the icons differ, the lockstep merge correctly wrapped the field as `{en, si}`, and it is the only non-string `icon` in all five data files (`data/grade-6.json`, lesson 1, activity 1.3, item 6).
+The four renderers pass `icon` straight into a text node without translating it: `js/activities/pick.js:19`, `js/activities/match.js:18`, `js/activities/order.js:19`, `js/app.js:81`. The fix is to route it through the existing `text()` helper in `js/i18n.js:82`, which already handles exactly this shape.
+Underneath it is the content mismatch carried over from `redesign-trilingual` (the Sinhala distractor is a chair, the English one is a plate). That half is Ishini and Dilini's call; the `[object Object]` half is ours and should be fixed regardless, since any future differing icon would break the same way.
+
+**F3 (minor, content) - Sinhala typo in the originals.** හාවිත appears where භාවිත is meant (හ typed for භ), in at least the lesson 2 title and inside activity 2.1. It is faithful to the source files, so the parity gate will not flag it. Belongs on the typo list for Ishini alongside T1-T5.
+
+**State of the work**
+- Repo public at https://github.com/pasindu-premachandra/ict-game-world, 2 commits, both title only, contributors shows only Pasindu.
+- README with 6 screenshots is on the repo root; screenshots live in `docs/screenshots/`.
+- Supabase project `vjyypzmnbyfjbudusava` (Mumbai): schema applied, RLS proven, tables currently empty (test rows cleaned up).
+- Grade 6 is playable end to end in both languages. Grades 7-9 have data but 10 of the 16 activity types have no UI, so they render as "coming soon". That is the next build task, and it is mechanical now the pattern exists.
+
+**Traps that already cost time, do not rediscover them**
+- Start Claude from `E:/Projects/freelance-projects/ict-game-world` or the Supabase MCP never loads (the project `.mcp.json` is only read from the cwd).
+- Bump `CACHE` in `sw.js` on any deploy that changes a precached file, or browsers keep running the old build.
+- Vercel's API could not link the GitHub repo (`namespaceId: null`); the browser import flow worked. Use the UI if the API refuses again.
 
 ## Options
 

@@ -16,7 +16,7 @@ export function render(activity, onDone) {
     items.forEach((it, index) => {
       const row = el('li', { class: 'order-item' }, [
         el('span', { class: 'order-num', 'aria-hidden': 'true' }, [String(index + 1)]),
-        el('span', { class: 'order-icon', 'aria-hidden': 'true' }, [it.step.icon || '']),
+        el('span', { class: 'order-icon', 'aria-hidden': 'true' }, [text(it.step.icon)]),
         el('span', { class: 'order-text' }, [text(it.step.text)]),
         el('span', { class: 'order-moves' }, [
           button('▲', t('moveUp'), index === 0, () => move(index, -1)),

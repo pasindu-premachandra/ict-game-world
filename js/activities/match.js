@@ -15,7 +15,7 @@ export function render(activity, onDone) {
 
   function card(side, entry, label, icon) {
     const b = el('button', { type: 'button', class: 'match-card' }, [
-      el('span', { class: 'match-icon', 'aria-hidden': 'true' }, [icon || '']),
+      el('span', { class: 'match-icon', 'aria-hidden': 'true' }, [text(icon)]),
       el('span', {}, [label]),
     ]);
     b.addEventListener('click', () => {

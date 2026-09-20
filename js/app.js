@@ -78,7 +78,7 @@ async function lessonPath(grade) {
 
     list.append(el('li', { class: 'path-lesson' }, [
       el('h2', { class: 'lesson-title' }, [
-        el('span', { class: 'lesson-icon', 'aria-hidden': 'true' }, [lesson.icon || '']),
+        el('span', { class: 'lesson-icon', 'aria-hidden': 'true' }, [text(lesson.icon)]),
         text(lesson.title),
       ]),
       el('ol', { class: 'act-list' }, items),
@@ -177,6 +177,9 @@ async function route() {
       if (!hasPlayer()) { location.hash = '#/name'; return; }
       return await leaderboard(main, grade);
     }
+    // A score with no player behind it cannot reach the leaderboard, so ask
+    // for the name before the first activity rather than losing that score.
+    if (!hasPlayer()) { setGrade(grade); location.hash = '#/name'; return; }
     return await activityScreen(grade, parts[1]);
   } catch (err) {
     console.error(err);

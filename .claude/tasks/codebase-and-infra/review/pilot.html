@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICT Game World - pilot run</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Palette lifted from the project's own tokens.css, grade 9 "night lab" world. */
+:root{
+  --page:#0d1626; --surface:#192437; --surface-2:#1f2c42; --line:#2d3645; --line-soft:#303d55;
+  --text:#e6edf6; --text-muted:#b0c0d1; --text-dim:#8697ab;
+  --base:#43d0f9; --base-hover:#77e1ff; --base-dark:#0080ad; --base-soft:#003850; --base-ink:#92e5ff;
+  --on-base:#062033;
+  --ok:#03a14a; --ok-soft:#0d2e1d; --ok-ink:#6ee89b;
+  --no:#ec485f; --no-soft:#3a1620; --no-ink:#ff9aa7;
+  --warn:#f2b036; --warn-soft:#332616; --warn-ink:#ffd489;
+  --tip:#2f8adc; --tip-soft:#12263c; --tip-ink:#8ec8fb;
+  --gold:#f9c230; --flame:#f3562e;
+  --font-display:"Baloo 2",system-ui,sans-serif;
+  --font-body:"Nunito",system-ui,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:20px;
+  --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; background:var(--page); color:var(--text);
+  font-family:var(--font-body); font-size:17px; line-height:1.6;
+  padding:var(--sp-8) var(--sp-4) 96px;
+}
+.wrap{max-width:960px;margin:0 auto;}
+h1,h2,h3{font-family:var(--font-display);line-height:1.2;margin:0;}
+h1{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-.01em;}
+h2{font-size:clamp(21px,3.4vw,28px);font-weight:700;margin-bottom:var(--sp-3);}
+h3{font-size:18px;font-weight:700;}
+p{margin:0 0 var(--sp-4);}
+a{color:var(--base);}
+code{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.88em;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;
+  word-break:break-word;color:var(--base-ink);}
+
+header{border-bottom:2px solid var(--line);padding-bottom:var(--sp-6);margin-bottom:var(--sp-8);}
+.eyebrow{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--base);margin-bottom:var(--sp-2);}
+.lede{font-size:19px;color:var(--text-muted);max-width:68ch;margin-top:var(--sp-4);}
+
+section{margin-bottom:var(--sp-10);}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--sp-5);}
+.grid{display:grid;gap:var(--sp-4);}
+@media(min-width:720px){.g3{grid-template-columns:repeat(3,1fr);}.g2{grid-template-columns:repeat(2,1fr);}}
+
+.lane{border-left:4px solid var(--line-soft);padding-left:var(--sp-4);}
+.lane.done{border-left-color:var(--ok);}
+.lane.now{border-left-color:var(--base);}
+.lane.flight{border-left-color:var(--warn);}
+.lane h3{margin-bottom:4px;}
+.lane .status{font-size:13px;font-weight:700;font-family:var(--font-display);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--sp-2);}
+.done .status{color:var(--ok-ink);} .now .status{color:var(--base-ink);} .flight .status{color:var(--warn-ink);}
+.lane p{font-size:15px;color:var(--text-muted);margin:0;}
+
+.stats{display:grid;gap:var(--sp-3);grid-template-columns:repeat(2,1fr);}
+@media(min-width:720px){.stats{grid-template-columns:repeat(4,1fr);}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4);text-align:center;}
+.stat .n{font-family:var(--font-display);font-size:34px;font-weight:800;color:var(--base);line-height:1;}
+.stat .l{font-size:13px;color:var(--text-dim);margin-top:6px;}
+
+figure{margin:0;}
+/* Below ~760px the 900-unit viewBox would squeeze labels to about 4px, so the
+   figure scrolls sideways inside its own box rather than shrinking further. */
+.figscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:var(--sp-4);}
+figure svg{width:100%;min-width:720px;height:auto;display:block;}
+.figscroll-hint{font-size:13px;color:var(--text-dim);margin-top:var(--sp-2);}
+@media(min-width:800px){.figscroll-hint{display:none;}}
+figcaption{font-size:14px;color:var(--text-dim);margin-top:var(--sp-3);}
+
+table{width:100%;border-collapse:collapse;font-size:15px;}
+th,td{text-align:left;padding:10px var(--sp-3);border-bottom:1px solid var(--line);vertical-align:top;}
+th{font-family:var(--font-display);font-weight:700;font-size:13px;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--text-dim);}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+.pill{display:inline-block;font-family:var(--font-display);font-size:12px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;white-space:nowrap;}
+.pill.ok{background:var(--ok-soft);color:var(--ok-ink);border:1px solid #1d5c38;}
+.pill.no{background:var(--no-soft);color:var(--no-ink);border:1px solid #6d2634;}
+.pill.warn{background:var(--warn-soft);color:var(--warn-ink);border:1px solid #6b5326;}
+.pill.tip{background:var(--tip-soft);color:var(--tip-ink);border:1px solid #23496e;}
+
+.note{border-radius:var(--r-md);padding:var(--sp-4);font-size:15px;border:1px solid;}
+.note.warn{background:var(--warn-soft);border-color:#6b5326;}
+.note.tip{background:var(--tip-soft);border-color:#23496e;}
+.note strong{font-family:var(--font-display);}
+.note p:last-child{margin-bottom:0;}
+
+/* Decisions */
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:var(--sp-5);margin-bottom:var(--sp-6);}
+.q-head{display:flex;gap:var(--sp-3);align-items:baseline;flex-wrap:wrap;margin-bottom:var(--sp-2);}
+.q-id{font-family:var(--font-display);font-weight:800;font-size:13px;letter-spacing:.1em;
+  color:var(--on-base);background:var(--base);padding:3px 10px;border-radius:999px;}
+.q-ask{font-family:var(--font-display);font-size:20px;font-weight:700;}
+.q-hard{font-size:15px;color:var(--text-muted);margin-bottom:var(--sp-4);}
+.q-hard b{color:var(--warn-ink);font-weight:700;}
+
+fieldset{border:0;margin:0;padding:0;}
+legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.opt{display:block;border:2px solid var(--line);border-radius:var(--r-md);
+  padding:var(--sp-4);margin-bottom:var(--sp-3);cursor:pointer;background:var(--surface-2);
+  transition:border-color .18s,background .18s;}
+.opt:hover{border-color:var(--line-soft);}
+.opt:has(input:checked){border-color:var(--base);background:var(--base-soft);}
+.opt:has(input:focus-visible){outline:3px solid var(--base-ink);outline-offset:2px;}
+.opt-top{display:flex;gap:10px;align-items:flex-start;}
+.opt input{margin:5px 0 0;flex:none;width:19px;height:19px;accent-color:var(--base);}
+.opt-lab{font-family:var(--font-display);font-weight:700;font-size:17px;}
+.opt-body{font-size:15px;color:var(--text-muted);margin:6px 0 0 29px;}
+.opt-cost{font-size:14px;color:var(--text-dim);margin:8px 0 0 29px;padding-top:8px;border-top:1px dashed var(--line);}
+.opt-cost b{color:var(--no-ink);font-weight:700;}
+.rec{background:var(--ok-soft);color:var(--ok-ink);border:1px solid #1d5c38;
+  font-family:var(--font-display);font-size:11px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-left:8px;white-space:nowrap;}
+
+.qbtn{font-family:var(--font-display);font-weight:800;font-size:16px;
+  background:var(--base);color:var(--on-base);border:0;border-bottom:5px solid var(--base-dark);
+  border-radius:var(--r-md);padding:12px 24px;cursor:pointer;min-height:48px;transition:transform .12s;}
+.qbtn:hover{background:var(--base-hover);}
+.qbtn:active{transform:translateY(3px);border-bottom-width:2px;}
+.qbtn:focus-visible{outline:3px solid var(--base-ink);outline-offset:3px;}
+.sent{display:none;margin-top:var(--sp-3);font-size:14px;color:var(--ok-ink);font-weight:700;}
+.q.queued .sent{display:block;}
+.q.queued{border-color:var(--ok);}
+
+ul{margin:0 0 var(--sp-4);padding-left:20px;}
+li{margin-bottom:6px;}
+.src{font-size:13px;color:var(--text-dim);}
+footer{border-top:2px solid var(--line);padding-top:var(--sp-5);margin-top:var(--sp-10);
+  font-size:14px;color:var(--text-dim);}
+</style>
+<style>
+.flow-yes{fill:var(--ok-ink);} .flow-no{fill:var(--no-ink);}
+.flow-lab{font-family:var(--font-body);font-size:13px;font-weight:700;}
+.flow-box{font-family:var(--font-display);font-size:15px;font-weight:700;fill:var(--text);}
+.flow-sub{font-family:var(--font-body);font-size:12.5px;fill:var(--text-muted);}
+.finding{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:var(--sp-5);margin-bottom:var(--sp-5);border-left:5px solid var(--warn);}
+.finding.bug{border-left-color:var(--no);}
+.finding.minor{border-left-color:var(--tip);}
+.f-head{display:flex;gap:var(--sp-3);align-items:baseline;flex-wrap:wrap;margin-bottom:var(--sp-3);}
+.f-id{font-family:var(--font-display);font-weight:800;font-size:13px;letter-spacing:.1em;
+  background:var(--warn);color:#241a06;padding:3px 10px;border-radius:999px;}
+.bug .f-id{background:var(--no);color:#2c0a10;}
+.minor .f-id{background:var(--tip);color:#04121f;}
+.f-title{font-family:var(--font-display);font-size:19px;font-weight:700;}
+.f-body{font-size:15.5px;color:var(--text-muted);}
+.f-body p:last-child{margin-bottom:0;}
+.f-body b{color:var(--text);}
+.evidence{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:var(--sp-3) var(--sp-4);margin:var(--sp-3) 0;font-size:14.5px;}
+.evidence .k{font-family:var(--font-display);font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.gap{display:flex;gap:var(--sp-4);flex-wrap:wrap;align-items:center;margin:var(--sp-4) 0;}
+.gapbox{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:var(--sp-3) var(--sp-5);text-align:center;min-width:140px;}
+.gapbox .n{font-family:var(--font-display);font-size:30px;font-weight:800;line-height:1;}
+.gapbox .l{font-size:12.5px;color:var(--text-dim);margin-top:5px;}
+.gapbox.a .n{color:var(--warn-ink);} .gapbox.b .n{color:var(--base);}
+.gaparrow{font-size:26px;color:var(--text-dim);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">ICT Game World / task: codebase-and-infra / pilot</div>
+  <h1>The first pilot run</h1>
+  <p class="lede">Both Supabase tables were emptied, then a full play session was driven through a real browser against the live site as a student called Ishini. All five deployment checks pass and the run was completely clean. It also surfaced one thing the app gets wrong, and it is a behaviour question rather than a bug.</p>
+</header>
+
+<section>
+  <div class="stats">
+    <div class="stat"><div class="n">5/5</div><div class="l">deployment checks pass</div></div>
+    <div class="stat"><div class="n">6</div><div class="l">activities played live</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">console messages, any kind</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">score that never arrived</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>What was run</h2>
+  <div class="card">
+    <p>I truncated <code>players</code> and <code>scores</code> first, so nothing from the earlier security testing could be mistaken for a real result, then drove Chrome through Playwright against <a href="https://ict-game-world.vercel.app">ict-game-world.vercel.app</a> as one student: nickname <b>Ishini</b>, buddy the owl, class code <b>6A</b>.</p>
+    <p>The session covered all four grade 6 activity types, both languages, the name gate, the leaderboard, a deliberate failed replay, and a full offline cycle. Nothing was stubbed and nothing ran locally. Every number below came off the live site or out of the live database.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The five checks from the handoff</h2>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Check</th><th>Result</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Play a grade 6 activity live, no console errors, score reaches Supabase</td>
+        <td><span class="pill ok">pass</span></td>
+        <td>6 activities played. <b>0 console messages of any kind</b>, including through the offline cycle. 5 rows landed in <code>scores</code>.</td>
+      </tr>
+      <tr>
+        <td>Env vars exist on the Vercel project</td>
+        <td><span class="pill ok">pass</span></td>
+        <td><code>SUPABASE_URL</code> and <code>SUPABASE_PUBLISHABLE_KEY</code>, both on production and preview.</td>
+      </tr>
+      <tr>
+        <td>Cron function works</td>
+        <td><span class="pill ok">pass</span></td>
+        <td>Called as <code>vercel-cron/1.0</code> it returns <code>{"ok":true,"status":200}</code>. That 200 is Supabase answering, so the keep-alive really does reach the database rather than falling back to <code>skipped: supabase not configured yet</code>.</td>
+      </tr>
+      <tr>
+        <td>The cron path refuses an ordinary browser</td>
+        <td><span class="pill ok">pass</span></td>
+        <td><code>/api/keep-alive</code> returns <b>401</b>.</td>
+      </tr>
+      <tr>
+        <td>Service worker serves the deployed build</td>
+        <td><span class="pill ok">pass</span></td>
+        <td>1 registration at the site root, cache <code>igw-v2</code>, matching the deploy.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="src">The one thing I could not read through the API is whether Vercel registered the <code>0 2 * * *</code> schedule itself; that lives in Project, Settings, Cron Jobs in the dashboard. The function behind it is confirmed working, and Hobby rejects an invalid schedule at build time, so a green build is good evidence the schedule was accepted.</p>
+</section>
+
+<section>
+  <h2>What the run proved</h2>
+  <div class="grid g2">
+    <div class="card lane done">
+      <div class="status">confirmed</div>
+      <h3>All four activity types</h3>
+      <p>Order (1.1), match (1.2), pick (1.3) and bucket (1.4), each scored 100 and three stars. The engine holds up on the real deploy, not just locally.</p>
+    </div>
+    <div class="card lane done">
+      <div class="status">confirmed</div>
+      <h3>Both languages</h3>
+      <p>Activity 2.1 was played start to finish in Sinhala. <code>&lt;html lang="si"&gt;</code> flips, the fonts and the larger type scale follow, and completed scores read back as 100 ලකුණු.</p>
+    </div>
+    <div class="card lane done">
+      <div class="status">confirmed</div>
+      <h3>Practising cannot cost points</h3>
+      <p>I replayed 1.2 deliberately wrong and scored 0. The server row stayed at 100 with its original timestamp untouched, so <code>greatest()</code> inside <code>submit_score()</code> rejected the lower score. This is the one that matters most for a child who wants another go.</p>
+    </div>
+    <div class="card lane done">
+      <div class="status">confirmed</div>
+      <h3>Offline, for real, on the live site</h3>
+      <p>Network killed, page reloaded entirely from cache, activity 2.2 played and scored while offline, the score parked in <code>igw.pending</code>. Reconnecting flushed it on its own and 2.2 appeared in Supabase. The queue emptied to <code>[]</code>.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Where a score can go, and where one went missing</h2>
+  
+<div class="figscroll">
+<figure>
+<svg viewBox="0 0 900 500" role="img" aria-label="The path a score takes from a finished activity to Supabase, showing where a score earned before naming is dropped.">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <g stroke="var(--line-soft)" stroke-width="2" fill="none" color="var(--text-dim)">
+    <line x1="250" y1="78"  x2="250" y2="108" marker-end="url(#ah)"/>
+    <line x1="250" y1="168" x2="250" y2="198" marker-end="url(#ah)"/>
+    <line x1="250" y1="258" x2="250" y2="294" marker-end="url(#ah)"/>
+    <line x1="250" y1="354" x2="250" y2="394" marker-end="url(#ah)"/>
+  </g>
+  <g stroke="var(--no)" stroke-width="2" fill="none" color="var(--no)">
+    <line x1="380" y1="231" x2="464" y2="231" marker-end="url(#ah)"/>
+  </g>
+  <g stroke="var(--warn)" stroke-width="2" fill="none" color="var(--warn)">
+    <line x1="380" y1="327" x2="464" y2="327" marker-end="url(#ah)"/>
+  </g>
+  <g stroke="var(--ok)" stroke-width="2" fill="none" color="var(--ok)" stroke-dasharray="6 4">
+    <path d="M640,359 L640,446 L392,446" marker-end="url(#ah)"/>
+  </g>
+
+  <rect x="120" y="24"  width="260" height="54" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text class="flow-box" x="250" y="46"  text-anchor="middle">Activity finished</text>
+  <text class="flow-sub" x="250" y="65"  text-anchor="middle">points saved to the device first</text>
+
+  <rect x="120" y="108" width="260" height="60" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text class="flow-box" x="250" y="133" text-anchor="middle">pushScore()</text>
+  <text class="flow-sub" x="250" y="153" text-anchor="middle">js/leaderboard.js</text>
+
+  <rect x="120" y="198" width="260" height="60" rx="12" fill="var(--base-soft)" stroke="var(--base)"/>
+  <text class="flow-box" x="250" y="223" text-anchor="middle">Has the student a name?</text>
+  <text class="flow-sub" x="250" y="243" text-anchor="middle">if (!getPlayer()) return;</text>
+
+  <rect x="120" y="294" width="260" height="60" rx="12" fill="var(--base-soft)" stroke="var(--base)"/>
+  <text class="flow-box" x="250" y="319" text-anchor="middle">Is the device online?</text>
+  <text class="flow-sub" x="250" y="339" text-anchor="middle">navigator.onLine</text>
+
+  <rect x="120" y="394" width="272" height="62" rx="12" fill="var(--ok-soft)" stroke="var(--ok)"/>
+  <text class="flow-box" x="256" y="420" text-anchor="middle">submit_score() on Supabase</text>
+  <text class="flow-sub" x="256" y="440" text-anchor="middle">keeps the best score, never lowers it</text>
+
+  <rect x="466" y="199" width="344" height="64" rx="12" fill="var(--no-soft)" stroke="var(--no)"/>
+  <text class="flow-box" x="638" y="225" text-anchor="middle">Dropped</text>
+  <text class="flow-sub" x="638" y="246" text-anchor="middle">kept in igw.progress, never queued, never sent</text>
+
+  <rect x="466" y="295" width="344" height="64" rx="12" fill="var(--warn-soft)" stroke="var(--warn)"/>
+  <text class="flow-box" x="638" y="321" text-anchor="middle">Queued in igw.pending</text>
+  <text class="flow-sub" x="638" y="342" text-anchor="middle">survives a reload, flushes when the network returns</text>
+
+  <text class="flow-lab flow-yes" x="262" y="281">yes</text>
+  <text class="flow-lab flow-yes" x="262" y="381">yes</text>
+  <text class="flow-lab flow-no"  x="408" y="222">no</text>
+  <text class="flow-lab flow-no"  x="408" y="318">no</text>
+  <text class="flow-lab" x="516" y="468" fill="var(--ok-ink)" text-anchor="middle">the &#39;online&#39; event calls flushQueue()</text>
+</svg>
+<figcaption>Both lower branches are safe: an offline score waits and syncs, and a replay can never lower a best score. The top branch is the one with no safety net. The pilot took it by accident, because playing before naming is the natural path through the app.</figcaption>
+</figure>
+</div>
+<p class="figscroll-hint">Scroll the diagram sideways to see all of it.</p>
+
+</section>
+
+<section>
+  <h2>Findings</h2>
+
+  <div class="finding">
+    <div class="f-head"><span class="f-id">F1</span><span class="f-title">A score earned before the student picks a name is lost for good</span></div>
+    <div class="f-body">
+      <p><code>pushScore()</code> opens with <code>if (!getPlayer()) return;</code>, so an activity finished before the nickname screen is <b>never sent and never even queued</b>. It stays in <code>igw.progress</code> on the device, which means the star counter in the top bar counts it but the leaderboard cannot.</p>
+      <div class="evidence">
+        <span class="k">What the pilot saw</span>
+        Ishini played activity 1.1 first, because the grade picker is the landing screen and nothing asks for a name. She named herself afterwards, when she opened the leaderboard. That first 100 points never reached the server and never will.
+      </div>
+      <div class="gap">
+        <div class="gapbox a"><div class="n">600</div><div class="l">star counter, top bar</div></div>
+        <div class="gaparrow">vs</div>
+        <div class="gapbox b"><div class="n">500</div><div class="l">her own leaderboard row</div></div>
+      </div>
+      <p>Both numbers were on screen at the same time. A child who counts their own stars will see the leaderboard owing them a hundred points, and the app gives them no way to understand why.</p>
+      <p><b>Why it is not an edge case:</b> the app deliberately does not ask for a name up front, so playing first and naming later is the ordinary path through it. In a lab of thirty students, most would lose their first activity this way.</p>
+      <p><b>Why I have not touched it:</b> every fix changes how the app greets a child, and that is a design call rather than a code one. It is decision D1 below.</p>
+    </div>
+  </div>
+
+  <div class="finding bug">
+    <div class="f-head"><span class="f-id">F2</span><span class="f-title">Grade 6 activity 1.3 prints the literal text "[object Object]"</span></div>
+    <div class="f-body">
+      <p>In <b>Pick the Embedded Computer Devices</b>, the "Ceramic plate" option renders <code>[object Object]</code> where its emoji should be. It is on the live site right now, in both languages.</p>
+      <div class="evidence">
+        <span class="k">Root cause, and it is two problems stacked</span>
+        The two source files disagree about that distractor. The English original has "Ceramic plate" with a plate icon; the Sinhala original has කෑදර පුටුව, which is a chair, with a chair icon. Because the icons differ, the bilingual merge correctly wrapped the field as <code>{en, si}</code>. It is the only non-string <code>icon</code> in all five data files.
+      </div>
+      <p><b>The code half is ours, and it is one line in four places.</b> The renderers pass <code>icon</code> straight into a text node without translating it: <code>js/activities/pick.js:19</code>, <code>js/activities/match.js:18</code>, <code>js/activities/order.js:19</code> and <code>js/app.js:81</code>. The <code>text()</code> helper at <code>js/i18n.js:82</code> already handles exactly this shape; the icons simply never got routed through it. This should be fixed whatever happens to the content, because any future icon that differs between the two languages will break the same way and nothing would catch it.</p>
+      <p><b>The content half is Ishini and Dilini&#39;s.</b> A plate and a chair are not translations of each other, so one of the two originals has the wrong distractor. That is decision D2.</p>
+    </div>
+  </div>
+
+  <div class="finding minor">
+    <div class="f-head"><span class="f-id">F3</span><span class="f-title">A Sinhala spelling slip repeated in the source content</span></div>
+    <div class="f-body">
+      <p>හාවිත appears where භාවිත is meant, in at least the lesson 2 heading and again inside activity 2.1. It is faithful to the original files, so the parity checker will never flag it: the checker proves we copied the content exactly, which is precisely why a typo in the source survives it.</p>
+      <p>This belongs on the list for Ishini next to the T1 to T5 typos already carried over from the redesign task, rather than being quietly changed here.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Decisions</h2>
+  <p>Three, and only D1 really needs thinking about.</p>
+
+  <form class="q" data-lavish-question="d1" onsubmit="event.preventDefault();var v=new FormData(event.currentTarget).get('d1');if(!v)return;window.lavish.queuePrompt('D1 pre-name scores: '+v,{tag:'choice',text:'D1: '+v,element:event.currentTarget,data:{question:'D1 scores earned before naming',answer:v}});event.currentTarget.classList.add('queued');">
+    <div class="q-head"><span class="q-id">D1</span><span class="q-ask">What should happen to points earned before a student picks a name?</span></div>
+    <p class="q-hard">The tension: <b>asking for a name first</b> protects every point but puts a form in front of a child who just wants to play, and the app was deliberately built the other way round. <b>Letting them play first</b> keeps that, but silently loses work unless we do something with it.</p>
+    <fieldset>
+      <legend>D1</legend>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d1" value="Queue pre-name scores and attribute them when the student names themselves"><span class="opt-lab">Queue them and attribute them on naming<span class="rec">my pick</span></span></span>
+        <span class="opt-body">Drop the early return, queue the score with no player, and stamp the player id onto everything pending at the moment the name is saved. The child plays immediately, nothing is lost, and the leaderboard matches the star counter the first time they look at it.</span>
+        <span class="opt-cost">Cost if wrong: <b>the smallest of the four.</b> It reuses the queue the pilot just proved works offline. The only new case is a queued score with no owner yet, which is the same shape as an offline one.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d1" value="Ask for the name before the first activity"><span class="opt-lab">Ask for the name before the first activity</span></span>
+        <span class="opt-body">Send a student to the name screen the first time they open any activity, the way the leaderboard already does. Simplest possible rule, nothing to keep in sync.</span>
+        <span class="opt-cost">Cost if wrong: <b>a form between a child and the game.</b> It also reverses a deliberate design choice, and shared lab machines would make the prompt appear constantly.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d1" value="Show the device total on the leaderboard with a not-counted-yet note"><span class="opt-lab">Explain the gap instead of closing it</span></span>
+        <span class="opt-body">Keep the behaviour, but show the device total next to the server total with a line saying which points are not on the board yet.</span>
+        <span class="opt-cost">Cost if wrong: <b>the points are still gone.</b> It only stops the child being confused, and it puts a caveat on a screen meant to be a reward.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d1" value="Leave it as it is for now"><span class="opt-lab">Leave it for now</span></span>
+        <span class="opt-body">Accept it. The device score is the one a child sees most, and the leaderboard is a bonus feature.</span>
+        <span class="opt-cost">Cost if wrong: <b>it shows up in a real classroom.</b> Every student loses their first activity, and the first thing anyone notices about the leaderboard is that it is wrong.</span></label>
+    </fieldset>
+    <button class="qbtn" type="submit">Queue this answer</button>
+    <p class="sent">Queued. Press Send to Agent when you have answered the rest.</p>
+  </form>
+
+  <form class="q" data-lavish-question="d2" onsubmit="event.preventDefault();var v=new FormData(event.currentTarget).get('d2');if(!v)return;window.lavish.queuePrompt('D2 the 1.3 distractor: '+v,{tag:'choice',text:'D2: '+v,element:event.currentTarget,data:{question:'D2 grade 6 activity 1.3 distractor',answer:v}});event.currentTarget.classList.add('queued');">
+    <div class="q-head"><span class="q-id">D2</span><span class="q-ask">The English says a ceramic plate, the Sinhala says a chair. Which is right?</span></div>
+    <p class="q-hard">Either works as a distractor, since neither contains an embedded computer. But a child doing the activity in both languages gets a different question, and right now the mismatch is also what puts <code>[object Object]</code> on the screen. <b>I will fix the rendering either way</b>, so no differing icon can ever print as text again. This is only about which word is correct.</p>
+    <fieldset>
+      <legend>D2</legend>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d2" value="Ask Ishini and Dilini which distractor they meant"><span class="opt-lab">Ask Ishini and Dilini<span class="rec">my pick</span></span></span>
+        <span class="opt-body">It is their content and their assessed project, and one of the two originals simply has the wrong word. Fix the rendering now, put the wording on their list alongside F3.</span>
+        <span class="opt-cost">Cost if wrong: <b>a short wait.</b> The visible bug is gone either way; only the wording stays open.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d2" value="Make both languages the ceramic plate"><span class="opt-lab">Make both the ceramic plate</span></span>
+        <span class="opt-body">Treat the English as correct and rewrite the Sinhala to match.</span>
+        <span class="opt-cost">Cost if wrong: <b>we edit their content on a guess.</b> The Sinhala file is just as likely to be the correct one.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d2" value="Make both languages the chair"><span class="opt-lab">Make both the chair</span></span>
+        <span class="opt-body">Treat the Sinhala as correct and rewrite the English to match.</span>
+        <span class="opt-cost">Cost if wrong: <b>the same, in the other direction.</b></span></label>
+    </fieldset>
+    <button class="qbtn" type="submit">Queue this answer</button>
+    <p class="sent">Queued. Press Send to Agent when you have answered the rest.</p>
+  </form>
+
+  <form class="q" data-lavish-question="d3" onsubmit="event.preventDefault();var v=new FormData(event.currentTarget).get('d3');if(!v)return;window.lavish.queuePrompt('D3 next up: '+v,{tag:'choice',text:'D3: '+v,element:event.currentTarget,data:{question:'D3 what to do next',answer:v}});event.currentTarget.classList.add('queued');">
+    <div class="q-head"><span class="q-id">D3</span><span class="q-ask">What should I do next?</span></div>
+    <p class="q-hard">The pilot says the architecture holds. The biggest remaining gap is that <b>10 of the 16 activity types still have no UI</b>, so most of grades 7, 8 and 9 render as "coming soon" even though their content is extracted and syllabus checked.</p>
+    <fieldset>
+      <legend>D3</legend>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d3" value="Fix F1 and F2 first, then start porting the remaining activity types"><span class="opt-lab">Fix the findings first, then start porting<span class="rec">my pick</span></span></span>
+        <span class="opt-body">Both fixes are small and both are on the live site right now. Clearing them means the grade 7 to 9 work starts on an engine with no known defects, instead of copying a renderer bug into ten more activity types.</span>
+        <span class="opt-cost">Cost if wrong: <b>a short delay before the big push.</b> The icon fix in particular is four one-line changes.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d3" value="Go straight to porting the remaining activity types"><span class="opt-lab">Go straight to the remaining activity types</span></span>
+        <span class="opt-body">Grades 7 to 9 are the visible gap. Fold the fixes into that work as it passes through the renderers.</span>
+        <span class="opt-cost">Cost if wrong: <b>the icon bug gets copied.</b> The new renderers would be written from the existing ones, which all have it.</span></label>
+      <label class="opt"><span class="opt-top"><input type="radio" name="d3" value="Just the fixes, then stop and wait"><span class="opt-lab">Just the fixes, then stop</span></span>
+        <span class="opt-body">Clear F1 and F2, redeploy, and leave the porting until Ishini has reviewed the pilot and the Sinhala drafts.</span>
+        <span class="opt-cost">Cost if wrong: <b>idle time</b> if her review takes a while, since the porting does not depend on it.</span></label>
+    </fieldset>
+    <button class="qbtn" type="submit">Queue this answer</button>
+    <p class="sent">Queued. Press Send to Agent when you have answered the rest.</p>
+  </form>
+</section>
+
+<section>
+  <h2>Where the database stands now</h2>
+  <div class="card">
+    <p>Left exactly as the pilot finished, so you can look at it: <code>players</code> has one row (Ishini, owl, class 6A) and <code>scores</code> has five, all 100, for activities 1.2, 1.3, 1.4, 2.1 and 2.2. Activity 1.1 is the one missing, which is F1.</p>
+    <p>Say the word and I will clear both tables again.</p>
+  </div>
+</section>
+
+<footer>
+  ICT Game World, pilot run 20 September 2026. Driven through Playwright against the live production deploy. Made by Ishini Premachandra and Dilini Wijesooriya.
+</footer>
+
+</div>
+</body>
+</html>

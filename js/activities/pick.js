@@ -16,7 +16,7 @@ export function render(activity, onDone) {
     });
     const label = el('label', { class: 'pick-card', for: `pick-${i}` }, [
       input,
-      el('span', { class: 'pick-icon', 'aria-hidden': 'true' }, [item.icon || '']),
+      el('span', { class: 'pick-icon', 'aria-hidden': 'true' }, [text(item.icon)]),
       el('span', { class: 'pick-text' }, [text(item.text)]),
     ]);
     grid.append(label);
