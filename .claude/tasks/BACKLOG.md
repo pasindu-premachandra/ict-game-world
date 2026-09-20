@@ -11,12 +11,14 @@ shared list to avoid two people building the same thing.
 
 | Area | Owner |
 |---|---|
-| `scratch-hub` (g9 3.4) | parallel session, `.claude/tasks/scratch-builder/` |
-| Sinhala translations | parallel session (grade 9 closed, adventure set outstanding) |
+| `scratch-hub` (g9 3.4) | parallel session, `.claude/tasks/scratch-builder/` - and its scope grew: Ishini says the Scratch builder belongs to every grade, so it is moving to the home page rather than staying inside grade 9 |
+| Sinhala translations | parallel session. Grade 9 closed in `5b9e098`, which also fixed a blind spot I introduced: the gap scanner was not looking inside `optionSets`. The adventure set's 348 strings are outstanding |
 | Adventure set, 18 mini games | `.claude/tasks/adventure-set/` |
-| Everything under "The reward layer" and "Screens that diverge" below | **unowned** |
+| Section 2, the reward layer | **in flight as of `7595337`** - `js/audio.js` (84 lines, oscillator cues, nothing added to the precache), `js/motion.js` (96 lines, the four `DESIGN.md` moments) and `js/reward.js` (104 lines, streak, stars, floating points, confetti) appeared untracked while this file was being written. Items 2.1 to 2.6 look covered. **Confirm with whoever owns it before touching them.** |
+| Section 3, the robot, and section 4, the diverging screens | **unowned** |
 
-Do not start an unowned item without saying so here first.
+Do not start an unowned item without saying so here first. This table went stale within an hour of being
+written, so check `git log` and `git status` before trusting it.
 
 ---
 
