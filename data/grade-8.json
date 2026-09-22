@@ -17,7 +17,15 @@
       "droppedActivities": 3
     }
   ],
-  "corrections": [],
+  "corrections": [
+    {
+      "grade": 8,
+      "lang": "si",
+      "term": "කොවෙනි",
+      "to": "කෙවෙනි",
+      "why": "The Sinhala original spells the word for a port \"කොවෙනිය\" throughout lesson 2. The NIE term is \"කෙවෙනිය\" - one vowel sign, ො for ෙ. Reported by Ishini 2026-09-22. Ten occurrences: activity 2.1's name, instruction and four rounds, a statement in 2.2, and three of the option set names."
+    }
+  ],
   "optionSets": {
     "2.1": [
       {
@@ -25,7 +33,7 @@
         "icon": "🖥️",
         "name": {
           "en": "VGA Port",
-          "si": "VGA කොවෙනිය"
+          "si": "VGA කෙවෙනිය"
         },
         "desc": {
           "en": "For old-style monitors",
@@ -49,7 +57,7 @@
         "icon": "🔌",
         "name": {
           "en": "USB Port",
-          "si": "USB කොවෙනිය"
+          "si": "USB කෙවෙනිය"
         },
         "desc": {
           "en": "For USB devices",
@@ -61,7 +69,7 @@
         "icon": "📺",
         "name": {
           "en": "HDMI Port",
-          "si": "HDMI කොවෙනිය"
+          "si": "HDMI කෙවෙනිය"
         },
         "desc": {
           "en": "Audio + video for TV",
@@ -311,38 +319,38 @@
           "type": "hotspot",
           "name": {
             "en": "Identify the Ports",
-            "si": "කොවෙනි හඳුනා ගන්න"
+            "si": "කෙවෙනි හඳුනා ගන්න"
           },
           "instruction": {
             "en": "Read each description and click the matching port.",
-            "si": "එක් එක් විස්තරය කියවා ගැලපෙන කොවෙනිය ක්ලික් කරන්න."
+            "si": "එක් එක් විස්තරය කියවා ගැලපෙන කෙවෙනිය ක්ලික් කරන්න."
           },
           "rounds": [
             {
               "q": {
                 "en": "Which port is used to connect a monitor with a VGA cable?",
-                "si": "VGA රැහැනක් සහිත සංදර්ශකයක් සම්බන්ධ කිරීමට යොදන කොවෙනිය?"
+                "si": "VGA රැහැනක් සහිත සංදර්ශකයක් සම්බන්ධ කිරීමට යොදන කෙවෙනිය?"
               },
               "ans": "vga"
             },
             {
               "q": {
                 "en": "Which port is used for networking with an RJ45 connector?",
-                "si": "RJ45 සම්බන්ධකය සහිත ජාල රැහැන සඳහා යොදන කොවෙනිය?"
+                "si": "RJ45 සම්බන්ධකය සහිත ජාල රැහැන සඳහා යොදන කෙවෙනිය?"
               },
               "ans": "rj45"
             },
             {
               "q": {
                 "en": "Which port is used to connect all USB-type devices?",
-                "si": "USB වර්ගයේ සියලු උපාංග සම්බන්ධ කිරීමට යොදන කොවෙනිය?"
+                "si": "USB වර්ගයේ සියලු උපාංග සම්බන්ධ කිරීමට යොදන කෙවෙනිය?"
               },
               "ans": "usb"
             },
             {
               "q": {
                 "en": "Which port carries BOTH audio and video for a TV?",
-                "si": "රූපවාහිනියක් සම්බන්ධ කිරීමට ශ්‍රව්‍ය හා දෘශ්‍ය දෙකම ගෙන යන කොවෙනිය?"
+                "si": "රූපවාහිනියක් සම්බන්ධ කිරීමට ශ්‍රව්‍ය හා දෘශ්‍ය දෙකම ගෙන යන කෙවෙනිය?"
               },
               "ans": "hdmi"
             }
@@ -370,7 +378,7 @@
             {
               "s": {
                 "en": "The RJ45 port is used to connect a keyboard.",
-                "si": "RJ45 කොවෙනිය යතුරු පුවරුවක් සම්බන්ධ කිරීමට යොදා ගනී."
+                "si": "RJ45 කෙවෙනිය යතුරු පුවරුවක් සම්බන්ධ කිරීමට යොදා ගනී."
               },
               "a": false
             },

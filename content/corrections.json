@@ -17,5 +17,12 @@
     "from": "🪑",
     "to": "🍽️",
     "why": "Follows the text correction above. It also removes the only icon that differed between the two languages, which the merge wrapped as {en, si} and the app then printed as [object Object]."
+  },
+  {
+    "grade": 8,
+    "lang": "si",
+    "term": "කොවෙනි",
+    "to": "කෙවෙනි",
+    "why": "The Sinhala original spells the word for a port \"කොවෙනිය\" throughout lesson 2. The NIE term is \"කෙවෙනිය\" - one vowel sign, ො for ෙ. Reported by Ishini 2026-09-22. Ten occurrences: activity 2.1's name, instruction and four rounds, a statement in 2.2, and three of the option set names."
   }
 ]

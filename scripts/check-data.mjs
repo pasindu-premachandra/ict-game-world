@@ -11,7 +11,7 @@ import { readLessons } from './lib/read-lessons.mjs';
 import { readAdventure } from './lib/read-adventure.mjs';
 import { readScratch } from './lib/read-scratch.mjs';
 import { denormalise } from './lib/normalise-adventure.mjs';
-import { applyCorrections, correctionsFor } from './lib/apply-corrections.mjs';
+import { applyCorrections, applyTermCorrections, correctionsFor } from './lib/apply-corrections.mjs';
 
 const GRADES = [
   { grade: 6, en: 'original/grade-6/english.html', si: 'original/grade-6/sinhala.html' },
@@ -98,7 +98,7 @@ for (const { grade, en, si } of GRADES) {
     const rebuilt = view(untouched, lang);
     // The same corrections extract.mjs applied, so the gate compares against
     // what we deliberately changed and still catches everything we did not.
-    const original = applyCorrections(grade, lang, readLessons(sources[lang]))
+    const original = applyTermCorrections(grade, lang, applyCorrections(grade, lang, readLessons(sources[lang])))
       .filter((l) => !replacedIds.has(l.id));
     const d = diff(rebuilt, original, `grade-${grade}.${lang}`);
     if (d.length) problems.push(...d);
@@ -123,7 +123,7 @@ for (const { grade, en, si } of GRADES) {
     const kept = activities - added;
     console.log(`ok    grade ${grade}  ${data.lessons.length} lessons, ${activities} activities (${kept} original + ${added} new), ${langs.join(' + ')} original rebuild matches exactly`);
     (data.replaced ?? []).forEach((r) => console.log(`        lesson ${r.id} deliberately replaced: "${r.was}" -> "${r.now}"`));
-    correctionsFor(grade).forEach((c) => console.log(`        ${c.lang} ${c.activity} ${c.path} deliberately corrected: "${c.from}" -> "${c.to}"${c.draft ? ' (drafted, awaiting review)' : ''}`));
+    correctionsFor(grade).forEach((c) => console.log(`        ${c.lang} ${c.term ? `every "${c.term}"` : `${c.activity} ${c.path}`} deliberately corrected: "${c.term ?? c.from}" -> "${c.to}"${c.draft ? ' (drafted, awaiting review)' : ''}`));
   }
   if (gaps.length) notes.push(`grade ${grade}: ${gaps.length} strings have no Sinhala yet`);
   if (suspect.length) notes.push(`grade ${grade}: ${suspect.length} strings read the same in both languages (may be untranslated, may just be a term like "CPU")`);

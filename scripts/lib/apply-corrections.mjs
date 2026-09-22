@@ -16,8 +16,33 @@ export function correctionsFor(grade, lang = null) {
   return ALL.filter((c) => c.grade === grade && (lang === null || c.lang === lang));
 }
 
+// A word the original misspells everywhere it appears. One entry rather than
+// one per occurrence, because it is one decision about one term, and it has to
+// reach the option sets too, which sit outside `lessons` and so have no
+// activity id to point a path at. Finding no occurrence means the original
+// changed underneath it, which fails the same way a stale `from` does.
+export function applyTermCorrections(grade, lang, value) {
+  for (const c of correctionsFor(grade, lang).filter((t) => t.term)) {
+    let hits = 0;
+    const walk = (node) => {
+      if (Array.isArray(node)) return node.forEach(walk);
+      if (node === null || typeof node !== 'object') return;
+      for (const [key, child] of Object.entries(node)) {
+        if (typeof child === 'string') {
+          if (!child.includes(c.term)) continue;
+          hits++;
+          node[key] = child.replaceAll(c.term, c.to);
+        } else walk(child);
+      }
+    };
+    walk(value);
+    if (!hits) throw new CorrectionError(`grade ${grade} ${lang}: term "${c.term}" is not in the original any more`);
+  }
+  return value;
+}
+
 export function applyCorrections(grade, lang, lessons) {
-  for (const c of correctionsFor(grade, lang)) {
+  for (const c of correctionsFor(grade, lang).filter((t) => t.path)) {
     const activity = lessons.flatMap((l) => l.activities).find((a) => a.id === c.activity);
     if (!activity) throw new CorrectionError(`grade ${grade} ${lang}: no activity ${c.activity}`);
 

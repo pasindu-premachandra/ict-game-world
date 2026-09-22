@@ -17,7 +17,7 @@ import { readBonus, BonusError } from './lib/read-bonus.mjs';
 import { normalise } from './lib/normalise-adventure.mjs';
 import { mergeLang, MergeError } from './lib/merge-lang.mjs';
 import { applyAdditions } from './lib/apply-additions.mjs';
-import { applyCorrections, correctionsFor } from './lib/apply-corrections.mjs';
+import { applyCorrections, applyTermCorrections, correctionsFor } from './lib/apply-corrections.mjs';
 import { applySinhala, applyScratchSinhala, applyAdventureSinhala, SinhalaError } from './lib/apply-sinhala.mjs';
 
 const GRADES = [
@@ -32,7 +32,7 @@ mkdirSync('data', { recursive: true });
 let failed = 0;
 for (const { grade, en, si } of GRADES) {
   const lessonsEn = applyCorrections(grade, 'en', readLessons(en));
-  const lessonsSi = si ? applyCorrections(grade, 'si', readLessons(si)) : null;
+  const lessonsSi = si ? applyTermCorrections(grade, 'si', applyCorrections(grade, 'si', readLessons(si))) : null;
 
   if (lessonsSi && lessonsEn.length !== lessonsSi.length) {
     console.error(`grade ${grade}: ${lessonsEn.length} lessons in english, ${lessonsSi.length} in sinhala`);
@@ -57,7 +57,7 @@ for (const { grade, en, si } of GRADES) {
   // they sit beside `lessons` rather than inside an activity so the parity gate
   // still compares activity for activity against the original.
   const optionsEn = readOptionSets(en);
-  const optionsSi = si ? readOptionSets(si) : null;
+  const optionsSi = si ? applyTermCorrections(grade, 'si', readOptionSets(si)) : null;
   const optionSets = {};
   for (const [id, list] of Object.entries(optionsEn)) {
     optionSets[id] = mergeLang(list, optionsSi?.[id], `optionSets.${id}`, Boolean(optionsSi));
@@ -94,7 +94,7 @@ for (const { grade, en, si } of GRADES) {
   const opts = optCount ? `, ${optCount} hotspot option set(s)` : '';
   console.log(`grade ${grade}: ${merged.lessons.length} lessons, ${activities} activities${extra}${opts} -> data/grade-${grade}.json`);
   merged.replaced.forEach((r) => console.log(`         lesson ${r.id} replaced: "${r.was}" -> "${r.now}"`));
-  correctionsFor(grade).forEach((c) => console.log(`         corrected ${c.lang} ${c.activity} ${c.path}: "${c.from}" -> "${c.to}"`));
+  correctionsFor(grade).forEach((c) => console.log(`         corrected ${c.lang} ${c.term ? `every "${c.term}"` : `${c.activity} ${c.path}`}: "${c.term ?? c.from}" -> "${c.to}"`));
   if (drafted?.filled) {
     console.log(`         sinhala: ${drafted.filled} strings filled from content/grade-${grade}.sinhala.json across ${drafted.drafted.length} activities${drafted.draft ? ', all marked siDraft' : ''}`);
   }

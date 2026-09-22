@@ -2,9 +2,9 @@ import { text, t } from '../i18n.js';
 import { el } from '../dom.js';
 import { rounds, lockOptions } from './rounds.js';
 
-// Read a short program and say what it prints. The code stays as written: it is
-// pseudocode a child compares line by line, so it is never translated and never
-// re-wrapped.
+// Read a short program and say what it prints. The code is never re-wrapped: it
+// is pseudocode a child compares line by line. It is {en, si} when a string the
+// program prints is itself translated, and a plain string otherwise.
 export function render(activity, onDone) {
   const questions = activity.questions;
 
@@ -25,7 +25,7 @@ export function render(activity, onDone) {
     });
 
     return el('div', { class: 'trace-round' }, [
-      el('pre', { class: 'trace-code' }, [q.code]),
+      el('pre', { class: 'trace-code' }, [text(q.code)]),
       el('p', { class: 'round-ask' }, [t('whatOutput')]),
       list,
     ]);
